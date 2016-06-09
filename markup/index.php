@@ -248,8 +248,6 @@
     </div>
 </div>
 <div class="over"></div>
-<a href="#2" target="_blank">df</a>
-<a href="#2" target="_self">df</a>
 </body>
 </html>
 

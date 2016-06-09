@@ -667,13 +667,31 @@ body{
   }
 }
 
-
-
-
 @media (max-width: $mediaMaxWidth) {
   .info{
     width: 100%;
     max-width: 100%;
+    min-height: 1px;
+    .speakers-info{
+      .alphabet{
+        left: $base-space-mob;
+        top: 50%;
+        @include transform(translate(0,-50%));
+      }
+      a{
+        padding-left: 125px;
+        padding-right: $base-space-mob;
+      }
+    }
+    .photo{
+      width: 40px;
+      height: 40px;
+      background-size: 100% auto;
+      position: absolute;
+      top: 50%;
+      @include transform(translate(0,-50%));
+    }
+
   }
   .description{
     position: fixed;

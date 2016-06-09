@@ -570,7 +570,28 @@ body {
 @media (max-width: 979px) {
   .info {
     width: 100%;
-    max-width: 100%; }
+    max-width: 100%;
+    min-height: 1px; }
+    .info .speakers-info .alphabet {
+      left: 14px;
+      top: 50%;
+      -webkit-transform: translate(0, -50%);
+      -moz-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+      transform: translate(0, -50%); }
+    .info .speakers-info a {
+      padding-left: 125px;
+      padding-right: 14px; }
+    .info .photo {
+      width: 40px;
+      height: 40px;
+      background-size: 100% auto;
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translate(0, -50%);
+      -moz-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+      transform: translate(0, -50%); }
 
   .description {
     position: fixed;
