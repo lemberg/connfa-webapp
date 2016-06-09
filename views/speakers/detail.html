@@ -1,0 +1,6 @@
+<router-outlet></router-outlet>
+<div *ngIf="showView && speaker">
+    <p>Name: {{speaker.lastName}} {{speaker.firstName}}</p>
+    <p><img src="{{speaker.avatarImageURL}}" alt=""></p>
+    <p>Job: {{speaker.jobTitle}} </p>
+</div>

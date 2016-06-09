@@ -1,0 +1,11 @@
+<div class="search">
+    <input type="search" #search placeholder="Search" [ngModel]="searchQuery" (ngModelChange)="searchSpeaker(search.value)">
+</div>
+<div>
+    <ul>
+        <li *ngFor="#letter of alphabet">
+            <a *ngFor="#speaker of filteredSpeakers[letter]" [routerLink]="['Show', {id: speaker.speakerId}]"><span *ngIf="filteredSpeakers[letter].indexOf(speaker) == 0">{{letter}}</span>{{speaker.firstName}} {{speaker.lastName}}</a>
+        </li>
+    </ul>
+</div>
+<router-outlet></router-outlet>
