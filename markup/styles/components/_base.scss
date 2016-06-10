@@ -633,68 +633,6 @@ body{
 
   }
 }
-.search{
-  position: absolute;
-  right: 27px;
-  padding-left: 30px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  overflow: hidden;
-  width: 0;
-  @include transition(width ease 0.3s);
-  input{
-    height: 34px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0;
-  }
-  input[type="search"]{
-    border: none;
-    background: transparent;
-    border-bottom: 1px solid #ffffff;
-    padding: 8px 20px 8px 8px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    width: 287px;
-    height: 34px;
-    max-width: 100%;
-    font-size: $font-size-first;
-    line-height: $base-lineH;
-    color: rgba(255,255,255,.32);
-    margin-right: -17px;
-    @include placeholder{
-      color: rgba(255,255,255,.32);
-    }
-
-  }
-  .icon-search{
-    background: url(../images/search-icon.svg) 0 0 no-repeat;
-    width: 24px;
-    height: 24px;
-    margin-right: 7px;
-    border: none;
-    padding: 0;
-    display: inline-block;
-    vertical-align: middle;
-    text-indent: -9999px;
-    cursor: pointer;
-    position: absolute;
-    left: 0;
-    top: 6px;
-  }
-  .close{
-    cursor: pointer;
-    color: #ffffff;
-    font-family: sans-serif Arial, "Helvetica Neue", Helvetica;
-  }
-
-}
 
 @media (max-width: $mediaMaxWidth) {
   .info{
