@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 
 var assetsDev = 'assets/';
 var assetsProd = 'src/';
@@ -26,9 +27,10 @@ var imagemin = require('gulp-imagemin');
 var tsProject = typescript.createProject('tsconfig.json');
 
 gulp.task('build-css', function () {
-    return gulp.src(assetsDev + 'scss/*.scss')
+    return gulp.src(assetsDev + 'scss/**/*.scss')
         .pipe(sourcemaps.init())
-        .pipe(postcss([precss, autoprefixer, cssnano]))
+        .pipe(sass({includePaths: [assetsDev + 'scss/components']}))
+        .pipe(postcss([precss, cssnano]))
         .pipe(sourcemaps.write())
         .pipe(ext_replace('.css'))
         .pipe(gulp.dest(assetsProd + 'css/'));
@@ -44,11 +46,11 @@ gulp.task('build-ts', function () {
 });
 
 gulp.task('build-img', function () {
-    return gulp.src(assetsDev + 'img/**/*')
-        .pipe(imagemin({
-            progressive: true
-        }))
-        .pipe(gulp.dest(assetsProd + 'img/'));
+    return gulp.src(assetsDev + 'images/**/*')
+        // .pipe(imagemin({
+        //     progressive: true
+        // }))
+        .pipe(gulp.dest(assetsProd + 'images/'));
 });
 
 gulp.task('build-html', function () {
@@ -56,10 +58,23 @@ gulp.task('build-html', function () {
         .pipe(gulp.dest(appProd));
 });
 
+gulp.task('build-js', function () {
+    console.log(assetsDev + 'js/**/*.js');
+    return gulp.src(assetsDev + 'js/**/*.js')
+        .pipe(gulp.dest(assetsProd+'js/'));
+});
+
+gulp.task('build-fonts', function () {
+    return gulp.src(assetsDev + 'fonts/*')
+        .pipe(gulp.dest(assetsProd+'fonts/'));
+});
+
 gulp.task('watch', function () {
     gulp.watch(appDev + '**/*.ts', ['build-ts']);
     gulp.watch(assetsDev + 'scss/**/*.scss', ['build-css']);
-    gulp.watch(assetsDev + 'img/*', ['build-img']);
+    gulp.watch(assetsDev + 'images/*', ['build-img']);
+    gulp.watch(assetsDev + 'js/*', ['build-js']);
+    gulp.watch(assetsDev + 'fonts/*', ['build-fonts']);
 });
 
-gulp.task('default', ['watch', 'build-ts', 'build-css']);
+gulp.task('default', ['watch', 'build-ts', 'build-css', 'build-img', 'build-js', 'build-fonts']);

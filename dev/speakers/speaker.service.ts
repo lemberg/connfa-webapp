@@ -26,7 +26,7 @@ export class SpeakerService {
     }
 
     loadSpeakers() {
-        var observer = this._http.get('http://local.connfa/api/v2/getSpeakers')
+        var observer = this._http.get('http://connfa-integration.uat.link/api/v2/getSpeakers')
             .map(response => response.json())
             .catch(error => {
                 console.log(error);
