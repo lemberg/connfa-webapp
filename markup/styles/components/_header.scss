@@ -155,6 +155,15 @@ header{
       @include transition(opacity ease 0.1s);
     }
   }
+  .arrow-back{
+    position: absolute;
+    left: -4px;
+    top: -2px;
+    svg{
+      display: block;
+      fill:#ffffff;
+    }
+  }
   &.active{
     .search{
       width: 287px;

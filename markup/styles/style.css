@@ -239,6 +239,10 @@ body {
   min-height: 100%;
   border-left: 2px solid #E0E0E0;
   background: #FAFAFA; }
+  .description header {
+    display: none; }
+    .description header .info-text {
+      margin-left: 53px; }
   .description .desc-info {
     font-size: 14px;
     line-height: 1.33;
@@ -578,7 +582,10 @@ body {
       padding-top: 89px;
       top: 0;
       overflow-y: auto;
-      -webkit-overflow-scrolling: touch; }
+      -webkit-overflow-scrolling: touch;
+      z-index: 14; }
+      .description.active header {
+        display: block; }
     .description .icons-view {
       right: 0; }
 
@@ -727,6 +734,8 @@ input[type="checkbox"] {
     input[type="checkbox"]:checked + .checkbox .check {
       fill: #57308c;
       fill-opacity: 1; }
+    input[type="checkbox"]:checked + .checkbox .contour {
+      fill: #57308c; }
 
 header {
   height: 64px;
@@ -878,6 +887,13 @@ header {
       -o-transition: opacity ease 0.1s;
       -ms-transition: opacity ease 0.1s;
       transition: opacity ease 0.1s; }
+  header .arrow-back {
+    position: absolute;
+    left: -4px;
+    top: -2px; }
+    header .arrow-back svg {
+      display: block;
+      fill: #ffffff; }
   header.active .search {
     width: 287px; }
   header.active .info-text {

@@ -237,6 +237,12 @@ body{
   min-height: 100%;
   border-left: 2px solid $border-color;
   background: $bg-color-block;
+  header{
+    display: none;
+    .info-text{
+      margin-left: 53px;
+    }
+  }
   .desc-info{
     font-size: $font-size-seconf;
     line-height: $base-lineH;
@@ -679,6 +685,10 @@ body{
       top: 0;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      z-index: 14;
+      header{
+        display: block;
+      }
     }
     .icons-view{
       right: 0;
