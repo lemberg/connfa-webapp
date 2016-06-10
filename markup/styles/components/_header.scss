@@ -1,6 +1,5 @@
-@import "mixin";
 header{
-  min-height: 64px;
+  height: 64px;
   width: 100%;
   padding: 14px 27px 14px 264px;
   -webkit-box-sizing: border-box;
@@ -47,6 +46,8 @@ header{
     font-size: 20px;
     line-height: 1;
     color: #ffffff;
+    opacity: 1;
+    @include transition(opacity ease 0.3s);
   }
   .top-menu{
     position: absolute;
@@ -82,23 +83,31 @@ header{
       }
     }
   }
-  .search{
-    input[type="search"]{
-
+  &.active{
+    .search{
+      width: 287px;
+    }
+    .info-text{
+      opacity: 0;
     }
   }
   @media (max-width: $mediaMaxWidth) {
     padding-left: 230px;
     .top-menu {
-      left: 15px;
+      left: $base-space-mob;
       top: 25px;
     }
     .filter{
-      right: 15px;
+      right: $base-space-mob;
     }
     .date{
       a{
         padding: 0 14px 14px;
+      }
+    }
+    &.active{
+      .search{
+        width: 205px;
       }
     }
   }
@@ -144,7 +153,7 @@ header{
   body.view{
     padding-top: 112px;
     header{
-      min-height: 112px;
+      height: 112px;
       padding-right: 14px;
       .description-top{
         position: absolute;

@@ -186,7 +186,7 @@ body {
       min-height: 48px;
       padding-top: 12px;
       padding-bottom: 12px; }
-      .info .speakers-info a.active {
+      .info .speakers-info a.router-link-active {
         background: #E0E0E0; }
     .info .speakers-info li {
       padding: 8px 0;
@@ -212,8 +212,13 @@ body {
       float: left;
       width: 48px;
       height: 48px;
-      background: url(../images/photo-icon.svg) 0 0 no-repeat;
-      opacity: .12; }
+      background: url(../images/photo-icon.svg) 0 0 no-repeat; }
+      .info .speakers-info .photo img {
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        width: 100%;
+        height: 100%; }
     .info .speakers-info .name, .info .speakers-info .job {
       display: block; }
     .info .speakers-info .name {
@@ -283,7 +288,7 @@ body {
     margin-bottom: 11px; }
     .description .photo-top img {
       width: 84px;
-      height: auto;
+      height: 84px;
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
       border-radius: 100%; }
@@ -528,7 +533,19 @@ body {
     stroke: #57308c; }
 
 .search {
-  float: right; }
+  position: absolute;
+  right: 27px;
+  padding-left: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 0;
+  -webkit-transition: width ease 0.3s;
+  -moz-transition: width ease 0.3s;
+  -o-transition: width ease 0.3s;
+  -ms-transition: width ease 0.3s;
+  transition: width ease 0.3s; }
   .search input {
     height: 34px;
     -webkit-box-sizing: border-box;
@@ -537,8 +554,9 @@ body {
     margin: 0; }
   .search input[type="search"] {
     border: none;
-    background: #6539A1;
-    padding: 8px;
+    background: transparent;
+    border-bottom: 1px solid #ffffff;
+    padding: 8px 20px 8px 8px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -546,10 +564,12 @@ body {
     -moz-border-radius: 2px;
     border-radius: 2px;
     width: 287px;
+    height: 34px;
     max-width: 100%;
     font-size: 16px;
     line-height: 1.33;
-    color: rgba(255, 255, 255, 0.32); }
+    color: rgba(255, 255, 255, 0.32);
+    margin-right: -17px; }
     .search input[type="search"].placeholder {
       color: rgba(255, 255, 255, 0.32); }
     .search input[type="search"]:-moz-placeholder {
@@ -558,14 +578,24 @@ body {
       color: rgba(255, 255, 255, 0.32); }
     .search input[type="search"]::-webkit-input-placeholder {
       color: rgba(255, 255, 255, 0.32); }
-  .search input[type="submit"] {
+  .search .icon-search {
     background: url(../images/search-icon.svg) 0 0 no-repeat;
     width: 24px;
     height: 24px;
     margin-right: 7px;
     border: none;
     padding: 0;
-    text-indent: -9999px; }
+    display: inline-block;
+    vertical-align: middle;
+    text-indent: -9999px;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 6px; }
+  .search .close {
+    cursor: pointer;
+    color: #ffffff;
+    font-family: sans-serif Arial, "Helvetica Neue", Helvetica; }
 
 @media (max-width: 979px) {
   .info {
@@ -573,20 +603,23 @@ body {
     max-width: 100%;
     min-height: 1px; }
     .info .speakers-info .alphabet {
-      left: 14px;
+      left: 16px;
       top: 50%;
       -webkit-transform: translate(0, -50%);
       -moz-transform: translate(0, -50%);
       -ms-transform: translate(0, -50%);
       transform: translate(0, -50%); }
     .info .speakers-info a {
-      padding-left: 125px;
-      padding-right: 14px; }
-    .info .photo {
+      padding-left: 119px;
+      padding-right: 16px; }
+    .info .speakers-info li:after {
+      left: 120px; }
+    .info .speakers-info .photo {
       width: 40px;
       height: 40px;
       background-size: 100% auto;
       position: absolute;
+      margin-left: -57px;
       top: 50%;
       -webkit-transform: translate(0, -50%);
       -moz-transform: translate(0, -50%);
@@ -671,7 +704,12 @@ body {
         margin-left: -16px;
         margin-right: -16px; }
         .filter-nav .filter-nav_wrap ul li {
-          padding: 14px 0; } }
+          padding: 14px 0; }
+
+  .search {
+    right: 16px; }
+    .search.active {
+      width: 205px; } }
 @font-face {
   font-family: 'roboto-medium';
   src: url("../fonts/roboto-medium-webfont.eot");
@@ -758,22 +796,8 @@ input[type="checkbox"] {
       fill: #57308c;
       fill-opacity: 1; }
 
-.info {
-  min-height: 100vh;
-  min-height: -moz-calc( 100vh - 64px);
-  min-height: -o-calc( 100vh - 64px);
-  min-height: -webkit-calc( 100vh - 64px);
-  min-height: calc( 100vh - 64px); }
-
-.bg-nav {
-  -moz-user-select: -moz-none;
-  -o-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none; }
-
 header {
-  min-height: 64px;
+  height: 64px;
   width: 100%;
   padding: 14px 27px 14px 264px;
   -webkit-box-sizing: border-box;
@@ -810,7 +834,13 @@ header {
     font-family: "roboto-medium";
     font-size: 20px;
     line-height: 1;
-    color: #ffffff; }
+    color: #ffffff;
+    opacity: 1;
+    -webkit-transition: opacity ease 0.3s;
+    -moz-transition: opacity ease 0.3s;
+    -o-transition: opacity ease 0.3s;
+    -ms-transition: opacity ease 0.3s;
+    transition: opacity ease 0.3s; }
   header .top-menu {
     position: absolute;
     left: 27px;
@@ -837,16 +867,22 @@ header {
       fill: transparent; }
     header .filter.active .full-filter {
       fill: #ffffff; }
+  header.active .search {
+    width: 287px; }
+  header.active .info-text {
+    opacity: 0; }
   @media (max-width: 979px) {
     header {
       padding-left: 230px; }
       header .top-menu {
-        left: 15px;
+        left: 16px;
         top: 25px; }
       header .filter {
-        right: 15px; }
+        right: 16px; }
       header .date a {
-        padding: 0 14px 14px; } }
+        padding: 0 14px 14px; }
+      header.active .search {
+        width: 205px; } }
 
 .hamburger-box {
   width: 18px;
@@ -884,7 +920,7 @@ header {
   body.view {
     padding-top: 112px; }
     body.view header {
-      min-height: 112px;
+      height: 112px;
       padding-right: 14px; }
       body.view header .description-top {
         position: absolute;

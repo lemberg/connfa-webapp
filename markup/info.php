@@ -7,7 +7,7 @@
   <div class="load">
     <img src="images/default.gif" width="40" alt="">
   </div>
-    <header>
+    <header class="header">
       <div class="top-menu">
         <div class="hamburger-box">
               <span class="hamburger">

@@ -13,6 +13,15 @@ function filter(){
         $(this).toggleClass('active')
     });
 }
+function search(){
+    $('.header .close').click(function(){
+        $(this).parents('.header').removeClass('active');
+    });
+    $('.header .icon-search').click(function(){
+        $(this).parents('.header').toggleClass('active');
+    });
+
+}
 $(document).ready(function() {
     $('.hamburger-box').click(function(e){
         e.preventDefault();
@@ -26,6 +35,7 @@ $(document).ready(function() {
     });
     cls();
     filter();
+    search();
     $(window).load(function() {
         setTimeout(function() {
             $('.load').remove('.load');

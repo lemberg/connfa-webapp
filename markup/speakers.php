@@ -3,11 +3,11 @@
 <head>
     <?php include_once("head.php");?>
 </head>
-<body class="open view">
+<body class="open">
 <div class="load">
     <img src="images/default.gif" width="40" alt="">
 </div>
-<header class="cf">
+<header class="cf header">
     <div class="top-menu">
         <div class="hamburger-box">
               <span class="hamburger">
@@ -16,8 +16,9 @@
         <span class="info-text">Speakers</span>
     </div>
     <div class="search">
-        <input type="submit">
+        <span class="icon-search"></span>
         <input type="search" placeholder="Search">
+        <span class="close">X</span>
     </div>
 </header>
 <div id="page">
@@ -50,7 +51,7 @@
                             <strong class="name">Abe BreWster</strong>
                         </div>
                     </a>
-                    <a href="#" class="cf active">
+                    <a href="#" class="cf router-link-active">
                         <span class="photo">
                         </span>
                         <div class="text">

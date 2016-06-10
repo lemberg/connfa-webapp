@@ -19,10 +19,10 @@
 }
 %calc{
   min-height: 100vh;
-  min-height: -moz-calc( 100vh - 64px);
-  min-height: -o-calc( 100vh - 64px);
-  min-height: -webkit-calc( 100vh - 64px);
-  min-height: calc( 100vh - 64px);
+  min-height: -moz-calc( #{$height-window} - #{$height-header});
+  min-height: -o-calc( #{$height-window} - #{$height-header});
+  min-height: -webkit-calc( #{$height-window} - #{$height-header});
+  min-height: calc( #{$height-window} - #{$height-header});
 }
 %display-flex {
   display: -webkit-box;
