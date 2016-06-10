@@ -17,14 +17,12 @@
   &::-moz-placeholder { @content; }
   &::-webkit-input-placeholder { @content; }
 }
-$a: 100vh;
-$b: 64px;
 %calc{
   min-height: 100vh;
-  min-height: -moz-calc( #{$a} - #{$b});
-  min-height: -o-calc( #{$a} - #{$b});
-  min-height: -webkit-calc( #{$a} - #{$b});
-  min-height: calc( #{$a} - #{$b});
+  min-height: -moz-calc( #{$height-window} - #{$height-header});
+  min-height: -o-calc( #{$height-window} - #{$height-header});
+  min-height: -webkit-calc( #{$height-window} - #{$height-header});
+  min-height: calc( #{$height-window} - #{$height-header});
 }
 %display-flex {
   display: -webkit-box;
