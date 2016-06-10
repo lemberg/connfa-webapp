@@ -47,7 +47,7 @@ header{
     line-height: 1;
     color: #ffffff;
     opacity: 1;
-    @include transition(opacity ease 0.3s);
+    @include transition(opacity 0.1s ease 0.3s);
   }
   .top-menu{
     position: absolute;
@@ -127,19 +127,17 @@ header{
 
     }
     .icon-search{
-      background: url(../images/search-icon.svg) 0 0 no-repeat;
-      width: 24px;
-      height: 24px;
-      margin-right: 7px;
+      background: url(../images/search-icon.svg) 0 90% no-repeat;
+      height: 34px;
+      width: 30px;
       border: none;
       padding: 0;
-      display: inline-block;
-      vertical-align: middle;
       text-indent: -9999px;
       cursor: pointer;
       position: absolute;
       left: 0;
-      top: 6px;
+      top: 0;
+      z-index: 2;
     }
     .close{
       cursor: pointer;
@@ -148,14 +146,13 @@ header{
       line-height: 34px;
       width: 24px;
       text-align: center;
-      z-index: 2;
+      z-index: 1;
       top: 0;
       right: 0;
       position: absolute;
-      display: none;
       font-family: sans-serif, Arial, "Helvetica Neue", Helvetica;
       opacity: 0;
-      @include transition(opacity ease 0.3s);
+      @include transition(opacity ease 0.1s);
     }
   }
   &.active{
@@ -164,10 +161,11 @@ header{
     }
     .info-text{
       opacity: 0;
+      @include transition(opacity ease 0.3s);
     }
     .close{
-      display: block;
       opacity: 1;
+      @include transition(opacity 0.1s ease 0.3s);
     }
   }
   @media (max-width: $mediaMaxWidth) {
@@ -184,9 +182,12 @@ header{
         padding: 0 14px 14px;
       }
     }
+    .search{
+      right: $base-space-mob;
+    }
     &.active{
       .search{
-        width: 205px;
+        width: 237px;
       }
     }
   }

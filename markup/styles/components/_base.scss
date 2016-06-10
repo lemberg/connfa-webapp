@@ -245,6 +245,10 @@ body{
   }
   .desc-info-wrap{
     margin-bottom: 15px;
+    border-top: 1px solid $border-color-item;
+    padding-top: $base-marginP;
+    padding-right: 48px;
+    margin-right: -48px;
     p{
       margin: 0;
     }
@@ -317,10 +321,8 @@ body{
     }
   }
   .text-speaker{
-    border-bottom: 1px solid $border-color-item;
-    padding: $base-marginP 48px 0 0;
+    padding: $base-marginP 0 0 0;
     margin-bottom: 18px;
-    margin-right: -48px;
     p{
       margin: 0 0 13px 0;
     }
@@ -753,12 +755,6 @@ body{
           padding: 14px 0;
         }
       }
-    }
-  }
-  .search{
-    right: $base-space-mob;
-    &.active{
-      width: 205px;
     }
   }
 }
