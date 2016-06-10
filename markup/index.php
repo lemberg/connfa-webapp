@@ -7,7 +7,7 @@
 <div class="load">
     <img src="images/default.gif" width="40" alt="">
 </div>
-<header class="cf">
+<header class="cf header">
     <div class="top-menu">
         <div class="hamburger-box">
               <span class="hamburger">
@@ -248,8 +248,6 @@
     </div>
 </div>
 <div class="over"></div>
-<a href="#2" target="_blank">df</a>
-<a href="#2" target="_self">df</a>
 </body>
 </html>
 

@@ -20,6 +20,8 @@ $font-third:'smythe-regular';
 /*end font*/
 
 /*element*/
+$height-window: 100vh;
+$height-header: 64px;
 $font-size-first:16px;
 $font-size-seconf:14px;
 $font-size-third:20px;
@@ -37,7 +39,9 @@ $padding-base:24px;
 $padding-items:16px;
 $padding-items-mob:14px;
 $speaker-space:148px;
+$speaker-space-mob:120px;
 $base-marginP:13px;
+$base-space-mob:16px;
 $color-first:$black;
 $color-secod:$black-opacyti;
 $color-events:$black-opacyti;
