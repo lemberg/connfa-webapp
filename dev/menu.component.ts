@@ -2,17 +2,11 @@ import {Component} from 'angular2/core';
 import {SpeakersListComponent} from "./speakers/speakers-list.component";
 import {ROUTER_DIRECTIVES, RouteConfig, Router} from "angular2/router";
 import {SessionsListComponent} from "./sessions/sessions-list.component";
-import {MenuComponent} from "./menu.component";
 
 @Component({
-    selector: 'app',
-    template: `
-        <div class="main">
-            <router-outlet></router-outlet>
-        </div>
-        <main-menu></main-menu>
-    `,
-    directives: [SpeakersListComponent, SessionsListComponent, MenuComponent, ROUTER_DIRECTIVES],
+    selector: 'main-menu',
+    templateUrl: 'views/menu.html',
+    directives: [SpeakersListComponent, SessionsListComponent, ROUTER_DIRECTIVES],
 })
 @RouteConfig([
     {
@@ -26,5 +20,12 @@ import {MenuComponent} from "./menu.component";
         component: SessionsListComponent,
     },
 ])
-export class AppComponent {
+export class MenuComponent {
+    constructor(private router:Router) {
+    }
+
+    isActive(instruction:any[]):boolean {
+        
+        return this.router.isRouteActive(this.router.generate(instruction));
+    }
 }
