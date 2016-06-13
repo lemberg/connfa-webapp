@@ -45,9 +45,7 @@ function back(){
     });
 }
 function desc(){
-    $(document).on('click', '.events-info li .box-item,.speakers-info li a', function(e){
-        $('.description').toggleClass('active');
-        $('.header').addClass('hide');
+    $(document).on('click', '.events-info li .box-item,.speakers-info li a', function(e) {
         animate();
         scrollFixedOverflow();
     });
