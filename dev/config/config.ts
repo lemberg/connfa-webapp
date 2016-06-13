@@ -3,6 +3,6 @@ export const CONFIG = {
         "apiUrl": "http://local.connfa/api/v2/",
     },
     production: {
-        "apiUrl": "http://connfa-itegration.uat.link/api/v2/",
+        "apiUrl": "http://connfa-integration.uat.link/api/v2/",
     }
 };
