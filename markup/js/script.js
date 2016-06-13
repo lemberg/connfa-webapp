@@ -1,7 +1,18 @@
+function control(){
+    $('.control').click(function(){
+        $('.clear-all').addClass('active');
+    });
+}
 function animate() {
     $('body').addClass('animate');
     setTimeout(function () {
         $('body').removeClass('animate');
+    }, 500);
+}
+function scrollFixedOverflow(){
+    $('body').addClass('overflow');
+    setTimeout(function () {
+        $('body').removeClass('overflow');
     }, 500);
 }
 function cls(){
@@ -19,6 +30,7 @@ function filter(){
         $(this).toggleClass('active');
         $(this).parents('header').toggleClass('hide');
         animate();
+        scrollFixedOverflow();
     });
 }
 function search(){
@@ -35,8 +47,19 @@ function back(){
         $(this).parents('.active').removeClass('active');
         $('header').removeClass('hide');
         $('.filter').removeClass('active');
+        $('body').removeClass('overflow');
+        $('.clear-all').removeClass('active');
         animate();
-    })
+        scrollFixedOverflow();
+    });
+}
+function desc(){
+    $('.events-info li .box-item,.speakers-info li a').click(function(e){
+        $('.description').toggleClass('active');
+        $('.header').addClass('hide');
+        animate();
+        scrollFixedOverflow();
+    });
 }
 $(document).ready(function() {
     $('.hamburger-box').click(function(e){
@@ -55,6 +78,8 @@ $(document).ready(function() {
     filter();
     search();
     back();
+    desc();
+    control();
     $(window).load(function() {
         setTimeout(function() {
             $('.load').remove('.load');

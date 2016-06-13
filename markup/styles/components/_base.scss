@@ -113,6 +113,12 @@ body{
       @include transition(top ease 0.5s);
     }
   }
+  .inner{
+    @include transition(padding-left ease 0.5s);
+  }
+  .description{
+    @include transition(top ease 0.5s);
+  }
 }
 .filter-nav{
   background: $bg-color-block;
@@ -127,18 +133,15 @@ body{
   top: 0;
   padding: 64px $padding-base 0 $padding-base;
   height: 100%;
-  -webkit-overflow-scrolling: touch;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  overflow-y: auto;
   -webkit-box-shadow: 0 0 6px $shadow;
   -moz-box-shadow: 0 0 6px $shadow;
   box-shadow: 0 0 6px $shadow;
   header{
     display: none;
   }
-
   .filter-nav_wrap{
     padding: 8px 0;
     ul{
@@ -166,8 +169,6 @@ body{
 .inner{
   position: relative;
   padding-left: 0;
-  @include transition(padding-left ease 0.5s);
-
 }
 .info{
   @extend %calc;
@@ -289,7 +290,7 @@ body{
     margin-bottom: 15px;
     position: relative;
     padding-left: 67px;
-    margin-right: -67px;
+    margin-right: -48px;
   }
   .desc-photo-speaker{
     position: absolute;
@@ -658,8 +659,15 @@ body{
 
   }
 }
-
 @media (max-width: $mediaMaxWidth) {
+  body{
+    &.overflow{
+      .filter-nav,
+      .description{
+        overflow: visible;
+      }
+    }
+  }
   .info{
     width: 100%;
     max-width: 100%;
@@ -692,16 +700,16 @@ body{
   }
   .description{
     position: fixed;
+    height: 100%;
     top: 120%;
     left: 0;
     padding: 25px 16px;
     z-index: 5;
-    @include transition(top ease 0.5s);
+    border-left: none;
     &.active{
       padding-top: 64px+25px;
       top: 0;
       overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
       z-index: 14;
       header{
         display: block;
@@ -709,6 +717,11 @@ body{
     }
     .icons-view{
       right: 0;
+    }
+    .desc-info-wrap{
+      &.view{
+        margin-right: -15px;
+      }
     }
   }
   .over{
@@ -802,10 +815,10 @@ body{
     &.active{
       top: 0;
       overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
       z-index: 14;
       header{
         display: block;
+        z-index: 20;
       }
     }
   }
