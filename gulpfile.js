@@ -27,9 +27,9 @@ var imagemin = require('gulp-imagemin');
 var tsProject = typescript.createProject('tsconfig.json');
 
 gulp.task('build-css', function () {
-    return gulp.src(assetsDev + 'scss/**/*.scss')
+    return gulp.src(assetsDev + 'styles/**/*.scss')
         .pipe(sourcemaps.init())
-        .pipe(sass({includePaths: [assetsDev + 'scss/components']}))
+        .pipe(sass({includePaths: [assetsDev + 'styles/components']}))
         .pipe(postcss([precss, cssnano]))
         .pipe(sourcemaps.write())
         .pipe(ext_replace('.css'))
