@@ -58,8 +58,6 @@ export class SpeakerService {
 
     private sortSpeakers(speakers) {
         // speakers
-        return speakers.sort((a, b) => {
-            return a.firstName.localeCompare(b.firstName);
-        });
+        return speakers.sort((a, b) => a.firstName.localeCompare(b.firstName));
     }
 }

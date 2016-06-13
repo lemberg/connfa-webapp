@@ -8,7 +8,6 @@ import {Router, ROUTER_DIRECTIVES, RouteConfig} from "angular2/router";
     selector: 'speakers-list',
     templateUrl: 'views/speakers/menu.html',
     directives: [SpeakerDetailsComponent, ROUTER_DIRECTIVES],
-    providers: [SpeakerService],
 })
 @RouteConfig([
     {
