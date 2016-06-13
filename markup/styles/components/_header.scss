@@ -108,9 +108,6 @@ header{
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-      -webkit-border-radius: 2px;
-      -moz-border-radius: 2px;
-      border-radius: 2px;
       width: 287px;
       height: 34px;
       max-width: 100%;
@@ -121,6 +118,9 @@ header{
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
       @include placeholder{
         color: rgba(255,255,255,.32);
       }
@@ -159,6 +159,7 @@ header{
     position: absolute;
     left: -4px;
     top: -2px;
+    cursor: pointer;
     svg{
       display: block;
       fill:#ffffff;
@@ -241,7 +242,7 @@ header{
 @media (max-width: $mediaMaxWidth1) {
   body.view{
     padding-top: 112px;
-    header{
+    .header{
       height: 112px;
       padding-right: 14px;
       .description-top{
@@ -273,12 +274,6 @@ header{
           margin-left: -40px;
           margin-right: 12px;
         }
-      }
-    }
-    .description{
-      &.active{
-        top: 0;
-        padding-top: 112px+25px;
       }
     }
   }
