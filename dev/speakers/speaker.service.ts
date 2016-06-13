@@ -36,7 +36,7 @@ export class SpeakerService {
                 return Observable.throw(error.json());
             });
 
-        return new Promise(function (resolve, reject) {
+        return new Promise((resolve, reject)  => {
             observer.subscribe(function (res) {
                 resolve(res.speakers);
             });
