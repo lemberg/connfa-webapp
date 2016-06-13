@@ -1,4 +1,24 @@
 <section class="filter-nav">
+    <header>
+        <div class="top-menu">
+            <div class="arrow-back">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                        <path d="M20,11H7.83l5.59-5.59L12,4l-8,8l8,8l1.41-1.41L7.83,13H20V11z"/>
+                        </svg>
+            </div>
+            <span class="info-text">Filter</span>
+        </div>
+        <div class="control">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+            <path fill="none" d="M0,0h24v24H0V0z"/>
+                            <path d="M12,8c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S10.9,8,12,8z M12,10c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2c1.1,0,2-0.9,2-2
+                C14,10.9,13.1,10,12,10z M12,16c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,16,12,16z"/>
+            </svg>
+        </div>
+        <span class="clear-all">Clear All</span>
+    </header>
     <nav class="filter-nav_wrap">
         <ul>
             <li>
@@ -62,7 +82,6 @@
                     </svg>
                 </label>
             </li>
-
         </ul>
         <ul>
             <li>

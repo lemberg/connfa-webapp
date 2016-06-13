@@ -7,7 +7,7 @@
 <div class="load">
     <img src="images/default.gif" width="40" alt="">
 </div>
-<header class="cf header">
+<header class="cf">
     <div class="top-menu">
         <div class="hamburger-box">
               <span class="hamburger">
@@ -113,6 +113,17 @@
             </ul>
         </section>
         <section class="description">
+            <header>
+                <div class="top-menu">
+                    <div class="arrow-back">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                        <path d="M20,11H7.83l5.59-5.59L12,4l-8,8l8,8l1.41-1.41L7.83,13H20V11z"/>
+                        </svg>
+                    </div>
+                    <span class="info-text">Speakers</span>
+                </div>
+            </header>
             <div class="photo-top">
                 <img src="images/photo1.png">
             </div>
@@ -162,7 +173,7 @@
                     <a href="#">Quam enim, mi dui ac cras habitasse sem volut</a>
                 </p>
             </div>
-            <div class="desc-info-wrap">
+            <div class="desc-info-wrap view">
                 <div class="additionally">
                     <p>The Big Easy: Streamlined Front-End Development with Pattern Lab and Twig</p>
                 </div>
@@ -186,10 +197,7 @@
                     </p>
                 </div>
             </div>
-
-
         </section>
-        <?php include_once("filter.php");?>
     </div>
 </div>
 <div class="over"></div>

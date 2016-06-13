@@ -24,6 +24,13 @@
   min-height: -webkit-calc( #{$height-window} - #{$height-header});
   min-height: calc( #{$height-window} - #{$height-header});
 }
+@mixin calcSearch(){
+  width: 85%;
+  width: -moz-calc( #{$full-width} - #{$space-header-all});
+  width: -o-calc( #{$full-width} - #{$space-header-all});
+  width: -webkit-calc( #{$full-width} - #{$space-header-all});
+  width: calc( #{$full-width} - #{$space-header-all});
+}
 %display-flex {
   display: -webkit-box;
   display: -moz-box;
