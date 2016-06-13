@@ -1,4 +1,4 @@
-import {Injectable} from "angular2/core";
+import {Injectable, Inject} from "angular2/core";
 import {SPEAKERS} from "./mock-speakers";
 import {Speaker} from './speaker';
 import {Http} from "angular2/http";
@@ -8,7 +8,10 @@ import {Observable} from "rxjs/Rx";
 
 export class SpeakerService {
 
-    constructor(private _http:Http) {
+    private _config;
+
+    constructor(private _http:Http, @Inject('config') config) {
+        this._config = config;
     }
 
     speakers:Speaker[]
@@ -26,7 +29,7 @@ export class SpeakerService {
     }
 
     loadSpeakers() {
-        var observer = this._http.get('http://connfa-integration.uat.link/api/v2/getSpeakers')
+        var observer = this._http.get(this._config.apiUrl+'getSpeakers')
             .map(response => response.json())
             .catch(error => {
                 console.log(error);
