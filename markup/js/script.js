@@ -1,3 +1,9 @@
+function menu(){
+    $(document).on('click', '.select', function(e){
+        e.preventDefault();
+        $(this).parents('.nav').toggleClass('active');
+    });
+}
 function control(){
     $('.control').click(function(){
         $('.clear-all').addClass('active');
@@ -80,6 +86,7 @@ $(document).ready(function() {
     back();
     desc();
     control();
+    menu();
     $(window).load(function() {
         setTimeout(function() {
             $('.load').remove('.load');
