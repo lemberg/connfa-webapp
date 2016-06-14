@@ -7,6 +7,8 @@ body{
   padding-top: 64px;
   background: $bg-color-block;
   color: $color-first;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 #page{
   overflow-x: hidden;
@@ -388,6 +390,10 @@ body{
         &:hover{
           background: $bg-color-hover;
         }
+      }
+      @media (max-width: $mediaMaxWidth) {
+        padding-left: $base-space-mob;
+        padding-right: $base-space-mob;
       }
     }
     &.active{

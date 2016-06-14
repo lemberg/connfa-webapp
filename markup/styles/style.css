@@ -32,7 +32,9 @@ body {
   font-family: "roboto-regular";
   padding-top: 64px;
   background: #FAFAFA;
-  color: rgba(0, 0, 0, 0.87); }
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 #page {
   overflow-x: hidden; }
@@ -363,6 +365,10 @@ body {
       @media (min-width: 980px) {
         .nav-info li a:hover {
           background: #E0E0E0; } }
+      @media (max-width: 979px) {
+        .nav-info li a {
+          padding-left: 16px;
+          padding-right: 16px; } }
     .nav-info li.active a {
       color: #757428; }
 
