@@ -1,12 +1,12 @@
 import {Component, OnInit} from 'angular2/core';
 import {SpeakerDetailsComponent} from "./speaker-detail.component";
-import {SpeakerService} from "./speaker.service";
-import {Speaker} from "./speaker";
 import {Router, ROUTER_DIRECTIVES, RouteConfig} from "angular2/router";
+import {SpeakerService} from "../../services/speaker.service";
+import {Speaker} from "../../models/speaker";
 
 @Component({
     selector: 'speakers-list',
-    templateUrl: 'views/speakers/menu.html',
+    templateUrl: 'app/views/speakers/menu.html',
     directives: [SpeakerDetailsComponent, ROUTER_DIRECTIVES],
 })
 @RouteConfig([
