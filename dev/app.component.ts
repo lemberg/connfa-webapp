@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
-import {SpeakersListComponent} from "./speakers/speakers-list.component";
-import {ROUTER_DIRECTIVES, RouteConfig, Router} from "angular2/router";
-import {SessionsListComponent} from "./sessions/sessions-list.component";
-import {MenuComponent} from "./menu.component";
+import {ROUTER_DIRECTIVES, RouteConfig} from "angular2/router";
+import {MenuComponent} from "./components/menu.component";
+import {SpeakersListComponent} from "./components/speakers/speakers-list.component";
+import {SessionsListComponent} from "./components/sessions/sessions-list.component";
 
 @Component({
     selector: 'app',
@@ -12,7 +12,7 @@ import {MenuComponent} from "./menu.component";
         </div>
         <main-menu></main-menu>
     `,
-    directives: [SpeakersListComponent, SessionsListComponent, MenuComponent, ROUTER_DIRECTIVES],
+    directives: [MenuComponent, ROUTER_DIRECTIVES],
 })
 @RouteConfig([
     {

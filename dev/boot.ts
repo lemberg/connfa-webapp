@@ -6,7 +6,7 @@ import {HTTP_PROVIDERS} from "angular2/http";
 import {ENV} from "./config/env";
 import {CONFIG} from "./config/config";
 import {provide} from "angular2/core";
-import {SpeakerService} from "./speakers/speaker.service";
+import {SpeakerService} from "./services/speaker.service";
 
 Promise.resolve(ENV).then((ENV) => {
     bootstrap(AppComponent, [ROUTER_PROVIDERS, HTTP_PROVIDERS, SpeakerService,  provide('config', { useValue: CONFIG[ENV] })]);

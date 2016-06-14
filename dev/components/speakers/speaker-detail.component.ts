@@ -1,11 +1,11 @@
 import {Component, OnInit} from 'angular2/core';
 import {RouteParams, ROUTER_DIRECTIVES} from "angular2/router";
-import {SpeakerService} from "./speaker.service";
-import {Speaker} from "./speaker";
+import {Speaker} from "../../models/speaker";
+import {SpeakerService} from "../../services/speaker.service";
 
 @Component({
     selector: 'speaker-details',
-    templateUrl: 'views/speakers/detail.html',
+    templateUrl: 'app/views/speakers/detail.html',
     inputs: ["speaker"],
     directives: [ROUTER_DIRECTIVES],
 })
