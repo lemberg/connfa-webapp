@@ -659,6 +659,12 @@ body{
 
   }
 }
+.social-media{
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 @media (max-width: $mediaMaxWidth) {
   body{
     &.overflow{

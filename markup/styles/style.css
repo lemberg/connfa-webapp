@@ -554,6 +554,11 @@ body {
   .link-site a path {
     stroke: #57308c; }
 
+.social-media {
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto; }
+
 @media (max-width: 979px) {
   body.overflow .filter-nav,
   body.overflow .description {
