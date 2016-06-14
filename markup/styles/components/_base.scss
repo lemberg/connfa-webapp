@@ -664,7 +664,25 @@ body{
   max-width: 100%;
   margin: 0 auto;
 }
+.location{
+  .box{
+    padding: $padding-base;
+  }
+  p{
+    font-size: $font-size-seconf;
+    margin-bottom: 0;
+  }
+}
+.response{
+  position: relative;
+  padding-bottom: 49%;
+  iframe{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 
+}
 @media (max-width: $mediaMaxWidth) {
   body{
     &.overflow{
