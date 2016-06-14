@@ -173,6 +173,7 @@ header{
     -moz-border-radius: 2px;
     border-radius: 2px;
     top: 8px;
+    font-size: 16px;
     display: none;
     &.active{
       display: inline-block;
@@ -206,7 +207,6 @@ header{
     }
   }
 }
-
 .hamburger-box{
   width: 18px;
   height: 12px;
