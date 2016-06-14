@@ -10,9 +10,7 @@ header{
   top: 0;
   left: 0;
   z-index: 11;
-  -webkit-box-shadow:  0 0 12px rgba(0,0,0, 0.65);
-  -moz-box-shadow:  0 0 12px rgba(0,0,0, 0.65);
-  box-shadow:  0 0 12px rgba(0,0,0, 0.65);
+  @extend %shadow;
   a{
     color: #ffffff;
     text-decoration: none;
@@ -174,9 +172,68 @@ header{
     border-radius: 2px;
     top: 8px;
     font-size: 16px;
+    font-family: $font-first;
     display: none;
+    @extend %shadow;
     &.active{
       display: inline-block;
+    }
+  }
+  .box-menu{
+    position: absolute;
+    right: $padding-base;
+    top: 22px;
+  }
+  .nav{
+    >li{
+      >a{
+        padding-right: 30px;
+        position: relative;
+        &:after{
+          content: '';
+          position: absolute;
+          top: 50%;
+          margin-top: -2px;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-left: 4px solid transparent;
+          border-right: 4px solid transparent;
+          border-top: 4px solid #ffffff;
+        }
+      }
+    }
+    a{
+      font-family: $font-second;
+      font-size: $font-size-third;
+      line-height: $base-lineH;
+    }
+    .nav-sub{
+      display: none;
+      right: 0;
+      top: -13px;
+      position: absolute;
+      background: $bg-color-block;
+      padding: $padding-items/2 0;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      @extend %shadow;
+      a{
+        font-size: $font-size-first;
+        font-family: $font-first;
+        color: $color-first;
+        padding: 13px 51px 13px 16px;
+        display: inline-block;
+        &:hover{
+          background: $bg-color-hover;
+        }
+      }
+    }
+    &.active{
+      .nav-sub{
+        display: block;
+      }
     }
   }
   &.active{
@@ -203,6 +260,9 @@ header{
       }
     }
     .search{
+      right: $base-space-mob;
+    }
+    .box-menu{
       right: $base-space-mob;
     }
   }
@@ -277,6 +337,20 @@ header{
         input[type="submit"]{
           margin-left: -40px;
           margin-right: 12px;
+        }
+      }
+      .box-menu{
+        right: auto;
+        top: 64px;
+        left: 69px;
+      }
+      .nav{
+        .select{
+          font-size: $font-size-first;
+        }
+        .nav-sub{
+          right: auto;
+          left: 0;
         }
       }
     }

@@ -7,6 +7,8 @@ body{
   padding-top: 64px;
   background: $bg-color-block;
   color: $color-first;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 #page{
   overflow-x: hidden;
@@ -59,7 +61,6 @@ body{
       padding: 16px 16px 16px 80px;
       @media (min-width: $mediaMinWidth) {
         &:hover{
-          background: $bg-color-hover;
           color: $color-second-site;
           path{
             fill:$color-second-site;
@@ -78,13 +79,7 @@ body{
     }
     &.active{
       a{
-        color: $color-second-site;
-        path{
-          fill:$color-second-site;
-        }
-        svg{
-          fill-opacity: 1;
-        }
+        background: $bg-color-hover;
       }
     }
   }
@@ -103,9 +98,6 @@ body{
 .animate{
   .left-navigation{
     @include transition(all ease 0.5s);
-  }
-  .over{
-    @include transition(opacity ease 0.5s );
   }
   .filter-nav{
     @include transition(right ease 0.5s);
@@ -399,6 +391,10 @@ body{
           background: $bg-color-hover;
         }
       }
+      @media (max-width: $mediaMaxWidth) {
+        padding-left: $base-space-mob;
+        padding-right: $base-space-mob;
+      }
     }
     &.active{
       a{
@@ -659,6 +655,49 @@ body{
 
   }
 }
+.social-media{
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.location,.plane{
+  .box{
+    padding: $padding-base;
+  }
+  p{
+    font-size: $font-size-seconf;
+    margin-bottom: 0;
+  }
+}
+.plane{
+  .box-img{
+    position: relative;
+    padding-bottom: 53%;
+    img{
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: auto;
+      right: 0;
+      bottom: 0;
+      padding: $padding-items-mob;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+  }
+}
+
+
+.response{
+  position: relative;
+  padding-bottom: 49%;
+  iframe{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
 @media (max-width: $mediaMaxWidth) {
   body{
     &.overflow{
@@ -733,7 +772,7 @@ body{
     display: block;
     height: 100%;
     top: 0;
-    left: 0;
+    z-index: -1;
   }
   .open{
     overflow: hidden;
@@ -742,6 +781,12 @@ body{
     }
     .over{
       opacity: .8;
+      z-index: 6;
+    }
+  }
+  .animate{
+    .over{
+      @include transition(opacity ease 0.5s );
       z-index: 6;
     }
   }
@@ -825,5 +870,10 @@ body{
   }
   .hide{
     display: none;
+  }
+  .location{
+    .box{
+      padding: $padding-base $padding-items-mob;
+    }
   }
 }
