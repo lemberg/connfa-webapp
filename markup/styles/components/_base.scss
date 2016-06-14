@@ -681,7 +681,6 @@ body{
     width: 100%;
     height: 100%;
   }
-
 }
 @media (max-width: $mediaMaxWidth) {
   body{
@@ -849,5 +848,10 @@ body{
   }
   .hide{
     display: none;
+  }
+  .location{
+    .box{
+      padding: $padding-base $padding-items-mob;
+    }
   }
 }

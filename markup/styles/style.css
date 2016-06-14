@@ -703,7 +703,10 @@ body {
         z-index: 20; }
 
   .hide {
-    display: none; } }
+    display: none; }
+
+  .location .box {
+    padding: 24px 14px; } }
 @font-face {
   font-family: 'roboto-medium';
   src: url("../fonts/roboto-medium-webfont.eot");
