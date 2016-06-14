@@ -1,8 +1,8 @@
 import {Injectable, Inject} from "angular2/core";
-import {SPEAKERS} from "./mock-speakers";
-import {Speaker} from './speaker';
 import {Http} from "angular2/http";
 import {Observable} from "rxjs/Rx";
+import {Speaker} from "../models/speaker";
+import {SPEAKERS} from "../models/mock-speakers";
 
 @Injectable()
 
