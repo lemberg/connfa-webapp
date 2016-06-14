@@ -3,11 +3,13 @@ import {SpeakerDetailsComponent} from "./speaker-detail.component";
 import {Router, ROUTER_DIRECTIVES, RouteConfig} from "angular2/router";
 import {SpeakerService} from "../../services/speaker.service";
 import {Speaker} from "../../models/speaker";
+import {ApiService} from "../../services/api.service";
 
 @Component({
     selector: 'speakers-list',
     templateUrl: 'app/views/speakers/menu.html',
     directives: [SpeakerDetailsComponent, ROUTER_DIRECTIVES],
+    providers: [ApiService]
 })
 @RouteConfig([
     {

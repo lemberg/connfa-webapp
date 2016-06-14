@@ -16,9 +16,9 @@
     <div class="inner cf">
         <section class="info">
             <ul class="speakers-info">
-                <li *ngFor="#letter of alphabet">
-                    <a *ngFor="#speaker of filteredSpeakers[letter]" [routerLink]="['Show', {id: speaker.speakerId}]">
-                        <span *ngIf="filteredSpeakers[letter].indexOf(speaker) == 0" class="alphabet">{{letter}}</span>
+                <li *ngFor="let key of alphabet">
+                    <a *ngFor="let speaker of filteredSpeakers[key]" [routerLink]="['Show', {id: speaker.speakerId}]">
+                        <span *ngIf="filteredSpeakers[key].indexOf(speaker) == 0" class="alphabet">{{key}}</span>
                         <span class="photo"><img src="{{speaker.avatarImageURL}}" alt=""></span>
                         <div class="text">
                             <strong class="name">{{speaker.firstName}} {{speaker.lastName}}</strong>

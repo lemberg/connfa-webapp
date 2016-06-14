@@ -59,7 +59,6 @@ gulp.task('build-html', function () {
 });
 
 gulp.task('build-js', function () {
-    console.log(assetsDev + 'js/**/*.js');
     return gulp.src(assetsDev + 'js/**/*.js')
         .pipe(gulp.dest(assetsProd+'js/'));
 });
@@ -75,7 +74,7 @@ gulp.task('watch', function () {
     gulp.watch(assetsDev + 'images/*', ['build-img']);
     gulp.watch(assetsDev + 'js/*', ['build-js']);
     gulp.watch(assetsDev + 'fonts/*', ['build-fonts']);
-    gulp.watch(appDev + 'views/*', ['build-html']);
+    gulp.watch(appDev + 'views/**/*.html', ['build-html']);
 });
 
 gulp.task('default', ['watch', 'build-ts', 'build-css', 'build-img', 'build-js', 'build-fonts', 'build-html']);
