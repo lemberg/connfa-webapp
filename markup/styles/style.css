@@ -559,6 +559,20 @@ body {
   max-width: 100%;
   margin: 0 auto; }
 
+.location .box {
+  padding: 24px; }
+.location p {
+  font-size: 14px;
+  margin-bottom: 0; }
+
+.response {
+  position: relative;
+  padding-bottom: 49%; }
+  .response iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%; }
+
 @media (max-width: 979px) {
   body.overflow .filter-nav,
   body.overflow .description {
@@ -721,6 +735,21 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 24px; }
+
+h2 {
+  font-size: 22px; }
+
+h3 {
+  font-size: 20px; }
+
+h4 {
+  font-size: 18px; }
+
+h5 {
+  font-size: 16px; }
+
+h6 {
+  font-size: 14px; }
 
 strong {
   font-weight: normal;
