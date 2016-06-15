@@ -3,27 +3,29 @@ import {Http} from "angular2/http";
 import {Observable} from "rxjs/Rx";
 import {Speaker} from "../models/speaker";
 import {SPEAKERS} from "../models/mock-speakers";
+import {ApiService} from "./api.service";
 
 @Injectable()
 
 export class SpeakerService {
 
     private _config;
+    private _localforage;
 
-    constructor(private _http:Http, @Inject('config') config) {
+    constructor(private _http:Http, @Inject('config') config, private _apiService: ApiService) {
         this._config = config;
     }
 
     speakers:Speaker[]
 
     getSpeakers() {
+
         if (!this.speakers || this.speakers.length == 0) {
-            return this.loadSpeakers().then((speakers: Speaker[])=> {
+            return this._apiService.getCollection('speakers').then((speakers: Speaker[])=> {
                 this.speakers = this.sortSpeakers(speakers);
                 return speakers;
             });
         } else {
-            console.log('Cached');
             return Promise.resolve(this.speakers)
         }
     }

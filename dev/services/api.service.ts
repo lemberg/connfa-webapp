@@ -1,5 +1,5 @@
 import {Injectable, Inject} from "angular2/core";
-import {Http} from "angular2/http";
+import {Http, Headers} from "angular2/http";
 import {Observable} from "rxjs/Rx";
 import {Speaker} from "../models/speaker";
 
@@ -13,53 +13,40 @@ export class ApiService {
     constructor(private _http:Http, @Inject('config') config, @Inject('localforage') localforage) {
         this._config = config;
         this._localforage = localforage;
-
-        var instance = this._localforage.createInstance({name: 'speakers'});
-        instance.keys().then(keys => {
-            console.log(keys);
-        })
-
-        // var instance = this._localforage.createInstance('speakers');
-        // instance.keys().then(keys => {
-        //
-        // });
-        // instance.keys().then((speaker) => {
-        //     console.log(speaker);
-        // });
-        // console.log(this._localforage.all());
     }
 
-    getUpdates(since = '') {
-        // this._loadService('checkUpdates', since).then((response) => {
-        //     if (response && response.idsForUpdate) {
-        //         response.idsForUpdate.forEach((method) => {
-        //             switch (method) {
-        //                 case 4:
-        //                     this.getSpeakers(since);
-        //                     break;
-        //                 case 5:
-        //                     this.getLocations(since);
-        //             }
-        //         })
-        //     }
-        // })
-        // this._localforage.getItem('test').then(() => {
-        //     console.log(1);
-        // });
+    grabUpdates() {
+        var instance = this._localforage.createInstance({name: 'updates'});
+        instance.getItem('lastUpdate').then(lastUpdate => {
+            this._loadService('checkUpdates', lastUpdate).then((response) => {
+                if (response && response.idsForUpdate) {
+                    response.idsForUpdate.forEach((method) => {
+                        switch (method) {
+                            case 4:
+                                this.grabSpeakers(lastUpdate);
+                                break;
+                            case 5:
+                                this.grabLocations(lastUpdate);
+                                break;
+                        }
+                    })
+                }
+            })
+        });
     }
 
-    getSpeakers(since = '') {
+    grabSpeakers(since = '') {
         var instance = this._localforage.createInstance({
             name: "speakers"
         });
         this._loadService('getSpeakers', since).then((response) => {
-           response.speakers.forEach((speaker: Speaker) => {
-               instance.setItem(speaker.speakerId.toString(), speaker)
-           })
+            response.speakers.forEach((speaker:Speaker) => {
+                instance.setItem(speaker.speakerId.toString(), speaker)
+            })
         });
     }
 
-    getLocations(since = '') {
+    grabLocations(since = '') {
         var instance = this._localforage.createInstance({name: 'locations'});
         this._loadService('getLocations', since).then((response) => {
             response.locations.forEach(location => {
@@ -68,9 +55,43 @@ export class ApiService {
         });
     }
 
+    getCollection(name) {
+        var instance = this._localforage.createInstance({
+            name: name
+        });
+
+        return new Promise((resolve, reject) => {
+
+            instance.keys().then(keys => {
+                var promises = [];
+                keys.forEach(key => {
+                    promises.push(instance.getItem(key))
+                })
+
+                Promise.all(promises).then((collection) => {
+                    resolve(collection);
+                })
+            });
+        })
+    }
+
     private _loadService(service, since) {
-        var observer = this._http.get(this._config.apiUrl + service)
-            .map(response => response.json())
+        var headers = new Headers();
+        if (since) {
+            headers.append('If-Modified-Since', since);
+        }
+
+        var observer = this._http.get(this._config.apiUrl + service, {
+                headers: headers
+            })
+            .map(response => {
+                if (service == 'checkUpdates') {
+                    var instance = this._localforage.createInstance({name: 'updates'});
+                    instance.setItem('lastUpdate', response.headers.get('Last-Modified'));
+                }
+
+                return response.json()
+            })
             .catch(error => {
                 console.log(error);
                 return Observable.throw(error.json());
@@ -78,6 +99,7 @@ export class ApiService {
 
         return new Promise((resolve, reject) => {
             observer.subscribe(function (res) {
+                console.log(res);
                 resolve(res);
             });
         })
