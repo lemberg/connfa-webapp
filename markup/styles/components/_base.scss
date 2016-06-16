@@ -236,8 +236,8 @@ body{
       color: $color-first;
     }
     .job{
-      font-size: $font-size-seconf;
-      color: $color-secod;
+      font-size: $font-size-second;
+      color: $color-second;
     }
     .text{
       padding: 4px 0;
@@ -260,7 +260,7 @@ body{
     }
   }
   .desc-info{
-    font-size: $font-size-seconf;
+    font-size: $font-size-second;
     line-height: $base-lineH;
     color: $color-second-site;
     margin-bottom: 12px;
@@ -312,8 +312,8 @@ body{
     }
   }
   .desc-work-speaker{
-    color: $black-opacyti;
-    font-size: $font-size-seconf;
+    color: $black-opacity;
+    font-size: $font-size-second;
   }
   .icons-view{
     position: absolute;
@@ -388,7 +388,7 @@ body{
       color: $color-first;
       @media (min-width: $mediaMinWidth) {
         &:hover{
-          background: $bg-color-hover;
+          color: $color-second-site;
         }
       }
       @media (max-width: $mediaMaxWidth) {
@@ -398,7 +398,7 @@ body{
     }
     &.active{
       a{
-        color: $color-second-site;
+        background: $bg-color-hover;
       }
     }
   }
@@ -477,7 +477,7 @@ body{
   .level,
   .speaker,
   .place{
-    font-size: $font-size-seconf;
+    font-size: $font-size-second;
     line-height: $base-lineH;
     color: $color-events;
     margin-top: 3px;
@@ -665,7 +665,7 @@ body{
     padding: $padding-base;
   }
   p{
-    font-size: $font-size-seconf;
+    font-size: $font-size-second;
     margin-bottom: 0;
   }
 }

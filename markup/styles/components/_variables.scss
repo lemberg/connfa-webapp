@@ -1,7 +1,8 @@
 /*color*/
+$white:#ffffff;
 $black:rgba(0,0,0,.87);
-$black-opacyti:rgba(0,0,0,.54);
-$masala-approx-opacyti:rgba(61,51,51,.87);
+$black-opacity:rgba(0,0,0,.54);
+$masala-approx-opacity:rgba(61,51,51,.87);
 $black-opacity2:rgba(0,0,0,.65);
 $black-opacity3:rgba(0,0,0,.45);
 $alto-approx:#E0E0E0;
@@ -24,7 +25,7 @@ $height-window: 100vh;
 $height-header: 64px;
 $height-header-second:112px;
 $font-size-first:16px;
-$font-size-seconf:14px;
+$font-size-second:14px;
 $font-size-third:20px;
 $base-lineH:1.33;
 $menuWidth:264px;
@@ -46,8 +47,8 @@ $base-space-mob:16px;
 $full-width:100%;
 $space-header-all:86px;
 $color-first:$black;
-$color-secod:$black-opacyti;
-$color-events:$black-opacyti;
+$color-second:$black-opacity;
+$color-events:$black-opacity;
 $border-color:$alto-approx;
 $border-color-item:$alto-approx1;
 $bg-color-block:$alabaster-solid;
@@ -61,5 +62,6 @@ $bg-input:$royal-purple-approx;
 $color-link:$eminence-approx;
 $color-first-site:$eminence-approx;
 $color-second-site:$crete-approx;
+$color-all-element-header:$white;
 
 /*end element*/

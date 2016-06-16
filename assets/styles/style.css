@@ -362,13 +362,13 @@ body {
       color: rgba(0, 0, 0, 0.87); }
       @media (min-width: 980px) {
         .nav-info li a:hover {
-          background: #E0E0E0; } }
+          color: #757428; } }
       @media (max-width: 979px) {
         .nav-info li a {
           padding-left: 16px;
           padding-right: 16px; } }
     .nav-info li.active a {
-      color: #757428; }
+      background: #E0E0E0; }
 
 .events-info {
   overflow: hidden; }
