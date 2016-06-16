@@ -83,21 +83,24 @@ function share(){
         event.stopPropagation();
     });
 }
-$(document).ready(function() {
-    $('.hamburger-box').click(function(e){
+function leftNavigation(){
+    $(document).on('click', '.hamburger-box',function(e){
         e.preventDefault();
+        e.stopPropagation();
         if($('body').hasClass("animate")==false){
-            console.log($(this).hasClass("animate"));
             $('body').toggleClass('open');
             animate();
         }
     });
-    $('.over').click(function(e){
+    $(document).on('click', '.over',function(e){
         e.preventDefault();
         e.stopPropagation();
         $('body').removeClass('open');
         animate();
     });
+}
+$(document).ready(function() {
+    leftNavigation();
     cls();
     filter();
     search();

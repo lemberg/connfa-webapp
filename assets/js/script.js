@@ -81,7 +81,7 @@ function share(){
         event.stopPropagation();
     });
 }
-$(document).ready(function() {
+function leftNavigation(){
     $(document).on('click', '.hamburger-box',function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -96,6 +96,9 @@ $(document).ready(function() {
         $('body').removeClass('open');
         animate();
     });
+}
+$(document).ready(function() {
+    leftNavigation();
     cls();
     filter();
     search();
