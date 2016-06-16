@@ -318,6 +318,10 @@ header{
         margin-bottom: 0;
         padding: 0;
         overflow-y: auto;
+        text-align: left;
+      }
+      .date{
+        padding-left: 55px;
       }
       .search{
         left: 0;
@@ -366,4 +370,5 @@ header{
       }
     }
   }
+
 }

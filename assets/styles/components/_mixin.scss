@@ -17,7 +17,7 @@
   &::-moz-placeholder { @content; }
   &::-webkit-input-placeholder { @content; }
 }
-%calc{
+@mixin calc{
   min-height: 100vh;
   min-height: -moz-calc( #{$height-window} - #{$height-header});
   min-height: -o-calc( #{$height-window} - #{$height-header});

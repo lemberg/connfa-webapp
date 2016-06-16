@@ -5,13 +5,6 @@
 /*element*/
 /*color for all items to will be changed*/
 /*end element*/
-.info {
-  min-height: 100vh;
-  min-height: -moz-calc( 100vh - 64px);
-  min-height: -o-calc( 100vh - 64px);
-  min-height: -webkit-calc( 100vh - 64px);
-  min-height: calc( 100vh - 64px); }
-
 .bg-nav {
   -moz-user-select: -moz-none;
   -o-user-select: none;
@@ -185,6 +178,11 @@ body {
   padding-left: 0; }
 
 .info {
+  min-height: 100vh;
+  min-height: -moz-calc( 100vh - 64px);
+  min-height: -o-calc( 100vh - 64px);
+  min-height: -webkit-calc( 100vh - 64px);
+  min-height: calc( 100vh - 64px);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -567,7 +565,7 @@ body {
 
 .plane .box-img {
   position: relative;
-  padding-bottom: 53%; }
+  padding-bottom: 46%; }
   .plane .box-img img {
     position: absolute;
     left: 0;
@@ -582,7 +580,7 @@ body {
 
 .response {
   position: relative;
-  padding-bottom: 49%; }
+  padding-bottom: 42%; }
   .response iframe {
     position: absolute;
     width: 100%;
@@ -649,7 +647,8 @@ body {
     background: #000;
     display: block;
     height: 100%;
-    top: 0;
+    top: -9999px;
+    left: -9999px;
     z-index: -1; }
 
   .open {
@@ -658,7 +657,9 @@ body {
       padding-left: 0; }
     .open .over {
       opacity: .8;
-      z-index: 6; }
+      z-index: 4;
+      left: 0;
+      top: 0; }
 
   .animate .over {
     -webkit-transition: opacity ease 0.5s;
@@ -666,7 +667,9 @@ body {
     -o-transition: opacity ease 0.5s;
     -ms-transition: opacity ease 0.5s;
     transition: opacity ease 0.5s;
-    z-index: 6; }
+    z-index: 6;
+    left: 0;
+    top: 0; }
 
   .left-navigation {
     top: 0;
@@ -729,7 +732,10 @@ body {
     display: none; }
 
   .location .box {
-    padding: 24px 14px; } }
+    padding: 24px 14px; }
+
+  .plane .box-img {
+    padding-bottom: 75%; } }
 @font-face {
   font-family: 'roboto-medium';
   src: url("../fonts/roboto-medium-webfont.eot");
@@ -810,6 +816,9 @@ label {
   label .check-all {
     font-family: "roboto-medium";
     color: rgba(0, 0, 0, 0.87); }
+
+iframe {
+  max-width: 100%; }
 
 input[type="checkbox"] {
   display: none; }
@@ -1113,7 +1122,10 @@ header {
         width: 100%;
         margin-bottom: 0;
         padding: 0;
-        overflow-y: auto; }
+        overflow-y: auto;
+        text-align: left; }
+      body.view .header .date {
+        padding-left: 55px; }
       body.view .header .search {
         left: 0;
         right: 0;

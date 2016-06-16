@@ -89,6 +89,9 @@ label{
 
   }
 }
+iframe{
+  max-width: 100%;
+}
 input[type="checkbox"]{
   display: none;
   &+.checkbox{

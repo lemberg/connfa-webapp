@@ -163,7 +163,7 @@ body{
   padding-left: 0;
 }
 .info{
-  @extend %calc;
+  @include calc;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -672,7 +672,7 @@ body{
 .plane{
   .box-img{
     position: relative;
-    padding-bottom: 53%;
+    padding-bottom: 46%;
     img{
       position: absolute;
       left: 0;
@@ -687,16 +687,17 @@ body{
     }
   }
 }
-
-
 .response{
   position: relative;
-  padding-bottom: 49%;
+  padding-bottom: 42%;
   iframe{
     position: absolute;
     width: 100%;
     height: 100%;
   }
+}
+.overflow{
+
 }
 @media (max-width: $mediaMaxWidth) {
   body{
@@ -771,7 +772,8 @@ body{
     background: #000;
     display: block;
     height: 100%;
-    top: 0;
+    top: -9999px;
+    left: -9999px;
     z-index: -1;
   }
   .open{
@@ -781,13 +783,17 @@ body{
     }
     .over{
       opacity: .8;
-      z-index: 6;
+      z-index: 4;
+      left: 0;
+      top: 0;
     }
   }
   .animate{
     .over{
       @include transition(opacity ease 0.5s );
       z-index: 6;
+      left: 0;
+      top: 0;
     }
   }
   .left-navigation{
@@ -874,6 +880,11 @@ body{
   .location{
     .box{
       padding: $padding-base $padding-items-mob;
+    }
+  }
+  .plane{
+    .box-img{
+      padding-bottom: 75%;
     }
   }
 }

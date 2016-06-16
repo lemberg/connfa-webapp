@@ -13,7 +13,7 @@ function animate() {
     $('body').addClass('animate');
     setTimeout(function () {
         $('body').removeClass('animate');
-    }, 500);
+    }, 700);
 }
 function scrollFixedOverflow(){
     $('body').addClass('overflow');
