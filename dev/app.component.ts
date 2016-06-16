@@ -3,6 +3,7 @@ import {ROUTER_DIRECTIVES, RouteConfig} from "angular2/router";
 import {MenuComponent} from "./components/menu.component";
 import {SpeakersListComponent} from "./components/speakers/speakers-list.component";
 import {SessionsListComponent} from "./components/sessions/sessions-list.component";
+import {ApiService} from "./services/api.service";
 
 @Component({
     selector: 'app',
@@ -27,4 +28,7 @@ import {SessionsListComponent} from "./components/sessions/sessions-list.compone
     },
 ])
 export class AppComponent {
+    constructor(private _apiService: ApiService) {
+        this._apiService.grabUpdates();
+    }
 }
