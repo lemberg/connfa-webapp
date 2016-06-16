@@ -69,8 +69,10 @@ $(document).ready(function() {
     $(document).on('click', '.hamburger-box',function(e){
         e.preventDefault();
         e.stopPropagation();
-        $('body').toggleClass('open');
-        animate();
+        if($('body').hasClass("animate")==false){
+            $('body').toggleClass('open');
+            animate();
+        }
     });
     $(document).on('click', '.over',function(e){
         e.preventDefault();

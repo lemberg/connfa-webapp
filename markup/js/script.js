@@ -19,7 +19,7 @@ function scrollFixedOverflow(){
     $('body').addClass('overflow');
     setTimeout(function () {
         $('body').removeClass('overflow');
-    }, 500);
+    }, 700);
 }
 function cls(){
     var windowWidth=$(window).width();
@@ -70,9 +70,11 @@ function desc(){
 $(document).ready(function() {
     $('.hamburger-box').click(function(e){
         e.preventDefault();
-        e.stopPropagation();
-        $('body').toggleClass('open');
-        animate();
+        if($('body').hasClass("animate")==false){
+            console.log($(this).hasClass("animate"));
+            $('body').toggleClass('open');
+            animate();
+        }
     });
     $('.over').click(function(e){
         e.preventDefault();
