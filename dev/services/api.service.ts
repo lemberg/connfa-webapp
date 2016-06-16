@@ -41,7 +41,11 @@ export class ApiService {
         });
         this._loadService('getSpeakers', since).then((response) => {
             response.speakers.forEach((speaker:Speaker) => {
-                instance.setItem(speaker.speakerId.toString(), speaker)
+                if (speaker.deleted) {
+                    instance.removeItem(speaker.speakerId.toString())
+                } else {
+                    instance.setItem(speaker.speakerId.toString(), speaker)
+                }
             })
         });
     }
@@ -50,7 +54,11 @@ export class ApiService {
         var instance = this._localforage.createInstance({name: 'locations'});
         this._loadService('getLocations', since).then((response) => {
             response.locations.forEach(location => {
-                instance.setItem(location.locationId.toString(), location)
+                if (location.deleted) {
+                    instance.removeItem(location.speakerId.toString())
+                } else {
+                    instance.setItem(location.locationId.toString(), location)
+                }
             })
         });
     }
