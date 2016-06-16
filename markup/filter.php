@@ -22,7 +22,7 @@
     <nav class="filter-nav_wrap">
         <ul>
             <li>
-                <label class="checkbox-view">
+                <label class="checkbox-view check-all-filter">
                     <strong class="check-all">Filter</strong>
                     <input type="checkbox">
                     <svg version="1.1" class="checkbox" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -36,7 +36,7 @@
                 </label>
             </li>
         </ul>
-        <ul>
+        <ul class="one">
             <li>
                 <strong>Experience Levels</strong>
             </li>

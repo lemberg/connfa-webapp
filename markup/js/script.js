@@ -66,6 +66,21 @@ function clearAllFilter(){
         }
     });
 }
+function selectAll(selector,selector1){
+    $(document).on('click', selector, function(e){
+        var status = $(selector).prop("checked");
+        if(status==true){
+            $(this).parents(selector1).find('input[type=checkbox]').prop({
+                checked: true
+            });
+        }
+        else{
+            $(this).parents(selector1).find('input[type=checkbox]').prop({
+                checked: false
+            });
+        }
+    });
+}
 function search(){
     $('header .close').click(function(){
         $(this).parents('header').removeClass('active');
@@ -132,6 +147,7 @@ $(document).ready(function() {
     share();
     filterChecked();
     clearAllFilter();
+    selectAll('.check-all-filter input','.filter-nav');
     $(window).load(function() {
         setTimeout(function() {
             $('.load').remove('.load');
