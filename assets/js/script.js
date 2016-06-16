@@ -13,7 +13,7 @@ function animate() {
     $('body').addClass('animate');
     setTimeout(function () {
         $('body').removeClass('animate');
-    }, 500);
+    }, 700);
 }
 function scrollFixedOverflow(){
     $('body').addClass('overflow');
@@ -69,8 +69,10 @@ $(document).ready(function() {
     $(document).on('click', '.hamburger-box',function(e){
         e.preventDefault();
         e.stopPropagation();
-        $('body').toggleClass('open');
-        animate();
+        if($('body').hasClass("animate")==false){
+            $('body').toggleClass('open');
+            animate();
+        }
     });
     $(document).on('click', '.over',function(e){
         e.preventDefault();

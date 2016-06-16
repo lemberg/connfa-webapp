@@ -12,7 +12,7 @@ header{
   z-index: 11;
   @extend %shadow;
   a{
-    color: #ffffff;
+    color: $color-all-element-header;
     text-decoration: none;
   }
   .date{
@@ -21,12 +21,12 @@ header{
     }
     li{
       display: inline-block;
-      font-size: $font-size-seconf;
+      font-size: $font-size-second;
       font-family: $font-second;
       &.active{
         a{
           opacity: 1;
-          border-bottom: 2px solid #ffffff;
+          border-bottom: 2px solid $color-all-element-header;
         }
       }
     }
@@ -43,7 +43,7 @@ header{
     font-family: $font-second;
     font-size: 20px;
     line-height: 1;
-    color: #ffffff;
+    color: $color-all-element-header;
     opacity: 1;
     @include transition(opacity 0.1s ease 0.3s);
   }
@@ -70,14 +70,14 @@ header{
     cursor: pointer;
     svg{
       display: block;
-      fill:#ffffff;
+      fill:$color-all-element-header;
     }
     .full-filter{
       fill: transparent;
     }
     &.active{
       .full-filter{
-        fill: #ffffff;
+        fill: $color-all-element-header;
       }
     }
   }
@@ -101,7 +101,7 @@ header{
     input[type="search"]{
       border: none;
       background: transparent;
-      border-bottom: 1px solid #ffffff;
+      border-bottom: 1px solid $color-all-element-header;
       padding: 8px 20px 8px 8px;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -139,7 +139,7 @@ header{
     }
     .close{
       cursor: pointer;
-      color: #ffffff;
+      color: $color-all-element-header;
       height: 34px;
       line-height: 34px;
       width: 24px;
@@ -160,7 +160,7 @@ header{
     cursor: pointer;
     svg{
       display: block;
-      fill:#ffffff;
+      fill:$color-all-element-header;
     }
   }
   .clear-all{
@@ -199,7 +199,7 @@ header{
           height: 0;
           border-left: 4px solid transparent;
           border-right: 4px solid transparent;
-          border-top: 4px solid #ffffff;
+          border-top: 4px solid $color-all-element-header;
         }
       }
     }
@@ -278,7 +278,7 @@ header{
 .hamburger{
   width: 100%;
   height: 2px;
-  background: #ffffff;
+  background: $color-all-element-header;
   padding: 0;
   border: 0;
   text-indent: -9999px;
@@ -292,7 +292,7 @@ header{
     content: '';
     height: 2px;
     width: 100%;
-    background: #ffffff;
+    background: $color-all-element-header;
     position: absolute;
     left: 0;
   }
@@ -318,6 +318,10 @@ header{
         margin-bottom: 0;
         padding: 0;
         overflow-y: auto;
+        text-align: left;
+      }
+      .date{
+        padding-left: 55px;
       }
       .search{
         left: 0;
@@ -366,4 +370,5 @@ header{
       }
     }
   }
+
 }

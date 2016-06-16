@@ -81,13 +81,16 @@ label{
     display: block;
     position: relative;
     padding-right: 15px;
-    color: $black-opacyti;
+    color: $black-opacity;
   }
   .check-all{
     font-family: $font-second;
     color: $black;
 
   }
+}
+iframe{
+  max-width: 100%;
 }
 input[type="checkbox"]{
   display: none;
