@@ -38,17 +38,38 @@ function cls(){
 function filter(){
     $(document).on('click', '.filter', function(e){
         $('.filter-nav').toggleClass('active');
-        $(this).toggleClass('active');
         $(this).parents('header').toggleClass('hide');
         animate();
         scrollFixedOverflow();
+    });
+}
+function filterChecked(){
+    $(document).on('click', '.filter-nav label', function(e){
+        var n = $( ".filter-nav input:checked" ).length;
+        if(n>0){
+            $('.filter').addClass('active');
+        }
+        else{
+            $('.filter').removeClass('active');
+        }
+    });
+}
+function clearAllFilter(){
+    $(document).on('click', '.filter-nav .clear-all', function(e){
+        $('.filter-nav').find('input:checkbox').removeAttr('checked');
+        var n = $( ".filter-nav input:checked" ).length;
+        if(n>0){
+            $('.filter').addClass('active');
+        }
+        else{
+            $('.filter').removeClass('active');
+        }
     });
 }
 function back(){
     $(document).on('click', '.arrow-back', function(){
         $(this).parents('.active').removeClass('active');
         $('header').removeClass('hide');
-        $('.filter').removeClass('active');
         $('body').removeClass('overflow');
         $('.clear-all').removeClass('active');
         animate();
@@ -100,13 +121,15 @@ function leftNavigation(){
 $(document).ready(function() {
     leftNavigation();
     cls();
-    filter();
     search();
     back();
     desc();
     control();
     menu();
-    share()
+    share();
+    filter();
+    filterChecked();
+    clearAllFilter();
     $(window).load(function() {
         setTimeout(function() {
             $('.load').remove('.load');
