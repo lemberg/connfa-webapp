@@ -672,7 +672,7 @@ body{
 .plane{
   .box-img{
     position: relative;
-    padding-bottom: 46%;
+    padding-bottom: 47.4%;
     img{
       position: absolute;
       left: 0;
@@ -696,8 +696,13 @@ body{
     height: 100%;
   }
 }
-.overflow{
-
+.overflowHidden{
+  overflow: hidden;
+}
+.nav-share{
+  display: inline-block;
+  position: relative;
+  @include nav-sub-box(13px, 51px, 13px, 47px);
 }
 @media (max-width: $mediaMaxWidth) {
   body{

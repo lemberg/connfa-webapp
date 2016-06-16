@@ -208,33 +208,7 @@ header{
       font-size: $font-size-third;
       line-height: $base-lineH;
     }
-    .nav-sub{
-      display: none;
-      right: 0;
-      top: -13px;
-      position: absolute;
-      background: $bg-color-block;
-      padding: $padding-items/2 0;
-      -webkit-border-radius: 2px;
-      -moz-border-radius: 2px;
-      border-radius: 2px;
-      @extend %shadow;
-      a{
-        font-size: $font-size-first;
-        font-family: $font-first;
-        color: $color-first;
-        padding: 13px 51px 13px 16px;
-        display: inline-block;
-        &:hover{
-          background: $bg-color-hover;
-        }
-      }
-    }
-    &.active{
-      .nav-sub{
-        display: block;
-      }
-    }
+    @include nav-sub-box(13px, 51px, 13px, 16px);
   }
   &.active{
     .search{
