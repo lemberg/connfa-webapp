@@ -2,11 +2,12 @@ function menu(){
     $(document).on('click', '.select', function(e){
         e.preventDefault();
         $(this).parents('.nav').toggleClass('active');
+        $('body').css('cursor','pointer');
     });
     $(document).click(function(event) {
         if ($(event.target).closest(".box-menu").length) return;
         $(".box-menu .nav").removeClass("active");
-        event.stopPropagation();
+        $('body').css('cursor','default');
     });
 }
 function control(){
@@ -112,11 +113,12 @@ function share(){
     $(document).on('click','.share-icon',function(e){
         e.preventDefault();
         $(this).parents('.nav-share').toggleClass('active');
+        $('body').css('cursor','pointer');
     });
     $(document).click(function(event) {
         if ($(event.target).closest(".nav-share").length) return;
         $(".nav-share").removeClass("active");
-        event.stopPropagation();
+        $('body').css('cursor','default');
     });
 }
 function leftNavigation(){

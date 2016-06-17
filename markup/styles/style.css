@@ -684,7 +684,8 @@ body {
     height: 100%;
     top: -9999px;
     left: -9999px;
-    z-index: -1; }
+    z-index: -1;
+    cursor: pointer; }
 
   .open {
     overflow: hidden; }
@@ -940,7 +941,8 @@ header {
     cursor: pointer; }
     header .filter svg, header .control svg, header .clear-all svg {
       display: block;
-      fill: #ffffff; }
+      fill: #ffffff;
+      cursor: pointer; }
     header .filter .full-filter, header .control .full-filter, header .clear-all .full-filter {
       fill: transparent; }
     header .filter.active .full-filter, header .control.active .full-filter, header .clear-all.active .full-filter {
@@ -1126,6 +1128,8 @@ header {
   margin: 4px 0;
   cursor: pointer;
   float: left; }
+  .hamburger-box * {
+    cursor: pointer; }
 
 .hamburger {
   width: 100%;
