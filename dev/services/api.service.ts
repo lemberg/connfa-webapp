@@ -25,6 +25,9 @@ export class ApiService {
                             case 4:
                                 this.grabSpeakers(lastUpdate);
                                 break;
+                            case 6:
+                                this.grabFloorPlans(lastUpdate);
+                                break;
                             case 5:
                                 this.grabLocations(lastUpdate);
                                 break;
@@ -45,6 +48,19 @@ export class ApiService {
                     instance.removeItem(speaker.speakerId.toString())
                 } else {
                     instance.setItem(speaker.speakerId.toString(), speaker)
+                }
+            })
+        });
+    }
+
+    grabFloorPlans(since='') {
+        var instance = this._localforage.createInstance({name: 'floors'});
+        this._loadService('getFloorPlans', since).then((response) => {
+            response.floorPlans.forEach(plan => {
+                if (plan.deleted) {
+                    instance.removeItem(plan.floorPlanId.toString())
+                } else {
+                    instance.setItem(plan.floorPlanId.toString(), plan)
                 }
             })
         });
