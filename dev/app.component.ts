@@ -4,6 +4,7 @@ import {MenuComponent} from "./components/menu.component";
 import {SpeakersListComponent} from "./components/speakers/speakers-list.component";
 import {SessionsListComponent} from "./components/sessions/sessions-list.component";
 import {ApiService} from "./services/api.service";
+import {LocationsComponent} from "./components/speakers/locations.component";
 
 @Component({
     selector: 'app',
@@ -25,6 +26,11 @@ import {ApiService} from "./services/api.service";
         path: '/sessions/...',
         name: 'Sessions',
         component: SessionsListComponent,
+    },
+    {
+        path: '/locations',
+        name: 'Locations',
+        component: LocationsComponent,
     },
 ])
 export class AppComponent {
