@@ -4,7 +4,8 @@ import {MenuComponent} from "./components/menu.component";
 import {SpeakersListComponent} from "./components/speakers/speakers-list.component";
 import {SessionsListComponent} from "./components/sessions/sessions-list.component";
 import {ApiService} from "./services/api.service";
-import {LocationsComponent} from "./components/speakers/locations.component";
+import {LocationsComponent} from "./components/locations/locations.component";
+import {FloorsComponent} from "./components/floors/floors.component";
 
 @Component({
     selector: 'app',
@@ -26,6 +27,11 @@ import {LocationsComponent} from "./components/speakers/locations.component";
         path: '/sessions/...',
         name: 'Sessions',
         component: SessionsListComponent,
+    },
+    {
+        path: '/floors',
+        name: 'Floors',
+        component: FloorsComponent,
     },
     {
         path: '/locations',
