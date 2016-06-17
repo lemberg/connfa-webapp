@@ -12,6 +12,7 @@ import {FloorsComponent} from "./components/floors/floors.component";
     template: `
         <div class="main">
             <router-outlet></router-outlet>
+            <div class="over"></div>
         </div>
         <main-menu></main-menu>
     `,

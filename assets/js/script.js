@@ -8,6 +8,11 @@ function menu(){
         $(".box-menu .nav").removeClass("active");
         event.stopPropagation();
     });
+
+    $(document).on('click', '.nav-sub a', function(event) {
+        $(".box-menu .nav").removeClass("active");
+        event.stopPropagation();
+    });
 }
 function control(){
     $(document).on('click', '.control', function(){

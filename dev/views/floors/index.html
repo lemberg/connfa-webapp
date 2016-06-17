@@ -9,21 +9,19 @@
     <div class="box-menu">
         <ul class="nav">
             <li>
-                <a class="select" href="#">Floor/Corps_1</a>
+                <a class="select" href="#" *ngIf="activeFloor">Floor/{{activeFloor.floorPlanName}}</a>
                 <ul class="nav-sub">
-                    <li><a href="#">Floor/Corps_1</a></li>
-                    <li><a href="#">Floor/Corps_2</a></li>
-                    <li><a href="#">Floor/Corps_3</a></li>
+                    <li *ngFor="let floor of floors"><a href="javascript:void(0)" (click)="onActivateFloor(floor)">Floor/{{floor.floorPlanName}}</a></li>
                 </ul>
             </li>
         </ul>
     </div>
 </header>
-<div id="page">
+<div id="page" *ngIf="activeFloor">
     <div class="inner cf">
         <div class="plane">
             <div class="box-img">
-                <img src="/markup/images/plan.png">
+                <img src="{{activeFloor.floorPlanImageURL}}">
             </div>
         </div>
     </div>
