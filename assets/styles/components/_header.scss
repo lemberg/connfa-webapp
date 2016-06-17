@@ -39,7 +39,7 @@ header{
     }
   }
   .info-text{
-    margin-left: 35px;
+    margin-left: 23px;
     font-family: $font-second;
     font-size: 20px;
     line-height: 1;
@@ -81,6 +81,10 @@ header{
         fill: $color-all-element-header;
       }
     }
+  }
+  .control{
+    width: 24px;
+    height: 24px;
   }
   .search{
     position: absolute;
@@ -243,10 +247,10 @@ header{
   }
 }
 .hamburger-box{
-  width: 18px;
-  height: 12px;
+  width: 30px;
+  height: 30px;
   position: relative;
-  margin: 4px 0;
+  margin: -4px 0 0 0;
   cursor: pointer;
   float: left;
   *{
@@ -254,7 +258,7 @@ header{
   }
 }
 .hamburger{
-  width: 100%;
+  width: 18px;
   height: 2px;
   background: $color-all-element-header;
   padding: 0;

@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width">
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta id="theme-color" name="theme-color" content="#4527A0">
+<meta id="theme-color" name="theme-color" content="#57308c">
 <meta name="apple-mobile-web-app-title" content="DrupalCon">
 <meta name="msapplication-TileColor" content="#57308c">
 <link href="styles/normalize.css" rel="stylesheet" type="text/css" />
