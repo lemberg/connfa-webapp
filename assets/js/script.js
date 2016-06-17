@@ -37,10 +37,12 @@ function cls(){
 }
 function filter(){
     $(document).on('click', '.filter', function(e){
-        $('.filter-nav').toggleClass('active');
-        $(this).parents('header').toggleClass('hide');
-        animate();
-        scrollFixedOverflow();
+        if($('body').hasClass("animate")==false){
+            $('.filter-nav').toggleClass('active');
+            $(this).parents('header').toggleClass('hide');
+            animate();
+            scrollFixedOverflow();
+        }
     });
 }
 function filterChecked(){
@@ -120,17 +122,17 @@ function share(){
 function leftNavigation(){
     $(document).on('click', '.hamburger-box',function(e){
         e.preventDefault();
-        e.stopPropagation();
         if($('body').hasClass("animate")==false){
             $('body').toggleClass('open');
             animate();
         }
     });
-    $(document).on('click', '.over',function(e){
+    $(document).on('click','.over',function(e){
         e.preventDefault();
-        e.stopPropagation();
-        $('body').removeClass('open');
-        animate();
+        if($('body').hasClass("animate")==false){
+            $('body').toggleClass('open');
+            animate();
+        }
     });
 }
 $(document).ready(function() {

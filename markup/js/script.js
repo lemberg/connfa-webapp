@@ -122,17 +122,17 @@ function share(){
 function leftNavigation(){
     $(document).on('click', '.hamburger-box',function(e){
         e.preventDefault();
-        e.stopPropagation();
         if($('body').hasClass("animate")==false){
             $('body').toggleClass('open');
             animate();
         }
     });
-    $(document).on('click', '.over',function(e){
+    $(document).on('click','.over',function(e){
         e.preventDefault();
-        e.stopPropagation();
-        $('body').removeClass('open');
-        animate();
+        if($('body').hasClass("animate")==false){
+            $('body').toggleClass('open');
+            animate();
+        }
     });
 }
 $(document).ready(function() {
