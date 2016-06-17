@@ -12,7 +12,7 @@
   -webkit-user-select: none;
   user-select: none; }
 
-header, header .clear-all, header .nav .nav-sub {
+.nav-share .nav-sub, header, header .clear-all, header .nav .nav-sub {
   -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.65);
   -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 0.65);
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.65); }
@@ -565,7 +565,7 @@ body {
 
 .plane .box-img {
   position: relative;
-  padding-bottom: 46%; }
+  padding-bottom: 47.4%; }
   .plane .box-img img {
     position: absolute;
     left: 0;
@@ -585,6 +585,41 @@ body {
     position: absolute;
     width: 100%;
     height: 100%; }
+
+.overflowHidden {
+  overflow: hidden; }
+
+.nav-share {
+  display: inline-block;
+  position: relative; }
+  .nav-share .nav-sub {
+    right: 0;
+    top: -13px;
+    position: absolute;
+    background: #FAFAFA;
+    padding: 8px 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    z-index: 2;
+    display: none; }
+    .nav-share .nav-sub a {
+      font-size: 16px;
+      font-family: "roboto-regular";
+      color: rgba(0, 0, 0, 0.87);
+      padding: 13px 51px 13px 47px;
+      display: block;
+      position: relative;
+      margin: 0; }
+      .nav-share .nav-sub a:hover {
+        background: #E0E0E0; }
+    .nav-share .nav-sub svg {
+      position: absolute;
+      left: 13px;
+      top: 13px;
+      fill-opacity: .54; }
+  .nav-share.active .nav-sub {
+    display: block; }
 
 @media (max-width: 979px) {
   body.overflow .filter-nav,
@@ -1033,7 +1068,6 @@ header {
     font-size: 20px;
     line-height: 1.33; }
   header .nav .nav-sub {
-    display: none;
     right: 0;
     top: -13px;
     position: absolute;
@@ -1041,15 +1075,24 @@ header {
     padding: 8px 0;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
-    border-radius: 2px; }
+    border-radius: 2px;
+    z-index: 2;
+    display: none; }
     header .nav .nav-sub a {
       font-size: 16px;
       font-family: "roboto-regular";
       color: rgba(0, 0, 0, 0.87);
       padding: 13px 51px 13px 16px;
-      display: inline-block; }
+      display: block;
+      position: relative;
+      margin: 0; }
       header .nav .nav-sub a:hover {
         background: #E0E0E0; }
+    header .nav .nav-sub svg {
+      position: absolute;
+      left: 13px;
+      top: 13px;
+      fill-opacity: .54; }
   header .nav.active .nav-sub {
     display: block; }
   header.active .search {

@@ -3,6 +3,11 @@ function menu(){
         e.preventDefault();
         $(this).parents('.nav').toggleClass('active');
     });
+    $(document).click(function(event) {
+        if ($(event.target).closest(".box-menu").length) return;
+        $(".box-menu .nav").removeClass("active");
+        event.stopPropagation();
+    });
 }
 function control(){
     $('.control').click(function(){
@@ -31,12 +36,49 @@ function cls(){
     }
 }
 function filter(){
-    $('.filter').click(function(e){
+    $(document).on('click', '.filter', function(e){
         $('.filter-nav').toggleClass('active');
-        $(this).toggleClass('active');
         $(this).parents('header').toggleClass('hide');
         animate();
         scrollFixedOverflow();
+    });
+}
+function filterChecked(){
+    $(document).on('click', '.filter-nav label', function(e){
+        var n = $( ".filter-nav input:checked" ).length;
+        if(n>0){
+            $('.filter').addClass('active');
+        }
+        else{
+            $('.filter').removeClass('active');
+        }
+    });
+}
+function clearAllFilter(){
+    $(document).on('click', '.filter-nav .clear-all', function(e){
+        $('.filter-nav').find('input:checkbox').removeAttr('checked');
+        var n = $( ".filter-nav input:checked" ).length;
+        if(n>0){
+            $('.filter').addClass('active');
+        }
+        else{
+            $('.filter').removeClass('active');
+        }
+    });
+}
+function selectAll(selector,selector1){
+    $(document).on('click', selector, function(e){
+        var status = $(selector).prop("checked");
+        if(status==true){
+            $(this).parents(selector1).find('input[type=checkbox]').prop({
+                checked: true
+            });
+        }
+        else{
+            $(this).parents(selector1).find('input[type=checkbox]').prop({
+                checked: false
+            });
+        }
     });
 }
 function search(){
@@ -52,7 +94,6 @@ function back(){
     $('.arrow-back').click(function(){
         $(this).parents('.active').removeClass('active');
         $('header').removeClass('hide');
-        $('.filter').removeClass('active');
         $('body').removeClass('overflow');
         $('.clear-all').removeClass('active');
         animate();
@@ -67,21 +108,35 @@ function desc(){
         scrollFixedOverflow();
     });
 }
-$(document).ready(function() {
-    $('.hamburger-box').click(function(e){
+function share(){
+    $(document).on('click','.share-icon',function(e){
         e.preventDefault();
+        $(this).parents('.nav-share').toggleClass('active');
+    });
+    $(document).click(function(event) {
+        if ($(event.target).closest(".nav-share").length) return;
+        $(".nav-share").removeClass("active");
+        event.stopPropagation();
+    });
+}
+function leftNavigation(){
+    $(document).on('click', '.hamburger-box',function(e){
+        e.preventDefault();
+        e.stopPropagation();
         if($('body').hasClass("animate")==false){
-            console.log($(this).hasClass("animate"));
             $('body').toggleClass('open');
             animate();
         }
     });
-    $('.over').click(function(e){
+    $(document).on('click', '.over',function(e){
         e.preventDefault();
         e.stopPropagation();
         $('body').removeClass('open');
         animate();
     });
+}
+$(document).ready(function() {
+    leftNavigation();
     cls();
     filter();
     search();
@@ -89,6 +144,10 @@ $(document).ready(function() {
     desc();
     control();
     menu();
+    share();
+    filterChecked();
+    clearAllFilter();
+    selectAll('.check-all-filter input','.filter-nav');
     $(window).load(function() {
         setTimeout(function() {
             $('.load').remove('.load');
