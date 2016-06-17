@@ -25,11 +25,14 @@ export class ApiService {
                             case 4:
                                 this.grabSpeakers(lastUpdate);
                                 break;
+                            case 5:
+                                this.grabLocations(lastUpdate);
+                                break;
                             case 6:
                                 this.grabFloorPlans(lastUpdate);
                                 break;
-                            case 5:
-                                this.grabLocations(lastUpdate);
+                            case 11:
+                                this.grabInfo(lastUpdate);
                                 break;
                         }
                     })
@@ -61,6 +64,19 @@ export class ApiService {
                     instance.removeItem(plan.floorPlanId.toString())
                 } else {
                     instance.setItem(plan.floorPlanId.toString(), plan)
+                }
+            })
+        });
+    }
+
+    grabInfo(since='') {
+        var instance = this._localforage.createInstance({name: 'pages'});
+        this._loadService('getInfo', since).then((response) => {
+            response.info.forEach(info => {
+                if (info.deleted) {
+                    instance.removeItem(info.infoId.toString())
+                } else {
+                    instance.setItem(info.infoId.toString(), info)
                 }
             })
         });
@@ -123,7 +139,6 @@ export class ApiService {
 
         return new Promise((resolve, reject) => {
             observer.subscribe(function (res) {
-                console.log(res);
                 resolve(res);
             });
         })
