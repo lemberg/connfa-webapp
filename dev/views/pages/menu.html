@@ -1,0 +1,19 @@
+<header>
+    <div class="top-menu">
+        <div class="hamburger-box">
+              <span class="hamburger">
+              </span>
+        </div>
+        <span class="info-text">Info</span>
+    </div>
+</header>
+<div id="page">
+    <div class="inner cf">
+        <section class="info">
+            <ul class="nav-info" *ngIf="pages">
+                <li *ngFor="let page of pages"><a [routerLink]="['Show', {id: page.infoId}]">{{page.infoTitle}}</a></li>
+            </ul>
+        </section>
+        <router-outlet></router-outlet>
+    </div>
+</div>

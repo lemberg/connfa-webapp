@@ -6,6 +6,7 @@ import {SessionsListComponent} from "./components/sessions/sessions-list.compone
 import {ApiService} from "./services/api.service";
 import {LocationsComponent} from "./components/locations/locations.component";
 import {FloorsComponent} from "./components/floors/floors.component";
+import {PagesListComponent} from "./components/pages/pages-list.component";
 
 @Component({
     selector: 'app',
@@ -28,6 +29,11 @@ import {FloorsComponent} from "./components/floors/floors.component";
         path: '/sessions/...',
         name: 'Sessions',
         component: SessionsListComponent,
+    },
+    {
+        path: '/info/...',
+        name: 'Pages',
+        component: PagesListComponent,
     },
     {
         path: '/floors',

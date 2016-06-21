@@ -99,8 +99,8 @@
             </li>
         </ul>
         <ul class="nav-menu">
-            <li>
-                <a href="info.php">
+            <li [class.active]="isActive(['Pages', any])">
+                <a [routerLink]="['Pages', 'List']">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
 <path d="M12,2C6.48,2,2,6.48,2,12c0,5.52,4.48,10,10,10c5.52,0,10-4.48,10-10C22,6.48,17.52,2,12,2z M13,17h-2v-6h2V17z M13,9h-2V7
