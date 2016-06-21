@@ -387,6 +387,9 @@ body{
       font-size: 16px;
       line-height: 1.2;
       color: $color-first;
+      &.router-link-active{
+        background: $bg-color-hover;
+      }
       @media (min-width: $mediaMinWidth) {
         &:hover{
           color: $color-second-site;
@@ -397,11 +400,7 @@ body{
         padding-right: $base-space-mob;
       }
     }
-    &.active{
-      a{
-        background: $bg-color-hover;
-      }
-    }
+
   }
 }
 .events-info{
@@ -551,6 +550,14 @@ body{
   }
   .level-icon{
     display: none;
+  }
+  &.my-schedule{
+    li.title{
+      border-bottom: none;
+      font-size: $font-size-second;
+      padding: 27px $padding-base 2px $padding-base;
+      color: $color-first-site;
+    }
   }
 }
 .events-info_box{
@@ -836,6 +843,11 @@ body{
     .box-item{
       &:after{
         left: 123px;
+      }
+    }
+    &.my-schedule{
+      li.title{
+        padding: 27px $padding-items-mob 2px $padding-items-mob;
       }
     }
   }

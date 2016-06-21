@@ -361,6 +361,8 @@ body {
       font-size: 16px;
       line-height: 1.2;
       color: rgba(0, 0, 0, 0.87); }
+      .nav-info li a.router-link-active {
+        background: #E0E0E0; }
       @media (min-width: 980px) {
         .nav-info li a:hover {
           color: #757428; } }
@@ -368,8 +370,6 @@ body {
         .nav-info li a {
           padding-left: 16px;
           padding-right: 16px; } }
-    .nav-info li.active a {
-      background: #E0E0E0; }
 
 .events-info {
   overflow: hidden; }
@@ -486,6 +486,11 @@ body {
       display: none; }
   .events-info .level-icon {
     display: none; }
+  .events-info.my-schedule li.title {
+    border-bottom: none;
+    font-size: 14px;
+    padding: 27px 24px 2px 24px;
+    color: #57308c; }
 
 .events-info_box a.active {
   background: #E0E0E0; }
@@ -732,6 +737,8 @@ body {
     top: 19px; }
   .events-info .box-item:after {
     left: 123px; }
+  .events-info.my-schedule li.title {
+    padding: 27px 14px 2px 14px; }
 
   .filter-nav {
     width: 100%;
