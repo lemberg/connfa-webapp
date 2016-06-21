@@ -1,7 +1,6 @@
 import {Injectable, Inject} from "angular2/core";
 import {Http, Headers} from "angular2/http";
 import {Observable} from "rxjs/Rx";
-import {Speaker} from "../models/speaker";
 
 @Injectable()
 
@@ -16,23 +15,42 @@ export class ApiService {
     }
 
     grabUpdates() {
+        this.grabEvents('getSessions', 'sessions', '');
         var instance = this._localforage.createInstance({name: 'updates'});
         instance.getItem('lastUpdate').then(lastUpdate => {
             this._loadService('checkUpdates', lastUpdate).then((response) => {
                 if (response && response.idsForUpdate) {
                     response.idsForUpdate.forEach((method) => {
                         switch (method) {
+                            case 1:
+                                this.grabData('getTypes', 'types', 'typeId', null, lastUpdate)
+                                break;
+                            case 2:
+                                this.grabData('getLevels', 'levels', 'levelId', null, lastUpdate)
+                                break;
+                            case 3:
+                                this.grabData('getTracks', 'tracks', 'trackId', null, lastUpdate)
+                                break;
                             case 4:
-                                this.grabSpeakers(lastUpdate);
+                                this.grabData('getSpeakers', 'speakers', 'speakerId', null, lastUpdate);
                                 break;
                             case 5:
-                                this.grabLocations(lastUpdate);
+                                this.grabData('getLocations', 'locations', 'locationId', null, lastUpdate);
                                 break;
                             case 6:
-                                this.grabFloorPlans(lastUpdate);
+                                this.grabData('getFloorPlans', 'floors', 'floorPlanId', 'floorPlans', lastUpdate);
+                                break;
+                            case 7:
+                                this.grabEvents('getSessions', 'events', 'session', lastUpdate);
+                                break;
+                            case 8:
+                                this.grabEvents('getBofs', 'events', 'bof', lastUpdate);
+                                break;
+                            case 9:
+                                this.grabEvents('getSocialEvents', 'events', 'social', lastUpdate);
                                 break;
                             case 11:
-                                this.grabInfo(lastUpdate);
+                                this.grabData('getInfo', 'pages', 'infoId', 'info', lastUpdate);
                                 break;
                         }
                     })
@@ -41,58 +59,44 @@ export class ApiService {
         });
     }
 
-    grabSpeakers(since = '') {
+    grabEvents(api, table, eventType, since = '') {
         var instance = this._localforage.createInstance({
-            name: "speakers"
+            name: table
         });
-        this._loadService('getSpeakers', since).then((response) => {
-            response.speakers.forEach((speaker:Speaker) => {
-                if (speaker.deleted) {
-                    instance.removeItem(speaker.speakerId.toString())
-                } else {
-                    instance.setItem(speaker.speakerId.toString(), speaker)
-                }
-            })
+
+        this._loadService(api, since).then(response => {
+            response.days.forEach(day => {
+                day.events.forEach(event => {
+                    if (event.deleted) {
+                        instance.removeItem(event.eventId.toString());
+                    } else {
+                        event.event_type = eventType;
+                        instance.setItem(event.eventId.toString(), event);
+                    }
+                });
+            });
         });
     }
 
-    grabFloorPlans(since='') {
-        var instance = this._localforage.createInstance({name: 'floors'});
-        this._loadService('getFloorPlans', since).then((response) => {
-            response.floorPlans.forEach(plan => {
-                if (plan.deleted) {
-                    instance.removeItem(plan.floorPlanId.toString())
-                } else {
-                    instance.setItem(plan.floorPlanId.toString(), plan)
-                }
-            })
-        });
-    }
+    grabData(api, table, itemId, responseItem = null, since = '') {
 
-    grabInfo(since='') {
-        var instance = this._localforage.createInstance({name: 'pages'});
-        this._loadService('getInfo', since).then((response) => {
-            response.info.forEach(info => {
-                if (info.deleted) {
-                    instance.removeItem(info.infoId.toString())
-                } else {
-                    instance.setItem(info.infoId.toString(), info)
-                }
-            })
-        });
-    }
+        if (!responseItem) {
+            responseItem = table;
+        }
 
-    grabLocations(since = '') {
-        var instance = this._localforage.createInstance({name: 'locations'});
-        this._loadService('getLocations', since).then((response) => {
-            response.locations.forEach(location => {
-                if (location.deleted) {
-                    instance.removeItem(location.speakerId.toString())
-                } else {
-                    instance.setItem(location.locationId.toString(), location)
-                }
-            })
+        var instance = this._localforage.createInstance({
+            name: table
         });
+
+        this._loadService(api, since).then(response => {
+            response[responseItem].forEach(item => {
+                if (item.deleted) {
+                    instance.removeItem(item[itemId].toString());
+                } else {
+                    instance.setItem(item[itemId].toString(), item);
+                }
+            });
+        })
     }
 
     getCollection(name) {
@@ -122,8 +126,8 @@ export class ApiService {
         }
 
         var observer = this._http.get(this._config.apiUrl + service, {
-                headers: headers
-            })
+            headers: headers
+        })
             .map(response => {
                 if (service == 'checkUpdates') {
                     var instance = this._localforage.createInstance({name: 'updates'});
