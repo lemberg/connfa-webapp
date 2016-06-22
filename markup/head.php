@@ -7,6 +7,8 @@
 <meta id="theme-color" name="theme-color" content="#57308c">
 <meta name="apple-mobile-web-app-title" content="DrupalCon">
 <meta name="msapplication-TileColor" content="#57308c">
+<link rel="icon" href="images/favicon.png" type="image/x-icon"/>
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
 <link href="styles/normalize.css" rel="stylesheet" type="text/css" />
 <link href="styles/style.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>

@@ -562,7 +562,7 @@ body{
 }
 .events-info_box{
   a{
-    &.active{
+    &.router-link-active{
       background: $bg-color-hover;
     }
   }

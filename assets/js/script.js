@@ -100,7 +100,7 @@ function back(){
     });
 }
 function desc(){
-    $(document).on('click', '.events-info li .box-item,.speakers-info li a', function(e) {
+    $(document).on('click', '.events-info li .box-item,.speakers-info li a,.nav-info a', function(e) {
         animate();
         scrollFixedOverflow();
     });
@@ -164,4 +164,3 @@ $(document).ready(function() {
         cls();
     });
 });
-

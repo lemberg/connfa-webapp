@@ -492,7 +492,7 @@ body {
     padding: 27px 24px 2px 24px;
     color: #57308c; }
 
-.events-info_box a.active {
+.events-info_box a.router-link-active {
   background: #E0E0E0; }
 
 .level-icon {
