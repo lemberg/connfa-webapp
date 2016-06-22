@@ -1,0 +1,75 @@
+<header class="cf header">
+    <div class="top-menu">
+        <div class="hamburger-box">
+              <span class="hamburger">
+              </span>
+        </div>
+        <span class="info-text">Sessions</span>
+    </div>
+    <div class="description-top">
+        <nav class="date">
+            <ul class="cf" *ngIf="dates">
+                <li *ngFor="let date of dates" [class.active]="activeDate == date"><a href="javascript:void(0)" (click)="setActiveDate(date)">{{date | uppercase}}</a></li>
+            </ul>
+
+        </nav>
+    </div>
+    <div class="filter">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             width="24px" height="24.189px" viewBox="1.622 0.611 24 24.189" enable-background="new 1.622 0.611 24 24.189"
+             xml:space="preserve">
+            <path class="full-filter" d="M22.622,2.251L22.622,2.251L22.622,2.251v2h-0.08l-5.92,5.92v12.99l-6-6v-7l-5.91-5.91h-0.09v-2 M4.622,2.251"/>
+            <path d="M4.622,2.251h18l0,0l0,0v2h-0.08l-5.92,5.92v12.99l-6-6v-7l-5.91-5.91h-0.09V2.251 M12.622,16.331l2,2v-9.08h0.09l5-5H7.541
+            l5,5h0.08L12.622,16.331L12.622,16.331z"/>
+        </svg>
+
+    </div>
+</header>
+<div id="page">
+    <div class="inner cf">
+        <section class="info">
+            <ul class="events-info" *ngIf="activeSessions && hours">
+                <li *ngFor="let hour of hours">
+                    <div class="events-info_box">
+                        <div class="box-item" *ngFor="let event of activeSessions[hour]">
+                            <a class="cf" [class.favorite-yes]="event.isFavorite" [routerLink]="['Show', {id: event.eventId}]">
+                                <div class="wrap-time" *ngIf="activeSessions[hour].indexOf(event) == 0">
+                                    <div class="time">{{event.fromLabel}}</div>
+                                    <div class="time-to">to {{event.toLabel}}</div>
+                                    <div class="base-icon">
+                                        <svg *ngIf="event.type == 8" class="registration-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                            <path d="M4.333,12.93v3.404h3.402L17.771,6.297l-3.403-3.402L4.333,12.93z M20.401,3.667c0.354-0.354,0.354-0.926,0-1.28
+                                        l-2.122-2.123c-0.354-0.354-0.928-0.354-1.281,0l-1.658,1.66l3.4,3.403L20.401,3.667z"/>
+                                            <path d="M0.001,23.999h23.998v-2.666H0.001V23.999z"/>
+                                        </svg>
+                                        <svg *ngIf="event.type == 3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                    <path d="M21.6,0H2.4v12c0,2.651,2.148,4.8,4.8,4.8h7.2c2.651,0,4.8-2.148,4.8-4.8V8.4H21.6C22.932,8.4,24,7.332,24,6V2.4
+                                        C24,1.068,22.932,0,21.6,0z M21.6,6H19.2V2.4H21.6V6z M0,23.999h21.6V21.6H0V23.999z"/>
+                                    </svg>
+                                    </div>
+                                </div>
+                                <div class="info-event">
+                                    <div class="favorite">
+                                        <svg class="icon-favorite" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M12,17.27L18.179,21l-1.639-7.029L22,9.24L14.81,8.63L12,2L9.19,8.63
+                                    L2,9.24l5.46,4.731L5.819,21L12,17.27z"/>
+                                </svg>
+                                        <div class="title">{{event.name}}</div>
+                                        <div class="place" *ngIf="event.place">
+                                            {{event.place}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <router-outlet></router-outlet>
+        <?php include_once("filter.php");?>
+    </div>
+</div>

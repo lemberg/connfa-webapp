@@ -3,13 +3,11 @@ import {ApiService} from "./api.service";
 import {Event} from "../models/event";
 
 declare var moment: any;
-
 @Injectable()
 
 export class EventService {
 
-    constructor(private _apiService:ApiService) {
-    }
+    constructor(private _apiService:ApiService) {}
 
     events = [];
 
@@ -38,6 +36,18 @@ export class EventService {
             return Promise.resolve(this.events[type]);
         }
 
+    }
+
+    getEvent(id, type) {
+        return new Promise((resolve, reject) => {
+            this.getEventsByType(type).then((events) => {
+                events.forEach(item => {
+                    if (item.eventId == id) {
+                        resolve(item);
+                    }
+                })
+            });
+        })
     }
 
     private filterByType(type, event) {
