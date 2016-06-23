@@ -178,10 +178,14 @@ header{
     top: 8px;
     font-size: 16px;
     font-family: $font-first;
+    color: $color-first;
     display: none;
     @extend %shadow;
     &.active{
       display: inline-block;
+    }
+    &:hover{
+      color: $color-second-site;
     }
   }
   .box-menu{

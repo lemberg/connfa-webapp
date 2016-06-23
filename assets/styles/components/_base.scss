@@ -425,6 +425,22 @@ body{
       margin-top: 3px;
     }
   }
+  .wrap-speech{
+    @extend .wrap-time;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    .speech-icon{
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 15px;
+      position: absolute;
+      left: 0;
+      width: 100%;
+    }
+  }
   .base-icon{
     margin-top: 7px;
     svg{
@@ -436,6 +452,11 @@ body{
     padding: $padding-items $padding-items $padding-items 67px;
     position: relative;
     margin-left: $wrap-time;
+    .favorite-yes{
+      .svg{
+        fill-opacity: 1;
+      }
+    }
   }
   .icon-favorite{
     position: absolute;

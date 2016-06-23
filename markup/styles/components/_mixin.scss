@@ -52,8 +52,15 @@
       display: block;
       position: relative;
       margin: 0;
-      &:hover{
+      &.router-link-active{
         background: $bg-color-hover;
+      }
+      &:hover{
+        color: $color-second-site;
+        svg{
+          fill: $color-second-site;
+          fill-opacity: 1;
+        }
       }
     }
     svg{
