@@ -284,15 +284,28 @@ body{
     position: relative;
     padding-left: 67px;
     margin-right: -48px;
+    a{
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      &:first-child{
+        border-top: 1px solid $border-color-item;
+      }
+      &:last-child{
+        border-bottom: 1px solid $border-color-item;
+      }
+    }
   }
   .desc-photo-speaker{
     position: absolute;
     left: 0;
     top: 50%;
     margin-top: -24px;
+    margin-left: -67px;
     img{
       width: 48px;
-      height: auto;
+      height: 48px;
       display: block;
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
@@ -304,8 +317,6 @@ body{
     padding-top: 15px;
     padding-bottom: 15px;
     padding-right: 34px;
-    border-top: 1px solid $border-color-item;
-    border-bottom: 1px solid $border-color-item;
   }
   .desc-name-speaker{
     p{

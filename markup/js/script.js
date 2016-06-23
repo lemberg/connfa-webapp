@@ -101,6 +101,8 @@ function back(){
 }
 function desc(){
     $(document).on('click', '.events-info li .box-item,.speakers-info li a,.nav-info a', function(e) {
+        e.preventDefault();
+        $('.description').addClass('active');
         animate();
         scrollFixedOverflow();
     });
