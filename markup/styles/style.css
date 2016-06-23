@@ -412,7 +412,7 @@ body {
     padding: 16px 16px 16px 67px;
     position: relative;
     margin-left: 123px; }
-    .events-info .info-event .favorite-yes .svg {
+    .events-info .info-event .favorite-yes svg {
       fill-opacity: 1; }
   .events-info .icon-favorite {
     position: absolute;
