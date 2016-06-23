@@ -1,13 +1,20 @@
 import {Injectable} from "angular2/core";
 import {ApiService} from "./api.service";
 import {Event} from "../models/event";
+import {SpeakerService} from "./speaker.service";
+import {LevelService} from "./level.service";
+import {TrackService} from "./track.service";
 
-declare var moment: any;
+declare var moment:any;
 @Injectable()
 
 export class EventService {
 
-    constructor(private _apiService:ApiService) {}
+    constructor(private _apiService:ApiService,
+                private _speakerService:SpeakerService,
+                private _levelService:LevelService,
+                private _trackService:TrackService) {
+    }
 
     events = [];
 
@@ -43,6 +50,27 @@ export class EventService {
             this.getEventsByType(type).then((events) => {
                 events.forEach(item => {
                     if (item.eventId == id) {
+
+                        if (item.experienceLevel) {
+                            this._levelService.getLevel(item.experienceLevel).then(level => {
+                                item.levelObject = level;
+                            })
+                        }
+
+                        if (item.track) {
+                            this._trackService.getTrack(item.track).then(track => {
+                                item.trackObject = track;
+                            })
+                        }
+
+                        if (item.speakers) {
+                            item.speakersCollection = [];
+                            item.speakers.forEach((speakerId) => {
+                                this._speakerService.getSpeaker(speakerId).then(speaker => {
+                                    item.speakersCollection.push(speaker);
+                                })
+                            })
+                        }
                         resolve(item);
                     }
                 })

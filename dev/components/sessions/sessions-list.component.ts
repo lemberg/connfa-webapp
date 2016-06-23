@@ -3,13 +3,14 @@ import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {SessionDetailComponent} from "./session-detail.component";
 import {EventService} from "../../services/event.service";
 import {Event} from "../../models/event";
+import {FavoritesComponent} from "../events_partials/favorites.component";
 
 declare var moment: any;
 
 @Component({
     templateUrl: 'app/views/sessions/menu.html',
     providers: [EventService],
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, FavoritesComponent],
 })
 
 @RouteConfig([
@@ -52,6 +53,11 @@ export class SessionsListComponent implements OnInit{
         this.activeDate = date;
         this.activeSessions = this.sessions[this.activeDate];
         this.hours = Object.keys(this.activeSessions);
+    }
+
+    toggleFavorite(event) {
+        event.isFavorite = !event.isFavorite;
+        // @todo wrote to localForge
     }
 
     private transformEvents(events) {

@@ -29,6 +29,7 @@ import {PagesListComponent} from "./components/pages/pages-list.component";
         path: '/sessions/...',
         name: 'Sessions',
         component: SessionsListComponent,
+        useAsDefault: true,
     },
     {
         path: '/info/...',

@@ -8,6 +8,8 @@ import {CONFIG} from "./config/config";
 import {provide} from "angular2/core";
 import {SpeakerService} from "./services/speaker.service";
 import {ApiService} from "./services/api.service";
+import {LevelService} from "./services/level.service";
+import {TrackService} from "./services/track.service";
 declare var localforage:any;
 
 Promise.resolve(ENV).then((ENV) => {
@@ -24,6 +26,8 @@ Promise.resolve(ENV).then((ENV) => {
             ROUTER_PROVIDERS,
             HTTP_PROVIDERS,
             SpeakerService,
+            LevelService,
+            TrackService,
             ApiService,
             provide('config', {useValue: CONFIG[ENV]}),
             provide('localforage', {useValue: localforage})
