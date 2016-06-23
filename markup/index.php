@@ -181,6 +181,158 @@
                         </div>
                     </div>
                 </li>
+                <li>
+                    <div class="events-info_box">
+                        <div class="box-item">
+                            <a class="cf favorite-yes" href="#">
+                                <div class="wrap-time">
+                                    <div class="time">8:00 AM</div>
+                                    <div class="time-to">to 09:00 AM</div>
+                                    <div class="base-icon">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="23.999px" height="22.791px" viewBox="0.301 0.816 23.999 22.791" enable-background="new 0.301 0.816 23.999 22.791"
+                                             xml:space="preserve">
+                                        <path d="M7.028,13.627l3.552-3.551L1.769,1.277c-1.958,1.958-1.958,5.134,0,7.104L7.028,13.627z M15.538,11.356
+                                            c1.921,0.891,4.62,0.263,6.614-1.732c2.397-2.398,2.861-5.837,1.018-7.682c-1.833-1.833-5.271-1.38-7.682,1.017
+                                            c-1.996,1.997-2.625,4.695-1.732,6.615l-12.25,12.25l1.77,1.77l8.648-8.622l8.635,8.636l1.771-1.771l-8.637-8.635L15.538,11.356z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="info-event">
+                                    <div class="favorite">
+                                        <svg class="icon-favorite" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M12,17.27L18.179,21l-1.639-7.029L22,9.24L14.81,8.63L12,2L9.19,8.63
+                                    L2,9.24l5.46,4.731L5.819,21L12,17.27z"/>
+                                </svg>
+                                        <div class="title">Coffee Break sponsored by Third and Grove</div>
+                                        <div class="place">
+                                            Exhibit Hall
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="events-info_box">
+                        <div class="box-item">
+                            <a class="cf favorite-yes" href="#">
+                                <div class="wrap-time">
+                                    <div class="time">8:00 AM</div>
+                                    <div class="time-to">to 09:00 AM</div>
+                                    <div class="base-icon">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                        <path d="M7,2v11h3v9l7-12h-4l4-8H7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="info-event">
+                                    <div class="favorite">
+                                        <svg class="icon-favorite" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M12,17.27L18.179,21l-1.639-7.029L22,9.24L14.81,8.63L12,2L9.19,8.63
+                                    L2,9.24l5.46,4.731L5.819,21L12,17.27z"/>
+                                </svg>
+                                        <div class="title">Coffee Break sponsored by Third and Grove</div>
+                                        <div class="place">
+                                            Exhibit Hall
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box-item">
+                            <a class="cf" href="#">
+                                <div class="wrap-speech">
+                                    <div class="speech-icon">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                        <path d="M7,2v11h3v9l7-12h-4l4-8H7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="info-event">
+                                    <div class="favorite">
+                                        <svg class="icon-favorite" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M12,17.27L18.179,21l-1.639-7.029L22,9.24L14.81,8.63L12,2L9.19,8.63
+                                    L2,9.24l5.46,4.731L5.819,21L12,17.27z"/>
+                                </svg>
+                                        <div class="title">Coffee Break sponsored by Third and Grove</div>
+                                        <div class="place">
+                                            Exhibit Hall
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box-item">
+                            <a class="cf" href="#">
+                                <div class="wrap-speech">
+                                    <div class="speech-icon">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                        <path d="M7,2v11h3v9l7-12h-4l4-8H7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="info-event">
+                                    <div class="favorite">
+                                        <svg class="icon-favorite" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                    <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M12,17.27L18.179,21l-1.639-7.029L22,9.24L14.81,8.63L12,2L9.19,8.63
+                                        L2,9.24l5.46,4.731L5.819,21L12,17.27z"></path>
+                                    </svg>
+
+                                        <div class="title">Drupal 8 Kickstart</div>
+                                        <div class="type-session">Coding and Development</div>
+                                        <div class="level">Experience level: Intermediate</div>
+                                        <span class="level-icon level-icon2">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                                                <rect class="level-rect1" x="2" y="12.444" width="2.667" height="4.889"></rect>
+                                                <rect class="level-rect3" x="15.333" y="2.667" width="2.667" height="14.667"></rect>
+                                                <rect class="level-rect2" x="8.667" y="7.555" width="2.666" height="9.778"></rect>
+                                            </svg>
+                                        </span>
+                                        <div class="speaker">
+                                            Peter Sawczynec
+                                        </div>
+                                        <div class="place">
+                                            260-261 (Pantheon)
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box-item">
+                            <a class="cf" href="#">
+                                <div class="wrap-speech">
+                                    <div class="speech-icon">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                        <path d="M7,2v11h3v9l7-12h-4l4-8H7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="info-event">
+                                    <div class="favorite">
+                                        <svg class="icon-favorite" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M12,17.27L18.179,21l-1.639-7.029L22,9.24L14.81,8.63L12,2L9.19,8.63
+                                    L2,9.24l5.46,4.731L5.819,21L12,17.27z"/>
+                                </svg>
+                                        <div class="title">Coffee Break sponsored by Third and Grove</div>
+                                        <div class="place">
+                                            Exhibit Hall
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </section>
         <section class="description">
@@ -239,7 +391,7 @@
                                        <a href="#">
                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                 width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
-                                            <path fill="#12100B" d="M13.438,9.989h-2.251V18H7.88V9.989H6.258V7.211H7.88V5.548c0-1.704,0.589-2.799,1.745-3.264
+                                            <path d="M13.438,9.989h-2.251V18H7.88V9.989H6.258V7.211H7.88V5.548c0-1.704,0.589-2.799,1.745-3.264
                                                 C10.192,2.06,10.679,2,11.186,2h2.515v2.757H12.2c-0.446,0-0.73,0.123-0.872,0.365c-0.102,0.162-0.142,0.445-0.142,0.831v1.258
                                                 h2.555L13.438,9.989z"/>
                                             </svg>
@@ -279,7 +431,7 @@
                            </li>
                        </ul>
 
-                       <a href="#" class="icon-favorite">
+                       <a href="#" class="icon-favorite favorite-yes">
                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                         <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M12,17.27L18.179,21l-1.639-7.029L22,9.24L14.81,8.63L12,2L9.19,8.63
                         L2,9.24l5.46,4.731L5.819,21L12,17.27z"></path>
