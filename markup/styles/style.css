@@ -281,14 +281,24 @@ body {
     position: relative;
     padding-left: 67px;
     margin-right: -48px; }
+    .description .desc-speaker-wrap a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      position: relative; }
+      .description .desc-speaker-wrap a:first-child {
+        border-top: 1px solid #DCDCDC; }
+      .description .desc-speaker-wrap a:last-child {
+        border-bottom: 1px solid #DCDCDC; }
   .description .desc-photo-speaker {
     position: absolute;
     left: 0;
     top: 50%;
-    margin-top: -24px; }
+    margin-top: -24px;
+    margin-left: -67px; }
     .description .desc-photo-speaker img {
       width: 48px;
-      height: auto;
+      height: 48px;
       display: block;
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
@@ -296,9 +306,7 @@ body {
   .description .desc-info-speaker {
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-right: 34px;
-    border-top: 1px solid #DCDCDC;
-    border-bottom: 1px solid #DCDCDC; }
+    padding-right: 34px; }
   .description .desc-name-speaker p {
     margin: 0; }
   .description .desc-work-speaker {

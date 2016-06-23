@@ -460,17 +460,19 @@
                </div>
            </div>
             <div class="desc-speaker-wrap cf">
-                <div class="desc-photo-speaker">
-                    <img src="images/photo1.png">
-                </div>
-                <div class="desc-info-speaker">
-                    <div class="desc-name-speaker">
-                        <p>Peter Sawczynec</p>
+                <a href="#">
+                    <div class="desc-photo-speaker">
+                        <img src="images/photo1.png">
                     </div>
-                    <div class="desc-work-speaker">
-                        Pantheon / Customer Success Engineer
+                    <div class="desc-info-speaker">
+                        <div class="desc-name-speaker">
+                            <p>Peter Sawczynec</p>
+                        </div>
+                        <div class="desc-work-speaker">
+                            Pantheon / Customer Success Engineer
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <p>
                 Lorem ipsum dolor sit amet, vulputate volutpat leo in vehicula vitae aenean. Leo pede molestie a. Vitae optio litora aut, quisque id, vel proin u
