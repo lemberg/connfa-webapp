@@ -1,36 +1,22 @@
-import {Component, OnInit} from 'angular2/core';
-import {SpeakerDetailsComponent} from "./speaker-detail.component";
-import {Router, ROUTER_DIRECTIVES, RouteConfig} from "angular2/router";
 import {SpeakerService} from "../../services/speaker.service";
 import {Speaker} from "../../models/speaker";
-import {ApiService} from "../../services/api.service";
+import {Component, OnInit} from "@angular/core";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 
 @Component({
     selector: 'speakers-list',
     templateUrl: 'app/views/speakers/menu.html',
-    directives: [SpeakerDetailsComponent, ROUTER_DIRECTIVES],
-    providers: [ApiService]
+    directives: [ROUTER_DIRECTIVES],
+    inputs: ['searchQuery']
 })
-@RouteConfig([
-    {
-        path: '/:id',
-        name: 'Show',
-        component: SpeakerDetailsComponent,
-    },
-    {
-        path: '/',
-        name: 'List',
-        component: SpeakerDetailsComponent,
-    },
-])
 export class SpeakersListComponent implements OnInit{
 
     public speakers: Speaker[];
     public filteredSpeakers;
     public alphabet;
-    public searchQuery = '';
+    public searchQuery: string;
 
-    constructor(private _speakerService: SpeakerService, private _router: Router) {}
+    constructor(private _speakerService: SpeakerService) {}
 
     ngOnInit():any {
         this.getSpeakers();
@@ -42,7 +28,6 @@ export class SpeakersListComponent implements OnInit{
             this.filteredSpeakers = grouped;
             this.alphabet = Object.keys(grouped);
         });
-        console.log(this.filteredSpeakers);
     }
 
     private filterSpeakers(value, item) {

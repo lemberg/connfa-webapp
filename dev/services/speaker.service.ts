@@ -1,20 +1,12 @@
-import {Injectable, Inject} from "angular2/core";
-import {Http} from "angular2/http";
-import {Observable} from "rxjs/Rx";
+import {Injectable, Inject} from "@angular/core";
 import {Speaker} from "../models/speaker";
-import {SPEAKERS} from "../models/mock-speakers";
 import {ApiService} from "./api.service";
 
 @Injectable()
 
 export class SpeakerService {
 
-    private _config;
-    private _localforage;
-
-    constructor(private _http:Http, @Inject('config') config, private _apiService: ApiService) {
-        this._config = config;
-    }
+    constructor(private _apiService: ApiService) {}
 
     speakers:Speaker[]
 
@@ -28,22 +20,6 @@ export class SpeakerService {
         } else {
             return Promise.resolve(this.speakers)
         }
-    }
-
-    loadSpeakers() {
-        var observer = this._http.get(this._config.apiUrl+'getSpeakers')
-            .map(response => response.json())
-            .catch(error => {
-                console.log(error);
-                return Observable.throw(error.json());
-            });
-
-        return new Promise((resolve, reject)  => {
-            observer.subscribe(function (res) {
-                resolve(res.speakers);
-            });
-        })
-
     }
 
     getSpeaker(id) {

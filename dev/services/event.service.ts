@@ -1,4 +1,4 @@
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 import {ApiService} from "./api.service";
 import {Event} from "../models/event";
 import {SpeakerService} from "./speaker.service";

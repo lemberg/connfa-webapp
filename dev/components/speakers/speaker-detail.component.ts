@@ -1,13 +1,14 @@
-import {Component, OnInit} from 'angular2/core';
-import {RouteParams, ROUTER_DIRECTIVES} from "angular2/router";
+import {Component, OnInit} from '@angular/core';
+import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from "@angular/router";
 import {Speaker} from "../../models/speaker";
 import {SpeakerService} from "../../services/speaker.service";
+import {SpeakersListComponent} from "./speakers-list.component";
 
 @Component({
     selector: 'speaker-details',
     templateUrl: 'app/views/speakers/detail.html',
     inputs: ["speaker"],
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, SpeakersListComponent],
 })
 
 export class SpeakerDetailsComponent implements OnInit{
@@ -15,15 +16,17 @@ export class SpeakerDetailsComponent implements OnInit{
     public speaker: Speaker;
     public showView = false;
 
-    constructor(private _speakerService: SpeakerService, private _routerParams: RouteParams) {}
+    constructor(private _speakerService: SpeakerService, private _router: ActivatedRoute ) {}
 
     ngOnInit():any {
 
-        if (this._routerParams.get('id')) {
-            this.showView = true;
-            this._speakerService.getSpeaker(this._routerParams.get('id')).then((speaker: Speaker)=> {
-                this.speaker = speaker;
-            })
+        if (this._router.params) {
+            this._router.params.subscribe(params => {
+                this._speakerService.getSpeaker(params['id']).then((speaker: Speaker)=> {
+                    this.speaker = speaker;
+                })
+                this.showView = true;
+            });
         }
     }
 }

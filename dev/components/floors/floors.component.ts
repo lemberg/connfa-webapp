@@ -1,4 +1,4 @@
-import {Component, OnInit, Inject} from 'angular2/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {Floor} from "../../models/floors";
 import {FloorService} from "../../services/floor.service";
 

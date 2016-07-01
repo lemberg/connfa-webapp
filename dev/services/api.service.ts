@@ -1,6 +1,7 @@
-import {Injectable, Inject} from "angular2/core";
-import {Http, Headers} from "angular2/http";
+import {Injectable, Inject} from "@angular/core";
+
 import {Observable} from "rxjs/Rx";
+import {Http, Headers} from "@angular/http";
 
 @Injectable()
 
@@ -122,7 +123,7 @@ export class ApiService {
     private _loadService(service, since) {
         var headers = new Headers();
         if (since) {
-            headers.append('If-Modified-Since', since);
+            // headers.append('If-Modified-Since', since);
         }
 
         var observer = this._http.get(this._config.apiUrl + service, {

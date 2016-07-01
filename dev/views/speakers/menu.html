@@ -1,33 +1,14 @@
-<header class="cf header">
-    <div class="top-menu">
-        <div class="hamburger-box">
-              <span class="hamburger">
-              </span>
-        </div>
-        <span class="info-text">Speakers</span>
-    </div>
-    <div class="search">
-        <span class="icon-search"></span>
-        <input type="search" placeholder="Search" #search [ngModel]="searchQuery" (ngModelChange)="searchSpeaker(search.value)">
-        <span class="close">X</span>
-    </div>
-</header>
-<div id="page">
-    <div class="inner cf">
-        <section class="info">
-            <ul class="speakers-info">
-                <li *ngFor="let key of alphabet">
-                    <a *ngFor="let speaker of filteredSpeakers[key]" [routerLink]="['Show', {id: speaker.speakerId}]">
-                        <span *ngIf="filteredSpeakers[key].indexOf(speaker) == 0" class="alphabet">{{key}}</span>
-                        <span class="photo"><img src="{{speaker.avatarImageURL}}" alt=""></span>
-                        <div class="text">
-                            <strong class="name">{{speaker.firstName}} {{speaker.lastName}}</strong>
-                            <span class="job">{{speaker.jobTitle}}</span>
-                        </div>
-                        </a>
-                </li>
-            </ul>
-        </section>
-        <router-outlet></router-outlet>
-    </div>
-</div>
+<section class="info">
+    <ul class="speakers-info">
+        <li *ngFor="let key of alphabet">
+            <a *ngFor="let speaker of filteredSpeakers[key]" [routerLink]="['/speakers/'+speaker.speakerId]">
+                <span *ngIf="filteredSpeakers[key].indexOf(speaker) == 0" class="alphabet">{{key}}</span>
+                <span class="photo"><img src="{{speaker.avatarImageURL}}" alt=""></span>
+                <div class="text">
+                    <strong class="name">{{speaker.firstName}} {{speaker.lastName}}</strong>
+                    <span class="job">{{speaker.jobTitle}}</span>
+                </div>
+            </a>
+        </li>
+    </ul>
+</section>

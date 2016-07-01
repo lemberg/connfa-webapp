@@ -1,5 +1,4 @@
-<router-outlet></router-outlet>
-
+<sessions-list></sessions-list>
 <section class="description active" *ngIf="event">
     <header>
         <div class="top-menu">
@@ -121,7 +120,7 @@
 
 
     <div class="desc-speaker-wrap cf">
-        <a href="javascript:void(0)" *ngFor="let speaker of event.speakersCollection">
+        <a *ngFor="let speaker of event.speakersCollection" [routerLink]="['/speakers/'+speaker.speakerId]">
             <div class="desc-photo-speaker">
                 <img src="{{speaker.avatarImageURL}}">
             </div>

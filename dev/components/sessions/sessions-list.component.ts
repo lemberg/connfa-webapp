@@ -1,30 +1,18 @@
-import {Component, OnInit} from "angular2/core";
-import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
-import {SessionDetailComponent} from "./session-detail.component";
 import {EventService} from "../../services/event.service";
 import {Event} from "../../models/event";
 import {FavoritesComponent} from "../events_partials/favorites.component";
+import {OnInit, Component} from "@angular/core";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 
 declare var moment: any;
 
 @Component({
+    selector: 'sessions-list',
     templateUrl: 'app/views/sessions/menu.html',
     providers: [EventService],
     directives: [ROUTER_DIRECTIVES, FavoritesComponent],
 })
 
-@RouteConfig([
-    {
-        path: '/:id',
-        name: 'Show',
-        component: SessionDetailComponent,
-    },
-    {
-        path: '/',
-        name: 'List',
-        component: SessionDetailComponent,
-    },
-])
 
 export class SessionsListComponent implements OnInit{
 
