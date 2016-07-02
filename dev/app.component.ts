@@ -11,6 +11,10 @@ import {Component} from "@angular/core";
 import {APP_ROUTER_PROVIDERS} from "./app.routes";
 import {ROUTER_DIRECTIVES, ActivatedRoute} from "@angular/router";
 import {SpeakerService} from "./services/speaker.service";
+import {SessionsComponent} from "./components/sessions/sessions.component";
+import {SpeakersComponent} from "./components/speakers/speakers.component";
+import {EventService} from "./services/event.service";
+import {SpeakersEventsService} from "./services/speakers_events.service";
 // import {ROUTER_DIRECTIVES, RouteConfig} from "@angular/router-deprecated";
 
 
@@ -18,41 +22,15 @@ import {SpeakerService} from "./services/speaker.service";
     selector: 'app',
     templateUrl: 'app/views/layout/app.html',
     directives: [ROUTER_DIRECTIVES],
-    providers: [SpeakerService],
-    precompile: [SpeakersListComponent, SpeakerDetailsComponent]
+    precompile: [
+        SpeakersComponent,
+        SpeakersListComponent,
+        SpeakerDetailsComponent,
+        SessionsComponent,
+    ],
+    providers: [SpeakerService, SpeakersEventsService]
 })
-// @RouteConfig([
-//     {
-//         path: '/speakers/...',
-//         name: 'Speakers',
-//         component: SpeakersListComponent,
-//         // children: [
-//         //     { path: ':id',  component: SpeakerDetailsComponent },
-//         //     { path: '',     component: SpeakersListComponent }
-//         // ]
-//     },
-//     {
-//         path: '/sessions/...',
-//         name: 'Sessions',
-//         component: SessionsListComponent,
-//         // useAsDefault: true,
-//     },
-//     {
-//         path: '/info/...',
-//         name: 'Pages',
-//         component: PagesListComponent,
-//     },
-//     {
-//         path: '/floors',
-//         name: 'Floors',
-//         component: FloorsComponent,
-//     },
-//     {
-//         path: '/locations',
-//         name: 'Locations',
-//         component: LocationsComponent,
-//     },
-// ])
+
 export class AppComponent {
     constructor(private _apiService: ApiService) {
         this._apiService.grabUpdates();

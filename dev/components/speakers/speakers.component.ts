@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {FavoritesComponent} from "../events_partials/favorites.component";
 import {SpeakerService} from "../../services/speaker.service";
+import {SpeakersEventsService} from "../../services/speakers_events.service";
 
 @Component({
     directives: [ROUTER_DIRECTIVES, FavoritesComponent],

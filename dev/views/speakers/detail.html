@@ -53,22 +53,22 @@
         </a>
     </div>
     <div class="text-speaker">
-        <p>{{speaker.characteristic}}</p>
+        <p [innerHTML]="speaker.characteristic"></p>
     </div>
-    <div class="desc-info-wrap view">
+    <div class="desc-info-wrap view" *ngFor="let event of speaker.events" [routerLink]="['/sessions/'+event.eventId]">
         <div class="additionally">
-            <p>The Big Easy: Streamlined Front-End Development with Pattern Lab and Twig</p>
+            <p>{{event.name}}</p>
         </div>
         <div class="desc-info">
-            Wed, 10:45 AM - 11:45 AM in 260-261 (Pantheon)
+            {{event.timeLabel}} in {{event.place}}
         </div>
-        <div class="desc-type-session">
-            <p>Front End</p>
+        <div class="desc-type-session" *ngIf="event.trackObject">
+            <p>{{event.trackObject.trackName}}</p>
         </div>
         <div class="desk-level">
             <p>
-                Experience level: Advanced
-                      <span class="level-icon">
+                Experience level: {{event.levelObject ? event.levelObject.levelName : ''}}
+                      <span class="level-icon level-icon{{event.experienceLevel}}">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
                         <rect class="level-rect1" x="2" y="12.444" width="2.667" height="4.889"/>

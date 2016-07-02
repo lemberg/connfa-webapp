@@ -1,7 +1,5 @@
 import {Injectable} from "@angular/core";
 import {ApiService} from "./api.service";
-import {Event} from "../models/event";
-import {SpeakerService} from "./speaker.service";
 import {LevelService} from "./level.service";
 import {TrackService} from "./track.service";
 
@@ -9,12 +7,11 @@ declare var moment:any;
 
 @Injectable()
 
-export class EventService {
+export class SpeakersEventsService {
 
-    constructor(private _apiService:ApiService,
-                private _speakerService:SpeakerService,
-                private _levelService:LevelService,
-                private _trackService:TrackService) {
+    public constructor(private _apiService:ApiService,
+                       private _levelService:LevelService,
+                       private _trackService:TrackService) {
     }
 
     events = [];
@@ -47,10 +44,13 @@ export class EventService {
     }
 
     getEvent(id, type) {
+
         return new Promise((resolve, reject) => {
             this.getEventsByType(type).then((events) => {
                 events.forEach(item => {
                     if (item.eventId == id) {
+
+                        item.timeLabel = moment(item.fom).format('ddd, LT') + ' - ' + moment(item.to).format('ddd, LT');
 
                         if (item.experienceLevel) {
                             this._levelService.getLevel(item.experienceLevel).then(level => {
@@ -63,15 +63,7 @@ export class EventService {
                                 item.trackObject = track;
                             })
                         }
-
-                        if (item.speakers) {
-                            item.speakersCollection = [];
-                            item.speakers.forEach((speakerId) => {
-                                this._speakerService.getSpeaker(speakerId).then(speaker => {
-                                    item.speakersCollection.push(speaker);
-                                })
-                            })
-                        }
+                        
                         resolve(item);
                     }
                 })

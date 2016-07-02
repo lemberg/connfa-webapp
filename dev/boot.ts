@@ -9,6 +9,7 @@ import {TrackService} from "./services/track.service";
 import {bootstrap} from "@angular/platform-browser-dynamic";
 import {HTTP_PROVIDERS} from "@angular/http";
 import {APP_ROUTER_PROVIDERS} from "./app.routes";
+import {EventService} from "./services/event.service";
 declare var localforage:any;
 
 Promise.resolve(ENV).then((ENV) => {
@@ -27,7 +28,6 @@ Promise.resolve(ENV).then((ENV) => {
             LevelService,
             TrackService,
             ApiService,
-            SpeakerService,
             provide('config', {useValue: CONFIG[ENV]}),
             provide('localforage', {useValue: localforage})
         ]);

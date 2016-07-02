@@ -16,7 +16,6 @@ export class ApiService {
     }
 
     grabUpdates() {
-        this.grabEvents('getSessions', 'sessions', '');
         var instance = this._localforage.createInstance({name: 'updates'});
         instance.getItem('lastUpdate').then(lastUpdate => {
             this._loadService('checkUpdates', lastUpdate).then((response) => {
@@ -65,17 +64,47 @@ export class ApiService {
             name: table
         });
 
+        var speakers_instance = this._localforage.createInstance({
+            name: 'speakers_events'
+        });
+
         this._loadService(api, since).then(response => {
+            var speakers_events = [];
             response.days.forEach(day => {
                 day.events.forEach(event => {
                     if (event.deleted) {
                         instance.removeItem(event.eventId.toString());
+                        if (event.speakers) {
+                            event.speakers.forEach((speakerId) => {
+                                speakers_instance.getItem(speakerId.toString()).then((value) => {
+                                    var index = value.indexOf(event.eventId.toString());
+                                    value.splice(index, 1);
+                                    speakers_events[speakerId.toString()] = value;
+                                })
+                            });
+                        }
                     } else {
                         event.event_type = eventType;
                         instance.setItem(event.eventId.toString(), event);
+
+                        if (event.speakers) {
+                            event.speakers.forEach((speakerId) => {
+
+                                if (!speakers_events[speakerId.toString()]) {
+                                    speakers_events[speakerId.toString()] = [];
+                                }
+
+                                speakers_events[speakerId.toString()].push(event.eventId.toString());
+
+                            })
+                        }
+
                     }
                 });
             });
+            speakers_events.forEach((value, key) => {
+                speakers_instance.setItem(key.toString(), value);
+            })
         });
     }
 
@@ -123,7 +152,7 @@ export class ApiService {
     private _loadService(service, since) {
         var headers = new Headers();
         if (since) {
-            // headers.append('If-Modified-Since', since);
+            headers.append('If-Modified-Since', since);
         }
 
         var observer = this._http.get(this._config.apiUrl + service, {
