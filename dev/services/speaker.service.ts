@@ -1,4 +1,4 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {Speaker} from "../models/speaker";
 import {ApiService} from "./api.service";
 
@@ -6,9 +6,13 @@ import {ApiService} from "./api.service";
 
 export class SpeakerService {
 
-    constructor(private _apiService: ApiService) {}
+    public speakers;
+    public speakersChanged$: EventEmitter<Speaker[]>;
 
-    speakers:Speaker[]
+    constructor(private _apiService: ApiService) {
+        this.speakers = this.getSpeakers();
+        this.speakersChanged$= new EventEmitter();
+    }
 
     getSpeakers() {
 
@@ -32,6 +36,19 @@ export class SpeakerService {
                 })
             });
         })
+    }
+
+    search(value: string) {
+        var filteredSpeakers = this.speakers.filter(this.filterSpeakers.bind(this, value));
+        this.speakersChanged$.emit(filteredSpeakers);
+    }
+
+    private filterSpeakers(value, item) {
+        if (item.firstName.toLocaleLowerCase().startsWith(value.toLowerCase()) ||
+            item.lastName.toLowerCase().startsWith(value.toLowerCase())) {
+
+            return true;
+        }
     }
 
     private sortSpeakers(speakers) {
