@@ -3,4 +3,4 @@
 /src
 .idea/*
 /markup/.idea/*
-/npm-debug.log
+/npm-debug.log*

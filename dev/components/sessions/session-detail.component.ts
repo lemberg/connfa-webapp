@@ -8,7 +8,6 @@ declare var moment: any;
 
 @Component({
     templateUrl: 'app/views/sessions/detail.html',
-    providers: [EventService],
     directives: [FavoritesComponent, SessionsListComponent, ROUTER_DIRECTIVES],
 })
 
@@ -34,9 +33,4 @@ export class SessionDetailComponent implements OnInit{
         transformed.timeLabel = moment(event.fom).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
         return transformed;
     }
-
-    navigateToSpeaker(id) {
-        // this._router.navigateByUrl('/speakers/'+id);
-    }
-
 }

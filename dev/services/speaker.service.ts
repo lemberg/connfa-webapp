@@ -1,7 +1,6 @@
 import {Injectable, EventEmitter, Inject} from "@angular/core";
 import {Speaker} from "../models/speaker";
 import {ApiService} from "./api.service";
-import {EventService} from "./event.service";
 import {SpeakersEventsService} from "./speakers_events.service";
 
 @Injectable()
