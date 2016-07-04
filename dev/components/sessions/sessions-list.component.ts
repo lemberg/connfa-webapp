@@ -39,6 +39,6 @@ export class SessionsListComponent implements OnInit{
 
     toggleFavorite(event) {
         event.isFavorite = !event.isFavorite;
-        // @todo wrote to localForge
+        // @todo write to localForge
     }
 }

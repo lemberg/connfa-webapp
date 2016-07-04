@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
-import {EventService} from "../../services/event.service";
 import {FavoritesComponent} from "../events_partials/favorites.component";
 import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
 import {SessionsListComponent} from "./sessions-list.component";
+import {SessionService} from "../../services/session.service";
 
 declare var moment: any;
 
@@ -15,13 +15,13 @@ export class SessionDetailComponent implements OnInit{
 
     public event;
 
-    constructor(private _eventService: EventService, private _router: ActivatedRoute) {}
+    constructor(private _sessionService: SessionService, private _router: ActivatedRoute) {}
 
     ngOnInit():any {
 
         if (this._router.params) {
             this._router.params.subscribe(params => {
-                this._eventService.getEvent(params['id'], 'session').then((event)=> {
+                this._sessionService.getSession(params['id']).then((event)=> {
                     this.event = this.transform(event);
                 })
             })

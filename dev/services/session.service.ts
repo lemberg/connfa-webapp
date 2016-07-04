@@ -49,6 +49,10 @@ export class SessionService {
         this.sessionsChanged$.emit(date);
     }
 
+    public getSession($id) {
+        return this._eventService.getEvent($id, 'session');
+    }
+
     private transformEvents(events) {
         var transformed = [];
         return new Promise((resolve, reject) => {
