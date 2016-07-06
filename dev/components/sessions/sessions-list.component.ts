@@ -2,13 +2,14 @@ import {FavoritesComponent} from "../events_partials/favorites.component";
 import {OnInit, Component} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {SessionService} from "../../services/session.service";
+import {FilterComponent} from "../events_partials/filter.component";
 
 declare var moment: any;
 
 @Component({
     selector: 'sessions-list',
     templateUrl: 'app/views/sessions/menu.html',
-    directives: [ROUTER_DIRECTIVES, FavoritesComponent],
+    directives: [ROUTER_DIRECTIVES, FavoritesComponent, FilterComponent],
 })
 
 

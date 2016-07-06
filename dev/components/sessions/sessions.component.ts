@@ -23,6 +23,11 @@ export class SessionsComponent {
                 this.dates = this._sessionService.dates;
                 this.activeDate = this.dates[0];
         });
+
+        this._sessionService.sessionsChanged$.subscribe(date => {
+            this.dates = this._sessionService.dates;
+            this.activeDate = this.dates[0];
+        });
     }
 
     public setActiveDate(date) {

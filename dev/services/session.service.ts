@@ -53,6 +53,62 @@ export class SessionService {
         return this._eventService.getEvent($id, 'session');
     }
 
+    public filterEvents(levels, tracks) {
+        this.getSessions().then(sessions => {
+
+            var promise = new Promise((resolve, reject) => {
+                var filteredSessions = [];
+                sessions.forEach(session => {
+                    if (this.inLevels(session, levels) && this.inTracks(session, tracks)) {
+                        filteredSessions.push(session);
+                    }
+                });
+                resolve(filteredSessions);
+            })
+
+            promise.then(sessions => {
+                this.transformEvents(sessions).then(data => {
+                    this.formatedSessions = data;
+                    this.dates = this.getDates(data);
+                    this.activeDate = this.dates[0];
+                    this.activeSessions = this.formatedSessions[this.activeDate];
+                    this.hours = Object.keys(this.activeSessions);
+                    this.sessionsChanged$.emit('changed');
+                })
+            })
+
+        });
+
+    }
+
+    private inLevels(session, levels) {
+        var levelId = session.experienceLevel;
+        if (!Object.keys(levels).length) {
+            return true;
+        }
+
+        if (levels && levels[levelId] == true) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    private inTracks(session, tracks) {
+        var trackId = session.track;
+        if (!Object.keys(tracks).length) {
+            return true;
+        }
+        if (tracks && tracks[trackId] == true) {
+            return true;
+        } else {
+
+            return false;
+        }
+
+    }
+
     private transformEvents(events) {
         var transformed = [];
         return new Promise((resolve, reject) => {
