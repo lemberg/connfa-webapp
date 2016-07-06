@@ -24,6 +24,12 @@ export class SessionDetailComponent implements OnInit{
                 this._sessionService.getSession(params['id']).then((event)=> {
                     this.event = this.transform(event);
                 })
+
+                this._sessionService.sessionsChanged$.subscribe((data) => {
+                    this._sessionService.getSession(params['id']).then((event)=> {
+                        this.event = this.transform(event);
+                    })
+                })
             })
         }
     }

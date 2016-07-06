@@ -17,18 +17,23 @@ export class SessionService {
     public sessionsChanged$:EventEmitter<string>;
 
     public constructor(private _eventService: EventService) {
+
         this.getSessions().then(sessions => {
             this.sessions = sessions;
             this.transformEvents(sessions).then(data => {
-                this.formatedSessions = data;
-                this.dates = this.getDates(data);
-                this.activeDate = this.dates[0];
-                this.activeSessions = this.formatedSessions[this.activeDate];
-                this.hours = Object.keys(this.activeSessions);
+                this.bindChanges(data);
             })
         });
 
         this.sessionsChanged$ = new EventEmitter();
+    }
+
+    private bindChanges(data) {
+        this.formatedSessions = data;
+        this.dates = this.getDates(data);
+        this.activeDate = this.activeDate || this.dates[0];
+        this.activeSessions = this.formatedSessions[this.activeDate];
+        this.hours = Object.keys(this.activeSessions);
     }
 
     public getSessions() {
@@ -49,8 +54,8 @@ export class SessionService {
         this.sessionsChanged$.emit(date);
     }
 
-    public getSession($id) {
-        return this._eventService.getEvent($id, 'session');
+    public getSession(id) {
+        return this._eventService.getEvent(id, 'session');
     }
 
     public filterEvents(levels, tracks) {
@@ -68,17 +73,30 @@ export class SessionService {
 
             promise.then(sessions => {
                 this.transformEvents(sessions).then(data => {
-                    this.formatedSessions = data;
-                    this.dates = this.getDates(data);
-                    this.activeDate = this.dates[0];
-                    this.activeSessions = this.formatedSessions[this.activeDate];
-                    this.hours = Object.keys(this.activeSessions);
-                    this.sessionsChanged$.emit('changed');
+                    this.bindChanges(data);
                 })
             })
 
         });
 
+    }
+
+    public toggleFavorite(session, isFavorite) {
+
+        this.sessions.find(item => {
+            if (item.eventId === session.eventId) {
+                item.isFavorite = isFavorite;
+                return true;
+            }
+            return false;
+        });
+
+        this.transformEvents(this.sessions).then(data => {
+            this.bindChanges(data);
+        }).then(() => {
+            this._eventService.toggleFavorite(session, 'session');
+            this.sessionsChanged$.emit('changed');
+        })
     }
 
     private inLevels(session, levels) {
@@ -135,7 +153,6 @@ export class SessionService {
         var transformed = event;
         transformed.fromLabel = moment(event.from).format('LT');
         transformed.toLabel = moment(event.to).format('LT');
-        transformed.isFavorite = false; //@todo
 
         return transformed;
     }

@@ -1,5 +1,6 @@
-import {Component, EventEmitter} from "@angular/core";
+import {Component} from "@angular/core";
 import {Event} from "../../models/event";
+import {SessionService} from "../../services/session.service";
 
 declare var moment: any;
 
@@ -16,10 +17,11 @@ export class FavoritesComponent {
     event;
     // eventChanged = new EventEmitter();
 
-    toggleFavorite(event) {
+    public constructor(private _sessionService: SessionService) {}
 
-        event.isFavorite = !event.isFavorite;
-        // this.eventChanged.emit(event);
+    toggleFavorite(event, isFavorite) {
+        event.isFavorite = isFavorite;
+        this._sessionService.toggleFavorite(event, isFavorite);
         // @todo write to localForge
     }
 

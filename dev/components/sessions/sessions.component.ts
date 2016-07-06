@@ -21,12 +21,12 @@ export class SessionsComponent {
     public constructor(private _sessionService: SessionService) {
         this._sessionService.getSessions().then(sessions => {
                 this.dates = this._sessionService.dates;
-                this.activeDate = this.dates[0];
+                this.activeDate = this._sessionService.activeDate || this.dates[0];
         });
 
         this._sessionService.sessionsChanged$.subscribe(date => {
             this.dates = this._sessionService.dates;
-            this.activeDate = this.dates[0];
+            this.activeDate = this._sessionService.activeDate || this.dates[0];
         });
     }
 

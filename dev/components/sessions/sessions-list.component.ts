@@ -37,9 +37,4 @@ export class SessionsListComponent implements OnInit{
             this.hours = this._sessionService.hours;
         })
     }
-
-    toggleFavorite(event) {
-        event.isFavorite = !event.isFavorite;
-        // @todo write to localForge
-    }
 }

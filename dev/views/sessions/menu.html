@@ -3,7 +3,7 @@
         <li *ngFor="let hour of hours">
             <div class="events-info_box">
                 <div class="box-item" *ngFor="let event of activeSessions[hour]">
-                    <a class="cf" [class.favorite-yes]="event.isFavorite" [routerLink]="['/sessions/'+event.eventId]">
+                    <a class="cf" [class.favorite-yes]="event.isFavorite" [routerLink]="['/sessions/'+event.eventId]" [routerLinkActive]="['router-link-active']">
                         <div class="wrap-time">
                             <div class="time" *ngIf="activeSessions[hour].indexOf(event) == 0">{{event.fromLabel}}</div>
                             <div class="time-to" *ngIf="activeSessions[hour].indexOf(event) == 0">to {{event.toLabel}}
@@ -30,7 +30,19 @@
                         <div class="info-event">
                             <div class="favorite">
                                 <favorites [event]="event"></favorites>
+
                                 <div class="title">{{event.name}}</div>
+                                <div class="level" *ngIf="event.levelObject">Experience level: {{event.levelObject.levelName}}</div>
+                                <span class="level-icon level-icon{{event.experienceLevel}}">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                                        <rect class="level-rect1" x="2" y="12.444" width="2.667" height="4.889"></rect>
+                                        <rect class="level-rect3" x="15.333" y="2.667" width="2.667" height="14.667"></rect>
+                                        <rect class="level-rect2" x="8.667" y="7.555" width="2.666" height="9.778"></rect>
+                                    </svg>
+                                </span>
+                                <div class="speaker" *ngIf="event.speakersNames">
+                                    {{event.speakersNames.join(', ')}}
+                                </div>
                                 <div class="place" *ngIf="event.place">
                                     {{event.place}}
                                 </div>
