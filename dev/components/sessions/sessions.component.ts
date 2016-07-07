@@ -19,9 +19,11 @@ export class SessionsComponent {
     public activeDate;
 
     public constructor(private _sessionService: SessionService) {
+        console.log('BASE INIT');
         this._sessionService.getSessions().then(sessions => {
-                this.dates = this._sessionService.dates;
-                this.activeDate = this._sessionService.activeDate || this.dates[0];
+            this.sessions = this._sessionService.sessions;
+            this.dates = this._sessionService.dates;
+            this.activeDate = this._sessionService.activeDate || this.dates[0];
         });
 
         this._sessionService.sessionsChanged$.subscribe(date => {

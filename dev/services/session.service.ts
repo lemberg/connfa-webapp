@@ -6,56 +6,65 @@ declare var moment: any;
 
 @Injectable()
 
-export class SessionService {
+export class SessionService{
 
     public sessions;
-    public formatedSessions;
-    public activeDate: string;
-    public activeSessions;
+    public formattedSessions;
     public dates;
+    public activeDate;
+    public activeSessions;
     public hours;
-    public sessionsChanged$:EventEmitter<string>;
+    public sessionsChanged$;
+
+    private sessionsPromise = null;
+
 
     public constructor(private _eventService: EventService) {
-
-        this.getSessions().then(sessions => {
-            this.sessions = sessions;
-            this.transformEvents(sessions).then(data => {
-                this.bindChanges(data);
-            })
-        });
-
         this.sessionsChanged$ = new EventEmitter();
     }
 
-    private bindChanges(data) {
-        this.formatedSessions = data;
-        this.dates = this.getDates(data);
-        this.activeDate = this.activeDate || this.dates[0];
-        this.activeSessions = this.formatedSessions[this.activeDate];
-        this.hours = Object.keys(this.activeSessions);
-    }
-
     public getSessions() {
+        if (this.sessionsPromise !== null) {
+            return this.sessionsPromise;
+        }
+        console.log('promise null');
+
         if (!this.sessions) {
-            return this._eventService.getEventsByType('session').then((sessions) => {
-                this.sessions = sessions;
-                return sessions;
+
+            return this.sessionsPromise = this._eventService.init().then(sessions => {
+                console.log('in getSessions Promise');
+
+
+                return new Promise((resolve, reject) => {
+                    this.sessions = sessions;
+
+                    this.transformEvents(sessions).then(data => {
+                        this.bindChanges(data);
+                        resolve();
+                    })
+                })
             });
         } else {
             return Promise.resolve(this.sessions);
         }
     }
 
-    public setActiveDate(date) {
-        this.activeDate = date;
-        this.activeSessions = this.formatedSessions[this.activeDate];
-        this.hours = Object.keys(this.activeSessions);
-        this.sessionsChanged$.emit(date);
+    public getSession(id) {
+        return this.getSessions().then(sessions => {
+            var session = this.sessions.filter((session) => {
+                  return id == session.eventId;
+            });
+
+            return session[0];
+        })
     }
 
-    public getSession(id) {
-        return this._eventService.getEvent(id, 'session');
+
+    public setActiveDate(date) {
+        this.activeDate = date;
+        this.activeSessions = this.formattedSessions[this.activeDate];
+        this.hours = Object.keys(this.activeSessions);
+        this.sessionsChanged$.emit(date);
     }
 
     public filterEvents(levels, tracks) {
@@ -63,7 +72,7 @@ export class SessionService {
 
             var promise = new Promise((resolve, reject) => {
                 var filteredSessions = [];
-                sessions.forEach(session => {
+                this.sessions.forEach(session => {
                     if (this.inLevels(session, levels) && this.inTracks(session, tracks)) {
                         filteredSessions.push(session);
                     }
@@ -73,12 +82,11 @@ export class SessionService {
 
             promise.then(sessions => {
                 this.transformEvents(sessions).then(data => {
-                    this.bindChanges(data);
+                    this.bindChanges(data, true);
+                    this.sessionsChanged$.emit('adsasd');
                 })
             })
-
         });
-
     }
 
     public toggleFavorite(session, isFavorite) {
@@ -110,7 +118,6 @@ export class SessionService {
         } else {
             return false;
         }
-
     }
 
     private inTracks(session, tracks) {
@@ -124,6 +131,18 @@ export class SessionService {
 
             return false;
         }
+    }
+
+    private bindChanges(data, changeActiveDate = false) {
+
+        this.formattedSessions = data;
+        this.dates = this.getDates(data);
+        this.activeDate = this.activeDate || this.dates[0];
+        if (changeActiveDate) {
+            this.activeDate = this.dates[0];
+        }
+        this.activeSessions = this.formattedSessions[this.activeDate];
+        this.hours = Object.keys(this.activeSessions);
 
     }
 

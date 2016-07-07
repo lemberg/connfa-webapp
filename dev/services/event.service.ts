@@ -11,6 +11,11 @@ declare var moment:any;
 
 export class EventService {
 
+    public events = [];
+    public sessions = [];
+    public bofs = [];
+    public social = [];
+
     private _localforage;
     private favoriteEvents;
 
@@ -28,10 +33,37 @@ export class EventService {
         });
     }
 
-    events = [];
+    public init() {
+        return new Promise((resolve, reject) => {
+
+            if (this.sessions.length == 0) {
+
+                this._apiService.getCollection('events').then((events: Event[]) => {
+                    var events = events.sort((a, b) => {
+                        var first = moment(a.from).format('x');
+                        var second = moment(b.from).format('x');
+
+                        if (first < second) {
+                            return -1;
+                        } else if (first > second) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    });
+                    var sessions = events.filter(this.filterByType.bind(this, 'session'))
+                    this.sessions = this.transform(sessions);
+                    resolve(this.sessions);
+                });
+            }
+        })
+    }
+
+
 
     getEventsByType(type) {
         if (!this.events[type]) {
+            console.log('here');
             return this._apiService.getCollection('events').then((events:Event[])=> {
                 events = this.transform(events);
                 var eventsOfType = events
@@ -52,6 +84,7 @@ export class EventService {
                 this.events[type] = eventsOfType;
                 return eventsOfType;
             });
+
         } else {
             return Promise.resolve(this.events[type]);
         }

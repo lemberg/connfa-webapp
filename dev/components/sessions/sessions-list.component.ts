@@ -15,24 +15,22 @@ declare var moment: any;
 
 export class SessionsListComponent implements OnInit{
 
-    sessions;
-    activeSessions;
-    dates;
-    activeDate;
-    hours;
+    sessions = [];
+    activeSessions = [];
+    hours = [];
 
     constructor(private _sessionService: SessionService) {}
 
     ngOnInit():any {
+        console.log('INIT LIST');
         this._sessionService.getSessions().then(sessions => {
-            this.sessions = this._sessionService.formatedSessions;
-            this.activeSessions = this._sessionService.activeSessions;
-            this.activeDate = this._sessionService.activeDate;
-            this.dates = this._sessionService.dates;
-            this.hours = this._sessionService.hours;
-        });
+            this.sessions = this._sessionService.formattedSessions;
+                this.activeSessions = this._sessionService.activeSessions;
+                this.hours = this._sessionService.hours;
+        })
 
         this._sessionService.sessionsChanged$.subscribe(date => {
+            console.log('CHANGED');
             this.activeSessions = this._sessionService.activeSessions;
             this.hours = this._sessionService.hours;
         })
