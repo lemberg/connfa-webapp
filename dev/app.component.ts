@@ -17,6 +17,8 @@ import {EventService} from "./services/event.service";
 import {SpeakersEventsService} from "./services/speakers_events.service";
 import {PagesComponent} from "./components/pages/pages.component";
 import {PagesDetailComponent} from "./components/pages/page-detail.component";
+import {SessionService} from "./services/session.service";
+import {BofService} from "./services/bof.service";
 // import {ROUTER_DIRECTIVES, RouteConfig} from "@angular/router-deprecated";
 
 
@@ -37,7 +39,7 @@ import {PagesDetailComponent} from "./components/pages/page-detail.component";
         PagesListComponent,
         PagesDetailComponent
     ],
-    providers: [SpeakerService, SpeakersEventsService]
+    providers: [SpeakerService, SpeakersEventsService, SessionService, BofService, EventService]
 })
 
 export class AppComponent {

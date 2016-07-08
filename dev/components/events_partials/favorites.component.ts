@@ -21,7 +21,7 @@ export class FavoritesComponent {
 
     toggleFavorite(event, isFavorite) {
         event.isFavorite = isFavorite;
-        this._sessionService.toggleFavorite(event, isFavorite);
+        this._bofService.toggleFavorite(event, isFavorite);
         // @todo write to localForge
     }
 
