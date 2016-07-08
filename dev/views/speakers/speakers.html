@@ -1,0 +1,19 @@
+<header class="cf header">
+    <div class="top-menu">
+        <div class="hamburger-box">
+              <span class="hamburger">
+              </span>
+        </div>
+        <span class="info-text">Speakers</span>
+    </div>
+    <div class="search">
+        <span class="icon-search"></span>
+        <input type="search" placeholder="Search" #search [ngModel]="searchQuery" (ngModelChange)="searchSpeaker(search.value)">
+        <span class="close">X</span>
+    </div>
+</header>
+<div id="page">
+    <div class="inner cf">
+        <router-outlet></router-outlet>
+    </div>
+</div>

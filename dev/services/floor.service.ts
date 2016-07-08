@@ -1,6 +1,6 @@
-import {Injectable} from "angular2/core";
 import {ApiService} from "./api.service";
 import {Floor} from "../models/floors";
+import {Injectable} from "@angular/core";
 
 @Injectable()
 

@@ -1,51 +1,45 @@
-import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteConfig} from "angular2/router";
-import {MenuComponent} from "./components/menu.component";
+// import {MenuComponent} from "./components/menu.component";
 import {SpeakersListComponent} from "./components/speakers/speakers-list.component";
 import {SessionsListComponent} from "./components/sessions/sessions-list.component";
 import {ApiService} from "./services/api.service";
 import {LocationsComponent} from "./components/locations/locations.component";
 import {FloorsComponent} from "./components/floors/floors.component";
 import {PagesListComponent} from "./components/pages/pages-list.component";
+import {SessionDetailComponent} from "./components/sessions/session-detail.component";
+import {SpeakerDetailsComponent} from "./components/speakers/speaker-detail.component";
+import {Component} from "@angular/core";
+import {APP_ROUTER_PROVIDERS} from "./app.routes";
+import {ROUTER_DIRECTIVES, ActivatedRoute} from "@angular/router";
+import {SpeakerService} from "./services/speaker.service";
+import {SessionsComponent} from "./components/sessions/sessions.component";
+import {SpeakersComponent} from "./components/speakers/speakers.component";
+import {EventService} from "./services/event.service";
+import {SpeakersEventsService} from "./services/speakers_events.service";
+import {PagesComponent} from "./components/pages/pages.component";
+import {PagesDetailComponent} from "./components/pages/page-detail.component";
+// import {ROUTER_DIRECTIVES, RouteConfig} from "@angular/router-deprecated";
+
 
 @Component({
     selector: 'app',
-    template: `
-        <div class="main">
-            <router-outlet></router-outlet>
-            <div class="over"></div>
-        </div>
-        <main-menu></main-menu>
-    `,
-    directives: [MenuComponent, ROUTER_DIRECTIVES],
+    templateUrl: 'app/views/layout/app.html',
+    directives: [ROUTER_DIRECTIVES],
+    precompile: [
+        SpeakersComponent,
+        SpeakersListComponent,
+        SpeakerDetailsComponent,
+        SessionsComponent,
+        SessionDetailComponent,
+        SessionsListComponent,
+        FloorsComponent,
+        LocationsComponent,
+        PagesComponent,
+        PagesListComponent,
+        PagesDetailComponent
+    ],
+    providers: [SpeakerService, SpeakersEventsService]
 })
-@RouteConfig([
-    {
-        path: '/speakers/...',
-        name: 'Speakers',
-        component: SpeakersListComponent,
-    },
-    {
-        path: '/sessions/...',
-        name: 'Sessions',
-        component: SessionsListComponent,
-    },
-    {
-        path: '/info/...',
-        name: 'Pages',
-        component: PagesListComponent,
-    },
-    {
-        path: '/floors',
-        name: 'Floors',
-        component: FloorsComponent,
-    },
-    {
-        path: '/locations',
-        name: 'Locations',
-        component: LocationsComponent,
-    },
-])
+
 export class AppComponent {
     constructor(private _apiService: ApiService) {
         this._apiService.grabUpdates();

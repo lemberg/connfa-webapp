@@ -1,13 +1,15 @@
-///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
-import {bootstrap} from 'angular2/platform/browser';
 import {AppComponent} from "./app.component";
-import {ROUTER_PROVIDERS} from "angular2/router";
-import {HTTP_PROVIDERS} from "angular2/http";
 import {ENV} from "./config/env";
 import {CONFIG} from "./config/config";
-import {provide} from "angular2/core";
+import {provide} from "@angular/core";
 import {SpeakerService} from "./services/speaker.service";
 import {ApiService} from "./services/api.service";
+import {LevelService} from "./services/level.service";
+import {TrackService} from "./services/track.service";
+import {bootstrap} from "@angular/platform-browser-dynamic";
+import {HTTP_PROVIDERS} from "@angular/http";
+import {APP_ROUTER_PROVIDERS} from "./app.routes";
+import {EventService} from "./services/event.service";
 declare var localforage:any;
 
 Promise.resolve(ENV).then((ENV) => {
@@ -21,9 +23,10 @@ Promise.resolve(ENV).then((ENV) => {
         return resolve(localforage);
     }).then((localforage) => {
         bootstrap(AppComponent, [
-            ROUTER_PROVIDERS,
+            APP_ROUTER_PROVIDERS,
             HTTP_PROVIDERS,
-            SpeakerService,
+            LevelService,
+            TrackService,
             ApiService,
             provide('config', {useValue: CONFIG[ENV]}),
             provide('localforage', {useValue: localforage})
