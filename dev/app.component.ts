@@ -15,6 +15,8 @@ import {SessionsComponent} from "./components/sessions/sessions.component";
 import {SpeakersComponent} from "./components/speakers/speakers.component";
 import {EventService} from "./services/event.service";
 import {SpeakersEventsService} from "./services/speakers_events.service";
+import {PagesComponent} from "./components/pages/pages.component";
+import {PagesDetailComponent} from "./components/pages/page-detail.component";
 // import {ROUTER_DIRECTIVES, RouteConfig} from "@angular/router-deprecated";
 
 
@@ -27,6 +29,13 @@ import {SpeakersEventsService} from "./services/speakers_events.service";
         SpeakersListComponent,
         SpeakerDetailsComponent,
         SessionsComponent,
+        SessionDetailComponent,
+        SessionsListComponent,
+        FloorsComponent,
+        LocationsComponent,
+        PagesComponent,
+        PagesListComponent,
+        PagesDetailComponent
     ],
     providers: [SpeakerService, SpeakersEventsService]
 })

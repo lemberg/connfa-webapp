@@ -18,6 +18,11 @@ export class EventService {
 
     private _localforage;
     private favoriteEvents;
+    private eventsPromise = {
+        session: null,
+        bof: null,
+        social: null,
+    };
 
     constructor(private _apiService:ApiService,
                 private _speakerService:SpeakerService,
@@ -33,38 +38,13 @@ export class EventService {
         });
     }
 
-    public init() {
-        return new Promise((resolve, reject) => {
-
-            if (this.sessions.length == 0) {
-
-                this._apiService.getCollection('events').then((events: Event[]) => {
-                    var events = events.sort((a, b) => {
-                        var first = moment(a.from).format('x');
-                        var second = moment(b.from).format('x');
-
-                        if (first < second) {
-                            return -1;
-                        } else if (first > second) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
-                    });
-                    var sessions = events.filter(this.filterByType.bind(this, 'session'))
-                    this.sessions = this.transform(sessions);
-                    resolve(this.sessions);
-                });
-            }
-        })
-    }
-
-
-
     getEventsByType(type) {
+        if (this.eventsPromise[type] !== null) {
+            return this.eventsPromise[type];
+        }
+
         if (!this.events[type]) {
-            console.log('here');
-            return this._apiService.getCollection('events').then((events:Event[])=> {
+            return this.eventsPromise[type] = this._apiService.getCollection('events').then((events:Event[])=> {
                 events = this.transform(events);
                 var eventsOfType = events
                     .filter(this.filterByType.bind(this, type))

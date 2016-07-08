@@ -27,11 +27,10 @@ export class SessionService{
         if (this.sessionsPromise !== null) {
             return this.sessionsPromise;
         }
-        console.log('promise null');
 
         if (!this.sessions) {
 
-            return this.sessionsPromise = this._eventService.init().then(sessions => {
+            return this.sessionsPromise = this._eventService.getEventsByType('session').then(sessions => {
                 console.log('in getSessions Promise');
 
 
