@@ -272,7 +272,10 @@ body {
     border-top: 1px solid #DCDCDC;
     padding-top: 13px;
     padding-right: 48px;
-    margin-right: -48px; }
+    margin-right: -48px;
+    color: rgba(0, 0, 0, 0.87);
+    display: block;
+    text-decoration: none; }
   .description .desc-info-wrap p {
     margin: 0; }
   .description .desc-speaker-wrap {
@@ -950,7 +953,6 @@ header {
     opacity: .54;
     display: inline-block;
     padding: 0 20px 14px;
-    margin-bottom: -14px;
     font-size: 14px; }
   header .info-text {
     margin-left: 23px;

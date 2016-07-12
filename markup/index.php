@@ -18,11 +18,10 @@
     <div class="description-top">
         <nav class="date">
             <ul class="cf">
-                <li><a href="#">MON 09</a></li>
+                <li><a href="#">SUN 08</a></li>
+                <li class="active"><a href="#">MON 09</a></li>
                 <li><a href="#">TUE 10</a></li>
-                <li class="active"><a href="#">WED 11</a></li>
-                <li><a href="#">THU 12</a></li>
-                <li><a href="#">FRI 13</a></li>
+
             </ul>
 
         </nav>

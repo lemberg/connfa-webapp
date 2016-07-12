@@ -7,7 +7,7 @@
 <div class="load">
     <img src="images/default.gif" width="40" alt="">
 </div>
-<header class="cf">
+<header class="cf header">
     <div class="top-menu">
         <div class="hamburger-box">
               <span class="hamburger">
@@ -173,7 +173,7 @@
                     <a href="#">Quam enim, mi dui ac cras habitasse sem volut</a>
                 </p>
             </div>
-            <div class="desc-info-wrap view">
+            <a href="#" class="desc-info-wrap view">
                 <div class="additionally">
                     <p>The Big Easy: Streamlined Front-End Development with Pattern Lab and Twig</p>
                 </div>
