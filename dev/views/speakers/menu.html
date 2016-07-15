@@ -1,7 +1,7 @@
 <section class="info">
     <ul class="speakers-info">
         <li *ngFor="let key of alphabet">
-            <a *ngFor="let speaker of filteredSpeakers[key]" [routerLink]="['/speakers/'+speaker.speakerId]">
+            <a *ngFor="let speaker of filteredSpeakers[key]" [routerLink]="['/speakers/'+speaker.speakerId]" [routerLinkActive]="['router-link-active']">
                 <span *ngIf="filteredSpeakers[key].indexOf(speaker) == 0" class="alphabet">{{key}}</span>
                 <span class="photo"><img src="{{speaker.avatarImageURL}}" alt=""></span>
                 <div class="text">

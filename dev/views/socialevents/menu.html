@@ -1,0 +1,57 @@
+<section class="info">
+    <ul class="events-info" *ngIf="activeSocialevents && hours">
+        <li *ngFor="let hour of hours">
+            <div class="events-info_box">
+                <div class="box-item" *ngFor="let event of activeSocialevents[hour]">
+                    <a class="cf" [class.favorite-yes]="event.isFavorite" [routerLink]="['/socialevents/'+event.eventId]" [routerLinkActive]="['router-link-active']">
+                        <div class="wrap-time">
+                            <div class="time" *ngIf="activeSocialevents[hour].indexOf(event) == 0">{{event.fromLabel}}</div>
+                            <div class="time-to" *ngIf="activeSocialevents[hour].indexOf(event) == 0">to {{event.toLabel}}
+                            </div>
+                            <div class="base-icon">
+                                <svg *ngIf="event.type == 8" class="registration-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                            <path d="M4.333,12.93v3.404h3.402L17.771,6.297l-3.403-3.402L4.333,12.93z M20.401,3.667c0.354-0.354,0.354-0.926,0-1.28
+                                        l-2.122-2.123c-0.354-0.354-0.928-0.354-1.281,0l-1.658,1.66l3.4,3.403L20.401,3.667z"/>
+                                            <path d="M0.001,23.999h23.998v-2.666H0.001V23.999z"/>
+                                        </svg>
+                                        <svg *ngIf="event.type == 3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                                            <path d="M21.6,0H2.4v12c0,2.651,2.148,4.8,4.8,4.8h7.2c2.651,0,4.8-2.148,4.8-4.8V8.4H21.6C22.932,8.4,24,7.332,24,6V2.4
+                                        C24,1.068,22.932,0,21.6,0z M21.6,6H19.2V2.4H21.6V6z M0,23.999h21.6V21.6H0V23.999z"/>
+                                        </svg>
+                                        <svg *ngIf="event.type == 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.999px" height="22.791px" viewBox="0.301 0.816 23.999 22.791" enable-background="new 0.301 0.816 23.999 22.791" xml:space="preserve">
+                                        <path d="M7.028,13.627l3.552-3.551L1.769,1.277c-1.958,1.958-1.958,5.134,0,7.104L7.028,13.627z M15.538,11.356
+                                            c1.921,0.891,4.62,0.263,6.614-1.732c2.397-2.398,2.861-5.837,1.018-7.682c-1.833-1.833-5.271-1.38-7.682,1.017
+                                            c-1.996,1.997-2.625,4.695-1.732,6.615l-12.25,12.25l1.77,1.77l8.648-8.622l8.635,8.636l1.771-1.771l-8.637-8.635L15.538,11.356z"></path>
+                                        </svg>
+                            </div>
+                        </div>
+                        <div class="info-event">
+                            <div class="favorite">
+                                <favorites [event]="event"></favorites>
+
+                                <div class="title">{{event.name}}</div>
+                                <div class="level" *ngIf="event.levelObject">Experience level: {{event.levelObject.levelName}}</div>
+                                <span class="level-icon level-icon{{event.experienceLevel}}">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                                        <rect class="level-rect1" x="2" y="12.444" width="2.667" height="4.889"></rect>
+                                        <rect class="level-rect3" x="15.333" y="2.667" width="2.667" height="14.667"></rect>
+                                        <rect class="level-rect2" x="8.667" y="7.555" width="2.666" height="9.778"></rect>
+                                    </svg>
+                                </span>
+                                <div class="speaker" *ngIf="event.speakersNames">
+                                    {{event.speakersNames.join(', ')}}
+                                </div>
+                                <div class="place" *ngIf="event.place">
+                                    {{event.place}}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>
+<events-filter eventsType="social"></events-filter>
