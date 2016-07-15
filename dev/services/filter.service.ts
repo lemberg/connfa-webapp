@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {SessionService} from "./session.service";
 import {BofService} from "./bof.service";
+import {SocialeventService} from "./socialevent.service";
 
 @Injectable()
 
 export class FilterService {
 
-    public constructor(private _sessionService: SessionService, private _bofService: BofService) {
+    public constructor(private _sessionService: SessionService, private _bofService: BofService, private _socialeventService: SocialeventService) {
 
     }
 
@@ -17,6 +18,9 @@ export class FilterService {
 
             case 'bof':
                 this._bofService.filterEvents(levels, tracks);
+
+            case 'social':
+                this._socialeventService.filterEvents(levels, tracks);
         }
     }
 }

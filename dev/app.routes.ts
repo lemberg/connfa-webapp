@@ -10,9 +10,12 @@ import {LocationsComponent} from "./components/locations/locations.component";
 import {PagesComponent} from "./components/pages/pages.component";
 import {PagesDetailComponent} from "./components/pages/page-detail.component";
 import {PagesListComponent} from "./components/pages/pages-list.component";
-import {BofsComponent} from "./components/bofs/bofs.components";
+import {BofsComponent} from "./components/bofs/bofs.component";
 import {BofDetailComponent} from "./components/bofs/bofs-detail.component";
 import {BofsListComponent} from "./components/bofs/bofs-list.component";
+import {SocialeventsComponent} from "./components/social_events/socialevents.component";
+import {SocialeventDetailComponent} from "./components/social_events/socialevents-detail.component";
+import {SocialeventsListComponent} from "./components/social_events/socialevents-list.component";
 
 
 export const routes: RouterConfig = [
@@ -35,6 +38,14 @@ export const routes: RouterConfig = [
         children: [
             { path: ':id',  component: BofDetailComponent },
             { path: '',     component: BofsListComponent, terminal: true }
+        ]
+    },
+    {
+        path: 'socialevents',
+        component: SocialeventsComponent,
+        children: [
+            { path: ':id',  component: SocialeventDetailComponent },
+            { path: '',     component: SocialeventsListComponent, terminal: true }
         ]
     },
     {
