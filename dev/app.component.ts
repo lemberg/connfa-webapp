@@ -19,6 +19,7 @@ import {PagesComponent} from "./components/pages/pages.component";
 import {PagesDetailComponent} from "./components/pages/page-detail.component";
 import {SessionService} from "./services/session.service";
 import {BofService} from "./services/bof.service";
+import {SocialeventService} from "./services/socialevent.service";
 // import {ROUTER_DIRECTIVES, RouteConfig} from "@angular/router-deprecated";
 
 
@@ -39,7 +40,7 @@ import {BofService} from "./services/bof.service";
         PagesListComponent,
         PagesDetailComponent
     ],
-    providers: [SpeakerService, SpeakersEventsService, SessionService, BofService, EventService]
+    providers: [SpeakerService, SpeakersEventsService, SessionService, BofService, SocialeventService, EventService]
 })
 
 export class AppComponent {
