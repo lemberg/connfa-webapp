@@ -273,6 +273,9 @@ body{
       padding-top: $base-marginP;
       padding-right: 48px;
       margin-right: -48px;
+      color: $color-first;
+      display: block;
+      text-decoration: none;
     }
     p{
       margin: 0;
