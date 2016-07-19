@@ -16,47 +16,61 @@ export class ApiService {
     }
 
     grabUpdates() {
-        // var instance = this._localforage.createInstance({name: 'updates'});
-        // instance.getItem('lastUpdate').then(lastUpdate => {
-        //     this._loadService('checkUpdates', lastUpdate).then((response) => {
-        //         if (response && response.idsForUpdate) {
-        //             response.idsForUpdate.forEach((method) => {
-        //                 switch (method) {
-        //                     case 1:
-        //                         this.grabData('getTypes', 'types', 'typeId', null, lastUpdate)
-        //                         break;
-        //                     case 2:
-        //                         this.grabData('getLevels', 'levels', 'levelId', null, lastUpdate)
-        //                         break;
-        //                     case 3:
-        //                         this.grabData('getTracks', 'tracks', 'trackId', null, lastUpdate)
-        //                         break;
-        //                     case 4:
-        //                         this.grabData('getSpeakers', 'speakers', 'speakerId', null, lastUpdate);
-        //                         break;
-        //                     case 5:
-        //                         this.grabData('getLocations', 'locations', 'locationId', null, lastUpdate);
-        //                         break;
-        //                     case 6:
-        //                         this.grabData('getFloorPlans', 'floors', 'floorPlanId', 'floorPlans', lastUpdate);
-        //                         break;
-        //                     case 7:
-        //                         this.grabEvents('getSessions', 'events', 'session', lastUpdate);
-        //                         break;
-        //                     case 8:
-        //                         this.grabEvents('getBofs', 'events', 'bof', lastUpdate);
-        //                         break;
-        //                     case 9:
-        //                         this.grabEvents('getSocialEvents', 'events', 'social', lastUpdate);
-        //                         break;
-        //                     case 11:
-        //                         this.grabData('getInfo', 'pages', 'infoId', 'info', lastUpdate);
-        //                         break;
-        //                 }
-        //             })
-        //         }
-        //     })
-        // });
+        var instance = this._localforage.createInstance({name: 'updates'});
+        instance.getItem('lastUpdate').then(lastUpdate => {
+            this._loadService('checkUpdates', lastUpdate).then((response) => {
+                if (response && response.idsForUpdate) {
+                    response.idsForUpdate.forEach((method) => {
+                        switch (method) {
+                            case 0:
+                                this.grabSettings('getSettings', lastUpdate)
+                                break;
+                            case 1:
+                                this.grabData('getTypes', 'types', 'typeId', null, lastUpdate)
+                                break;
+                            case 2:
+                                this.grabData('getLevels', 'levels', 'levelId', null, lastUpdate)
+                                break;
+                            case 3:
+                                this.grabData('getTracks', 'tracks', 'trackId', null, lastUpdate)
+                                break;
+                            case 4:
+                                this.grabData('getSpeakers', 'speakers', 'speakerId', null, lastUpdate);
+                                break;
+                            case 5:
+                                this.grabData('getLocations', 'locations', 'locationId', null, lastUpdate);
+                                break;
+                            case 6:
+                                this.grabData('getFloorPlans', 'floors', 'floorPlanId', 'floorPlans', lastUpdate);
+                                break;
+                            case 7:
+                                this.grabEvents('getSessions', 'events', 'session', lastUpdate);
+                                break;
+                            case 8:
+                                this.grabEvents('getBofs', 'events', 'bof', lastUpdate);
+                                break;
+                            case 9:
+                                this.grabEvents('getSocialEvents', 'events', 'social', lastUpdate);
+                                break;
+                            case 11:
+                                this.grabData('getInfo', 'pages', 'infoId', 'info', lastUpdate);
+                                break;
+                        }
+                    })
+                }
+            })
+        });
+    }
+
+    grabSettings(api, since) {
+        var instance = this._localforage.createInstance({
+            name: 'settings'
+        });
+
+        this._loadService(api, since).then(response => {
+            instance.setItem('twitterSearchQuery', response.settings.twitterSearchQuery);
+            instance.setItem('twitterWidgetId', response.settings.twitterWidgetId);
+        });
     }
 
     grabEvents(api, table, eventType, since = '') {
