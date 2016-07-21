@@ -7,6 +7,7 @@ import {SessionService} from "../../services/session.service";
 declare var moment: any;
 
 @Component({
+    selector: 'sessions',
     templateUrl: 'app/views/sessions/sessions.html',
     directives: [ROUTER_DIRECTIVES],
     providers: [SessionService, EventService],

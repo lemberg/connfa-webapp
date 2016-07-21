@@ -17,7 +17,7 @@ export class EventService {
     public social = [];
 
     private _localforage;
-    private favoriteEvents;
+    private favoriteEvents = [];
     private eventsPromise = {
         session: null,
         bof: null,
@@ -31,11 +31,6 @@ export class EventService {
                 @Inject('localforage') localforage) {
 
         this._localforage = localforage;
-        this._localforage.createInstance({
-            name: 'events_favorite'
-        }).keys().then(keys => {
-            this.favoriteEvents = keys;
-        });
     }
 
     getEventsByType(type) {
@@ -85,16 +80,19 @@ export class EventService {
 
     toggleFavorite(event, type) {
         var storage = this._localforage.createInstance({
-            name: 'events_favorite'
+            name: 'events'
+        });
+
+        storage.getItem(event.eventId.toString()).then(item => {
+            item.isFavorite = event.isFavorite;
+            storage.setItem(event.eventId.toString(), item);
         });
 
         if (event.isFavorite) {
             event.event_type = type;
             this.favoriteEvents.push(event.eventId.toString());
-            storage.setItem(event.eventId.toString(), event);
         } else {
             this.favoriteEvents.splice(this.favoriteEvents.indexOf(event.eventId.toString()), 1);
-            storage.removeItem(event.eventId.toString());
         }
     }
 
@@ -109,7 +107,6 @@ export class EventService {
     private transform(events) {
         var transformed = [];
         events.forEach(item => {
-            item.isFavorite = this.isFavorite(item);
 
             if (item.experienceLevel) {
                 this._levelService.getLevel(item.experienceLevel).then(level => {
@@ -133,6 +130,11 @@ export class EventService {
                     })
                 })
             }
+
+            if (item.isFavorite) {
+                this.favoriteEvents.push(item.eventId);
+            }
+
             transformed.push(item);
         });
         return transformed;

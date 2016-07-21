@@ -99,19 +99,25 @@ export class ApiService {
                         }
                     } else {
                         event.event_type = eventType;
-                        instance.setItem(event.eventId.toString(), event);
+                        instance.getItem(event.eventId.toString()).then(item => {
+                            event.isFavorite = false;
+                            if (item) {
+                                event.isFavorite = item.isFavorite;
+                            }
+                            instance.setItem(event.eventId.toString(), event);
+                            if (event.speakers) {
+                                event.speakers.forEach((speakerId) => {
 
-                        if (event.speakers) {
-                            event.speakers.forEach((speakerId) => {
+                                    if (!speakers_events[speakerId.toString()]) {
+                                        speakers_events[speakerId.toString()] = [];
+                                    }
 
-                                if (!speakers_events[speakerId.toString()]) {
-                                    speakers_events[speakerId.toString()] = [];
-                                }
+                                    speakers_events[speakerId.toString()].push(event.eventId.toString());
 
-                                speakers_events[speakerId.toString()].push(event.eventId.toString());
+                                })
+                            }
+                        })
 
-                            })
-                        }
 
                     }
                 });
@@ -133,13 +139,15 @@ export class ApiService {
         });
 
         this._loadService(api, since).then(response => {
-            response[responseItem].forEach(item => {
-                if (item.deleted) {
-                    instance.removeItem(item[itemId].toString());
-                } else {
-                    instance.setItem(item[itemId].toString(), item);
-                }
-            });
+            if (response && response[responseItem]) {
+                response[responseItem].forEach(item => {
+                    if (item.deleted) {
+                        instance.removeItem(item[itemId].toString());
+                    } else {
+                        instance.setItem(item[itemId].toString(), item);
+                    }
+                });
+            }
         })
     }
 
@@ -171,19 +179,17 @@ export class ApiService {
 
         var observer = this._http.get(this._config.apiUrl + service, {
             headers: headers
-        })
-            .map(response => {
-                if (service == 'checkUpdates') {
-                    var instance = this._localforage.createInstance({name: 'updates'});
-                    instance.setItem('lastUpdate', response.headers.get('Last-Modified'));
-                }
+        }).map(response => {
+            if (service == 'checkUpdates') {
+                var instance = this._localforage.createInstance({name: 'updates'});
+                instance.setItem('lastUpdate', response.headers.get('Last-Modified'));
+            }
 
-                return response.json()
-            })
-            .catch(error => {
-                console.log(error);
-                return Observable.throw(error.json());
-            });
+            return response.json()
+        }).catch(error => {
+            console.log(error);
+            return Observable.throw(error.json());
+        });
 
         return new Promise((resolve, reject) => {
             observer.subscribe(function (res) {
