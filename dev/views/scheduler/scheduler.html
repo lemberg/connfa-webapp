@@ -9,11 +9,7 @@
     <div class="description-top">
         <nav class="date">
             <ul class="cf">
-                <li><a href="#">MON 09</a></li>
-                <li><a href="#">TUE 10</a></li>
-                <li class="active"><a href="#">WED 11</a></li>
-                <li><a href="#">THU 12</a></li>
-                <li><a href="#">FRI 13</a></li>
+                <li *ngFor="let date of dates" [class.active]="activeDate == date"><a href="javascript:void(0)" (click)="setActiveDate(date)">{{date | uppercase}}</a></li>
             </ul>
 
         </nav>

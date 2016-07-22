@@ -1,6 +1,6 @@
 <section class="info">
-    <ul class="events-info my-schedule">
-        <li class="title"><span>Sessions</span></li>
+    <ul class="events-info my-schedule" *ngIf="activeEvents">
+        <li class="title" *ngFor="let type of getKeys(activeEvents)"><span>{{type}}</span></li>
         <li>
             <div class="events-info_box">
                 <div class="box-item">
