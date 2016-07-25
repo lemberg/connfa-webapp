@@ -1,8 +1,9 @@
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {ApiService} from "./api.service";
 import {TrackService} from "./track.service";
 import {SpeakerService} from "./speaker.service";
 import {LevelService} from "./level.service";
+import {EventService} from "./event.service";
 
 declare var moment:any;
 
@@ -17,11 +18,15 @@ export class SchedulerService {
     public formatted;
     public dates;
     public hours;
+    public eventsChanged$;
 
     public constructor(private _apiService:ApiService,
                        private _trackService:TrackService,
                        private _speakerService:SpeakerService,
-                       private _levelService:LevelService) {
+                       private _levelService:LevelService,
+                       private _eventService:EventService) {
+
+        this.eventsChanged$ = new EventEmitter();
     }
 
     public getSchedulers() {
@@ -47,6 +52,8 @@ export class SchedulerService {
                     }
                 });
 
+                this.schedulers = favorites;
+
                 return this.transformEvents(favorites).then(events => {
                     this.bindChanges(events, true);
                 });
@@ -56,11 +63,37 @@ export class SchedulerService {
         }
     }
 
+    public getScheduler(id) {
+        return this.getSchedulers().then(events => {
+            var event = this.schedulers.filter((event) => {
+                return id == event.eventId;
+            });
+            return event[0];
+        })
+    }
+
     public setActiveDate(date) {
         this.activeDate = date;
         this.activeEvents = this.formatted[this.activeDate];
-        // this.hours = Object.keys(this.activeEvents);
-        // this.sessionsChanged$.emit(date);
+        this.eventsChanged$.emit(date);
+    }
+
+    public toggleFavorite(event, isFavorite) {
+
+        this.schedulers.find(item => {
+            if (item.eventId === event.eventId) {
+                item.isFavorite = isFavorite;
+                return true;
+            }
+            return false;
+        });
+
+        this.transformEvents(this.schedulers).then(data => {
+            this.bindChanges(data);
+        }).then(() => {
+            this._eventService.toggleFavorite(event, event.event_type);
+            this.eventsChanged$.emit('changed');
+        })
     }
 
     private bindChanges(data, changeActiveDate = false) {
@@ -78,9 +111,9 @@ export class SchedulerService {
     private transformEvents(events) {
         var transformed = [];
         return new Promise((resolve, reject) => {
-            events.forEach((event: Event) => {
+            events.forEach((event:Event) => {
                 var event_day = moment(event.from).format('ddd D');
-                var event_hours = moment(event.from).format('LT') +' '+ moment(event.to).format('LT');
+                var event_hours = moment(event.from).format('LT') + ' ' + moment(event.to).format('LT');
 
                 if (!transformed[event_day]) {
                     transformed[event_day] = [];
@@ -114,6 +147,9 @@ export class SchedulerService {
                 item.trackObject = track;
             })
         }
+
+        item.fromLabel = moment(item.from).format('LT');
+        item.toLabel = moment(item.to).format('LT');
 
         if (item.speakers) {
             item.speakersCollection = [];

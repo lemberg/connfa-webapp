@@ -22,7 +22,7 @@ export class SocialmediaComponent implements OnInit{
                 twitterWidgetId,
                 document.getElementById("container"),
                 {
-                    height: '100%',
+                    height: '92%',
                     width: '100%',
                 }
             ).then(data => {
