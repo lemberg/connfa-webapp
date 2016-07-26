@@ -47,12 +47,20 @@ export class EventService {
                         var first = moment(a.from).format('x');
                         var second = moment(b.from).format('x');
 
+                        if (first == second){
+                            if (a.order > b.order) {
+                                return 1;
+                            } else if (a.order < b.order){
+                                return -1;
+                            } else {
+                                return 0;
+                            }
+                        }
+
                         if (first < second) {
                             return -1;
                         } else if (first > second) {
                             return 1;
-                        } else {
-                            return 0;
                         }
                     });
 
