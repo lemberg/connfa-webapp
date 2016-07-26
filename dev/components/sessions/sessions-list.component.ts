@@ -8,7 +8,7 @@ declare var moment: any;
 
 @Component({
     selector: 'events-list',
-    templateUrl: 'app/views/sessions/menu.html',
+    templateUrl: 'app/views/events_partials/menu.html',
     directives: [ROUTER_DIRECTIVES, FavoritesComponent, FilterComponent],
 })
 
@@ -16,22 +16,26 @@ declare var moment: any;
 export class SessionsListComponent implements OnInit{
 
     sessions = [];
-    activeSessions = [];
+    activeEvents = [];
     hours = [];
+
+    public router = '/sessions/';
+    public event_type = 'session';
 
     constructor(private _sessionService: SessionService) {}
 
     ngOnInit():any {
         console.log('INIT LIST');
+
         this._sessionService.getSessions().then(sessions => {
             this.sessions = this._sessionService.formattedSessions;
-                this.activeSessions = this._sessionService.activeSessions;
+                this.activeEvents = this._sessionService.activeSessions;
                 this.hours = this._sessionService.hours;
         })
 
         this._sessionService.sessionsChanged$.subscribe(date => {
             console.log('CHANGED');
-            this.activeSessions = this._sessionService.activeSessions;
+            this.activeEvents = this._sessionService.activeSessions;
             this.hours = this._sessionService.hours;
         })
     }

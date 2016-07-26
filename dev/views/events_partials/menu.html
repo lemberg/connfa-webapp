@@ -1,12 +1,12 @@
 <section class="info">
-    <ul class="events-info" *ngIf="activeSocialevents && hours">
+    <ul class="events-info" *ngIf="activeEvents && hours">
         <li *ngFor="let hour of hours">
             <div class="events-info_box">
-                <div class="box-item" *ngFor="let event of activeSocialevents[hour]">
-                    <a class="cf" [class.favorite-yes]="event.isFavorite" [routerLink]="['/socialevents/'+event.eventId]" [routerLinkActive]="['router-link-active']">
+                <div class="box-item" *ngFor="let event of activeEvents[hour]">
+                    <a class="cf" [class.favorite-yes]="event.isFavorite" [routerLink]="[router+event.eventId]" [routerLinkActive]="['router-link-active']">
                         <div class="wrap-time">
-                            <div class="time" *ngIf="activeSocialevents[hour].indexOf(event) == 0">{{event.fromLabel}}</div>
-                            <div class="time-to" *ngIf="activeSocialevents[hour].indexOf(event) == 0">to {{event.toLabel}}
+                            <div class="time" *ngIf="activeEvents[hour].indexOf(event) == 0">{{event.fromLabel}}</div>
+                            <div class="time-to" *ngIf="activeEvents[hour].indexOf(event) == 0">to {{event.toLabel}}
                             </div>
                             <div class="base-icon">
                                 <svg *ngIf="event.type == 8" class="registration-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -55,4 +55,4 @@
         </li>
     </ul>
 </section>
-<events-filter eventsType="social"></events-filter>
+<events-filter eventsType="{{event_type}}"></events-filter>
