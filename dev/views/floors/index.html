@@ -4,14 +4,14 @@
               <span class="hamburger">
               </span>
         </div>
-        <span class="info-text">Floor Plan</span>
+        <span class="info-text">Floor Plans</span>
     </div>
     <div class="box-menu">
         <ul class="nav">
             <li>
-                <a class="select" href="#" *ngIf="activeFloor">Floor/{{activeFloor.floorPlanName}}</a>
+                <a class="select" href="#" *ngIf="activeFloor">{{activeFloor.floorPlanName}}</a>
                 <ul class="nav-sub">
-                    <li *ngFor="let floor of floors"><a href="javascript:void(0)" (click)="onActivateFloor(floor)">Floor/{{floor.floorPlanName}}</a></li>
+                    <li *ngFor="let floor of floors"><a href="javascript:void(0)" (click)="onActivateFloor(floor)">{{floor.floorPlanName}}</a></li>
                 </ul>
             </li>
         </ul>
