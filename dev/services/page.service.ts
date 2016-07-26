@@ -36,6 +36,6 @@ export class PageService {
     }
 
     private _sortPages(pages) {
-        return pages.sort((a, b) => a.order < b.order);
+        return pages.sort((a, b) => a.order > b.order);
     }
 }
