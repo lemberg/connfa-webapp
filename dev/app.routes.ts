@@ -17,6 +17,9 @@ import {SocialeventsComponent} from "./components/social_events/socialevents.com
 import {SocialeventDetailComponent} from "./components/social_events/socialevents-detail.component";
 import {SocialeventsListComponent} from "./components/social_events/socialevents-list.component";
 import {SocialmediaComponent} from "./components/social_media/socialmedia.component";
+import {SchedulerComponent} from "./components/scheduler/scheduler.component";
+import {SchedulerListComponent} from "./components/scheduler/scheduler-list.component";
+import {SchedulerDetailComponent} from "./components/scheduler/scheduler-detail.component";
 
 
 export const routes: RouterConfig = [
@@ -47,6 +50,14 @@ export const routes: RouterConfig = [
         children: [
             { path: ':id',  component: SocialeventDetailComponent },
             { path: '',     component: SocialeventsListComponent, terminal: true }
+        ]
+    },
+    {
+        path: 'scheduler',
+        component: SchedulerComponent,
+        children: [
+            { path: ':id',  component: SchedulerDetailComponent },
+            { path: '',  component: SchedulerListComponent, terminal: true },
         ]
     },
     {

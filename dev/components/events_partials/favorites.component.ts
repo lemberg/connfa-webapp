@@ -3,6 +3,7 @@ import {Event} from "../../models/event";
 import {SessionService} from "../../services/session.service";
 import {BofService} from "../../services/bof.service";
 import {SocialeventService} from "../../services/socialevent.service";
+import {EventService} from "../../services/event.service";
 
 declare var moment:any;
 
@@ -18,23 +19,11 @@ export class FavoritesComponent {
 
     event;
 
-    public constructor(private _sessionService:SessionService,
-                       private _bofService:BofService,
-                       private _socialService:SocialeventService) {
+    public constructor(private _eventService:EventService) {
     }
 
     toggleFavorite(event, isFavorite) {
         event.isFavorite = isFavorite;
-        switch (event.event_type) {
-            case 'session':
-                this._sessionService.toggleFavorite(event, isFavorite);
-                break;
-            case 'bof':
-                this._bofService.toggleFavorite(event, isFavorite);
-                break;
-            case 'social':
-                this._socialService.toggleFavorite(event, isFavorite);
-                break;
-        }
+        this._eventService.toggleFavorite(event, event.event_type);
     }
 }
