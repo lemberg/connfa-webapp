@@ -5,6 +5,7 @@ import {EventService} from "../../services/event.service";
 import {SocialeventService} from "../../services/socialevent.service";
 
 declare var moment: any;
+declare var jQuery: any;
 
 @Component({
     templateUrl: 'app/views/socialevents/socialevents.html',
@@ -30,6 +31,8 @@ export class SocialeventsComponent {
             this.dates = this._socialeventService.dates;
             this.activeDate = this._socialeventService.activeDate || this.dates[0];
         });
+
+        jQuery('body').addClass('view');
     }
 
     public setActiveDate(date) {

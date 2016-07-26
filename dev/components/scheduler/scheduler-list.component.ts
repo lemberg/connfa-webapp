@@ -5,7 +5,7 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
 import {FavoritesComponent} from "../events_partials/favorites.component";
 
 @Component({
-    selector: 'scheduler-list',
+    selector: 'events-list',
     pipes: [Ucfirst],
     directives: [ROUTER_DIRECTIVES, FavoritesComponent],
     templateUrl: 'app/views/scheduler/menu.html'

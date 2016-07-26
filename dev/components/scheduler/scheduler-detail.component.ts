@@ -7,8 +7,8 @@ import {FavoritesComponent} from "../events_partials/favorites.component";
 declare var moment: any;
 
 @Component({
-    selector: 'scheduler-list',
-    templateUrl: 'app/views/scheduler/detail.html',
+    selector: 'event-details',
+    templateUrl: 'app/views/events_partials/details.html',
     directives: [SchedulerListComponent, FavoritesComponent, ROUTER_DIRECTIVES],
 })
 

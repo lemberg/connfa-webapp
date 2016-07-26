@@ -7,7 +7,8 @@ import {SessionService} from "../../services/session.service";
 declare var moment: any;
 
 @Component({
-    templateUrl: 'app/views/sessions/detail.html',
+    selector: 'event-details',
+    templateUrl: 'app/views/events_partials/details.html',
     directives: [FavoritesComponent, SessionsListComponent, ROUTER_DIRECTIVES],
 })
 

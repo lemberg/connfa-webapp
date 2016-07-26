@@ -8,7 +8,7 @@ import {SessionService} from "../../services/session.service";
 declare var moment:any;
 
 @Component({
-    selector: 'socialevents-list',
+    selector: 'events-list',
     templateUrl: 'app/views/socialevents/menu.html',
     directives: [ROUTER_DIRECTIVES, FavoritesComponent, FilterComponent],
 })

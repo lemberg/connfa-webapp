@@ -1,5 +1,4 @@
 import {Component, OnInit, Inject} from '@angular/core';
-import {ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 import {Location} from "../../models/locations";
 import {LocationService} from "../../services/location.service";
 import {DomSanitizationService} from "@angular/platform-browser";
@@ -7,7 +6,7 @@ import {DomSanitizationService} from "@angular/platform-browser";
 @Component({
     selector: 'locations',
     templateUrl: 'app/views/locations/index.html',
-    directives: [ROUTER_DIRECTIVES],
+    directives: [],
     providers: [LocationService],
 })
 

@@ -7,7 +7,8 @@ import {SocialeventService} from "../../services/socialevent.service";
 declare var moment: any;
 
 @Component({
-    templateUrl: 'app/views/socialevents/detail.html',
+    selector: 'event-details',
+    templateUrl: 'app/views/events_partials/details.html',
     directives: [FavoritesComponent, SocialeventsListComponent, ROUTER_DIRECTIVES],
 })
 

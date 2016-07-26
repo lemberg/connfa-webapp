@@ -5,6 +5,7 @@ import {EventService} from "../../services/event.service";
 import {SessionService} from "../../services/session.service";
 
 declare var moment: any;
+declare var jQuery: any;
 
 @Component({
     selector: 'sessions',
@@ -31,6 +32,8 @@ export class SessionsComponent {
             this.dates = this._sessionService.dates;
             this.activeDate = this._sessionService.activeDate || this.dates[0];
         });
+
+        jQuery('body').addClass('view');
     }
 
     public setActiveDate(date) {

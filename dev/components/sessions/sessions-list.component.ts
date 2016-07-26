@@ -7,7 +7,7 @@ import {FilterComponent} from "../events_partials/filter.component";
 declare var moment: any;
 
 @Component({
-    selector: 'sessions-list',
+    selector: 'events-list',
     templateUrl: 'app/views/sessions/menu.html',
     directives: [ROUTER_DIRECTIVES, FavoritesComponent, FilterComponent],
 })

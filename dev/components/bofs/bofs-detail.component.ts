@@ -7,7 +7,8 @@ import {BofService} from "../../services/bof.service";
 declare var moment: any;
 
 @Component({
-    templateUrl: 'app/views/bofs/detail.html',
+    selector: 'event-details',
+    templateUrl: 'app/views/events_partials/details.html',
     directives: [FavoritesComponent, BofsListComponent, ROUTER_DIRECTIVES],
 })
 

@@ -28,5 +28,4 @@ export class SchedulerComponent implements OnInit{
         this._schedulerService.setActiveDate(date);
         this.activeDate = date;
     }
-
 }
