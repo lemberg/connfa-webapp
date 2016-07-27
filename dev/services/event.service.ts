@@ -4,6 +4,7 @@ import {Event} from "../models/event";
 import {SpeakerService} from "./speaker.service";
 import {LevelService} from "./level.service";
 import {TrackService} from "./track.service";
+import {Speaker} from "../models/speaker";
 
 declare var moment:any;
 
@@ -12,9 +13,6 @@ declare var moment:any;
 export class EventService {
 
     public events = [];
-    public sessions = [];
-    public bofs = [];
-    public social = [];
 
     private _localforage;
     private favoriteEvents = [];
@@ -132,7 +130,7 @@ export class EventService {
                 item.speakersCollection = [];
                 item.speakersNames = [];
                 item.speakers.forEach((speakerId) => {
-                    this._speakerService.getSpeaker(speakerId).then(speaker => {
+                    this._speakerService.getSpeaker(speakerId).then((speaker: Speaker) => {
                         item.speakersCollection.push(speaker);
                         item.speakersNames.push(speaker.firstName+' '+speaker.lastName)
                     })

@@ -2,6 +2,7 @@ import {Injectable, Inject} from "@angular/core";
 
 import {Observable} from "rxjs/Rx";
 import {Http, Headers} from "@angular/http";
+import {resolve} from "@angular/router/src/resolve";
 
 @Injectable()
 
@@ -16,6 +17,7 @@ export class ApiService {
     }
 
     grabUpdates() {
+
         var instance = this._localforage.createInstance({name: 'updates'});
         instance.getItem('lastUpdate').then(lastUpdate => {
             this._loadService('checkUpdates', lastUpdate).then((response) => {
@@ -74,62 +76,40 @@ export class ApiService {
     }
 
     grabEvents(api, table, eventType, since = '') {
+
         var instance = this._localforage.createInstance({
             name: table
         });
 
-        var speakers_instance = this._localforage.createInstance({
-            name: 'speakers_events'
-        });
-
         this._loadService(api, since).then(response => {
-            var speakers_events = [];
-            response.days.forEach(day => {
+            var events = [];
+            response.days.forEach((day) => {
                 day.events.forEach(event => {
-                    if (event.deleted) {
-                        instance.removeItem(event.eventId.toString());
-                        if (event.speakers) {
-                            event.speakers.forEach((speakerId) => {
-                                speakers_instance.getItem(speakerId.toString()).then((value) => {
-                                    var index = value.indexOf(event.eventId.toString());
-                                    value.splice(index, 1);
-                                    speakers_events[speakerId.toString()] = value;
-                                })
-                            });
-                        }
-                    } else {
-                        event.event_type = eventType;
-                        instance.getItem(event.eventId.toString()).then(item => {
-                            event.isFavorite = false;
-                            if (item) {
-                                event.isFavorite = item.isFavorite;
-                            }
-                            instance.setItem(event.eventId.toString(), event);
-                            if (event.speakers) {
-                                event.speakers.forEach((speakerId) => {
-
-                                    if (!speakers_events[speakerId.toString()]) {
-                                        speakers_events[speakerId.toString()] = [];
-                                    }
-
-                                    speakers_events[speakerId.toString()].push(event.eventId.toString());
-
-                                })
-                            }
-                        })
-
-
-                    }
-                });
+                    events.push(event);
+                })
             });
-            speakers_events.forEach((value, key) => {
-                speakers_instance.setItem(key.toString(), value);
-            })
+
+            events.forEach(event => {
+                if (event.deleted) {
+                    instance.removeItem(event.eventId.toString());
+                } else {
+                    event.event_type = eventType;
+
+                    instance.getItem(event.eventId.toString()).then(item => {
+
+                        event.isFavorite = false;
+                        if (item) {
+                            event.isFavorite = item.isFavorite;
+                        }
+
+                        instance.setItem(event.eventId.toString(), event);
+                    });
+                }
+            });
         });
     }
 
     grabData(api, table, itemId, responseItem = null, since = '') {
-
         if (!responseItem) {
             responseItem = table;
         }
@@ -140,12 +120,16 @@ export class ApiService {
 
         this._loadService(api, since).then(response => {
             if (response && response[responseItem]) {
+
+                var promises = [];
                 response[responseItem].forEach(item => {
-                    if (item.deleted) {
-                        instance.removeItem(item[itemId].toString());
-                    } else {
-                        instance.setItem(item[itemId].toString(), item);
-                    }
+                    promises.push(new Promise((resolve, reject) => {
+                        if (item.deleted) {
+                            instance.removeItem(item[itemId].toString());
+                        } else {
+                            instance.setItem(item[itemId].toString(), item);
+                        }
+                    }));
                 });
             }
         })

@@ -17,6 +17,11 @@ export class SpeakerDetailsComponent implements OnInit{
 
     public speaker: Speaker;
     public showView = false;
+    public eventRoutes = {
+         'session':'/sessions/',
+         'bof':'/bofs/',
+         'social':'/socialevents/'
+    };
 
     constructor(private _speakerService: SpeakerService, private _router: ActivatedRoute ) {}
 
@@ -26,6 +31,7 @@ export class SpeakerDetailsComponent implements OnInit{
             this._router.params.subscribe(params => {
                 this._speakerService.getSpeaker(params['id']).then((speaker: Speaker)=> {
                     this.speaker = speaker;
+                    console.log(this.speaker);
                 })
                 this.showView = true;
             });

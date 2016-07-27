@@ -19,6 +19,9 @@ import {PagesDetailComponent} from "./components/pages/page-detail.component";
 import {SessionService} from "./services/session.service";
 import {BofService} from "./services/bof.service";
 import {SocialeventService} from "./services/socialevent.service";
+import {BofsComponent} from "./components/bofs/bofs.component";
+import {BofsListComponent} from "./components/bofs/bofs-list.component";
+import {BofDetailComponent} from "./components/bofs/bofs-detail.component";
 
 
 
@@ -37,7 +40,10 @@ import {SocialeventService} from "./services/socialevent.service";
         LocationsComponent,
         PagesComponent,
         PagesListComponent,
-        PagesDetailComponent
+        PagesDetailComponent,
+        BofsComponent,
+        BofsListComponent,
+        BofDetailComponent,
     ],
     providers: [SpeakerService, SpeakersEventsService, SessionService, BofService, SocialeventService, EventService]
 })

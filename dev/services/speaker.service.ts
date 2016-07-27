@@ -2,6 +2,7 @@ import {Injectable, EventEmitter, Inject} from "@angular/core";
 import {Speaker} from "../models/speaker";
 import {ApiService} from "./api.service";
 import {SpeakersEventsService} from "./speakers_events.service";
+import {Event} from "../models/event";
 
 @Injectable()
 
@@ -39,24 +40,37 @@ export class SpeakerService {
                 speakers.forEach(item => {
                     if (item.speakerId == id) {
                         item.events = [];
-                        this._apiService.getCollection('events').then(events => {
-                            this._localforage.createInstance({
-                                name: 'speakers_events'
-                            }).getItem(item.speakerId.toString()).then(eventIds => {
-                                eventIds.forEach(eventId => {
-                                    this._speakersEventsService.getEvent(eventId, 'session').then(event => {
-                                        item.events.push(event);
-                                    })
+                        this._apiService.getCollection('events').then((events: Event[]) => {
+                            events = events.filter(this.getSpeakerEvents.bind(event, item.speakerId))
+                                .sort((a, b) => {
+                                    if (a.order > b.order) {
+                                        return -1;
+                                    } else if (a.order < b.order) {
+                                        return 1;
+                                    } else {
+                                        return 0;
+                                    }
                                 });
-                            });
+                            events.forEach(event => {
+                                this._speakersEventsService.getEvent(event.eventId, event.event_type).then(event => {
+                                    item.events.push(event);
+                                })
+                            })
                         });
-
 
                         resolve(item);
                     }
                 })
             });
         })
+    }
+
+    private getSpeakerEvents(speakerId, event) {
+        if (event.speakers.indexOf(speakerId) !== -1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     search(value:string) {

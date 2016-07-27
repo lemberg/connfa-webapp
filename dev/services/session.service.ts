@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {EventService} from "./event.service";
 import {EventEmitter} from "@angular/core";
+import {Event} from "../models/event";
 
 declare var moment: any;
 
