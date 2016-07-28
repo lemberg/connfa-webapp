@@ -28,7 +28,7 @@ export class SpeakersListComponent implements OnInit{
 
     getSpeakers() {
         this._speakerService.getSpeakers().then((speakers: Speaker[]) => {
-            this._transformSpeakers(speakers);
+            this._transformSpeakers(speakers); 
         });
     }
 
@@ -44,10 +44,11 @@ export class SpeakersListComponent implements OnInit{
         var grouped = [];
         return new Promise((resolve, reject) => {
             speakers.forEach(function (speaker: Speaker) {
-                if (!grouped[speaker.firstName.charAt(0)]) {
-                    grouped[speaker.firstName.charAt(0)] = [];
+                var key = speaker.firstName.charAt(0).toUpperCase();
+                if (!grouped[key]) {
+                    grouped[key] = [];
                 }
-                grouped[speaker.firstName.charAt(0)].push(speaker);
+                grouped[key].push(speaker);
             })
             return resolve(grouped);
         })
