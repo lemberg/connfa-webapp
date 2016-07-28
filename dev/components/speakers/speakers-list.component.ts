@@ -28,7 +28,7 @@ export class SpeakersListComponent implements OnInit{
 
     getSpeakers() {
         this._speakerService.getSpeakers().then((speakers: Speaker[]) => {
-            this._transformSpeakers(speakers); 
+            this._transformSpeakers(speakers);
         });
     }
 
