@@ -15,6 +15,8 @@ declare var moment: any;
 export class BofDetailComponent implements OnInit{
 
     public event;
+    public parentRoute = '/bofs';
+    public title = 'BOFs';
 
     constructor(private _bofService: BofService, private _router: ActivatedRoute) {}
 

@@ -38,4 +38,8 @@ export class BofsListComponent implements OnInit {
             this.hours = this._bofService.hours;
         })
     }
+
+    public getKeys(obj) {
+        return Object.keys(obj)
+    }
 }

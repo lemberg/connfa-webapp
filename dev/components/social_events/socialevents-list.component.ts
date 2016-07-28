@@ -38,4 +38,8 @@ export class SocialeventsListComponent implements OnInit {
             this.hours = this._socialeventService.hours;
         })
     }
+
+    public getKeys(obj) {
+        return Object.keys(obj)
+    }
 }

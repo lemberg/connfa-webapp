@@ -31,7 +31,6 @@ export class SpeakerDetailsComponent implements OnInit{
             this._router.params.subscribe(params => {
                 this._speakerService.getSpeaker(params['id']).then((speaker: Speaker)=> {
                     this.speaker = speaker;
-                    console.log(this.speaker);
                 })
                 this.showView = true;
             });

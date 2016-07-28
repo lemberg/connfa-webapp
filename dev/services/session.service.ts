@@ -83,7 +83,7 @@ export class SessionService{
             promise.then(sessions => {
                 this.transformEvents(sessions).then(data => {
                     this.bindChanges(data, true);
-                    this.sessionsChanged$.emit('adsasd');
+                    this.sessionsChanged$.emit('changed');
                 })
             })
         });
@@ -134,15 +134,24 @@ export class SessionService{
     }
 
     private bindChanges(data, changeActiveDate = false) {
-
         this.formattedSessions = data;
         this.dates = this.getDates(data);
-        this.activeDate = this.activeDate || this.dates[0];
-        if (changeActiveDate) {
-            this.activeDate = this.dates[0];
+        if (this.dates.length) {
+            console.log('in dates');
+            this.activeDate = this.activeDate || this.dates[0];
+            if (changeActiveDate) {
+                this.activeDate = this.dates[0];
+            }
+
+            this.activeSessions = this.formattedSessions ? this.formattedSessions[this.activeDate] : null;
+            this.hours = Object.keys(this.activeSessions);
+        } else {
+            console.log('no dates');
+            this.dates = [];
+            this.activeSessions = [];
+            this.hours = [];
         }
-        this.activeSessions = this.formattedSessions[this.activeDate];
-        this.hours = Object.keys(this.activeSessions);
+
 
     }
 

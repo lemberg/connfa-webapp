@@ -1,5 +1,5 @@
 
-import {Component, ElementRef} from "@angular/core";
+import {Component, ElementRef, OnInit} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {EventService} from "../../services/event.service";
 import {BofService} from "../../services/bof.service";
@@ -14,13 +14,15 @@ declare var jQuery: any;
     providers: [BofService, EventService],
 })
 
-export class BofsComponent {
+export class BofsComponent implements OnInit{
 
     public dates;
     public activeDate;
 
     public constructor(private _bofService: BofService, private _el:ElementRef) {
+    }
 
+    ngOnInit():any {
         this._bofService.getBofs().then(bofs => {
             this._mapData();
         });
@@ -31,6 +33,7 @@ export class BofsComponent {
 
         jQuery('body').addClass('view');
     }
+
 
     private _mapData() {
         this.dates = this._bofService.dates;

@@ -15,6 +15,8 @@ declare var moment: any;
 export class SessionDetailComponent implements OnInit{
 
     public event;
+    public parentRoute = '/sessions';
+    public title = 'Sessions';
 
     constructor(private _sessionService: SessionService, private _router: ActivatedRoute) {}
 

@@ -15,12 +15,15 @@ export class FilterService {
         switch (type) {
             case 'session':
                 this._sessionService.filterEvents(levels, tracks);
+                break;
 
             case 'bof':
                 this._bofService.filterEvents(levels, tracks);
+                break;
 
             case 'social':
                 this._socialeventService.filterEvents(levels, tracks);
+                break;
         }
     }
 }

@@ -53,4 +53,8 @@ export class SpeakersListComponent implements OnInit{
             return resolve(grouped);
         })
     }
+
+    public getKeys(obj) {
+        return Object.keys(obj)
+    }
 }

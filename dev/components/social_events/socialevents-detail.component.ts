@@ -15,6 +15,8 @@ declare var moment: any;
 export class SocialeventDetailComponent implements OnInit{
 
     public event;
+    public parentRoute = '/socialevents';
+    public title = 'Social Events';
 
     constructor(private _socialeventService: SocialeventService, private _router: ActivatedRoute) {}
 

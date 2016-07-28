@@ -1,5 +1,5 @@
 
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {EventService} from "../../services/event.service";
 import {SessionService} from "../../services/session.service";
@@ -14,14 +14,16 @@ declare var jQuery: any;
     providers: [SessionService, EventService],
 })
 
-export class SessionsComponent {
+export class SessionsComponent implements OnInit{
 
     public sessions;
     public dates;
     public activeDate;
 
     public constructor(private _sessionService: SessionService) {
-        console.log('BASE INIT');
+    }
+
+    ngOnInit():any {
         this._sessionService.getSessions().then(sessions => {
             this.sessions = this._sessionService.sessions;
             this.dates = this._sessionService.dates;

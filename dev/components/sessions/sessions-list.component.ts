@@ -39,4 +39,8 @@ export class SessionsListComponent implements OnInit{
             this.hours = this._sessionService.hours;
         })
     }
+
+    public getKeys(obj) {
+        return Object.keys(obj)
+    }
 }
