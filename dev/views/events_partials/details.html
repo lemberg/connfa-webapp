@@ -16,7 +16,7 @@
         <h1 class="title-desc">
             {{event.name}}
             <div class="icons-view">
-                <ul class="nav-share">
+                <ul class="nav-share" *ngIf="event.link">
                     <li>
                         <a href="#" class="share-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
