@@ -1,7 +1,7 @@
 import {AppComponent} from "./app.component";
 import {ENV} from "./config/env";
 import {CONFIG} from "./config/config";
-import {provide} from "@angular/core";
+import {provide, enableProdMode} from "@angular/core";
 import {SpeakerService} from "./services/speaker.service";
 import {ApiService} from "./services/api.service";
 import {LevelService} from "./services/level.service";
@@ -22,6 +22,7 @@ Promise.resolve(ENV).then((ENV) => {
         });
         return resolve(localforage);
     }).then((localforage) => {
+        enableProdMode();
         bootstrap(AppComponent, [
             APP_ROUTER_PROVIDERS,
             HTTP_PROVIDERS,

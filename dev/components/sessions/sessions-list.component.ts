@@ -18,6 +18,7 @@ export class SessionsListComponent implements OnInit{
     sessions = [];
     activeEvents = [];
     hours = [];
+    noMatches = false;
 
     public router = '/sessions/';
     public event_type = 'session';
@@ -35,6 +36,10 @@ export class SessionsListComponent implements OnInit{
 
         this._sessionService.sessionsChanged$.subscribe(date => {
             console.log('CHANGED');
+            this.noMatches = false;
+            if (!this.getKeys(this._sessionService.activeSessions).length) {
+                this.noMatches = true;
+            }
             this.activeEvents = this._sessionService.activeSessions;
             this.hours = this._sessionService.hours;
         })

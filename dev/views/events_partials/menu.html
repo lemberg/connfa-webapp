@@ -1,5 +1,5 @@
 <section class="info">
-    <ul class="events-info" *ngIf="!getKeys(activeEvents).length">
+    <ul class="events-info" *ngIf="noMatches">
         <li>No Matching Events</li>
     </ul>
     <ul class="events-info" *ngIf="activeEvents && hours">

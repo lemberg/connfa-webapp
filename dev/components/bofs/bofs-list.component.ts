@@ -18,6 +18,7 @@ export class BofsListComponent implements OnInit {
     bofs = [];
     activeEvents = [];
     hours = [];
+    noMatches = false;
 
     public router = '/bofs/';
     public event_type = 'bof';
@@ -34,6 +35,10 @@ export class BofsListComponent implements OnInit {
 
         this._bofService.bofsChanged$.subscribe(date => {
             console.log('CHANGED');
+            this.noMatches = false;
+            if (!this.getKeys(this._bofService.activeBofs).length) {
+                this.noMatches = true;
+            }
             this.activeEvents = this._bofService.activeBofs;
             this.hours = this._bofService.hours;
         })

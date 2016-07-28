@@ -34,10 +34,8 @@ export class SessionService{
             return this.sessionsPromise = this._eventService.getEventsByType('session').then(sessions => {
                 console.log('in getSessions Promise');
 
-
                 return new Promise((resolve, reject) => {
                     this.sessions = sessions;
-
                     this.transformEvents(sessions).then(data => {
                         this.bindChanges(data);
                         resolve();

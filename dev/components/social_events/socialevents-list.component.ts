@@ -18,6 +18,7 @@ export class SocialeventsListComponent implements OnInit {
     socialevents = [];
     activeEvents = [];
     hours = [];
+    noMatches = false;
 
     public router = '/socialevents/';
     public event_type = 'social';
@@ -34,6 +35,9 @@ export class SocialeventsListComponent implements OnInit {
 
         this._socialeventService.socialeventsChanged$.subscribe(date => {
             console.log('CHANGED');
+            if (!this.getKeys(this._socialeventService.activeSocialevents).length) {
+                this.noMatches = true;
+            }
             this.activeEvents = this._socialeventService.activeSocialevents;
             this.hours = this._socialeventService.hours;
         })

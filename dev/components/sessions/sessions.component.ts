@@ -24,6 +24,7 @@ export class SessionsComponent implements OnInit{
     }
 
     ngOnInit():any {
+        console.log('here');
         this._sessionService.getSessions().then(sessions => {
             this.sessions = this._sessionService.sessions;
             this.dates = this._sessionService.dates;
