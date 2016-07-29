@@ -1,8 +1,7 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable, Inject, EventEmitter} from "@angular/core";
 
 import {Observable} from "rxjs/Rx";
 import {Http, Headers} from "@angular/http";
-import {resolve} from "@angular/router/src/resolve";
 
 @Injectable()
 
@@ -10,10 +9,12 @@ export class ApiService {
 
     private _config;
     private _localforage;
+    public dataChanged$: EventEmitter<string>;
 
     constructor(private _http:Http, @Inject('config') config, @Inject('localforage') localforage) {
         this._config = config;
         this._localforage = localforage;
+        this.dataChanged$ = new EventEmitter();
     }
 
     grabUpdates() {
@@ -58,7 +59,9 @@ export class ApiService {
                                 this.grabData('getInfo', 'pages', 'infoId', 'info', lastUpdate);
                                 break;
                         }
-                    })
+                    });
+
+                    this.dataChanged$.emit('changed');
                 }
             })
         });

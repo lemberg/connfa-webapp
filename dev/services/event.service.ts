@@ -20,6 +20,7 @@ export class EventService {
     public dates;
     public activeEvents;
     public eventsChanged$;
+    public type = null;
 
     private _localforage;
     private favoriteEvents = [];
@@ -37,9 +38,19 @@ export class EventService {
 
         this.eventsChanged$ = new EventEmitter();
         this._localforage = localforage;
+        this._apiService.dataChanged$.subscribe(data => {
+            if (this.type != null) {
+                this.eventsPromise[this.type]= null;
+                this.getEventsByType(this.type).then(data => {
+                    console.log(data);
+                    this.eventsChanged$.emit(data);
+                });
+            }
+        });
     }
 
     getEventsByType(type) {
+        this.type = type;
         if (this.eventsPromise[type] !== null) {
             return this.eventsPromise[type];
         }
@@ -91,11 +102,9 @@ export class EventService {
     }
 
     private bindChanges(data, changeActiveDate = false) {
-        console.log(data);
         this.formattedEvents = data;
         this.dates = this.getDates(data);
         if (this.dates.length) {
-            console.log('in dates');
             this.activeDate = this.activeDate || this.dates[0];
             if (changeActiveDate) {
                 this.activeDate = this.dates[0];
@@ -103,7 +112,6 @@ export class EventService {
 
             this.activeEvents = this.formattedEvents ? this.formattedEvents[this.activeDate] : null;
         } else {
-            console.log('no dates');
             this.dates = [];
             this.activeEvents = [];
         }

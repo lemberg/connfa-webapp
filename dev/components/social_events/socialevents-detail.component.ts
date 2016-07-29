@@ -39,7 +39,6 @@ export class SocialeventDetailComponent implements OnInit{
 
     private transform(event) {
         var transformed = event;
-        console.log(event);
         transformed.timeLabel = moment(event.from).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
         return transformed;
     }
