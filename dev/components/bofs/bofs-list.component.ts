@@ -1,8 +1,8 @@
 import {FavoritesComponent} from "../events_partials/favorites.component";
 import {OnInit, Component} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
-import {BofService} from "../../services/bof.service";
 import {FilterComponent} from "../events_partials/filter.component";
+import {EventService} from "../../services/event.service";
 
 declare var moment:any;
 
@@ -23,24 +23,23 @@ export class BofsListComponent implements OnInit {
     public router = '/bofs/';
     public event_type = 'bof';
 
-    constructor(private _bofService:BofService) {
+    constructor(private _eventService:EventService) {
     }
 
     ngOnInit():any {
-        this._bofService.getBofs().then(bofs => {
-            this.bofs = this._bofService.formattedBofs;
-            this.activeEvents = this._bofService.activeBofs;
-            this.hours = this._bofService.hours;
+        this._eventService.getEventsByType('bof').then(bofs => {
+            this.activeEvents = this._eventService.activeEvents;
+            this.hours = this.getKeys(this._eventService.activeEvents);
         })
 
-        this._bofService.bofsChanged$.subscribe(date => {
+        this._eventService.eventsChanged$.subscribe(date => {
             console.log('CHANGED');
             this.noMatches = false;
-            if (!this.getKeys(this._bofService.activeBofs).length) {
+            if (!this.getKeys(this._eventService.activeEvents).length) {
                 this.noMatches = true;
             }
-            this.activeEvents = this._bofService.activeBofs;
-            this.hours = this._bofService.hours;
+            this.activeEvents = this._eventService.activeEvents;
+            this.hours = this.getKeys(this._eventService.activeEvents);
         })
     }
 

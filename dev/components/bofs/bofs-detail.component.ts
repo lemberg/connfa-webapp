@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {FavoritesComponent} from "../events_partials/favorites.component";
 import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
 import {BofsListComponent} from "./bofs-list.component";
-import {BofService} from "../../services/bof.service";
+import {EventService} from "../../services/event.service";
 
 declare var moment: any;
 
@@ -18,18 +18,18 @@ export class BofDetailComponent implements OnInit{
     public parentRoute = '/bofs';
     public title = 'BOFs';
 
-    constructor(private _bofService: BofService, private _router: ActivatedRoute) {}
+    constructor(private _eventService: EventService, private _router: ActivatedRoute) {}
 
     ngOnInit():any {
 
         if (this._router.params) {
             this._router.params.subscribe(params => {
-                this._bofService.getBof(params['id']).then((event)=> {
+                this._eventService.getEvent(params['id'], 'bof').then((event)=> {
                     this.event = this.transform(event);
                 })
 
-                this._bofService.bofsChanged$.subscribe((data) => {
-                    this._bofService.getBof(params['id']).then((event)=> {
+                this._eventService.eventsChanged$.subscribe((data) => {
+                    this._eventService.getEvent(params['id'], 'bof').then((event)=> {
                         this.event = this.transform(event);
                     })
                 })
@@ -39,7 +39,8 @@ export class BofDetailComponent implements OnInit{
 
     private transform(event) {
         var transformed = event;
-        transformed.timeLabel = moment(event.fom).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
+        console.log(event);
+        transformed.timeLabel = moment(event.from).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
         return transformed;
     }
 }

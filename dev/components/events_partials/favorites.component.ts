@@ -1,8 +1,4 @@
 import {Component} from "@angular/core";
-import {Event} from "../../models/event";
-import {SessionService} from "../../services/session.service";
-import {BofService} from "../../services/bof.service";
-import {SocialeventService} from "../../services/socialevent.service";
 import {EventService} from "../../services/event.service";
 
 declare var moment:any;

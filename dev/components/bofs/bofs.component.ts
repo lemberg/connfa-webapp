@@ -2,7 +2,6 @@
 import {Component, ElementRef, OnInit} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {EventService} from "../../services/event.service";
-import {BofService} from "../../services/bof.service";
 
 declare var moment: any;
 declare var jQuery: any;
@@ -11,7 +10,7 @@ declare var jQuery: any;
     selector: 'bofs',
     templateUrl: 'app/views/bofs/bofs.html',
     directives: [ROUTER_DIRECTIVES],
-    providers: [BofService, EventService],
+    providers: [EventService],
 })
 
 export class BofsComponent implements OnInit{
@@ -19,15 +18,15 @@ export class BofsComponent implements OnInit{
     public dates;
     public activeDate;
 
-    public constructor(private _bofService: BofService, private _el:ElementRef) {
+    public constructor(private _eventService: EventService) {
     }
 
     ngOnInit():any {
-        this._bofService.getBofs().then(bofs => {
+        this._eventService.getEventsByType('bof').then(bofs => {
             this._mapData();
         });
 
-        this._bofService.bofsChanged$.subscribe(date => {
+        this._eventService.eventsChanged$.subscribe(date => {
             this._mapData();
         });
 
@@ -36,28 +35,12 @@ export class BofsComponent implements OnInit{
 
 
     private _mapData() {
-        this.dates = this._bofService.dates;
-        this.activeDate = this._bofService.activeDate || this.dates[0];
+        this.dates = this._eventService.dates;
+        this.activeDate = this._eventService.activeDate || this.dates[0];
     }
 
     public setActiveDate(date) {
-        this._bofService.setActiveDate(date);
+        this._eventService.setActiveDate(date);
         this.activeDate = date;
-    }
-
-    private getParentByTagName(node, tagname) {
-        var parent;
-        if (node === null || tagname === '') return;
-        parent  = node.parentNode;
-        tagname = tagname.toUpperCase();
-
-        while (parent.tagName !== "HTML") {
-            if (parent.tagName === tagname) {
-                return parent;
-            }
-            parent = parent.parentNode;
-        }
-
-        return parent;
     }
 }

@@ -2,7 +2,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {EventService} from "../../services/event.service";
-import {SessionService} from "../../services/session.service";
 
 declare var moment: any;
 declare var jQuery: any;
@@ -11,7 +10,7 @@ declare var jQuery: any;
     selector: 'sessions',
     templateUrl: 'app/views/sessions/sessions.html',
     directives: [ROUTER_DIRECTIVES],
-    providers: [SessionService, EventService],
+    providers: [EventService],
 })
 
 export class SessionsComponent implements OnInit{
@@ -20,27 +19,25 @@ export class SessionsComponent implements OnInit{
     public dates;
     public activeDate;
 
-    public constructor(private _sessionService: SessionService) {
+    public constructor(private _eventService: EventService) {
     }
 
     ngOnInit():any {
-        console.log('here');
-        this._sessionService.getSessions().then(sessions => {
-            this.sessions = this._sessionService.sessions;
-            this.dates = this._sessionService.dates;
-            this.activeDate = this._sessionService.activeDate || this.dates[0];
+        this._eventService.getEventsByType('session').then(sessions => {
+            this.dates = this._eventService.dates;
+            this.activeDate = this._eventService.activeDate || this.dates[0];
         });
 
-        this._sessionService.sessionsChanged$.subscribe(date => {
-            this.dates = this._sessionService.dates;
-            this.activeDate = this._sessionService.activeDate || this.dates[0];
+        this._eventService.eventsChanged$.subscribe(date => {
+            this.dates = this._eventService.dates;
+            this.activeDate = this._eventService.activeDate || this.dates[0];
         });
 
         jQuery('body').addClass('view');
     }
 
     public setActiveDate(date) {
-        this._sessionService.setActiveDate(date);
+        this._eventService.setActiveDate(date);
         this.activeDate = date;
     }
 }

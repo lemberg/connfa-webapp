@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {FavoritesComponent} from "../events_partials/favorites.component";
 import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
 import {SocialeventsListComponent} from "./socialevents-list.component";
-import {SocialeventService} from "../../services/socialevent.service";
+import {EventService} from "../../services/event.service";
 
 declare var moment: any;
 
@@ -18,18 +18,18 @@ export class SocialeventDetailComponent implements OnInit{
     public parentRoute = '/socialevents';
     public title = 'Social Events';
 
-    constructor(private _socialeventService: SocialeventService, private _router: ActivatedRoute) {}
+    constructor(private _eventService: EventService, private _router: ActivatedRoute) {}
 
     ngOnInit():any {
 
         if (this._router.params) {
             this._router.params.subscribe(params => {
-                this._socialeventService.getSocialevent(params['id']).then((event)=> {
+                this._eventService.getEvent(params['id'], 'social').then((event)=> {
                     this.event = this.transform(event);
                 })
 
-                this._socialeventService.socialeventsChanged$.subscribe((data) => {
-                    this._socialeventService.getSocialevent(params['id']).then((event)=> {
+                this._eventService.eventsChanged$.subscribe((data) => {
+                    this._eventService.getEvent(params['id'], 'social').then((event)=> {
                         this.event = this.transform(event);
                     })
                 })
@@ -39,7 +39,8 @@ export class SocialeventDetailComponent implements OnInit{
 
     private transform(event) {
         var transformed = event;
-        transformed.timeLabel = moment(event.fom).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
+        console.log(event);
+        transformed.timeLabel = moment(event.from).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
         return transformed;
     }
 }

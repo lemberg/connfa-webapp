@@ -1,8 +1,8 @@
 import {OnInit, Component} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {FavoritesComponent} from "../events_partials/favorites.component";
-import {SocialeventService} from "../../services/socialevent.service";
 import {FilterComponent} from "../events_partials/filter.component";
+import {EventService} from "../../services/event.service";
 
 declare var moment:any;
 
@@ -23,23 +23,23 @@ export class SocialeventsListComponent implements OnInit {
     public router = '/socialevents/';
     public event_type = 'social';
 
-    constructor(private _socialeventService:SocialeventService) {
+    constructor(private _eventService:EventService) {
     }
 
     ngOnInit():any {
-        this._socialeventService.getSocialevents().then(socialevents => {
-            this.socialevents = this._socialeventService.formattedSocialevents;
-            this.activeEvents = this._socialeventService.activeSocialevents;
-            this.hours = this._socialeventService.hours;
+        this._eventService.getEventsByType('social').then(bofs => {
+            this.activeEvents = this._eventService.activeEvents;
+            this.hours = this.getKeys(this._eventService.activeEvents);
         })
 
-        this._socialeventService.socialeventsChanged$.subscribe(date => {
+        this._eventService.eventsChanged$.subscribe(date => {
             console.log('CHANGED');
-            if (!this.getKeys(this._socialeventService.activeSocialevents).length) {
+            this.noMatches = false;
+            if (!this.getKeys(this._eventService.activeEvents).length) {
                 this.noMatches = true;
             }
-            this.activeEvents = this._socialeventService.activeSocialevents;
-            this.hours = this._socialeventService.hours;
+            this.activeEvents = this._eventService.activeEvents;
+            this.hours = this.getKeys(this._eventService.activeEvents);
         })
     }
 
