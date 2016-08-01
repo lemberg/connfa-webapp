@@ -1,5 +1,5 @@
 
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, OnDestroy} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {EventService} from "../../services/event.service";
 
@@ -13,7 +13,7 @@ declare var jQuery: any;
     providers: [EventService],
 })
 
-export class SessionsComponent implements OnInit{
+export class SessionsComponent implements OnInit, OnDestroy{
 
     public sessions;
     public dates;
@@ -34,6 +34,10 @@ export class SessionsComponent implements OnInit{
         });
 
         jQuery('body').addClass('view');
+    }
+
+    ngOnDestroy():any {
+        jQuery('body').removeClass('view');
     }
 
     public setActiveDate(date) {

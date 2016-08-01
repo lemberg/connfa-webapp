@@ -77,4 +77,5 @@ gulp.task('watch', function () {
 	gulp.watch(appDev + 'views/**/*.html', ['build-html']);
 });
 
+gulp.task('build', ['build-ts', 'build-css', 'build-img', 'build-js', 'build-fonts', 'build-html']);
 gulp.task('default', ['watch', 'build-ts', 'build-css', 'build-img', 'build-js', 'build-fonts', 'build-html']);

@@ -1,5 +1,5 @@
 
-import {Component, ElementRef, OnInit} from "@angular/core";
+import {Component, ElementRef, OnInit, OnDestroy} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {EventService} from "../../services/event.service";
 
@@ -13,7 +13,7 @@ declare var jQuery: any;
     providers: [EventService],
 })
 
-export class BofsComponent implements OnInit{
+export class BofsComponent implements OnInit, OnDestroy{
 
     public dates;
     public activeDate;
@@ -31,6 +31,10 @@ export class BofsComponent implements OnInit{
         });
 
         jQuery('body').addClass('view');
+    }
+
+    ngOnDestroy():any {
+        jQuery('body').removeClass('view');
     }
 
 
