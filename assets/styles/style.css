@@ -78,18 +78,18 @@ body {
     padding: 16px 16px 16px 80px; }
     @media (min-width: 980px) {
       .left-navigation li a:hover {
-        color: #757428; }
-        .left-navigation li a:hover path {
-          fill: #757428; }
-        .left-navigation li a:hover svg {
-          fill-opacity: 1; } }
+        background: #E0E0E0; } }
     .left-navigation li a svg {
       position: absolute;
       left: 26px;
       top: 11px;
       fill-opacity: .54; }
   .left-navigation li.active a {
-    background: #E0E0E0; }
+    color: #757428; }
+  .left-navigation li.active path {
+    fill: #757428; }
+  .left-navigation li.active svg {
+    fill-opacity: 1; }
   @media (min-width: 980px) {
     .left-navigation {
       padding-top: 64px; } }
@@ -166,7 +166,8 @@ body {
       .filter-nav .filter-nav_wrap ul li {
         padding: 14px 0; }
   .filter-nav.active {
-    right: 0; }
+    right: 0;
+    overflow-y: auto; }
 
 .bg-nav {
   position: relative;
@@ -255,7 +256,7 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  min-height: 100%;
+  min-height: 240px;
   border-left: 2px solid #E0E0E0;
   background: #FAFAFA; }
   .description header {
@@ -797,7 +798,6 @@ body {
         font-family: "roboto-regular"; }
     .filter-nav.active {
       top: 0;
-      overflow-y: auto;
       z-index: 14; }
       .filter-nav.active header {
         display: block;
@@ -974,7 +974,7 @@ header {
     position: relative;
     text-align: center;
     padding-right: 58px;
-    top: 14px;
+    top: 16px;
     height: 36px;
     min-height: 1px;
     -webkit-box-sizing: border-box;
@@ -1222,7 +1222,7 @@ header {
         position: absolute;
         left: 0;
         top: auto;
-        bottom: 0;
+        bottom: -2px;
         width: 100%;
         margin-bottom: 0;
         padding: 0;

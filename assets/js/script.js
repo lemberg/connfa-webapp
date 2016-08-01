@@ -141,6 +141,14 @@ function leftNavigation(){
             animate();
         }
     });
+    $(document).on('click', '.left-navigation a', function(e) {
+        e.preventDefault();
+        var windowWidth=$(window).width();
+        if(windowWidth<=979){
+            $('body').removeClass('open');
+            animate();
+        }
+    });
 }
 $(document).ready(function() {
     leftNavigation();

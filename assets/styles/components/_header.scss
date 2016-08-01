@@ -55,7 +55,7 @@ header{
     position: relative;
     text-align: center;
     padding-right: 58px;
-    top: 14px;
+    top: 16px;
     height: 36px;
     min-height: 1px;
     -webkit-box-sizing: border-box;
@@ -298,7 +298,7 @@ header{
         position: absolute;
         left: 0;
         top: auto;
-        bottom: 0;
+        bottom: -2px;
         width: 100%;
         margin-bottom: 0;
         padding: 0;

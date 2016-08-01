@@ -1,6 +1,13 @@
 <section class="info">
     <ul class="events-info" *ngIf="noMatches">
-        <li>No Matching Events</li>
+        <li>
+
+            <div class="events-info_box">
+                <div class="box-item">
+                    <div class="info-event">No Matching Events</div>
+                </div>
+            </div>
+        </li>
     </ul>
     <ul class="events-info" *ngIf="activeEvents && hours">
         <li *ngFor="let hour of hours">
