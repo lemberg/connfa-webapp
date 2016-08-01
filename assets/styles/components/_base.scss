@@ -464,7 +464,7 @@ body{
     }
   }
   .info-event{
-    padding: $padding-items $padding-items $padding-items 67px;
+    padding: $padding-items 34px  $padding-items 67px;
     position: relative;
     margin-left: $wrap-time;
     .favorite-yes{
@@ -585,7 +585,10 @@ body{
     }
   }
   .level-icon{
-    display: none;
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 19px;
   }
   &.my-schedule{
     li.title{
@@ -868,14 +871,9 @@ body{
 
     }
     .level{
-      display: none;;
+      display: none;
     }
-    .level-icon{
-      display: block;
-      position: absolute;
-      right: 14px;
-      top: 19px;
-    }
+
     .box-item{
       &:after{
         left: 123px;

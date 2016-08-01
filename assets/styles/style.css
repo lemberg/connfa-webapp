@@ -421,7 +421,7 @@ body {
       display: block;
       margin: auto; }
   .events-info .info-event {
-    padding: 16px 16px 16px 67px;
+    padding: 16px 34px 16px 67px;
     position: relative;
     margin-left: 123px; }
     .events-info .info-event .favorite-yes svg {
@@ -512,7 +512,10 @@ body {
     .events-info .box-item:first-child:after {
       display: none; }
   .events-info .level-icon {
-    display: none; }
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 19px; }
   .events-info.my-schedule li.title {
     border-bottom: none;
     font-size: 14px;
@@ -762,11 +765,6 @@ body {
     margin-right: -107px; }
   .events-info .level {
     display: none; }
-  .events-info .level-icon {
-    display: block;
-    position: absolute;
-    right: 14px;
-    top: 19px; }
   .events-info .box-item:after {
     left: 123px; }
   .events-info.my-schedule li.title {
