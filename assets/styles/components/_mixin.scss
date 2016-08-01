@@ -31,6 +31,13 @@
   width: -webkit-calc( #{$full-width} - #{$space-header-all});
   width: calc( #{$full-width} - #{$space-header-all});
 }
+@mixin calcSearch1(){
+  width: 100%;
+  width: -moz-calc( #{$full-width} - #{$space-search-right});
+  width: -o-calc( #{$full-width} - #{$space-search-right});
+  width: -webkit-calc( #{$full-width} - #{$space-search-right});
+  width: calc( #{$full-width} - #{$space-search-right});
+}
 @mixin nav-sub-box($linkPaddingTop,$linkPaddingRight,$linkPaddingBottom,$linkPaddingLeft){
   .nav-sub{
     right: 0;
