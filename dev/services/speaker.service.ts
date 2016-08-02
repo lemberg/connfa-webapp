@@ -9,23 +9,36 @@ import {Event} from "../models/event";
 export class SpeakerService {
 
     public speakers;
-    public speakersChanged$:EventEmitter<Speaker[]>;
+    public speakersChanged$:EventEmitter<any>;
 
     private _localforage;
+    private _speakersPromise:Promise<Speaker[]> = null;
 
     constructor(private _apiService:ApiService,
-                @Inject('localforage') localforage,
-                private _speakersEventsService:SpeakersEventsService) {
+                private _speakersEventsService:SpeakersEventsService,
+                @Inject('localforage') localforage) {
 
         this.speakers = this.getSpeakers();
         this.speakersChanged$ = new EventEmitter();
         this._localforage = localforage;
+
+        this._apiService.dataChanged$.subscribe(data => {
+            this.speakers = [];
+            this._speakersPromise = null;
+            this.getSpeakers().then((speakers:Speaker[]) => {
+                this.speakersChanged$.emit(speakers);
+            });
+        });
     }
 
-    getSpeakers() {
+    public getSpeakers():Promise<Speaker[]> {
+
+        if (this._speakersPromise !== null) {
+            return this._speakersPromise;
+        }
 
         if (!this.speakers || this.speakers.length == 0) {
-            return this._apiService.getCollection('speakers').then((speakers:Speaker[])=> {
+            return this._speakersPromise = this._apiService.getCollection('speakers').then((speakers:Speaker[])=> {
                 this.speakers = this.sortSpeakers(speakers);
                 return speakers;
             });
@@ -34,35 +47,41 @@ export class SpeakerService {
         }
     }
 
-    getSpeaker(id) {
+    public getSpeaker(id):Promise<Speaker> {
         return new Promise((resolve, reject) => {
             this.getSpeakers().then((speakers:Speaker[]) => {
-                speakers.forEach(item => {
-                    if (item.speakerId == id) {
-                        item.events = [];
-                        this._apiService.getCollection('events').then((events: Event[]) => {
-                            events = events.filter(this.getSpeakerEvents.bind(event, item.speakerId))
-                                .sort((a, b) => {
-                                    if (a.order > b.order) {
-                                        return -1;
-                                    } else if (a.order < b.order) {
-                                        return 1;
-                                    } else {
-                                        return 0;
-                                    }
-                                });
-                            events.forEach(event => {
-                                this._speakersEventsService.getEvent(event.eventId, event.event_type).then(event => {
-                                    item.events.push(event);
-                                })
-                            })
-                        });
+                var speaker = speakers.find((speaker:Speaker) => {
+                    return speaker.speakerId == id;
+                });
 
-                        resolve(item);
-                    }
-                })
+                speaker.events = [];
+                this._apiService.getCollection('events').then((events:Event[]) => {
+                    events = events.filter(this.getSpeakerEvents.bind(event, speaker.speakerId))
+                        .sort((a, b) => {
+                            if (a.order > b.order) {
+                                return -1;
+                            } else if (a.order < b.order) {
+                                return 1;
+                            } else {
+                                return 0;
+                            }
+                        });
+                    events.forEach(event => {
+                        this._speakersEventsService.getEvent(event.eventId, event.event_type).then((event:Event) => {
+                            speaker.events.push(event);
+                        })
+                    })
+                });
+
+                resolve(speaker);
+
             });
         })
+    }
+
+    public search(value:string) {
+        var filteredSpeakers = this.speakers.filter(this.filterSpeakers.bind(this, value));
+        this.speakersChanged$.emit(filteredSpeakers);
     }
 
     private getSpeakerEvents(speakerId, event) {
@@ -73,10 +92,6 @@ export class SpeakerService {
         }
     }
 
-    search(value:string) {
-        var filteredSpeakers = this.speakers.filter(this.filterSpeakers.bind(this, value));
-        this.speakersChanged$.emit(filteredSpeakers);
-    }
 
     private filterSpeakers(value, item) {
         if (item.firstName.toLocaleLowerCase().startsWith(value.toLowerCase()) ||
@@ -87,7 +102,6 @@ export class SpeakerService {
     }
 
     private sortSpeakers(speakers) {
-        // speakers
         return speakers.sort((a, b) => a.firstName.localeCompare(b.firstName));
     }
 }

@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {ApiService} from "./api.service";
 import {Page} from "../models/page";
 
@@ -6,14 +6,31 @@ import {Page} from "../models/page";
 
 export class PageService {
 
-    constructor(private _apiService: ApiService) {}
+    public pagesChanged$;
+    public pages:Page[];
 
-    pages:Page[];
+    private _pagesPromise = null;
+
+    constructor(private _apiService:ApiService) {
+        this.pagesChanged$ = new EventEmitter();
+
+        this._apiService.dataChanged$.subscribe(data => {
+            this.pages = [];
+            this._pagesPromise = null;
+            this.getPages().then((pages:Page[]) => {
+                this.pagesChanged$.emit(pages);
+            });
+        })
+    }
 
     getPages() {
 
+        if (this._pagesPromise !== null) {
+            return this._pagesPromise;
+        }
+
         if (!this.pages || this.pages.length == 0) {
-            return this._apiService.getCollection('pages').then((pages: Page[])=> {
+            return this._pagesPromise = this._apiService.getCollection('pages').then((pages:Page[])=> {
                 this.pages = this._sortPages(pages);
                 return pages;
             });
@@ -24,15 +41,11 @@ export class PageService {
     }
 
     getPage(id) {
-        return new Promise((resolve, reject) => {
-            this.getPages().then((pages: Page[]) => {
-                pages.forEach(item => {
-                    if (item.infoId == id) {
-                        resolve(item);
-                    }
-                })
+        return this.getPages().then((pages:Page[]) => {
+            return pages.find((item: Page) => {
+                return item.infoId == id;
             });
-        })
+        });
     }
 
     private _sortPages(pages) {

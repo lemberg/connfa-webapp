@@ -24,22 +24,20 @@ export class SocialeventDetailComponent implements OnInit{
 
         if (this._router.params) {
             this._router.params.subscribe(params => {
-                this._eventService.getEvent(params['id'], 'social').then((event)=> {
-                    this.event = this.transform(event);
-                })
+                var id = params['id'];
+                this._getEvent(id);
 
                 this._eventService.eventsChanged$.subscribe((data) => {
-                    this._eventService.getEvent(params['id'], 'social').then((event)=> {
-                        this.event = this.transform(event);
-                    })
+                    this._getEvent(id);
                 })
             })
         }
     }
 
-    private transform(event) {
-        var transformed = event;
-        transformed.timeLabel = moment(event.from).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
-        return transformed;
+    private _getEvent(id) {
+        this._eventService.getEvent(id, 'social').then((event)=> {
+            this.event = event;
+        })
     }
+
 }

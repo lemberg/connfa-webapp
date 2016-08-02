@@ -12,5 +12,7 @@ export interface Event {
     track: number,
     order: number,
     link: string,
+    event_type: string,
     deleted: boolean,
+    isFavorite: boolean,
 }

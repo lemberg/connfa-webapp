@@ -4,6 +4,8 @@ import {TrackService} from "./track.service";
 import {SpeakerService} from "./speaker.service";
 import {LevelService} from "./level.service";
 import {EventService} from "./event.service";
+import {Speaker} from "../models/speaker";
+import {Event} from "../models/event";
 
 declare var moment:any;
 
@@ -27,6 +29,14 @@ export class SchedulerService {
                        private _eventService:EventService) {
 
         this.eventsChanged$ = new EventEmitter();
+
+        this._apiService.dataChanged$.subscribe(data => {
+            this.schedulersPromise = null;
+            this.schedulers = [];
+            this.getSchedulers().then(data => {
+                this.eventsChanged$.emit(data);
+            });
+        });
     }
 
     public getSchedulers() {
@@ -36,8 +46,8 @@ export class SchedulerService {
 
         if (!this.schedulers || this.schedulers.length == 0) {
 
-            return this.schedulersPromise = this._apiService.getCollection('events').then(events => {
-                var favorites = events.filter(function (event) {
+            return this.schedulersPromise = this._apiService.getCollection('events').then((events:Event[]) => {
+                var favorites = events.filter((event:Event) => {
                     return event.isFavorite == true;
                 }).sort((a, b) => {
                     var first = moment(a.from).format('x');
@@ -155,7 +165,7 @@ export class SchedulerService {
             item.speakersCollection = [];
             item.speakersNames = [];
             item.speakers.forEach((speakerId) => {
-                this._speakerService.getSpeaker(speakerId).then(speaker => {
+                this._speakerService.getSpeaker(speakerId).then((speaker:Speaker) => {
                     item.speakersCollection.push(speaker);
                     item.speakersNames.push(speaker.firstName + ' ' + speaker.lastName)
                 })

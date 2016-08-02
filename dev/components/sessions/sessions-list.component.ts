@@ -31,7 +31,6 @@ export class SessionsListComponent implements OnInit {
 
         this._eventService.getEventsByType('session').then(sessions => {
             this.activeEvents = this._eventService.activeEvents;
-            console.log(this.activeEvents);
             this.hours = Object.keys(this._eventService.activeEvents);
         })
 

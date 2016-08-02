@@ -60,8 +60,6 @@ export class ApiService {
                                 break;
                         }
                     });
-
-                    this.dataChanged$.emit('changed');
                 }
             })
         });
@@ -74,7 +72,9 @@ export class ApiService {
 
         this._loadService(api, since).then(response => {
             instance.setItem('twitterSearchQuery', response.settings.twitterSearchQuery);
-            instance.setItem('twitterWidgetId', response.settings.twitterWidgetId);
+            instance.setItem('twitterWidgetId', response.settings.twitterWidgetId).then(() => {
+                this.dataChanged$.emit('changed');
+            });
         });
     }
 
@@ -94,7 +94,9 @@ export class ApiService {
 
             events.forEach(event => {
                 if (event.deleted) {
-                    instance.removeItem(event.eventId.toString());
+                    instance.removeItem(event.eventId.toString()).then(() => {
+                        this.dataChanged$.emit('changed');
+                    });
                 } else {
                     event.event_type = eventType;
 
@@ -105,7 +107,10 @@ export class ApiService {
                             event.isFavorite = item.isFavorite;
                         }
 
-                        instance.setItem(event.eventId.toString(), event);
+                        instance.setItem(event.eventId.toString(), event).then(() => {
+                            console.log('is set');
+                            this.dataChanged$.emit('changed');
+                        });;
                     });
                 }
             });
@@ -128,9 +133,13 @@ export class ApiService {
                 response[responseItem].forEach(item => {
                     promises.push(new Promise((resolve, reject) => {
                         if (item.deleted) {
-                            instance.removeItem(item[itemId].toString());
+                            instance.removeItem(item[itemId].toString()).then(() => {
+                                this.dataChanged$.emit('changed');
+                            });
                         } else {
-                            instance.setItem(item[itemId].toString(), item);
+                            instance.setItem(item[itemId].toString(), item).then(() => {
+                                this.dataChanged$.emit('changed');
+                            });
                         }
                     }));
                 });
@@ -139,6 +148,7 @@ export class ApiService {
     }
 
     getCollection(name) {
+        console.log('I am here', name);
         var instance = this._localforage.createInstance({
             name: name
         });
