@@ -997,7 +997,7 @@ header {
   header .search {
     position: absolute;
     right: 27px;
-    padding-left: 30px;
+    padding-left: 35px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -1018,17 +1018,16 @@ header {
       border: none;
       background: transparent;
       border-bottom: 1px solid #ffffff;
-      padding: 8px 20px 8px 8px;
+      padding: 10px 20px 3px 0;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-      width: 100%;
+      width: 288px;
       height: 34px;
       max-width: 100%;
       font-size: 16px;
       line-height: 1.33;
       color: #ffffff;
-      margin-right: -17px;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
@@ -1058,14 +1057,11 @@ header {
     header .search .close {
       cursor: pointer;
       color: #ffffff;
-      height: 34px;
-      line-height: 34px;
+      height: 24px;
       width: 24px;
-      text-align: center;
-      z-index: 1;
-      top: 0;
-      right: 0;
       position: absolute;
+      right: -2px;
+      bottom: 2px;
       font-family: sans-serif, Arial, "Helvetica Neue", Helvetica;
       opacity: 0;
       -webkit-transition: opacity ease 0.1s;
@@ -1073,6 +1069,8 @@ header {
       -o-transition: opacity ease 0.1s;
       -ms-transition: opacity ease 0.1s;
       transition: opacity ease 0.1s; }
+      header .search .close svg {
+        fill: #ffffff; }
   header .arrow-back {
     position: absolute;
     left: -4px;
@@ -1153,7 +1151,7 @@ header {
   header .nav.active .nav-sub {
     display: block; }
   header.active .search {
-    width: 287px; }
+    width: 345px; }
   header.active .close {
     opacity: 1;
     -webkit-transition: opacity 0.1s ease 0.3s;
@@ -1267,6 +1265,12 @@ header {
     width: -moz-calc( 100% - 86px);
     width: -o-calc( 100% - 86px);
     width: -webkit-calc( 100% - 86px);
-    width: calc( 100% - 86px); } }
+    width: calc( 100% - 86px); }
+    header.active .search input[type="search"] {
+      width: 100%;
+      width: -moz-calc( 100% - 22px);
+      width: -o-calc( 100% - 22px);
+      width: -webkit-calc( 100% - 22px);
+      width: calc( 100% - 22px); } }
 
 /*# sourceMappingURL=style.css.map */
