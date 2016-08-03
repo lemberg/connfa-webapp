@@ -9,12 +9,16 @@ export class ApiService {
 
     private _config;
     private _localforage;
-    public dataChanged$: EventEmitter<string>;
+    public dataChanged$: EventEmitter<any>;
 
     constructor(private _http:Http, @Inject('config') config, @Inject('localforage') localforage) {
         this._config = config;
         this._localforage = localforage;
         this.dataChanged$ = new EventEmitter();
+        this.dataChanged$.subscribe((entityName) => {
+            console.log(entityName);
+            delete this._collectionsPromises[entityName];
+        })
     }
 
     grabUpdates() {
@@ -73,15 +77,15 @@ export class ApiService {
         this._loadService(api, since).then(response => {
             instance.setItem('twitterSearchQuery', response.settings.twitterSearchQuery);
             instance.setItem('twitterWidgetId', response.settings.twitterWidgetId).then(() => {
-                this.dataChanged$.emit('changed');
+                this.dataChanged$.emit('settings');
             });
         });
     }
 
-    grabEvents(api, table, eventType, since = '') {
+    grabEvents(api, entityName, eventType, since = '') {
 
         var instance = this._localforage.createInstance({
-            name: table
+            name: entityName
         });
 
         this._loadService(api, since).then(response => {
@@ -93,37 +97,46 @@ export class ApiService {
             });
 
             events.forEach(event => {
+                var promises = [];
                 if (event.deleted) {
-                    instance.removeItem(event.eventId.toString()).then(() => {
-                        this.dataChanged$.emit('changed');
-                    });
+                    promises.push(new Promise((resolve, reject) => {
+                        instance.removeItem(event.eventId.toString()).then(() => {
+                            resolve();
+                        });
+                    }));
+
                 } else {
-                    event.event_type = eventType;
+                    promises.push(new Promise((resolve, reject) => {
+                        event.event_type = eventType;
 
-                    instance.getItem(event.eventId.toString()).then(item => {
+                        instance.getItem(event.eventId.toString()).then(item => {
 
-                        event.isFavorite = false;
-                        if (item) {
-                            event.isFavorite = item.isFavorite;
-                        }
+                            event.isFavorite = false;
+                            if (item) {
+                                event.isFavorite = item.isFavorite;
+                            }
 
-                        instance.setItem(event.eventId.toString(), event).then(() => {
-                            console.log('is set');
-                            this.dataChanged$.emit('changed');
-                        });;
-                    });
+                            instance.setItem(event.eventId.toString(), event).then(() => {
+                                resolve();
+                            });;
+                        });
+                    }));
                 }
+
+                Promise.all(promises).then(() => {
+                    this.dataChanged$.emit(entityName);
+                })
             });
         });
     }
 
-    grabData(api, table, itemId, responseItem = null, since = '') {
+    grabData(api, entityName, itemId, responseItem = null, since = '') {
         if (!responseItem) {
-            responseItem = table;
+            responseItem = entityName;
         }
 
         var instance = this._localforage.createInstance({
-            name: table
+            name: entityName
         });
 
         this._loadService(api, since).then(response => {
@@ -134,26 +147,37 @@ export class ApiService {
                     promises.push(new Promise((resolve, reject) => {
                         if (item.deleted) {
                             instance.removeItem(item[itemId].toString()).then(() => {
-                                this.dataChanged$.emit('changed');
+                                resolve();
                             });
                         } else {
                             instance.setItem(item[itemId].toString(), item).then(() => {
-                                this.dataChanged$.emit('changed');
+                                console.log('promise item added');
+                                resolve();
                             });
                         }
                     }));
+                });
+
+                Promise.all(promises).then(() => {
+                    this.dataChanged$.emit(entityName);
                 });
             }
         })
     }
 
+    private _collectionsPromises = {};
+
     getCollection(name) {
+        if (typeof this._collectionsPromises[name] !== 'undefined') {
+            return this._collectionsPromises[name];
+        }
+
         console.log('I am here', name);
         var instance = this._localforage.createInstance({
             name: name
         });
 
-        return new Promise((resolve, reject) => {
+        return this._collectionsPromises[name] = new Promise((resolve, reject) => {
 
             instance.keys().then(keys => {
                 var promises = [];
