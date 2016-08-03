@@ -18,6 +18,9 @@ import {PagesDetailComponent} from "./components/pages/page-detail.component";
 import {BofsComponent} from "./components/bofs/bofs.component";
 import {BofsListComponent} from "./components/bofs/bofs-list.component";
 import {BofDetailComponent} from "./components/bofs/bofs-detail.component";
+import {SchedulerComponent} from "./components/scheduler/scheduler.component";
+import {SchedulerListComponent} from "./components/scheduler/scheduler-list.component";
+import {SchedulerDetailComponent} from "./components/scheduler/scheduler-detail.component";
 
 
 
@@ -40,6 +43,9 @@ import {BofDetailComponent} from "./components/bofs/bofs-detail.component";
         BofsComponent,
         BofsListComponent,
         BofDetailComponent,
+        SchedulerComponent,
+        SchedulerListComponent,
+        SchedulerDetailComponent,
     ],
     providers: [SpeakerService, SpeakersEventsService, EventService]
 })

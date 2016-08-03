@@ -16,7 +16,6 @@ import {SpeakersEventsService} from "../../services/speakers_events.service";
 export class SpeakerDetailsComponent implements OnInit{
 
     public speaker: Speaker;
-    public showView = false;
     public eventRoutes = {
          'session':'/sessions/',
          'bof':'/bofs/',
@@ -27,13 +26,19 @@ export class SpeakerDetailsComponent implements OnInit{
 
     ngOnInit():any {
 
-        if (this._router.params) {
-            this._router.params.subscribe(params => {
-                this._speakerService.getSpeaker(params['id']).then((speaker: Speaker)=> {
-                    this.speaker = speaker;
-                })
-                this.showView = true;
+        this._router.params.subscribe(params => {
+            var id = params['id'];
+            this._getSpeaker(id);
+
+            this._speakerService.speakersChanged$.subscribe(data => {
+                this._getSpeaker(id);
             });
-        }
+        });
+    }
+
+    private _getSpeaker(id):void {
+        this._speakerService.getSpeaker(id).then((speaker: Speaker)=> {
+            this.speaker = speaker;
+        });
     }
 }

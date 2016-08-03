@@ -1,3 +1,6 @@
+import {Level} from "./level";
+import {Track} from "./track";
+
 export interface Event {
     eventId: number,
     text: string,
@@ -15,4 +18,7 @@ export interface Event {
     event_type: string,
     deleted: boolean,
     isFavorite: boolean,
+    levelObject?: Level,
+    timeLabel?:string,
+    trackObject?: Track,
 }

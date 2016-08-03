@@ -3,6 +3,8 @@ import {ApiService} from "./api.service";
 import {LevelService} from "./level.service";
 import {TrackService} from "./track.service";
 import {Event} from "../models/event";
+import {Track} from "../models/track";
+import {Level} from "../models/level";
 
 declare var moment:any;
 
@@ -66,20 +68,20 @@ export class SpeakersEventsService {
                 event.timeLabel = moment(event.from).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
 
                 if (event.experienceLevel) {
-                    this._levelService.getLevel(event.experienceLevel).then(level => {
+                    this._levelService.getLevel(event.experienceLevel).then((level: Level) => {
                         event.levelObject = level;
                     })
                 }
 
                 if (event.track) {
-                    this._trackService.getTrack(event.track).then(track => {
+                    this._trackService.getTrack(event.track).then((track: Track) => {
                         event.trackObject = track;
                     })
                 }
 
                 resolve(event);
             });
-        })
+        });
     }
 
     private filterByType(type, event) {
