@@ -30,6 +30,8 @@
     "autoprefixer": "^6.3.5",
     "concurrently": "^2.0.0",
     "cssnano": "^3.4.0",
+    "browserify": "^13.0.1",
+    "uglifyjs": "^2.4.10",
     "gulp": "^3.9.0",
     "gulp-ext-replace": "^0.2.0",
     "gulp-imagemin": "^2.4.0",
@@ -51,7 +53,11 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings",
-    "postinstall": "typings install"
+    "postinstall": "typings install",
+    "clean": "rm -rf app src",
+    "build": "npm run clean && gulp build",
+    "build_prod": "npm run build && browserify -s main app/boot.js > app/bundle.js && npm run minify",
+    "minify": "uglifyjs app/bundle.js --screw-ie8 --compress --mangle --output app/boot.min.js"
   },
   "repository": {
     "type": "git",

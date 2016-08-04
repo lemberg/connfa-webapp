@@ -1,18 +1,30 @@
 import {Injectable} from "@angular/core";
 import {ApiService} from "./api.service";
+import {Level} from "../models/level";
 
 @Injectable()
 
 export class LevelService {
 
-    constructor(private _apiService: ApiService) {}
+    public levels:Level[];
 
-    levels
+    private _levelsPromise:Promise<Level[]> = null;
+
+    constructor(private _apiService:ApiService) {
+        this._apiService.dataChanged$.subscribe(data => {
+            this.levels = [];
+            this._levelsPromise = null;
+            this.getLevels();
+        });
+    }
 
     getLevels() {
+        if (this._levelsPromise != null) {
+            return this._levelsPromise;
+        }
 
         if (!this.levels || this.levels.length == 0) {
-            return this._apiService.getCollection('levels').then((levels)=> {
+            return this._levelsPromise = this._apiService.getCollection('levels').then((levels)=> {
                 this.levels = this.sortLevels(levels);
                 return levels;
             });
@@ -23,15 +35,11 @@ export class LevelService {
 
 
     getLevel(id) {
-        return new Promise((resolve, reject) => {
-            this.getLevels().then((levels) => {
-                levels.forEach(item => {
-                    if (item.levelId == id) {
-                        resolve(item);
-                    }
-                })
-            });
-        })
+        return this.getLevels().then((levels:Level[]) => {
+            return levels.find((item:Level) => {
+                return item.levelId == id
+            })
+        });
     }
 
     private sortLevels(levels) {

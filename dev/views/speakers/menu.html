@@ -6,7 +6,7 @@
                 <span class="photo"><img *ngIf="speaker.avatarImageURL" src="{{speaker.avatarImageURL}}" alt=""></span>
                 <div class="text">
                     <strong class="name">{{speaker.firstName}} {{speaker.lastName}}</strong>
-                    <span class="job">{{speaker.jobTitle}}</span>
+                    <span class="job">{{speaker.jobTitle}} <span *ngIf="speaker.organizationName">at {{speaker.organizationName}}</span></span>
                 </div>
             </a>
         </li>

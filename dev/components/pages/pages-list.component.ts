@@ -13,9 +13,11 @@ export class PagesListComponent implements OnInit{
 
     public pages: Page[];
 
-    constructor(private _pagesService: PageService) {}
+    constructor(private _pagesService: PageService) {
+    }
 
     ngOnInit():any {
         this._pagesService.getPages().then((pages: Page[]) => this.pages = pages);
+        this._pagesService.pagesChanged$.subscribe((pages: Page[]) => this.pages = pages);
     }
 }

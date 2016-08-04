@@ -17,12 +17,20 @@ export class FloorsComponent implements OnInit{
 
     ngOnInit():any {
         this._floorService.getFloors().then((floors: Floor[]) => {
-            this.floors = floors
-            this.activeFloor = floors[0];
+            this._mapData();
         });
+
+        this._floorService.floorsChanged$.subscribe(data => {
+            this._mapData();
+        })
     }
 
     onActivateFloor(floor) {
         this.activeFloor = floor;
+    }
+
+    private _mapData() {
+        this.floors = this._floorService.floors
+        this.activeFloor = this.floors[0];
     }
 }

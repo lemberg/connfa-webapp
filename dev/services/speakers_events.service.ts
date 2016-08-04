@@ -2,6 +2,9 @@ import {Injectable} from "@angular/core";
 import {ApiService} from "./api.service";
 import {LevelService} from "./level.service";
 import {TrackService} from "./track.service";
+import {Event} from "../models/event";
+import {Track} from "../models/track";
+import {Level} from "../models/level";
 
 declare var moment:any;
 
@@ -9,16 +12,26 @@ declare var moment:any;
 
 export class SpeakersEventsService {
 
+    public events = [];
+    private _eventsPromise = {
+        session: null,
+        bof: null,
+        social: null,
+    };
+
     public constructor(private _apiService:ApiService,
                        private _levelService:LevelService,
                        private _trackService:TrackService) {
     }
 
-    events = [];
 
-    getEventsByType(type) {
-        if (!this.events[type]) {
-            return this._apiService.getCollection('events').then((events:Event[])=> {
+    public getEventsByType(type) {
+        if (this._eventsPromise[type] !== null) {
+            return this._eventsPromise[type];
+        }
+
+        if (!this.events[type] || !this.events[type].length) {
+            return this._eventsPromise[type] = this._apiService.getCollection('events').then((events:Event[])=> {
                 var eventsOfType = events
                     .filter(this.filterByType.bind(this, type))
                     .sort((a, b) => {
@@ -46,29 +59,29 @@ export class SpeakersEventsService {
     getEvent(id, type) {
 
         return new Promise((resolve, reject) => {
-            this.getEventsByType(type).then((events) => {
-                events.forEach(item => {
-                    if (item.eventId == id) {
+            this.getEventsByType(type).then((events:Event[]) => {
 
-                        item.timeLabel = moment(item.fom).format('ddd, LT') + ' - ' + moment(item.to).format('ddd, LT');
+                var event = events.find((item:Event)=> {
+                    return item.eventId == id;
+                });
 
-                        if (item.experienceLevel) {
-                            this._levelService.getLevel(item.experienceLevel).then(level => {
-                                item.levelObject = level;
-                            })
-                        }
+                event.timeLabel = moment(event.from).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
 
-                        if (item.track) {
-                            this._trackService.getTrack(item.track).then(track => {
-                                item.trackObject = track;
-                            })
-                        }
-                        
-                        resolve(item);
-                    }
-                })
+                if (event.experienceLevel) {
+                    this._levelService.getLevel(event.experienceLevel).then((level: Level) => {
+                        event.levelObject = level;
+                    })
+                }
+
+                if (event.track) {
+                    this._trackService.getTrack(event.track).then((track: Track) => {
+                        event.trackObject = track;
+                    })
+                }
+
+                resolve(event);
             });
-        })
+        });
     }
 
     private filterByType(type, event) {

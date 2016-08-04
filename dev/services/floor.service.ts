@@ -1,14 +1,27 @@
 import {ApiService} from "./api.service";
 import {Floor} from "../models/floors";
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 
 @Injectable()
 
 export class FloorService {
 
-    constructor(private _apiService: ApiService) {}
+    public floorsChanged$;
+    public floors:Floor[];
 
-    floors:Floor[];
+    constructor(private _apiService: ApiService) {
+
+        this.floorsChanged$ = new EventEmitter();
+
+        this._apiService.dataChanged$.subscribe(data => {
+            this.floors = [];
+            this.getFloors().then((floors) => {
+                this.floorsChanged$.emit(floors);
+            });
+        })
+    }
+
+
 
     getFloors() {
         if (!this.floors || !this.floors.length) {

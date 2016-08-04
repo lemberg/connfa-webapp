@@ -10,19 +10,27 @@ import {PagesListComponent} from "./pages-list.component";
     directives: [ROUTER_DIRECTIVES, PagesListComponent],
 })
 
-export class PagesDetailComponent implements OnInit{
+export class PagesDetailComponent implements OnInit {
 
-    public page: Page;
+    public page:Page;
 
-    constructor(private _pagesService: PageService, private _router: ActivatedRoute) {}
+    constructor(private _pagesService:PageService, private _router:ActivatedRoute) {
+    }
 
     ngOnInit():any {
-        if (this._router.params) {
-            this._router.params.subscribe(params => {
-                this._pagesService.getPage(params['id']).then((page: Page)=> {
-                    this.page = page;
-                })
+        this._router.params.subscribe(params => {
+            var id = params['id'];
+            this._getPage(id);
+
+            this._pagesService.pagesChanged$.subscribe((pages:Page[]) => {
+                this._getPage(id);
             });
-        }
+        });
+    }
+
+    private _getPage(id) {
+        this._pagesService.getPage(id).then((page:Page)=> {
+            this.page = page;
+        })
     }
 }

@@ -1,3 +1,4 @@
+import {Event} from "./event";
 export interface Speaker {
     speakerId: number,
     firstName: string,
@@ -11,4 +12,5 @@ export interface Speaker {
     characteristic: string,
     order: number,
     deleted: boolean,
+    events?: [Event]|any,
 }

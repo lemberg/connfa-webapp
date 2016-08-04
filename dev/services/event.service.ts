@@ -38,11 +38,12 @@ export class EventService {
 
         this.eventsChanged$ = new EventEmitter();
         this._localforage = localforage;
+
         this._apiService.dataChanged$.subscribe(data => {
             if (this.type != null) {
-                this.eventsPromise[this.type]= null;
+                this.eventsPromise[this.type] = null;
+                this.events[this.type] = [];
                 this.getEventsByType(this.type).then(data => {
-                    console.log(data);
                     this.eventsChanged$.emit(data);
                 });
             }
@@ -55,7 +56,7 @@ export class EventService {
             return this.eventsPromise[type];
         }
 
-        if (!this.events[type]) {
+        if (!this.events[type] || !this.events[type].length) {
             return this.eventsPromise[type] = this._apiService.getCollection('events').then((events:Event[])=> {
                 events = this.transform(events);
                 var eventsOfType = events
@@ -118,14 +119,12 @@ export class EventService {
     }
 
     getEvent(id, type) {
-        return new Promise((resolve, reject) => {
-            this.getEventsByType(type).then((events) => {
-                events.forEach(item => {
-                    if (item.eventId == id) {
-                        resolve(item);
-                    }
-                })
+
+        return this.getEventsByType(type).then((events:Event[]) => {
+            var event = events.find(item => {
+                return item.eventId == id;
             });
+            return event;
         })
     }
 
@@ -227,7 +226,7 @@ export class EventService {
                 })
             })
         }
-
+        item.timeLabel = moment(item.from).format('ddd, LT') + ' - ' + moment(item.to).format('ddd, LT');
         item.fromLabel = moment(item.from).format('LT');
         item.toLabel = moment(item.to).format('LT');
         if (item.isFavorite) {
