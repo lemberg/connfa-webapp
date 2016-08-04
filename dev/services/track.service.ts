@@ -1,4 +1,4 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {ApiService} from "./api.service";
 import {Track} from "../models/track";
 
@@ -6,11 +6,22 @@ import {Track} from "../models/track";
 
 export class TrackService {
 
-    constructor(private _apiService: ApiService) {}
-
     public tracks;
+    public tracksChanged$:EventEmitter<any>;
 
     private _tracksPromise: Promise<Track[]> = null;
+
+    constructor(private _apiService: ApiService) {
+        this.tracksChanged$ = new EventEmitter();
+
+        this._apiService.dataChanged$.subscribe(data => {
+            this.tracks = [];
+            this._tracksPromise = null;
+            this.getTracks().then((tracks:Track[]) => {
+                this.tracksChanged$.emit(tracks);
+            });
+        });
+    }
 
     public getTracks() {
         if (this._tracksPromise !== null) {

@@ -56,6 +56,7 @@ export class EventService {
 
         if (!this.events[type] || !this.events[type].length) {
             return this.eventsPromise[type] = this._apiService.getCollection('events').then((events:Event[])=> {
+
                 events = this.transform(events);
                 var eventsOfType = events
                     .filter(this.filterByType.bind(this, type))

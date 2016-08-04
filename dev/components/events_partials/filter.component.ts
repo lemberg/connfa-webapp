@@ -1,9 +1,11 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {TrackService} from "../../services/track.service";
 import {Track} from "../../models/track";
 import {Level} from "../../models/level";
 import {LevelService} from "../../services/level.service";
 import {FilterService} from "../../services/filter.service";
+
+declare var jQuery: any;
 
 @Component({
     selector: 'events-filter',
@@ -12,7 +14,7 @@ import {FilterService} from "../../services/filter.service";
     inputs: ['eventsType']
 })
 
-export class FilterComponent {
+export class FilterComponent implements OnInit{
 
     public tracks:Track[];
     public levels:Level[];
@@ -24,6 +26,10 @@ export class FilterComponent {
     public constructor(private _tracksService:TrackService,
                        private _levelService:LevelService,
                        private _filterService:FilterService) {
+    }
+
+    ngOnInit():any {
+
         this._tracksService.getTracks().then((tracks:Track[]) => {
             this.tracks = tracks;
         })
@@ -31,6 +37,29 @@ export class FilterComponent {
         this._levelService.getLevels().then((levels:Level[]) => {
             this.levels = levels;
         })
+
+        this._levelService.levelsChanged$.subscribe((levels:Level[]) => {
+            this.levels = levels;
+        })
+
+        this._tracksService.tracksChanged$.subscribe((tracks:Track[]) => {
+            this.tracks = tracks;
+        })
+
+        this._filterService.getFilters(this.eventsType).then(filters => {
+            if (filters && filters.levels) {
+                this.levelsSelected = filters.levels;
+            }
+            if (filters && filters.tracks) {
+                this.tracksSelected = filters.tracks;
+            }
+
+            this.onSubmit();
+
+            if (this.tracksSelected.length || this.levelsSelected.length) {
+                jQuery('.filter').addClass('active');
+            }
+        });
     }
 
     public toggleAll() {
