@@ -6,8 +6,7 @@ import {LevelService} from "./level.service";
 import {EventService} from "./event.service";
 import {Speaker} from "../models/speaker";
 import {Event} from "../models/event";
-
-declare var moment:any;
+import moment from 'moment';
 
 @Injectable()
 
@@ -158,8 +157,9 @@ export class SchedulerService {
             })
         }
 
-        item.fromLabel = moment(item.from).format('LT');
-        item.toLabel = moment(item.to).format('LT');
+        item.timeLabel = moment(item.from, moment.ISO_8601).format('ddd, LT') + ' - ' + moment(item.to, moment.ISO_8601).format('ddd, LT');
+        item.fromLabel = moment(item.from, moment.ISO_8601).format('LT');
+        item.toLabel = moment(item.to, moment.ISO_8601).format('LT');
 
         if (item.speakers) {
             item.speakersCollection = [];

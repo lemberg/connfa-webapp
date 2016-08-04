@@ -4,7 +4,6 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
 import {EventService} from "../../services/event.service";
 import {Event} from "../../models/event";
 
-declare var moment: any;
 declare var jQuery: any;
 
 @Component({

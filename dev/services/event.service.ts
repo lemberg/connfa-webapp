@@ -5,9 +5,7 @@ import {SpeakerService} from "./speaker.service";
 import {LevelService} from "./level.service";
 import {TrackService} from "./track.service";
 import {Speaker} from "../models/speaker";
-
-
-declare var moment:any;
+import moment from 'moment';
 
 @Injectable()
 
@@ -62,8 +60,8 @@ export class EventService {
                 var eventsOfType = events
                     .filter(this.filterByType.bind(this, type))
                     .sort((a, b) => {
-                        var first = moment(a.from).format('x');
-                        var second = moment(b.from).format('x');
+                        var first = moment(a.from, moment.ISO_8601).format('x');
+                        var second = moment(b.from, moment.ISO_8601).format('x');
 
                         if (first == second) {
                             if (a.order > b.order) {
@@ -226,9 +224,9 @@ export class EventService {
                 })
             })
         }
-        item.timeLabel = moment(item.from).format('ddd, LT') + ' - ' + moment(item.to).format('ddd, LT');
-        item.fromLabel = moment(item.from).format('LT');
-        item.toLabel = moment(item.to).format('LT');
+        item.timeLabel = moment(item.from, moment.ISO_8601).format('ddd, LT') + ' - ' + moment(item.to, moment.ISO_8601).format('ddd, LT');
+        item.fromLabel = moment(item.from, moment.ISO_8601).format('LT');
+        item.toLabel = moment(item.to, moment.ISO_8601).format('LT');
         if (item.isFavorite) {
             this.favoriteEvents.push(item.eventId);
         }
@@ -240,8 +238,8 @@ export class EventService {
         var transformed = [];
         return new Promise((resolve, reject) => {
             events.forEach((event:Event) => {
-                var event_day = moment(event.from).format('ddd D');
-                var event_hours = moment(event.from).format('LT') + ' ' + moment(event.to).format('LT');
+                var event_day = moment(event.from, moment.ISO_8601).format('ddd D');
+                var event_hours = moment(event.from, moment.ISO_8601).format('LT') + ' ' + moment(event.to, moment.ISO_8601).format('LT');
 
                 if (!transformed[event_day]) {
                     transformed[event_day] = [];
