@@ -646,7 +646,12 @@ body {
       padding: 13px 51px 13px 47px;
       display: block;
       position: relative;
-      margin: 0; }
+      margin: 0;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis; }
       .nav-share .nav-sub a.router-link-active {
         background: #E0E0E0; }
       .nav-share .nav-sub a:hover {
@@ -1135,7 +1140,12 @@ header {
       padding: 13px 51px 13px 16px;
       display: block;
       position: relative;
-      margin: 0; }
+      margin: 0;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis; }
       header .nav .nav-sub a.router-link-active {
         background: #E0E0E0; }
       header .nav .nav-sub a:hover {

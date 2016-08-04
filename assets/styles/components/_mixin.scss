@@ -59,6 +59,11 @@
       display: block;
       position: relative;
       margin: 0;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis;
       &.router-link-active{
         background: $bg-color-hover;
       }
