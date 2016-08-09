@@ -172,6 +172,7 @@ export class EventService {
     }
 
     public filterEvents(levels, tracks, type) {
+        console.log('HEREEEE');
         this.getEventsByType(type).then(events => {
 
             var promise = new Promise((resolve, reject) => {

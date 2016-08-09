@@ -7,20 +7,21 @@ import {FloorsComponent} from "./components/floors/floors.component";
 import {PagesListComponent} from "./components/pages/pages-list.component";
 import {SessionDetailComponent} from "./components/sessions/session-detail.component";
 import {SpeakerDetailsComponent} from "./components/speakers/speaker-detail.component";
-import {ROUTER_DIRECTIVES, ActivatedRoute, Router} from "@angular/router";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 import {SpeakerService} from "./services/speaker.service";
-import {SessionsComponent} from "./components/sessions/sessions.component";
 import {SpeakersComponent} from "./components/speakers/speakers.component";
 import {EventService} from "./services/event.service";
 import {SpeakersEventsService} from "./services/speakers_events.service";
 import {PagesComponent} from "./components/pages/pages.component";
 import {PagesDetailComponent} from "./components/pages/page-detail.component";
-import {BofsComponent} from "./components/bofs/bofs.component";
 import {BofsListComponent} from "./components/bofs/bofs-list.component";
 import {BofDetailComponent} from "./components/bofs/bofs-detail.component";
 import {SchedulerComponent} from "./components/scheduler/scheduler.component";
 import {SchedulerListComponent} from "./components/scheduler/scheduler-list.component";
 import {SchedulerDetailComponent} from "./components/scheduler/scheduler-detail.component";
+import {SocialeventsListComponent} from "./components/social_events/socialevents-list.component";
+import {SocialeventDetailComponent} from "./components/social_events/socialevents-detail.component";
+import {SocialmediaComponent} from "./components/social_media/socialmedia.component";
 
 
 
@@ -32,7 +33,6 @@ import {SchedulerDetailComponent} from "./components/scheduler/scheduler-detail.
         SpeakersComponent,
         SpeakersListComponent,
         SpeakerDetailsComponent,
-        SessionsComponent,
         SessionDetailComponent,
         SessionsListComponent,
         FloorsComponent,
@@ -40,12 +40,14 @@ import {SchedulerDetailComponent} from "./components/scheduler/scheduler-detail.
         PagesComponent,
         PagesListComponent,
         PagesDetailComponent,
-        BofsComponent,
         BofsListComponent,
         BofDetailComponent,
+        SocialeventsListComponent,
+        SocialeventDetailComponent,
         SchedulerComponent,
         SchedulerListComponent,
         SchedulerDetailComponent,
+        SocialmediaComponent,
     ],
     providers: [SpeakerService, SpeakersEventsService, EventService]
 })
