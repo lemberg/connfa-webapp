@@ -16,7 +16,6 @@ import {PagesComponent} from "./components/pages/pages.component";
 import {PagesDetailComponent} from "./components/pages/page-detail.component";
 import {BofsListComponent} from "./components/bofs/bofs-list.component";
 import {BofDetailComponent} from "./components/bofs/bofs-detail.component";
-import {SchedulerComponent} from "./components/scheduler/scheduler.component";
 import {SchedulerListComponent} from "./components/scheduler/scheduler-list.component";
 import {SchedulerDetailComponent} from "./components/scheduler/scheduler-detail.component";
 import {SocialeventsListComponent} from "./components/social_events/socialevents-list.component";
@@ -44,7 +43,6 @@ import {SocialmediaComponent} from "./components/social_media/socialmedia.compon
         BofDetailComponent,
         SocialeventsListComponent,
         SocialeventDetailComponent,
-        SchedulerComponent,
         SchedulerListComponent,
         SchedulerDetailComponent,
         SocialmediaComponent,

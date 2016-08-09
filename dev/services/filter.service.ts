@@ -7,7 +7,7 @@ export class FilterService {
 
     private _localforage;
 
-    public constructor(private _eventService: EventService, @Inject('localforage') localforage) {
+    public constructor(private _eventService:EventService, @Inject('localforage') localforage) {
         this._localforage = localforage;
     }
 
@@ -22,14 +22,14 @@ export class FilterService {
             tracks: tracks,
         }
 
-        instance.setItem(type,data);
+        instance.setItem('filters', data);
     }
 
-    public getFilters(type) {
+    public getFilters() {
 
         var filterInstance = this._localforage.createInstance({
             name: 'filters'
         });
-        return filterInstance.getItem(type);
+        return filterInstance.getItem('filters');
     }
 }

@@ -7,6 +7,7 @@ import {TrackService} from "./track.service";
 import {Speaker} from "../models/speaker";
 import moment from 'moment';
 
+
 @Injectable()
 
 export class EventService {
@@ -55,38 +56,51 @@ export class EventService {
         }
 
         if (!this.events[type] || !this.events[type].length) {
-            return this.eventsPromise[type] = this._apiService.getCollection('events').then((events:Event[])=> {
+            var filterInstance = this._localforage.createInstance({
+                name: 'filters'
+            });
 
-                events = this.transform(events);
-                var eventsOfType = events
-                    .filter(this.filterByType.bind(this, type))
-                    .sort((a, b) => {
-                        var first = moment(a.from, moment.ISO_8601).format('x');
-                        var second = moment(b.from, moment.ISO_8601).format('x');
+            return this.eventsPromise[type] = filterInstance.getItem('filters').then(filters => {
 
-                        if (first == second) {
-                            if (a.order > b.order) {
-                                return 1;
-                            } else if (a.order < b.order) {
-                                return -1;
-                            } else {
-                                return 0;
+                return this._apiService.getCollection('events').then((events:Event[])=> {
+                    events = this.transform(events);
+                    var eventsOfType = events
+                        .filter(this.filterByType.bind(this, type))
+                        .sort((a, b) => {
+                            var first = moment(a.from, moment.ISO_8601).format('x');
+                            var second = moment(b.from, moment.ISO_8601).format('x');
+
+                            if (first == second) {
+                                if (a.order > b.order) {
+                                    return 1;
+                                } else if (a.order < b.order) {
+                                    return -1;
+                                } else {
+                                    return 0;
+                                }
                             }
+
+                            if (first < second) {
+                                return -1;
+                            } else if (first > second) {
+                                return 1;
+                            }
+                        });
+
+                    var filteredEvents = [];
+                    eventsOfType.forEach((event) => {
+                        if (this.inLevels(event, filters.levels) && this.inTracks(event, filters.tracks)) {
+                            filteredEvents.push(event);
                         }
+                    })
 
-                        if (first < second) {
-                            return -1;
-                        } else if (first > second) {
-                            return 1;
-                        }
-                    });
+                    this.transformEvents(filteredEvents).then((events) => {
+                        this.bindChanges(events);
+                    })
 
-                this.transformEvents(eventsOfType).then((events) => {
-                    this.bindChanges(events);
-                })
-
-                this.events[type] = eventsOfType;
-                return eventsOfType;
+                    this.events[type] = eventsOfType;
+                    return eventsOfType;
+                });
             });
 
         } else {
@@ -172,7 +186,6 @@ export class EventService {
     }
 
     public filterEvents(levels, tracks, type) {
-        console.log('HEREEEE');
         this.getEventsByType(type).then(events => {
 
             var promise = new Promise((resolve, reject) => {

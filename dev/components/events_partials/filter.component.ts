@@ -26,7 +26,6 @@ export class FilterComponent implements OnInit{
     public constructor(private _tracksService:TrackService,
                        private _levelService:LevelService,
                        private _filterService:FilterService) {
-        console.log('FILTER CONSTRUCTOR');
     }
 
     ngOnInit():any {
@@ -47,7 +46,7 @@ export class FilterComponent implements OnInit{
             this.tracks = tracks;
         })
 
-        this._filterService.getFilters(this.eventsType).then(filters => {
+        this._filterService.getFilters().then(filters => {
             if (filters && filters.levels) {
                 this.levelsSelected = filters.levels;
             }
@@ -57,8 +56,6 @@ export class FilterComponent implements OnInit{
             }
 
             if (this.tracksSelected.length || this.levelsSelected.length) {
-                console.log(this.tracksSelected, this.levelsSelected);
-                console.log('Now i check if I am here');
                 this.onSubmit();
                 jQuery('.filter').addClass('active');
             }
@@ -76,7 +73,6 @@ export class FilterComponent implements OnInit{
     }
 
     public onSubmit() {
-        console.log('WHY I AM HERE?) WTF?)');
         this.levelsSelected.forEach((level, index) => {
             if (level == false) {
                 delete this.levelsSelected[index];
