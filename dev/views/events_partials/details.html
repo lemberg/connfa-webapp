@@ -1,4 +1,4 @@
-<section class="description active" *ngIf="event">
+<section class="description active" *ngIf="canView && event">
     <header>
         <div class="top-menu">
             <div class="arrow-back" [routerLink]="[parentRoute]">

@@ -15,6 +15,9 @@ export class SessionDetailComponent implements OnInit {
     public event;
     public parentRoute = '/sessions';
     public title = 'Sessions';
+    public canView = false;
+
+    private _nonClickableTypes = [3, 4, 8, 9];
 
     constructor(private _eventService:EventService, private _router:ActivatedRoute) {
     }
@@ -34,6 +37,11 @@ export class SessionDetailComponent implements OnInit {
     private _getEvent(id) {
         this._eventService.getEvent(id, 'session').then((event)=> {
             this.event = event;
+            if (event && this._nonClickableTypes.indexOf(event.type) !== -1) {
+                this.canView = false;
+            } else {
+                this.canView = true;
+            }
         })
     }
 }

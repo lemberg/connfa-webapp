@@ -42,7 +42,7 @@
                 <li *ngFor="let hour of hours">
                     <div class="events-info_box">
                         <div class="box-item" *ngFor="let event of activeEvents[hour]">
-                            <a class="cf" [class.favorite-yes]="event.isFavorite" [routerLink]="[router+event.eventId]" [routerLinkActive]="['router-link-active']">
+                            <a class="cf" [class.favorite-yes]="event.isFavorite" [routerLink]="[event.href]" [routerLinkActive]="['router-link-active']">
                                 <div class="wrap-time">
                                     <div class="time" *ngIf="activeEvents[hour].indexOf(event) == 0">{{event.fromLabel}}</div>
                                     <div class="time-to" *ngIf="activeEvents[hour].indexOf(event) == 0">to {{event.toLabel}}

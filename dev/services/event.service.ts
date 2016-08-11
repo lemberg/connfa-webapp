@@ -23,6 +23,12 @@ export class EventService {
 
     private _localforage;
     private favoriteEvents = [];
+    private _nonClickableTypes = [3, 4, 8, 9];
+    private _routes = {
+        session: '/sessions/',
+        bof: '/bofs/',
+        social: '/socialevents/',
+    }
     private eventsPromise = {
         session: null,
         bof: null,
@@ -233,6 +239,8 @@ export class EventService {
                 item.trackObject = track;
             })
         }
+
+        item.href = this._routes[item.event_type] + item.eventId;
 
         if (item.speakers) {
             item.speakersCollection = [];
