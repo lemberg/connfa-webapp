@@ -240,7 +240,10 @@ export class EventService {
             })
         }
 
-        item.href = this._routes[item.event_type] + item.eventId;
+        item.href = false;
+        if (this._nonClickableTypes.indexOf(item.type) === -1) {
+            item.href = this._routes[item.event_type] + item.eventId;
+        }
 
         if (item.speakers) {
             item.speakersCollection = [];

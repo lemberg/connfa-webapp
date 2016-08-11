@@ -17,6 +17,7 @@ export class BofDetailComponent implements OnInit {
     public parentRoute = '/bofs';
     public title = 'BOFs';
     private _nonClickableTypes = [3, 4, 8, 9];
+    public canView;
 
     constructor(private _eventService:EventService, private _router:ActivatedRoute) {
     }
