@@ -475,20 +475,20 @@ body {
     color: rgba(0, 0, 0, 0.54);
     margin-top: 3px;
     position: relative; }
-  .events-info:before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    top: 0;
-    width: 123px;
-    height: 100%;
-    background: #F5F5F5; }
   .events-info li {
     position: relative;
     z-index: 1;
     padding: 8px 0;
     border-bottom: 1px solid #DCDCDC; }
+    .events-info li:before {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      top: 0;
+      width: 123px;
+      height: 100%;
+      background: #F5F5F5; }
   .events-info path {
     stroke-opacity: .54; }
   .events-info svg {
@@ -769,7 +769,7 @@ body {
     top: 0;
     z-index: 11; }
 
-  .events-info:before {
+  .events-info li:before {
     width: 107px; }
   .events-info .info-event {
     padding: 14px 34px 14px 14px;
