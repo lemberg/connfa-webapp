@@ -70,7 +70,7 @@ gulp.task('build-fonts', function () {
 
 gulp.task('watch', function () {
 	gulp.watch(appDev + '**/*.ts', ['build-ts']);
-	gulp.watch(assetsDev + 'styles/**/*.scss', ['build-css']);
+	gulp.watch(assetsDev + 'styles/*', ['build-css']);
 	gulp.watch(assetsDev + 'images/*', ['build-img']);
 	gulp.watch(assetsDev + 'js/*', ['build-js']);
 	gulp.watch(assetsDev + 'fonts/*', ['build-fonts']);

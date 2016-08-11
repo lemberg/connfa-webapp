@@ -61,13 +61,7 @@ body{
       padding: 16px 16px 16px 80px;
       @media (min-width: $mediaMinWidth) {
         &:hover{
-          color: $color-second-site;
-          path{
-            fill:$color-second-site;
-          }
-          svg{
-            fill-opacity: 1;
-          }
+          background: $bg-color-hover;
         }
       }
       svg{
@@ -79,7 +73,13 @@ body{
     }
     &.active{
       a{
-        background: $bg-color-hover;
+        color: $color-second-site;
+      }
+      path{
+        fill:$color-second-site;
+      }
+      svg{
+        fill-opacity: 1;
       }
     }
   }
@@ -149,6 +149,7 @@ body{
   }
   &.active{
     right: 0;
+    overflow-y: auto;
   }
 }
 .bg-nav{
@@ -164,7 +165,6 @@ body{
   padding-left: 0;
 }
 .info{
-  @include calc;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -244,6 +244,12 @@ body{
       padding: 4px 0;
     }
   }
+  @media (min-width: $mediaMinWidth) {
+    overflow-x: auto;
+    padding-top: 64px;
+    margin-top: -64px;
+    height: 100vh;
+  }
 }
 .description{
   overflow: hidden;
@@ -251,9 +257,21 @@ body{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  min-height: 100%;
+  min-height: 240px;
   border-left: 2px solid $border-color;
   background: $bg-color-block;
+    @media (min-width: $mediaMinWidth) {
+      padding: $padding-base 0 0 48px;
+      .panel-scroll{
+        height: 100vh;
+        margin-top: -88px;
+        padding-top: 88px;
+        box-sizing: border-box;
+        padding-right: 48px;
+        overflow-x: auto;
+      }
+    }
+
   header{
     display: none;
     .info-text{
@@ -463,7 +481,7 @@ body{
     }
   }
   .info-event{
-    padding: $padding-items $padding-items $padding-items 67px;
+    padding: $padding-items 34px  $padding-items 67px;
     position: relative;
     margin-left: $wrap-time;
     .favorite-yes{
@@ -584,7 +602,10 @@ body{
     }
   }
   .level-icon{
-    display: none;
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 19px;
   }
   &.my-schedule{
     li.title{
@@ -867,14 +888,9 @@ body{
 
     }
     .level{
-      display: none;;
+      display: none;
     }
-    .level-icon{
-      display: block;
-      position: absolute;
-      right: 14px;
-      top: 19px;
-    }
+
     .box-item{
       &:after{
         left: 123px;
@@ -920,7 +936,7 @@ body{
     }
     &.active{
       top: 0;
-      overflow-y: auto;
+
       z-index: 14;
       header{
         display: block;

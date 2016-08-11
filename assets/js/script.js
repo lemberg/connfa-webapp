@@ -14,6 +14,14 @@ function menu(){
         $(".box-menu .nav").removeClass("active");
         event.stopPropagation();
     });
+
+    $(document).on('click', '.date a', function(event) {
+        $(".info").animate({ scrollTop: "0" }, 300);
+    });
+
+    $(document).on('click', '.info a', function(event) {
+        $(".panel-scroll").animate({ scrollTop: "0" }, 300);
+    });
 }
 function control(){
     $(document).on('click', '.control', function(){

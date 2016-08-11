@@ -16,6 +16,7 @@ export class SocialeventDetailComponent implements OnInit{
     public parentRoute = '/socialevents';
     public title = 'Social Events';
     private _nonClickableTypes = [3, 4, 8, 9];
+    public canView = false;
 
     constructor(private _eventService: EventService, private _router: ActivatedRoute) {}
 
