@@ -437,6 +437,16 @@ body{
 }
 .events-info{
   overflow: hidden;
+  &:before{
+    content: '';
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: $wrap-time;
+    height: 100%;
+    background: $bg-color-time;
+  }
   a{
     color: $color-first;
     text-decoration: none;
@@ -861,6 +871,9 @@ body{
     z-index: 11;
   }
   .events-info{
+    &:before{
+      width: $wrap-timeM;
+    }
     li{
       &:before{
         width: $wrap-timeM;
