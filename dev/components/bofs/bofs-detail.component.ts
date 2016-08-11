@@ -5,8 +5,6 @@ import {BofsListComponent} from "./bofs-list.component";
 import {EventService} from "../../services/event.service";
 import {Event} from "../../models/event";
 
-declare var moment:any;
-
 @Component({
     selector: 'event-details',
     templateUrl: 'app/views/events_partials/details.html',

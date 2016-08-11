@@ -5,8 +5,7 @@ import {TrackService} from "./track.service";
 import {Event} from "../models/event";
 import {Track} from "../models/track";
 import {Level} from "../models/level";
-
-declare var moment:any;
+import moment from 'moment';
 
 @Injectable()
 
@@ -35,8 +34,8 @@ export class SpeakersEventsService {
                 var eventsOfType = events
                     .filter(this.filterByType.bind(this, type))
                     .sort((a, b) => {
-                        var first = moment(a.from).format('x');
-                        var second = moment(b.from).format('x');
+                        var first = moment(a.from, moment.ISO_8601).format('x');
+                        var second = moment(b.from, moment.ISO_8601).format('x');
 
                         if (first < second) {
                             return -1;
@@ -65,7 +64,7 @@ export class SpeakersEventsService {
                     return item.eventId == id;
                 });
 
-                event.timeLabel = moment(event.from).format('ddd, LT') + ' - ' + moment(event.to).format('ddd, LT');
+                event.timeLabel = moment(event.from, moment.ISO_8601).format('ddd, LT') + ' - ' + moment(event.to, moment.ISO_8601).format('ddd, LT');
 
                 if (event.experienceLevel) {
                     this._levelService.getLevel(event.experienceLevel).then((level: Level) => {

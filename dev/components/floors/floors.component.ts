@@ -1,6 +1,8 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, OnInit, Inject, OnDestroy} from '@angular/core';
 import {Floor} from "../../models/floors";
 import {FloorService} from "../../services/floor.service";
+
+declare var jQuery: any;
 
 @Component({
     selector: 'locations',
@@ -8,7 +10,7 @@ import {FloorService} from "../../services/floor.service";
     providers: [FloorService],
 })
 
-export class FloorsComponent implements OnInit{
+export class FloorsComponent implements OnInit, OnDestroy{
 
     public floors: Floor[];
     public activeFloor: Floor;
@@ -22,7 +24,13 @@ export class FloorsComponent implements OnInit{
 
         this._floorService.floorsChanged$.subscribe(data => {
             this._mapData();
-        })
+        });
+
+        jQuery('body').addClass('view');
+    }
+
+    ngOnDestroy():any {
+        jQuery('body').removeClass('view');
     }
 
     onActivateFloor(floor) {

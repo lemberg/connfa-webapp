@@ -4,12 +4,13 @@ import {FavoritesComponent} from "../events_partials/favorites.component";
 import {FilterComponent} from "../events_partials/filter.component";
 import {EventService} from "../../services/event.service";
 
-declare var moment:any;
+declare var jQuery: any;
 
 @Component({
     selector: 'events-list',
     templateUrl: 'app/views/events_partials/menu.html',
     directives: [ROUTER_DIRECTIVES, FavoritesComponent, FilterComponent],
+    providers: [EventService],
 })
 
 
@@ -19,7 +20,10 @@ export class SocialeventsListComponent implements OnInit {
     activeEvents = [];
     hours = [];
     noMatches = false;
+    dates = [];
+    activeDate;
 
+    public title = 'Social Events';
     public router = '/socialevents/';
     public event_type = 'social';
 
@@ -30,6 +34,8 @@ export class SocialeventsListComponent implements OnInit {
         this._eventService.getEventsByType('social').then(bofs => {
             this.activeEvents = this._eventService.activeEvents;
             this.hours = this.getKeys(this._eventService.activeEvents);
+            this.dates = this._eventService.dates;
+            this.activeDate = this._eventService.activeDate || this.dates[0];
         })
 
         this._eventService.eventsChanged$.subscribe(date => {
@@ -40,7 +46,20 @@ export class SocialeventsListComponent implements OnInit {
             }
             this.activeEvents = this._eventService.activeEvents;
             this.hours = this.getKeys(this._eventService.activeEvents);
+            this.dates = this._eventService.dates;
+            this.activeDate = this._eventService.activeDate || this.dates[0];
         })
+
+        jQuery('body').addClass('view');
+    }
+
+    ngOnDestroy():any {
+        jQuery('body').removeClass('view');
+    }
+
+    public setActiveDate(date) {
+        this._eventService.setActiveDate(date);
+        this.activeDate = date;
     }
 
     public getKeys(obj) {

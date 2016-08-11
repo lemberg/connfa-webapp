@@ -5,9 +5,8 @@ import {SpeakerService} from "./speaker.service";
 import {LevelService} from "./level.service";
 import {TrackService} from "./track.service";
 import {Speaker} from "../models/speaker";
+import moment from 'moment';
 
-
-declare var moment:any;
 
 @Injectable()
 
@@ -57,37 +56,51 @@ export class EventService {
         }
 
         if (!this.events[type] || !this.events[type].length) {
-            return this.eventsPromise[type] = this._apiService.getCollection('events').then((events:Event[])=> {
-                events = this.transform(events);
-                var eventsOfType = events
-                    .filter(this.filterByType.bind(this, type))
-                    .sort((a, b) => {
-                        var first = moment(a.from).format('x');
-                        var second = moment(b.from).format('x');
+            var filterInstance = this._localforage.createInstance({
+                name: 'filters'
+            });
 
-                        if (first == second) {
-                            if (a.order > b.order) {
-                                return 1;
-                            } else if (a.order < b.order) {
-                                return -1;
-                            } else {
-                                return 0;
+            return this.eventsPromise[type] = filterInstance.getItem('filters').then(filters => {
+
+                return this._apiService.getCollection('events').then((events:Event[])=> {
+                    events = this.transform(events);
+                    var eventsOfType = events
+                        .filter(this.filterByType.bind(this, type))
+                        .sort((a, b) => {
+                            var first = moment(a.from, moment.ISO_8601).format('x');
+                            var second = moment(b.from, moment.ISO_8601).format('x');
+
+                            if (first == second) {
+                                if (a.order > b.order) {
+                                    return 1;
+                                } else if (a.order < b.order) {
+                                    return -1;
+                                } else {
+                                    return 0;
+                                }
                             }
+
+                            if (first < second) {
+                                return -1;
+                            } else if (first > second) {
+                                return 1;
+                            }
+                        });
+
+                    var filteredEvents = [];
+                    eventsOfType.forEach((event) => {
+                        if (this.inLevels(event, filters.levels) && this.inTracks(event, filters.tracks)) {
+                            filteredEvents.push(event);
                         }
+                    })
 
-                        if (first < second) {
-                            return -1;
-                        } else if (first > second) {
-                            return 1;
-                        }
-                    });
+                    this.transformEvents(filteredEvents).then((events) => {
+                        this.bindChanges(events);
+                    })
 
-                this.transformEvents(eventsOfType).then((events) => {
-                    this.bindChanges(events);
-                })
-
-                this.events[type] = eventsOfType;
-                return eventsOfType;
+                    this.events[type] = eventsOfType;
+                    return eventsOfType;
+                });
             });
 
         } else {
@@ -226,9 +239,9 @@ export class EventService {
                 })
             })
         }
-        item.timeLabel = moment(item.from).format('ddd, LT') + ' - ' + moment(item.to).format('ddd, LT');
-        item.fromLabel = moment(item.from).format('LT');
-        item.toLabel = moment(item.to).format('LT');
+        item.timeLabel = moment(item.from, moment.ISO_8601).format('ddd, LT') + ' - ' + moment(item.to, moment.ISO_8601).format('ddd, LT');
+        item.fromLabel = moment(item.from, moment.ISO_8601).format('LT');
+        item.toLabel = moment(item.to, moment.ISO_8601).format('LT');
         if (item.isFavorite) {
             this.favoriteEvents.push(item.eventId);
         }
@@ -240,8 +253,8 @@ export class EventService {
         var transformed = [];
         return new Promise((resolve, reject) => {
             events.forEach((event:Event) => {
-                var event_day = moment(event.from).format('ddd D');
-                var event_hours = moment(event.from).format('LT') + ' ' + moment(event.to).format('LT');
+                var event_day = moment(event.from, moment.ISO_8601).format('ddd D');
+                var event_hours = moment(event.from, moment.ISO_8601).format('LT') + ' ' + moment(event.to, moment.ISO_8601).format('LT');
 
                 if (!transformed[event_day]) {
                     transformed[event_day] = [];

@@ -7,12 +7,15 @@
 	var map = {
 		'app':                        'app', // 'dist',
 		'@angular':                   'node_modules/@angular',
-		'rxjs':                       'node_modules/rxjs'
+		// 'rxjs':                       'node_modules/rxjs',
+		'rxjs':                       'node_modules/rxjs',
+		'moment': 'node_modules/moment/moment.js',
 	};
 	// packages tells the System loader how to load when no filename and/or no extension
 	var packages = {
+		'rxjs':                       { main: 'bundles/Rx.umd.min.js',  defaultExtension: 'js' },
 		'app':                        { main: 'boot.js',  defaultExtension: 'js' },
-		'rxjs':                       { defaultExtension: 'js' },
+		// 'moment':                       { main: 'moment.js', format: 'global',  defaultExtension: 'js' },
 	};
 	var ngPackageNames = [
 		'common',

@@ -4,3 +4,4 @@
 .idea/*
 /markup/.idea/*
 /npm-debug.log*
+/typings/*

@@ -4,8 +4,6 @@ import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
 import {SessionsListComponent} from "./sessions-list.component";
 import {EventService} from "../../services/event.service";
 
-declare var moment:any;
-
 @Component({
     selector: 'event-details',
     templateUrl: 'app/views/events_partials/details.html',

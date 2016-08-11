@@ -2,14 +2,19 @@ import {Injectable, Inject, EventEmitter} from "@angular/core";
 
 import {Observable} from "rxjs/Rx";
 import {Http, Headers} from "@angular/http";
+import {UpdateResponse} from "../models/update_response";
+import {SettingsResponse} from "../models/settings_response";
+import {EventsResponse} from "../models/events_response";
+import {Event} from "../models/event";
 
 @Injectable()
 
 export class ApiService {
 
+    public dataChanged$:EventEmitter<any>;
+
     private _config;
     private _localforage;
-    public dataChanged$: EventEmitter<any>;
 
     constructor(private _http:Http, @Inject('config') config, @Inject('localforage') localforage) {
         this._config = config;
@@ -25,7 +30,7 @@ export class ApiService {
 
         var instance = this._localforage.createInstance({name: 'updates'});
         instance.getItem('lastUpdate').then(lastUpdate => {
-            this._loadService('checkUpdates', lastUpdate).then((response) => {
+            this._loadService('checkUpdates', lastUpdate).then((response:UpdateResponse) => {
                 if (response && response.idsForUpdate) {
                     response.idsForUpdate.forEach((method) => {
                         switch (method) {
@@ -74,7 +79,7 @@ export class ApiService {
             name: 'settings'
         });
 
-        this._loadService(api, since).then(response => {
+        this._loadService(api, since).then((response:SettingsResponse) => {
             instance.setItem('twitterSearchQuery', response.settings.twitterSearchQuery);
             instance.setItem('twitterWidgetId', response.settings.twitterWidgetId).then(() => {
                 this.dataChanged$.emit('settings');
@@ -88,10 +93,10 @@ export class ApiService {
             name: entityName
         });
 
-        this._loadService(api, since).then(response => {
+        this._loadService(api, since).then((response:EventsResponse) => {
             var events = [];
             response.days.forEach((day) => {
-                day.events.forEach(event => {
+                day.events.forEach((event:Event) => {
                     events.push(event);
                 })
             });
@@ -118,7 +123,7 @@ export class ApiService {
 
                             instance.setItem(event.eventId.toString(), event).then(() => {
                                 resolve();
-                            });;
+                            });
                         });
                     }));
                 }

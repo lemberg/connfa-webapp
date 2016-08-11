@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {ApiService} from "./api.service";
 import {Level} from "../models/level";
 
@@ -9,12 +9,18 @@ export class LevelService {
     public levels:Level[];
 
     private _levelsPromise:Promise<Level[]> = null;
+    public levelsChanged$:EventEmitter<any>;
 
     constructor(private _apiService:ApiService) {
+
+        this.levelsChanged$ = new EventEmitter();
+
         this._apiService.dataChanged$.subscribe(data => {
             this.levels = [];
             this._levelsPromise = null;
-            this.getLevels();
+            this.getLevels().then((levels:Level[]) => {
+                this.levelsChanged$.emit(levels);
+            });
         });
     }
 

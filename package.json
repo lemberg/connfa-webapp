@@ -55,7 +55,7 @@
     "typings": "typings",
     "postinstall": "typings install",
     "clean": "rm -rf app src",
-    "build": "npm run clean && gulp build",
+    "build": "npm run clean && gulp build && npm run postinstall",
     "build_prod": "npm run build && browserify -s main app/boot.js > app/bundle.js && npm run minify",
     "minify": "uglifyjs app/bundle.js --screw-ie8 --compress --mangle --output app/boot.min.js"
   },
