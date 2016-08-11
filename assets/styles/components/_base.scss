@@ -679,15 +679,6 @@ body{
   }
 }
 .link-site{
-  .twitter{
-   svg{
-
-
-   }
-  }
-  .website{
-
-  }
   a{
     font-size: 14px;
     text-decoration: none;
@@ -705,7 +696,7 @@ body{
     display: inline-block;
     position: relative;
     svg{
-      fill:$color-first-site;
+      fill:$color-link;
       width: 15px;
       height: auto;
       position: absolute;
@@ -714,9 +705,8 @@ body{
 
     }
     path{
-      stroke:$color-first-site ;
+      stroke:$color-link;
     }
-
   }
 }
 .social-media{

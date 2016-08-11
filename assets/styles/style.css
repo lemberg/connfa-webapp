@@ -591,14 +591,14 @@ body {
   display: inline-block;
   position: relative; }
   .link-site a svg {
-    fill: #4077AA;
+    fill: #4F3B9A;
     width: 15px;
     height: auto;
     position: absolute;
     left: 13px;
     top: 10px; }
   .link-site a path {
-    stroke: #4077AA; }
+    stroke: #4F3B9A; }
 
 .social-media {
   width: 600px;
