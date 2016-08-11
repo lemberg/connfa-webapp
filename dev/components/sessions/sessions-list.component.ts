@@ -27,6 +27,8 @@ export class SessionsListComponent implements OnInit, OnDestroy {
     public router = '/sessions/';
     public event_type = 'session';
 
+    public non_clickable_types = [3,4,8,9];
+
     constructor(private _eventService:EventService) {
     }
 

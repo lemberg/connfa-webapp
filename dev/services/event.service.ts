@@ -88,11 +88,16 @@ export class EventService {
                         });
 
                     var filteredEvents = [];
-                    eventsOfType.forEach((event) => {
-                        if (this.inLevels(event, filters.levels) && this.inTracks(event, filters.tracks)) {
-                            filteredEvents.push(event);
-                        }
-                    })
+
+                    if (!filters) {
+                        filteredEvents = eventsOfType;
+                    } else {
+                        eventsOfType.forEach((event) => {
+                            if (this.inLevels(event, filters.levels) && this.inTracks(event, filters.tracks)) {
+                                filteredEvents.push(event);
+                            }
+                        })
+                    }
 
                     this.transformEvents(filteredEvents).then((events) => {
                         this.bindChanges(events);
