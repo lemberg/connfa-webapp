@@ -12,6 +12,11 @@ $alabaster-solid:#FAFAFA;
 $royal-purple-approx:#6539A1;
 $eminence-approx:#57308c;
 $crete-approx:#757428;
+
+//dublin color theme
+$blue-whale-approx:#06335B;
+$gigas-approx:#4F3B9A;
+$san-marino-approx:#4077AA;
 /*end color*/
 
 /*font*/
@@ -19,6 +24,7 @@ $font-first:'roboto-regular';
 $font-second:'roboto-medium';
 $font-third:'smythe-regular';
 /*end font*/
+$font-dublin-title:'Montserrat', sans-serif;
 
 /*element*/
 $height-window: 100vh;
@@ -60,10 +66,10 @@ $shadow1:$black-opacity3;
 $bg-input:$royal-purple-approx;
 
 /*color for all items to will be changed*/
-$color-link:$eminence-approx;
-$color-first-site:$eminence-approx;
-$color-second-site:$crete-approx;
+$color-link:$gigas-approx;
+$color-first-site:$san-marino-approx;
+$color-second-site:$san-marino-approx;
 $color-all-element-header:$white;
-$header-bg:$eminence-approx;
+$header-bg:$blue-whale-approx;
 
 /*end element*/

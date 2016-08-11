@@ -165,7 +165,6 @@ body{
   padding-left: 0;
 }
 .info{
-  @include calc;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -245,6 +244,12 @@ body{
       padding: 4px 0;
     }
   }
+  @media (min-width: $mediaMinWidth) {
+    overflow-x: auto;
+    padding-top: 64px;
+    margin-top: -64px;
+    height: 100vh;
+  }
 }
 .description{
   overflow: hidden;
@@ -255,6 +260,18 @@ body{
   min-height: 240px;
   border-left: 2px solid $border-color;
   background: $bg-color-block;
+    @media (min-width: $mediaMinWidth) {
+      padding: $padding-base 0 0 48px;
+      .panel-scroll{
+        height: 100vh;
+        margin-top: -88px;
+        padding-top: 88px;
+        box-sizing: border-box;
+        padding-right: 48px;
+        overflow-x: auto;
+      }
+    }
+
   header{
     display: none;
     .info-text{

@@ -1,3 +1,5 @@
+//dublin font title
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 @font-face {
   font-family: 'roboto-medium';
   src: url('../fonts/roboto-medium-webfont.eot');
@@ -24,11 +26,11 @@ body{
   line-height: $base-lineH;
 }
 h1,h2,h3,h4,h5,h6{
-  font-family: $font-third;
+  font-family: $font-dublin-title;
   color: $color-first;
   margin: 0;
   line-height: 1.2;
-  font-weight: normal;
+  font-weight: 400;
 }
 h1{
   font-size: 24px;
