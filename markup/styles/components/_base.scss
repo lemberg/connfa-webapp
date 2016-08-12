@@ -437,6 +437,16 @@ body{
 }
 .events-info{
   overflow: hidden;
+  &:before{
+    content: '';
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: $wrap-time;
+    height: 100%;
+    background: $bg-color-time;
+  }
   a{
     color: $color-first;
     text-decoration: none;
@@ -494,7 +504,7 @@ body{
     position: absolute;
     left: 24px;
     top: 50%;
-    margin-top: -9px;
+    margin-top: -12px;
   }
   .speaker,
   .place{
@@ -536,21 +546,21 @@ body{
     margin-top: 3px;
     position: relative;
   }
-  &:before{
-    content: '';
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    top: 0;
-    width: $wrap-time;
-    height: 100%;
-    background: $bg-color-time;
-  }
   li{
     position: relative;
     z-index: 1;
     padding: 8px 0;
     border-bottom: 1px solid $border-color-item;
+    &:before{
+      content: '';
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      top: 0;
+      width: $wrap-time;
+      height: 100%;
+      background: $bg-color-time;
+    }
   }
   path{
     stroke-opacity: .54;
@@ -612,7 +622,11 @@ body{
       border-bottom: none;
       font-size: $font-size-second;
       padding: 27px $padding-base 2px $padding-base;
-      color: $color-first-site;
+      color: $color-link;
+      span{
+        position: relative;
+        z-index: 1;
+      }
     }
   }
 }
@@ -679,15 +693,6 @@ body{
   }
 }
 .link-site{
-  .twitter{
-   svg{
-
-
-   }
-  }
-  .website{
-
-  }
   a{
     font-size: 14px;
     text-decoration: none;
@@ -705,7 +710,7 @@ body{
     display: inline-block;
     position: relative;
     svg{
-      fill:$color-first-site;
+      fill:$color-link;
       width: 15px;
       height: auto;
       position: absolute;
@@ -714,9 +719,8 @@ body{
 
     }
     path{
-      stroke:$color-first-site ;
+      stroke:$color-link;
     }
-
   }
 }
 .social-media{
@@ -874,6 +878,11 @@ body{
     &:before{
       width: $wrap-timeM;
     }
+    li{
+      &:before{
+        width: $wrap-timeM;
+      }
+    }
     .info-event{
       padding: $padding-items-mob 34px $padding-items-mob $padding-items-mob;
       margin-left: $wrap-timeM;
@@ -930,7 +939,7 @@ body{
       }
       strong{
         font-size: 14px;
-        color: $color-first-site;
+        color: $color-link;
         font-family: $font-first;
       }
     }

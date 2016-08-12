@@ -622,7 +622,7 @@ body{
       border-bottom: none;
       font-size: $font-size-second;
       padding: 27px $padding-base 2px $padding-base;
-      color: $color-first-site;
+      color: $color-link;
       span{
         position: relative;
         z-index: 1;
@@ -939,7 +939,7 @@ body{
       }
       strong{
         font-size: 14px;
-        color: $color-first-site;
+        color: $color-link;
         font-family: $font-first;
       }
     }
