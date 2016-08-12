@@ -3,13 +3,14 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
 import {FavoritesComponent} from "../events_partials/favorites.component";
 import {FilterComponent} from "../events_partials/filter.component";
 import {EventService} from "../../services/event.service";
+import {ListDetailsComponent} from "../events_partials/list-details.component";
 
 declare var jQuery: any;
 
 @Component({
     selector: 'events-list',
     templateUrl: 'app/views/events_partials/menu.html',
-    directives: [ROUTER_DIRECTIVES, FavoritesComponent, FilterComponent],
+    directives: [ROUTER_DIRECTIVES, FavoritesComponent, FilterComponent, ListDetailsComponent],
     providers: [EventService],
 })
 

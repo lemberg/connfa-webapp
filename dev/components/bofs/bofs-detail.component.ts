@@ -16,6 +16,8 @@ export class BofDetailComponent implements OnInit {
     public event;
     public parentRoute = '/bofs';
     public title = 'BOFs';
+    private _nonClickableTypes = [3, 4, 8, 9];
+    public canView;
 
     constructor(private _eventService:EventService, private _router:ActivatedRoute) {
     }
@@ -35,6 +37,11 @@ export class BofDetailComponent implements OnInit {
     private _getEvent(id) {
         this._eventService.getEvent(id, 'bof').then((event: Event) => {
             this.event = event;
+            if (event && this._nonClickableTypes.indexOf(event.type) !== -1) {
+                this.canView = false;
+            } else {
+                this.canView = true;
+            }
         });
     }
 }

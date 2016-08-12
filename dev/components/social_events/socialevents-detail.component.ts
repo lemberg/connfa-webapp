@@ -15,6 +15,8 @@ export class SocialeventDetailComponent implements OnInit{
     public event;
     public parentRoute = '/socialevents';
     public title = 'Social Events';
+    private _nonClickableTypes = [3, 4, 8, 9];
+    public canView = false;
 
     constructor(private _eventService: EventService, private _router: ActivatedRoute) {}
 
@@ -35,6 +37,11 @@ export class SocialeventDetailComponent implements OnInit{
     private _getEvent(id) {
         this._eventService.getEvent(id, 'social').then((event)=> {
             this.event = event;
+            if (event && this._nonClickableTypes.indexOf(event.type) !== -1) {
+                this.canView = false;
+            } else {
+                this.canView = true;
+            }
         })
     }
 
