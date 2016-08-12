@@ -504,7 +504,7 @@ body{
     position: absolute;
     left: 24px;
     top: 50%;
-    margin-top: -9px;
+    margin-top: -12px;
   }
   .speaker,
   .place{
@@ -623,6 +623,10 @@ body{
       font-size: $font-size-second;
       padding: 27px $padding-base 2px $padding-base;
       color: $color-first-site;
+      span{
+        position: relative;
+        z-index: 1;
+      }
     }
   }
 }

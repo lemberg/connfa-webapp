@@ -451,7 +451,7 @@ body {
     position: absolute;
     left: 24px;
     top: 50%;
-    margin-top: -9px; }
+    margin-top: -12px; }
   .events-info .speaker,
   .events-info .place {
     padding-left: 24px; }
@@ -542,6 +542,9 @@ body {
     font-size: 14px;
     padding: 27px 24px 2px 24px;
     color: #4077AA; }
+    .events-info.my-schedule li.title span {
+      position: relative;
+      z-index: 1; }
 
 .events-info_box a.router-link-active {
   background: #E0E0E0; }
@@ -920,7 +923,7 @@ label {
     cursor: pointer;
     display: block;
     position: relative;
-    padding-right: 15px;
+    padding-right: 20px;
     color: rgba(0, 0, 0, 0.54); }
   label .check-all {
     font-family: "roboto-medium";
