@@ -3,13 +3,14 @@ import {SchedulerService} from "../../services/scheduler.service";
 import {Ucfirst} from "../../pipes/ucfirst.pipe";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {FavoritesComponent} from "../events_partials/favorites.component";
+import {ListDetailsComponent} from "../events_partials/list-details.component";
 
 declare var jQuery: any;
 
 @Component({
     selector: 'events-list',
     pipes: [Ucfirst],
-    directives: [ROUTER_DIRECTIVES, FavoritesComponent],
+    directives: [ROUTER_DIRECTIVES, FavoritesComponent, ListDetailsComponent],
     providers: [SchedulerService],
     templateUrl: 'app/views/scheduler/menu.html'
 })

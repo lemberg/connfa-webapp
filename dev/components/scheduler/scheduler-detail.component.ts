@@ -13,6 +13,7 @@ import {FavoritesComponent} from "../events_partials/favorites.component";
 export class SchedulerDetailComponent {
 
     public event;
+    public canView = false;
 
     constructor(private _schedulerService: SchedulerService, private _router: ActivatedRoute) {}
 
@@ -22,11 +23,17 @@ export class SchedulerDetailComponent {
             this._router.params.subscribe(params => {
                 this._schedulerService.getScheduler(params['id']).then((event)=> {
                     this.event = event;
+                    if (event && event.href) {
+                        this.canView = true;
+                    }
                 })
 
                 this._schedulerService.eventsChanged$.subscribe((data) => {
                     this._schedulerService.getScheduler(params['id']).then((event)=> {
                         this.event = event;
+                        if (event && event.href) {
+                            this.canView = true;
+                        }
                     })
                 })
             })
