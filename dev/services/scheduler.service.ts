@@ -21,6 +21,8 @@ export class SchedulerService {
     public hours;
     public eventsChanged$;
 
+    private _nonClickableTypes = [3, 4, 8, 9];
+
     public constructor(private _apiService:ApiService,
                        private _trackService:TrackService,
                        private _speakerService:SpeakerService,
@@ -143,6 +145,10 @@ export class SchedulerService {
         });
     }
 
+    public isNonClickable(type) {
+        return this._nonClickableTypes.indexOf(type) !== -1
+    }
+
     private transform(item) {
 
         if (item.experienceLevel) {
@@ -160,6 +166,11 @@ export class SchedulerService {
         item.timeLabel = moment(item.from, moment.ISO_8601).format('ddd, LT') + ' - ' + moment(item.to, moment.ISO_8601).format('ddd, LT');
         item.fromLabel = moment(item.from, moment.ISO_8601).format('LT');
         item.toLabel = moment(item.to, moment.ISO_8601).format('LT');
+
+        item.href = false;
+        if (!this.isNonClickable(item.type)) {
+            item.href = true;
+        }
 
         if (item.speakers) {
             item.speakersCollection = [];

@@ -3,6 +3,7 @@ import {SchedulerListComponent} from "./scheduler-list.component";
 import {SchedulerService} from "../../services/scheduler.service";
 import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
 import {FavoritesComponent} from "../events_partials/favorites.component";
+import moment from 'moment';
 
 @Component({
     selector: 'event-details',
@@ -25,6 +26,8 @@ export class SchedulerDetailComponent {
                     this.event = event;
                     if (event && event.href) {
                         this.canView = true;
+                        var activeDate = moment(event.from, moment.ISO_8601).format('ddd D');
+                        this._schedulerService.setActiveDate(activeDate);
                     }
                 })
 

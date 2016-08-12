@@ -5,3 +5,4 @@
 /markup/.idea/*
 /npm-debug.log*
 /typings/*
+/dev/config/env.ts
