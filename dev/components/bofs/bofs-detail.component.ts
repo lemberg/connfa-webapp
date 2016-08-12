@@ -26,14 +26,16 @@ export class BofDetailComponent implements OnInit {
 
         this._router.params.subscribe(params => {
             var id = params['id'];
-            this._getEvent(id).then((event:Event) => {
-                var activeDate = moment(event.from, moment.ISO_8601).format('ddd D');
-                this._eventService.setActiveDate(activeDate);
-            });
+            if (id) {
+                this._getEvent(id).then((event:Event) => {
+                    var activeDate = moment(event.from, moment.ISO_8601).format('ddd D');
+                    this._eventService.setActiveDate(activeDate);
+                });
 
-            this._eventService.eventsChanged$.subscribe((data) => {
-                this._getEvent(id);
-            })
+                this._eventService.eventsChanged$.subscribe((data) => {
+                    this._getEvent(id);
+                });
+            }
         })
     }
 

@@ -6,6 +6,7 @@ import {LevelService} from "./level.service";
 import {TrackService} from "./track.service";
 import {Speaker} from "../models/speaker";
 import moment from 'moment';
+import {Router} from "@angular/router";
 
 
 @Injectable()
@@ -39,6 +40,7 @@ export class EventService {
                 private _speakerService:SpeakerService,
                 private _levelService:LevelService,
                 private _trackService:TrackService,
+                private _router:Router,
                 @Inject('localforage') localforage) {
 
         this.eventsChanged$ = new EventEmitter();
@@ -120,9 +122,13 @@ export class EventService {
 
     }
 
-    public setActiveDate(date) {
+    public setActiveDate(date, redirect = false) {
         this.activeDate = date;
         this.activeEvents = this.formattedEvents[this.activeDate];
+        if (redirect) {
+            var event = this._getFirstActiveEvent(this.activeEvents);
+            this._router.navigate([this._routes[event.event_type] + event.eventId]);
+        }
         this.eventsChanged$.emit(date);
     }
 
@@ -186,6 +192,13 @@ export class EventService {
 
     public isNonClickable(type) {
         return this._nonClickableTypes.indexOf(type) !== -1
+    }
+
+    private _getFirstActiveEvent(activeEvents) {
+        var firstHour = Object.keys(activeEvents)[0];
+        var event = this.activeEvents[firstHour][0];
+
+        return event;
     }
 
     private _bindChanges(data, changeActiveDate = false) {
