@@ -60,7 +60,7 @@ export class SessionsListComponent implements OnInit, OnDestroy {
     }
 
     public setActiveDate(date) {
-        this._eventService.setActiveDate(date);
+        this._eventService.setActiveDate(date, true);
         this.activeDate = date;
     }
 

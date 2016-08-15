@@ -3,6 +3,7 @@ import {FavoritesComponent} from "../events_partials/favorites.component";
 import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
 import {SessionsListComponent} from "./sessions-list.component";
 import {EventService} from "../../services/event.service";
+import moment from 'moment';
 
 @Component({
     selector: 'event-details',
@@ -17,8 +18,6 @@ export class SessionDetailComponent implements OnInit {
     public title = 'Sessions';
     public canView = false;
 
-    private _nonClickableTypes = [3, 4, 8, 9];
-
     constructor(private _eventService:EventService, private _router:ActivatedRoute) {
     }
 
@@ -26,22 +25,30 @@ export class SessionDetailComponent implements OnInit {
 
         this._router.params.subscribe(params => {
             var id = params['id'];
-            this._getEvent(id);
+            if (id) {
+                this._getEvent(id).then((event) => {
+                    var activeDate = moment(event.from, moment.ISO_8601).format('ddd D');
+                    this._eventService.setActiveDate(activeDate);
+                });
 
-            this._eventService.eventsChanged$.subscribe((data) => {
-                this._getEvent(id);
-            })
+                this._eventService.eventsChanged$.subscribe((data) => {
+                    this._getEvent(id);
+                })
+            }
         })
     }
 
     private _getEvent(id) {
-        this._eventService.getEvent(id, 'session').then((event)=> {
-            this.event = event;
-            if (event && this._nonClickableTypes.indexOf(event.type) !== -1) {
-                this.canView = false;
-            } else {
-                this.canView = true;
-            }
+        return this._eventService.getEvent(id, 'session').then((event)=> {
+            return new Promise((resolve, reject) => {
+                this.event = event;
+                resolve(event);
+                if (!event || this._eventService.isNonClickable(event.type)) {
+                    this.canView = false;
+                } else {
+                    this.canView = true;
+                }
+            });
         })
     }
 }

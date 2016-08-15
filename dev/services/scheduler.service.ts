@@ -7,6 +7,8 @@ import {EventService} from "./event.service";
 import {Speaker} from "../models/speaker";
 import {Event} from "../models/event";
 import moment from 'moment';
+import {WindowService} from "./window.service";
+import {Router} from "@angular/router";
 
 @Injectable()
 
@@ -21,11 +23,15 @@ export class SchedulerService {
     public hours;
     public eventsChanged$;
 
+    private _nonClickableTypes = [3, 4, 8, 9];
+
     public constructor(private _apiService:ApiService,
                        private _trackService:TrackService,
                        private _speakerService:SpeakerService,
                        private _levelService:LevelService,
-                       private _eventService:EventService) {
+                       private _eventService:EventService,
+                       private _windowService:WindowService,
+                       private _router:Router) {
 
         this.eventsChanged$ = new EventEmitter();
 
@@ -81,9 +87,13 @@ export class SchedulerService {
         })
     }
 
-    public setActiveDate(date) {
+    public setActiveDate(date, redirect = false) {
         this.activeDate = date;
         this.activeEvents = this.formatted[this.activeDate];
+        if (redirect && this._windowService.isDesktop()) {
+            var event = this._getFirstActiveEvent(this.activeEvents);
+            this._router.navigate(['/scheduler/' + event.eventId]);
+        }
         this.eventsChanged$.emit(date);
     }
 
@@ -117,6 +127,14 @@ export class SchedulerService {
         // this.hours = Object.keys(this.activeEvents);
     }
 
+    private _getFirstActiveEvent(activeEvents) {
+        var firstCategory = Object.keys(activeEvents)[0];
+        var firstHour = Object.keys(activeEvents[firstCategory])[0];
+        var event = this.activeEvents[firstCategory][firstHour][0];
+
+        return event;
+    }
+
     private transformEvents(events) {
         var transformed = [];
         return new Promise((resolve, reject) => {
@@ -143,6 +161,10 @@ export class SchedulerService {
         });
     }
 
+    public isNonClickable(type) {
+        return this._nonClickableTypes.indexOf(type) !== -1
+    }
+
     private transform(item) {
 
         if (item.experienceLevel) {
@@ -160,6 +182,11 @@ export class SchedulerService {
         item.timeLabel = moment(item.from, moment.ISO_8601).format('ddd, LT') + ' - ' + moment(item.to, moment.ISO_8601).format('ddd, LT');
         item.fromLabel = moment(item.from, moment.ISO_8601).format('LT');
         item.toLabel = moment(item.to, moment.ISO_8601).format('LT');
+
+        item.href = false;
+        if (!this.isNonClickable(item.type)) {
+            item.href = true;
+        }
 
         if (item.speakers) {
             item.speakersCollection = [];

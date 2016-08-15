@@ -6,6 +6,8 @@ import {LevelService} from "./level.service";
 import {TrackService} from "./track.service";
 import {Speaker} from "../models/speaker";
 import moment from 'moment';
+import {Router} from "@angular/router";
+import {WindowService} from "./window.service";
 
 
 @Injectable()
@@ -21,15 +23,15 @@ export class EventService {
     public eventsChanged$;
     public type = null;
 
-    private _localforage;
-    private favoriteEvents = [];
     private _nonClickableTypes = [3, 4, 8, 9];
+    private _localforage;
+    private _favoriteEvents = [];
     private _routes = {
         session: '/sessions/',
         bof: '/bofs/',
         social: '/socialevents/',
     }
-    private eventsPromise = {
+    private _eventsPromise = {
         session: null,
         bof: null,
         social: null,
@@ -39,6 +41,8 @@ export class EventService {
                 private _speakerService:SpeakerService,
                 private _levelService:LevelService,
                 private _trackService:TrackService,
+                private _windowService:WindowService,
+                private _router:Router,
                 @Inject('localforage') localforage) {
 
         this.eventsChanged$ = new EventEmitter();
@@ -46,7 +50,7 @@ export class EventService {
 
         this._apiService.dataChanged$.subscribe(data => {
             if (this.type != null) {
-                this.eventsPromise[this.type] = null;
+                this._eventsPromise[this.type] = null;
                 this.events[this.type] = [];
                 this.getEventsByType(this.type).then(data => {
                     this.eventsChanged$.emit(data);
@@ -55,10 +59,10 @@ export class EventService {
         });
     }
 
-    getEventsByType(type) {
+    public getEventsByType(type) {
         this.type = type;
-        if (this.eventsPromise[type] !== null) {
-            return this.eventsPromise[type];
+        if (this._eventsPromise[type] !== null) {
+            return this._eventsPromise[type];
         }
 
         if (!this.events[type] || !this.events[type].length) {
@@ -66,10 +70,10 @@ export class EventService {
                 name: 'filters'
             });
 
-            return this.eventsPromise[type] = filterInstance.getItem('filters').then(filters => {
+            return this._eventsPromise[type] = filterInstance.getItem('filters').then(filters => {
 
                 return this._apiService.getCollection('events').then((events:Event[])=> {
-                    events = this.transform(events);
+                    events = this._transform(events);
                     var eventsOfType = events
                         .filter(this.filterByType.bind(this, type))
                         .sort((a, b) => {
@@ -99,14 +103,14 @@ export class EventService {
                         filteredEvents = eventsOfType;
                     } else {
                         eventsOfType.forEach((event) => {
-                            if (this.inLevels(event, filters.levels) && this.inTracks(event, filters.tracks)) {
+                            if (this._inLevels(event, filters.levels) && this._inTracks(event, filters.tracks)) {
                                 filteredEvents.push(event);
                             }
                         })
                     }
 
                     this.transformEvents(filteredEvents).then((events) => {
-                        this.bindChanges(events);
+                        this._bindChanges(events);
                     })
 
                     this.events[type] = eventsOfType;
@@ -120,13 +124,86 @@ export class EventService {
 
     }
 
-    public setActiveDate(date) {
+    public setActiveDate(date, redirect = false) {
         this.activeDate = date;
         this.activeEvents = this.formattedEvents[this.activeDate];
+        if (redirect && this._windowService.isDesktop()) {
+            var event = this._getFirstActiveEvent(this.activeEvents);
+            this._router.navigate([this._routes[event.event_type] + event.eventId]);
+        }
         this.eventsChanged$.emit(date);
     }
 
-    private bindChanges(data, changeActiveDate = false) {
+    public getEvent(id, type) {
+
+        return this.getEventsByType(type).then((events:Event[]) => {
+            var event = events.find(item => {
+                return item.eventId == id;
+            });
+            return event;
+        })
+    }
+
+    public toggleFavorite(event, type) {
+        var storage = this._localforage.createInstance({
+            name: 'events'
+        });
+
+        storage.getItem(event.eventId.toString()).then(item => {
+            item.isFavorite = event.isFavorite;
+            storage.setItem(event.eventId.toString(), item);
+        });
+
+        if (event.isFavorite) {
+            event.event_type = type;
+            this._favoriteEvents.push(event.eventId.toString());
+        } else {
+            this._favoriteEvents.splice(this._favoriteEvents.indexOf(event.eventId.toString()), 1);
+        }
+    }
+
+    public isFavorite(event) {
+        if (this._favoriteEvents.indexOf(event.eventId.toString()) !== -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public filterEvents(levels, tracks, type) {
+        this.getEventsByType(type).then(events => {
+
+            var promise = new Promise((resolve, reject) => {
+                var filteredEvents = [];
+                this.events[type].forEach(event => {
+                    if (this._inLevels(event, levels) && this._inTracks(event, tracks)) {
+                        filteredEvents.push(event);
+                    }
+                });
+                resolve(filteredEvents);
+            })
+
+            promise.then(events => {
+                this.transformEvents(events).then(data => {
+                    this._bindChanges(data, true);
+                    this.eventsChanged$.emit('changed');
+                })
+            })
+        });
+    }
+
+    public isNonClickable(type) {
+        return this._nonClickableTypes.indexOf(type) !== -1
+    }
+
+    private _getFirstActiveEvent(activeEvents) {
+        var firstHour = Object.keys(activeEvents)[0];
+        var event = this.activeEvents[firstHour][0];
+
+        return event;
+    }
+
+    private _bindChanges(data, changeActiveDate = false) {
         this.formattedEvents = data;
         this.dates = this.getDates(data);
         if (this.dates.length) {
@@ -142,17 +219,7 @@ export class EventService {
         }
     }
 
-    getEvent(id, type) {
-
-        return this.getEventsByType(type).then((events:Event[]) => {
-            var event = events.find(item => {
-                return item.eventId == id;
-            });
-            return event;
-        })
-    }
-
-    private inLevels(session, levels) {
+    private _inLevels(session, levels) {
         var levelId = session.experienceLevel;
         if (!Object.keys(levels).length) {
             return true;
@@ -165,7 +232,7 @@ export class EventService {
         }
     }
 
-    private inTracks(session, tracks) {
+    private _inTracks(session, tracks) {
         var trackId = session.track;
         if (!Object.keys(tracks).length) {
             return true;
@@ -178,55 +245,7 @@ export class EventService {
         }
     }
 
-    toggleFavorite(event, type) {
-        var storage = this._localforage.createInstance({
-            name: 'events'
-        });
-
-        storage.getItem(event.eventId.toString()).then(item => {
-            item.isFavorite = event.isFavorite;
-            storage.setItem(event.eventId.toString(), item);
-        });
-
-        if (event.isFavorite) {
-            event.event_type = type;
-            this.favoriteEvents.push(event.eventId.toString());
-        } else {
-            this.favoriteEvents.splice(this.favoriteEvents.indexOf(event.eventId.toString()), 1);
-        }
-    }
-
-    public filterEvents(levels, tracks, type) {
-        this.getEventsByType(type).then(events => {
-
-            var promise = new Promise((resolve, reject) => {
-                var filteredEvents = [];
-                this.events[type].forEach(event => {
-                    if (this.inLevels(event, levels) && this.inTracks(event, tracks)) {
-                        filteredEvents.push(event);
-                    }
-                });
-                resolve(filteredEvents);
-            })
-
-            promise.then(events => {
-                this.transformEvents(events).then(data => {
-                    this.bindChanges(data, true);
-                    this.eventsChanged$.emit('changed');
-                })
-            })
-        });
-    }
-
-    isFavorite(event) {
-        if (this.favoriteEvents.indexOf(event.eventId.toString()) !== -1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private transform(item) {
+    private _transform(item) {
 
         if (item.experienceLevel) {
             this._levelService.getLevel(item.experienceLevel).then(level => {
@@ -241,7 +260,7 @@ export class EventService {
         }
 
         item.href = false;
-        if (this._nonClickableTypes.indexOf(item.type) === -1) {
+        if (!this.isNonClickable(item.type)) {
             item.href = this._routes[item.event_type] + item.eventId;
         }
 
@@ -259,7 +278,7 @@ export class EventService {
         item.fromLabel = moment(item.from, moment.ISO_8601).format('LT');
         item.toLabel = moment(item.to, moment.ISO_8601).format('LT');
         if (item.isFavorite) {
-            this.favoriteEvents.push(item.eventId);
+            this._favoriteEvents.push(item.eventId);
         }
 
         return item;
@@ -280,7 +299,7 @@ export class EventService {
                     transformed[event_day][event_hours] = [];
                 }
 
-                transformed[event_day][event_hours].push(this.transform(event));
+                transformed[event_day][event_hours].push(this._transform(event));
             });
 
             return resolve(transformed);

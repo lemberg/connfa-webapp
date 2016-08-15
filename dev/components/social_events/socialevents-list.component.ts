@@ -59,7 +59,7 @@ export class SocialeventsListComponent implements OnInit {
     }
 
     public setActiveDate(date) {
-        this._eventService.setActiveDate(date);
+        this._eventService.setActiveDate(date, true);
         this.activeDate = date;
     }
 
