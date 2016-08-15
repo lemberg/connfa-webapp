@@ -1132,7 +1132,8 @@ header {
     top: 22px; }
   header .nav > li > a {
     padding-right: 30px;
-    position: relative; }
+    position: relative;
+    display: inline-block; }
     header .nav > li > a:after {
       content: '';
       position: absolute;
