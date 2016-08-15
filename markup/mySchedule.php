@@ -326,37 +326,38 @@
             </ul>
         </section>
         <section class="description">
-            <header>
-                <div class="top-menu">
-                    <div class="arrow-back">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+            <div class="panel-scroll">
+                <header>
+                    <div class="top-menu">
+                        <div class="arrow-back">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                         <path d="M20,11H7.83l5.59-5.59L12,4l-8,8l8,8l1.41-1.41L7.83,13H20V11z"/>
                         </svg>
+                        </div>
+                        <span class="info-text">My Schedule</span>
                     </div>
-                    <span class="info-text">My Schedule</span>
-                </div>
-            </header>
-           <div class="desc-info-wrap">
-               <h1 class="title-desc">
-                   Drupal 8 Kickstart
-                   <div class="icons-view">
-                       <ul class="nav-share">
-                           <li>
-                               <a href="#" class="share-icon">
-                                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                        width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                </header>
+                <div class="desc-info-wrap">
+                    <h1 class="title-desc">
+                        Drupal 8 Kickstart
+                        <div class="icons-view">
+                            <ul class="nav-share">
+                                <li>
+                                    <a href="#" class="share-icon">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                             <path d="M18,16.08c-0.76,0-1.439,0.3-1.96,0.77L8.91,12.7C8.96,12.47,9,12.24,9,12s-0.04-0.47-0.09-0.7l7.05-4.11
                                 C16.5,7.69,17.21,8,18,8c1.66,0,3-1.34,3-3s-1.34-3-3-3s-3,1.34-3,3c0,0.24,0.04,0.47,0.09,0.7L8.04,9.81C7.5,9.31,6.79,9,6,9
                                 c-1.66,0-3,1.34-3,3s1.34,3,3,3c0.79,0,1.5-0.311,2.04-0.811l7.12,4.16c-0.051,0.211-0.08,0.43-0.08,0.65
                                 c0,1.609,1.311,2.92,2.92,2.92s2.92-1.311,2.92-2.92S19.609,16.08,18,16.08z"/>
                             </svg>
-                               </a>
-                               <ul class="nav-sub">
-                                   <li>
-                                       <a href="#">
-                                           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                                    </a>
+                                    <ul class="nav-sub">
+                                        <li>
+                                            <a href="#">
+                                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                     width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
                                             <g>
                                                 <path d="M11.877,9.061c-0.007-0.068-0.033-0.091-0.105-0.091c-1.538,0.002-3.075,0.002-4.613,0c-0.073,0-0.095,0.02-0.094,0.093
                                                     c0.003,0.618,0.002,1.236,0.003,1.855c0,0.106,0,0.106,0.104,0.106c0.84,0,1.68,0,2.52,0c0.032,0,0.063,0,0.095,0
@@ -374,24 +375,24 @@
                                                     c0.039,0,0.072-0.033,0.072-0.072v-1.699h1.7c0.039,0,0.072-0.033,0.072-0.073V9.17C18,9.129,17.967,9.097,17.928,9.097z"/>
                                             </g>
                                             </svg>
-                                           Google+
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="#">
-                                           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                                                Google+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                     width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
                                             <path fill="#12100B" d="M13.438,9.989h-2.251V18H7.88V9.989H6.258V7.211H7.88V5.548c0-1.704,0.589-2.799,1.745-3.264
                                                 C10.192,2.06,10.679,2,11.186,2h2.515v2.757H12.2c-0.446,0-0.73,0.123-0.872,0.365c-0.102,0.162-0.142,0.445-0.142,0.831v1.258
                                                 h2.555L13.438,9.989z"/>
                                             </svg>
-                                            Facebook
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="#">
-                                           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                width="20px" height="20px" viewBox="2 2 20 20" enable-background="new 2 2 20 20" xml:space="preserve">
+                                                Facebook
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                     width="20px" height="20px" viewBox="2 2 20 20" enable-background="new 2 2 20 20" xml:space="preserve">
                                             <path d="M19.639,7.32c-0.589,0.261-1.221,0.438-1.886,0.517c0.678-0.407,1.198-1.05,1.444-1.816
                                                 c-0.635,0.375-1.339,0.649-2.085,0.797c-0.599-0.64-1.45-1.037-2.396-1.037c-1.814,0-3.282,1.47-3.282,3.282
                                                 c0,0.257,0.029,0.507,0.086,0.748C8.792,9.673,6.373,8.366,4.752,6.379C4.47,6.866,4.309,7.429,4.309,8.032
@@ -400,44 +401,44 @@
                                                 c-1.123,0.881-2.539,1.403-4.078,1.403c-0.266,0-0.527-0.015-0.783-0.046c1.452,0.932,3.178,1.475,5.031,1.475
                                                 c6.038,0,9.341-5.003,9.341-9.339c0-0.143-0.005-0.285-0.011-0.424C18.644,8.556,19.2,7.978,19.639,7.32"/>
                                             </svg>
-                                           Twitter
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="#">
-                                           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                                                Twitter
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                     width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
                                             <path d="M18,14.86c0,0.786-0.643,1.43-1.429,1.43H3.429C2.643,16.29,2,15.646,2,14.86V7.766C2.268,8.061,2.571,8.32,2.902,8.543
                                                 c1.482,1.01,2.982,2.019,4.438,3.083c0.75,0.554,1.679,1.233,2.652,1.233H10h0.009c0.973,0,1.902-0.68,2.652-1.233
                                                 c1.454-1.054,2.955-2.073,4.446-3.083C17.428,8.32,17.732,8.061,18,7.766V14.86z"/>
-                                                                                           <path d="M16.474,7.587c-1.394,0.965-2.795,1.93-4.179,2.904c-0.581,0.402-1.563,1.225-2.286,1.225H10H9.991
+                                                    <path d="M16.474,7.587c-1.394,0.965-2.795,1.93-4.179,2.904c-0.581,0.402-1.563,1.225-2.286,1.225H10H9.991
                                                 c-0.723,0-1.706-0.822-2.286-1.225C6.321,9.517,4.919,8.553,3.536,7.587C2.902,7.158,2,6.149,2,5.336C2,4.46,2.473,3.71,3.429,3.71
                                                 h13.143C17.349,3.71,18,4.353,18,5.14C18,6.14,17.259,7.042,16.474,7.587z"/>
                                             </svg>
-                                           Email
-                                       </a>
-                                   </li>
-                               </ul>
-                           </li>
-                       </ul>
+                                                Email
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
 
-                       <a href="#" class="icon-favorite">
-                           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                            <a href="#" class="icon-favorite">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                         <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M12,17.27L18.179,21l-1.639-7.029L22,9.24L14.81,8.63L12,2L9.19,8.63
                         L2,9.24l5.46,4.731L5.819,21L12,17.27z"></path>
                        </svg>
-                       </a>
-                   </div>
-               </h1>
-               <div class="desc-info">
-                   Wed, 10:45 AM - 11:45 AM in 260-261 (Pantheon)
-               </div>
-               <div class="desc-type-session">
-                   <p>Coding and Development</p>
-               </div>
-               <div class="desk-level">
-                   <p>
-                       Experience level: Intermediate
+                            </a>
+                        </div>
+                    </h1>
+                    <div class="desc-info">
+                        Wed, 10:45 AM - 11:45 AM in 260-261 (Pantheon)
+                    </div>
+                    <div class="desc-type-session">
+                        <p>Coding and Development</p>
+                    </div>
+                    <div class="desk-level">
+                        <p>
+                            Experience level: Intermediate
                       <span class="level-icon level-icon2">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
@@ -446,27 +447,28 @@
                         <rect class="level-rect2" x="8.667" y="7.555" width="2.666" height="9.778"/>
                     </svg>
                 </span>
-                   </p>
-               </div>
-           </div>
-            <div class="desc-speaker-wrap cf">
-                <div class="desc-photo-speaker">
-                    <img src="images/photo1.png">
-                </div>
-                <div class="desc-info-speaker">
-                    <div class="desc-name-speaker">
-                        <p>Peter Sawczynec</p>
-                    </div>
-                    <div class="desc-work-speaker">
-                        Pantheon / Customer Success Engineer
+                        </p>
                     </div>
                 </div>
+                <div class="desc-speaker-wrap cf">
+                    <div class="desc-photo-speaker">
+                        <img src="images/photo1.png">
+                    </div>
+                    <div class="desc-info-speaker">
+                        <div class="desc-name-speaker">
+                            <p>Peter Sawczynec</p>
+                        </div>
+                        <div class="desc-work-speaker">
+                            Pantheon / Customer Success Engineer
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet, vulputate volutpat leo in vehicula vitae aenean. Leo pede molestie a. Vitae optio litora aut, quisque id, vel proin u
+                    rna corrupti, eu rhoncus et massa in. Quam enim, mi dui ac cras habitasse sem volutpat, a ut, lobortis mattis nam quam aliquam quam. Aliquam hendrerit suspendisse
+                    <a href="#">Quam enim, mi dui ac cras habitasse sem volut</a>
+                </p>
             </div>
-            <p>
-                Lorem ipsum dolor sit amet, vulputate volutpat leo in vehicula vitae aenean. Leo pede molestie a. Vitae optio litora aut, quisque id, vel proin u
-                rna corrupti, eu rhoncus et massa in. Quam enim, mi dui ac cras habitasse sem volutpat, a ut, lobortis mattis nam quam aliquam quam. Aliquam hendrerit suspendisse
-                <a href="#">Quam enim, mi dui ac cras habitasse sem volut</a>
-            </p>
         </section>
         <?php include_once("filter.php");?>
     </div>

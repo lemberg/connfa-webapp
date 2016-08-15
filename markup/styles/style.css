@@ -397,6 +397,15 @@ body {
 
 .events-info {
   overflow: hidden; }
+  .events-info:before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 123px;
+    height: 100%;
+    background: #F5F5F5; }
   .events-info a {
     color: rgba(0, 0, 0, 0.87);
     text-decoration: none;
@@ -442,7 +451,7 @@ body {
     position: absolute;
     left: 24px;
     top: 50%;
-    margin-top: -9px; }
+    margin-top: -12px; }
   .events-info .speaker,
   .events-info .place {
     padding-left: 24px; }
@@ -475,20 +484,20 @@ body {
     color: rgba(0, 0, 0, 0.54);
     margin-top: 3px;
     position: relative; }
-  .events-info:before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    top: 0;
-    width: 123px;
-    height: 100%;
-    background: #F5F5F5; }
   .events-info li {
     position: relative;
     z-index: 1;
     padding: 8px 0;
     border-bottom: 1px solid #DCDCDC; }
+    .events-info li:before {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      top: 0;
+      width: 123px;
+      height: 100%;
+      background: #F5F5F5; }
   .events-info path {
     stroke-opacity: .54; }
   .events-info svg {
@@ -532,7 +541,10 @@ body {
     border-bottom: none;
     font-size: 14px;
     padding: 27px 24px 2px 24px;
-    color: #4077AA; }
+    color: #4F3B9A; }
+    .events-info.my-schedule li.title span {
+      position: relative;
+      z-index: 1; }
 
 .events-info_box a.router-link-active {
   background: #E0E0E0; }
@@ -591,14 +603,14 @@ body {
   display: inline-block;
   position: relative; }
   .link-site a svg {
-    fill: #4077AA;
+    fill: #4F3B9A;
     width: 15px;
     height: auto;
     position: absolute;
     left: 13px;
     top: 10px; }
   .link-site a path {
-    stroke: #4077AA; }
+    stroke: #4F3B9A; }
 
 .social-media {
   width: 600px;
@@ -771,6 +783,8 @@ body {
 
   .events-info:before {
     width: 107px; }
+  .events-info li:before {
+    width: 107px; }
   .events-info .info-event {
     padding: 14px 34px 14px 14px;
     margin-left: 107px; }
@@ -809,7 +823,7 @@ body {
           display: none; }
       .filter-nav .filter-nav_wrap strong {
         font-size: 14px;
-        color: #4077AA;
+        color: #4F3B9A;
         font-family: "roboto-regular"; }
     .filter-nav.active {
       top: 0;
@@ -909,7 +923,7 @@ label {
     cursor: pointer;
     display: block;
     position: relative;
-    padding-right: 15px;
+    padding-right: 20px;
     color: rgba(0, 0, 0, 0.54); }
   label .check-all {
     font-family: "roboto-medium";

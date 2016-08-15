@@ -196,6 +196,7 @@ header{
       >a{
         padding-right: 30px;
         position: relative;
+        display: inline-block;
         &:after{
           content: '';
           position: absolute;

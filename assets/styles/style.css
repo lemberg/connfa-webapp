@@ -541,7 +541,7 @@ body {
     border-bottom: none;
     font-size: 14px;
     padding: 27px 24px 2px 24px;
-    color: #4077AA; }
+    color: #4F3B9A; }
     .events-info.my-schedule li.title span {
       position: relative;
       z-index: 1; }
@@ -823,7 +823,7 @@ body {
           display: none; }
       .filter-nav .filter-nav_wrap strong {
         font-size: 14px;
-        color: #4077AA;
+        color: #4F3B9A;
         font-family: "roboto-regular"; }
     .filter-nav.active {
       top: 0;
@@ -1132,7 +1132,8 @@ header {
     top: 22px; }
   header .nav > li > a {
     padding-right: 30px;
-    position: relative; }
+    position: relative;
+    display: inline-block; }
     header .nav > li > a:after {
       content: '';
       position: absolute;
