@@ -45,7 +45,7 @@ export class SchedulerListComponent implements OnInit, OnDestroy {
     }
 
     public setActiveDate(date) {
-        this._schedulerService.setActiveDate(date);
+        this._schedulerService.setActiveDate(date, true);
         this.activeDate = date;
     }
 

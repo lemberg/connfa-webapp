@@ -21,6 +21,7 @@ import {SchedulerDetailComponent} from "./components/scheduler/scheduler-detail.
 import {SocialeventsListComponent} from "./components/social_events/socialevents-list.component";
 import {SocialeventDetailComponent} from "./components/social_events/socialevents-detail.component";
 import {SocialmediaComponent} from "./components/social_media/socialmedia.component";
+import {WindowService} from "./services/window.service";
 
 
 
@@ -47,7 +48,7 @@ import {SocialmediaComponent} from "./components/social_media/socialmedia.compon
         SchedulerDetailComponent,
         SocialmediaComponent,
     ],
-    providers: [SpeakerService, SpeakersEventsService, EventService]
+    providers: [SpeakerService, SpeakersEventsService, WindowService, EventService]
 })
 
 export class AppComponent {

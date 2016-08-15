@@ -7,6 +7,8 @@ import {EventService} from "./event.service";
 import {Speaker} from "../models/speaker";
 import {Event} from "../models/event";
 import moment from 'moment';
+import {WindowService} from "./window.service";
+import {Router} from "@angular/router";
 
 @Injectable()
 
@@ -27,7 +29,9 @@ export class SchedulerService {
                        private _trackService:TrackService,
                        private _speakerService:SpeakerService,
                        private _levelService:LevelService,
-                       private _eventService:EventService) {
+                       private _eventService:EventService,
+                       private _windowService:WindowService,
+                       private _router:Router) {
 
         this.eventsChanged$ = new EventEmitter();
 
@@ -83,9 +87,13 @@ export class SchedulerService {
         })
     }
 
-    public setActiveDate(date) {
+    public setActiveDate(date, redirect = false) {
         this.activeDate = date;
         this.activeEvents = this.formatted[this.activeDate];
+        if (redirect && this._windowService.isDesktop()) {
+            var event = this._getFirstActiveEvent(this.activeEvents);
+            this._router.navigate(['/scheduler/' + event.eventId]);
+        }
         this.eventsChanged$.emit(date);
     }
 
@@ -117,6 +125,14 @@ export class SchedulerService {
         }
         this.activeEvents = this.formatted[this.activeDate];
         // this.hours = Object.keys(this.activeEvents);
+    }
+
+    private _getFirstActiveEvent(activeEvents) {
+        var firstCategory = Object.keys(activeEvents)[0];
+        var firstHour = Object.keys(activeEvents[firstCategory])[0];
+        var event = this.activeEvents[firstCategory][firstHour][0];
+
+        return event;
     }
 
     private transformEvents(events) {

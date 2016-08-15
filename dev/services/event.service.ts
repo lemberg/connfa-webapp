@@ -7,6 +7,7 @@ import {TrackService} from "./track.service";
 import {Speaker} from "../models/speaker";
 import moment from 'moment';
 import {Router} from "@angular/router";
+import {WindowService} from "./window.service";
 
 
 @Injectable()
@@ -40,6 +41,7 @@ export class EventService {
                 private _speakerService:SpeakerService,
                 private _levelService:LevelService,
                 private _trackService:TrackService,
+                private _windowService:WindowService,
                 private _router:Router,
                 @Inject('localforage') localforage) {
 
@@ -125,7 +127,7 @@ export class EventService {
     public setActiveDate(date, redirect = false) {
         this.activeDate = date;
         this.activeEvents = this.formattedEvents[this.activeDate];
-        if (redirect) {
+        if (redirect && this._windowService.isDesktop()) {
             var event = this._getFirstActiveEvent(this.activeEvents);
             this._router.navigate([this._routes[event.event_type] + event.eventId]);
         }
