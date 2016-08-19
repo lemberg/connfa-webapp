@@ -451,6 +451,9 @@ body{
     color: $color-first;
     text-decoration: none;
     display: block;
+    &.dissabled{
+      color: $color-events;
+    }
   }
   .wrap-time{
     width: 123px;
