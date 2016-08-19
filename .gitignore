@@ -1,8 +1,0 @@
-/node_modules
-/app
-/src
-.idea/*
-/markup/.idea/*
-/npm-debug.log*
-/typings/*
-/dev/config/env.ts
