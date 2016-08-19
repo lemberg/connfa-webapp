@@ -765,7 +765,7 @@ body {
       padding-left: 0; }
     .open .over {
       opacity: .8;
-      z-index: 4;
+      z-index: 11;
       left: 0;
       top: 0; }
 
@@ -775,7 +775,7 @@ body {
     -o-transition: opacity ease 0.5s;
     -ms-transition: opacity ease 0.5s;
     transition: opacity ease 0.5s;
-    z-index: 6;
+    z-index: 11;
     left: 0;
     top: 0; }
 
