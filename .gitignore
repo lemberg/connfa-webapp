@@ -1,8 +1,6 @@
-/node_modules
-/app
-/src
-.idea/*
-/markup/.idea/*
-/npm-debug.log*
-/typings/*
-/dev/config/env.ts
+/dist/
+/typings/
+/.idea/
+/node_modules/
+/public/styles/
+npm-debug.log
