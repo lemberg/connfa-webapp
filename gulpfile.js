@@ -32,7 +32,7 @@ gulp.task('htaccess', function () {
 })
 
 gulp.task('watch', function () {
-	gulp.watch('src/assets/styles/*', ['build-scss']);
+	gulp.watch('src/assets/styles/**/*', ['build-scss', 'build-assets']);
 });
 
 gulp.task('build', ['build-scss', 'build-assets', 'htaccess']);
