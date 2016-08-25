@@ -2,3 +2,5 @@
 /typings/
 /.idea/
 /node_modules/
+/public/styles/
+npm-debug.log
