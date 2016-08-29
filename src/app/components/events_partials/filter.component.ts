@@ -72,6 +72,13 @@ export class FilterComponent implements OnInit {
         this.onSubmit();
     }
 
+    public clearAll() {
+        this.tracksSelected = [];
+        this.levelsSelected = [];
+
+        this.onSubmit();
+    }
+
     public onSubmit() {
         this.levelsSelected.forEach((level:boolean, index:number) => {
             if (level == false) {
