@@ -53,14 +53,13 @@ export class TrackService {
 
     private _sortTracks(tracks:Track[]):Track[] {
         return tracks.sort((a:Track, b:Track) => {
-            if (a.order > b.order) {
+            if (a.trackName > b.trackName) {
                 return 1;
-            } else if (a.order > b.order) {
+            } else if (a.trackName < b.trackName) {
                 return -1;
             } else {
                 return 0;
             }
-            ;
         });
     }
 }
