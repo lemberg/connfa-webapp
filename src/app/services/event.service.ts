@@ -16,7 +16,7 @@ import {Track} from "../models/track";
 
 export class EventService {
 
-    public events:Event[] = [];
+    public events:{} = {};
 
     public formattedEvents:any = [];
     public activeDate:string;
@@ -187,7 +187,7 @@ export class EventService {
             promise.then((events:Event[]) => {
                 this.transformEvents(events).then(data => {
                     this._bindChanges(data, true);
-                    this.eventsChanged$.emit('changed');
+                    this.eventsChanged$.emit('filtered');
                 })
             })
         });

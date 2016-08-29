@@ -41,12 +41,12 @@ export class SessionsListComponent implements OnInit, OnDestroy {
             this.activeDate = this._eventService.activeDate || this.dates[0];
         })
 
-        this._eventService.eventsChanged$.subscribe((data:Event[]) => {
+        this._eventService.eventsChanged$.subscribe((data:Event[]|string) => {
             console.log('CHANGED');
             this.dates = this._eventService.dates;
             this.activeDate = this._eventService.activeDate || this.dates[0];
             this.noMatches = false;
-            if (!this.getKeys(this._eventService.activeEvents).length) {
+            if (!this.getKeys(this._eventService.activeEvents).length && data === 'filtered') {
                 this.noMatches = true;
             }
             this.activeEvents = this._eventService.activeEvents;

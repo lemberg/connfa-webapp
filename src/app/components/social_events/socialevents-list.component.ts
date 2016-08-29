@@ -40,10 +40,10 @@ export class SocialeventsListComponent implements OnInit {
             this.activeDate = this._eventService.activeDate || this.dates[0];
         })
 
-        this._eventService.eventsChanged$.subscribe((date:Event[]) => {
+        this._eventService.eventsChanged$.subscribe((data:Event[]|string) => {
             console.log('CHANGED');
             this.noMatches = false;
-            if (!this.getKeys(this._eventService.activeEvents).length) {
+            if (!this.getKeys(this._eventService.activeEvents).length && data === 'filtered') {
                 this.noMatches = true;
             }
             this.activeEvents = this._eventService.activeEvents;
