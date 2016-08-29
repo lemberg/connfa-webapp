@@ -17,12 +17,11 @@ export class ApiService {
     private _localforage:any;
 
     constructor(private _http:Http,
-                // @Inject('config') config, @todo
+                @Inject('config') config:{},
                 @Inject('localforage') localforage:any
     ) {
 
-        this._config = {"apiUrl": "http://local.connfa/api/v2/", //@todo
-            "googleApiKey": "AIzaSyD2z7GAvlk3Stq0tOZYht8QhXatwMY12f0"};
+        this._config = config;
         this._localforage = {}
         this._localforage = localforage;
         this.dataChanged$ = new EventEmitter();

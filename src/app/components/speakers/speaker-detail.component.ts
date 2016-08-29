@@ -5,6 +5,8 @@ import {SpeakerService} from "../../services/speaker.service";
 import {SpeakersListComponent} from "./speakers-list.component";
 import {SpeakersEventsService} from "../../services/speakers_events.service";
 
+declare var jQuery:any;
+
 @Component({
     selector: 'speaker-details',
     templateUrl: '../../views/speakers/detail.html',

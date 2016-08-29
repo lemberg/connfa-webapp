@@ -6,6 +6,8 @@ import {EventService} from "../../services/event.service";
 import * as moment from 'moment';
 import {Event} from "../../models/event";
 
+declare var jQuery:any;
+
 @Component({
     selector: 'event-details',
     templateUrl: '../../views/events_partials/details.html',

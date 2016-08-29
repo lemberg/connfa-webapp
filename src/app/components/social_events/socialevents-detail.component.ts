@@ -6,6 +6,8 @@ import {EventService} from "../../services/event.service";
 import {Event} from "../../models/event";
 import * as moment from 'moment';
 
+declare var jQuery:any;
+
 @Component({
     selector: 'event-details',
     templateUrl: '../../views/events_partials/details.html',
@@ -35,6 +37,10 @@ export class SocialeventDetailComponent implements OnInit{
                     this._eventService.eventsChanged$.subscribe((data:Event[]) => {
                         this._getEvent(id);
                     });
+
+                    jQuery('body').addClass('overflowHidden');
+                } else {
+                    jQuery('body').removeClass('overflowHidden');
                 }
             })
         }
