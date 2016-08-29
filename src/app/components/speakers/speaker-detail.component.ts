@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from "@angular/router";
 import {Speaker} from "../../models/speaker";
 import {SpeakerService} from "../../services/speaker.service";
@@ -13,7 +13,7 @@ import {SpeakersEventsService} from "../../services/speakers_events.service";
     providers: [SpeakersEventsService]
 })
 
-export class SpeakerDetailsComponent implements OnInit {
+export class SpeakerDetailsComponent implements OnInit, OnDestroy {
 
     public speaker:Speaker;
     public eventRoutes = {
@@ -35,6 +35,12 @@ export class SpeakerDetailsComponent implements OnInit {
                 this._getSpeaker(id);
             });
         });
+
+        jQuery('body').addClass('overflowHidden');
+    }
+
+    ngOnDestroy():void {
+        jQuery('body').removeClass('overflowHidden');
     }
 
     private _getSpeaker(id:number):void {

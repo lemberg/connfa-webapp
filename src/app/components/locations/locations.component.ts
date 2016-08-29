@@ -18,7 +18,7 @@ export class LocationsComponent implements OnInit{
     public locationUrl:SafeResourceUrl;
 
     constructor(private _locationService: LocationService, @Inject('config') config:any, private sanitationService:DomSanitizationService) {
-        this.config = config; //@todo
+        this.config = config;
     }
 
     ngOnInit():any {

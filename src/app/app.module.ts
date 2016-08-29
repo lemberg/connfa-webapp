@@ -32,6 +32,9 @@ import {ListDetailsComponent} from "./components/events_partials/list-details.co
 import {FavoritesComponent} from "./components/events_partials/favorites.component";
 import {FilterComponent} from "./components/events_partials/filter.component";
 
+import {ENV} from "./config/env";
+import {CONFIG} from "./config/config";
+
 
 @NgModule({
 	imports: [
@@ -70,7 +73,8 @@ import {FilterComponent} from "./components/events_partials/filter.component";
 		TrackService,
 		APP_ROUTER_PROVIDERS,
 		HTTP_PROVIDERS,
-		provide('localforage', {useValue: localforage})
+		provide('localforage', {useValue: localforage}),
+		provide('config', {useValue: CONFIG[ENV]})
 	],
 	bootstrap: [AppComponent]
 })

@@ -35,6 +35,10 @@ export class SessionDetailComponent implements OnInit {
                 this._eventService.eventsChanged$.subscribe((data:Event[]) => {
                     this._getEvent(id);
                 })
+
+                jQuery('body').addClass('overflowHidden');
+            } else {
+                jQuery('body').removeClass('overflowHidden');
             }
         })
     }
