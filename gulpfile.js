@@ -26,6 +26,11 @@ gulp.task('build-scss', function () {
 		.pipe(gulp.dest('public/styles/'));
 });
 
+gulp.task('build-js', function () {
+	return gulp.src('src/assets/js/**/*.js')
+		.pipe(gulp.dest('public/js/'));
+})
+
 gulp.task('htaccess', function () {
 	gulp.src('public/.htaccess')
 		.pipe(gulp.dest('dist'));
@@ -33,7 +38,8 @@ gulp.task('htaccess', function () {
 
 gulp.task('watch', function () {
 	gulp.watch('src/assets/styles/**/*', ['build-scss', 'build-assets']);
+	gulp.watch('src/assets/js/**/*', ['build-js', 'build-assets']);
 });
 
-gulp.task('build', ['build-scss', 'build-assets', 'htaccess']);
+gulp.task('build', ['build-scss', 'build-js', 'build-assets', 'htaccess']);
 

@@ -3,6 +3,7 @@
 /.idea/
 /node_modules/
 /public/styles/
+/public/js/
 npm-debug.log
 /src/app/config/config.ts
 /src/app/config/env.ts

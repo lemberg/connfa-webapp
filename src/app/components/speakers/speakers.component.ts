@@ -18,8 +18,13 @@ export class SpeakersComponent implements OnInit{
 
     public searchQuery:string;
 
-    searchSpeaker = function (value:string) {
+    public searchSpeaker(value:string) {
         this.searchQuery = value;
         this._speakerService.search(value);
+    }
+
+    public clearSearch() {
+        this.searchQuery = '';
+        this._speakerService.search('');
     }
 }
