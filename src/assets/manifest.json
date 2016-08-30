@@ -4,17 +4,17 @@
   "icons": [
     {
       "src": "images/icon.png",
-      "sizes": "96x96",
+      "sizes": "96x117",
       "type": "image/png"
     },
     {
       "src": "images/icon.png",
-      "sizes": "144x144",
+      "sizes": "144x175",
       "type": "image/png"
     },
     {
       "src": "images/icon.png",
-      "sizes": "192x192",
+      "sizes": "192x233",
       "type": "image/png"
     }
   ],
