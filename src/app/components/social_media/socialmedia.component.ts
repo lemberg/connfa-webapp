@@ -14,22 +14,26 @@ declare var twttr:any;
 export class SocialmediaComponent implements OnInit {
 
     public widget:any;
+    public twitterWidgetId:string;
+    public showWidget:boolean = false;
 
     constructor(private _settings:SettingService) {
     }
 
     ngOnInit():any {
         this._settings.getSetting('twitterWidgetId').then((twitterWidgetId:string) => {
-            this.widget = twttr.widgets.createTimeline(
-                twitterWidgetId,
-                document.getElementById("container"),
-                {
-                    height: '92%',
-                    width: '100%',
-                }
-            ).then((data:any) => {
-                console.log(data);
-            });
+            if (twitterWidgetId) {
+                this.twitterWidgetId = twitterWidgetId;
+                this.widget = twttr.widgets.createTimeline(
+                    twitterWidgetId,
+                    document.getElementById("container")
+                ).then((data:HTMLIFrameElement) => {
+                    if (data) {
+                        this.showWidget = true;
+                    }
+                });
+            }
         });
     }
 }
+

@@ -729,7 +729,17 @@ body{
 .social-media{
   width: 600px;
   max-width: 100%;
-  margin: 0 auto;
+  margin: -64px auto 0;
+  height: 100vh;
+  padding-top: 64px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  .twitter-timeline{
+    height: 100% !important;
+    width: 100% !important;
+  }
 }
 .location,.plane{
   .box{
