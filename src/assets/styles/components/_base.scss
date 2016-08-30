@@ -54,11 +54,12 @@ body{
     a{
       font-size: 14px;
       line-height: 1.2;
-      color: $color-first;
+      color: $color-second;
       text-decoration: none;
       display: block;
       position: relative;
       padding: 16px 16px 16px 80px;
+      font-family:$font-second;
       @media (min-width: $mediaMinWidth) {
         &:hover{
           background: $bg-color-hover;
@@ -68,7 +69,7 @@ body{
         position: absolute;
         left: 26px;
         top: 11px;
-        fill-opacity: .54;
+        fill: $color-second;
       }
     }
     &.active{
@@ -953,7 +954,6 @@ body{
       strong{
         font-size: 14px;
         color: $color-link;
-        font-family: $font-first;
       }
     }
     &.active{
