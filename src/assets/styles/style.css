@@ -627,7 +627,7 @@ body {
   overflow: hidden; }
   .social-media .twitter-timeline {
     height: 100% !important;
-    width: 100% !important; }
+    width: 600 !important; }
 
 .location .box, .plane .box {
   padding: 24px; }
