@@ -31,6 +31,16 @@ gulp.task('build-js', function () {
 		.pipe(gulp.dest('public/js/'));
 })
 
+gulp.task('build-images', function () {
+	return gulp.src('src/assets/images/**/*')
+		.pipe(gulp.dest('public/images/'));
+})
+
+gulp.task('manifest', function () {
+	gulp.src('src/assets/manifest.json')
+		.pipe(gulp.dest('public/'));
+})
+
 gulp.task('htaccess', function () {
 	gulp.src('public/.htaccess')
 		.pipe(gulp.dest('dist'));
@@ -39,7 +49,9 @@ gulp.task('htaccess', function () {
 gulp.task('watch', function () {
 	gulp.watch('src/assets/styles/**/*', ['build-scss', 'build-assets']);
 	gulp.watch('src/assets/js/**/*', ['build-js', 'build-assets']);
+	gulp.watch('src/assets/images/**/*', ['build-images', 'build-assets']);
+	gulp.watch('src/assets/manifest.json', ['manifest', 'build-assets']);
 });
 
-gulp.task('build', ['build-scss', 'build-js', 'build-assets', 'htaccess']);
+gulp.task('build', ['build-scss', 'build-js', 'build-images','manifest','build-assets', 'htaccess']);
 

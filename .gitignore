@@ -4,6 +4,7 @@
 /node_modules/
 /public/styles/
 /public/js/
+/public/images/
 npm-debug.log
 /src/app/config/config.ts
 /src/app/config/env.ts
