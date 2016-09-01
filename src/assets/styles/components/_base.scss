@@ -357,6 +357,8 @@ body{
   .title-desc{
     padding-right: 75px;
     position: relative;
+    -ms-word-break: break-all;
+    word-break: break-all;
   }
   .photo-top{
     margin-bottom: 11px;
@@ -736,9 +738,8 @@ body{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  overflow: hidden;
-  .twitter-timeline{
-    height: 100% !important;
+  iframe.twitter-timeline{
+    height: 99.5% !important;
     width: 600px !important;
   }
 }

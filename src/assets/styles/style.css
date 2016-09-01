@@ -335,7 +335,9 @@ body {
     top: 0; }
   .description .title-desc {
     padding-right: 75px;
-    position: relative; }
+    position: relative;
+    -ms-word-break: break-all;
+    word-break: break-all; }
   .description .photo-top {
     margin-bottom: 11px; }
     .description .photo-top img {
@@ -623,11 +625,10 @@ body {
   padding-top: 64px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  overflow: hidden; }
-  .social-media .twitter-timeline {
-    height: 100% !important;
-    width: 600 !important; }
+  box-sizing: border-box; }
+  .social-media iframe.twitter-timeline {
+    height: 99.5% !important;
+    width: 600px !important; }
 
 .location .box, .plane .box {
   padding: 24px; }
