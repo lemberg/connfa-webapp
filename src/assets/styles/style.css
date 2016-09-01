@@ -706,6 +706,9 @@ body {
     position: fixed;
     top: 80px;
     right: 100px; }
+    @media (max-width: 979px) {
+      .nav-share .nav-sub {
+        right: 65px; } }
 
 @media (max-width: 979px) {
   body.overflow .filter-nav,
