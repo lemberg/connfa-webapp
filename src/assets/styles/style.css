@@ -627,7 +627,6 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
   .social-media iframe.twitter-timeline {
-    height: 99.5% !important;
     width: 600px !important; }
 
 .location .box, .plane .box {
@@ -857,6 +856,9 @@ body {
   .plane .box-img {
     padding-bottom: 75%; } }
 @media (min-width: 1025px) {
+  .social-media iframe.twitter-timeline {
+    height: 99.5% !important; }
+
   .plane .box-img {
     padding-bottom: 0;
     min-height: 100vh;

@@ -739,7 +739,6 @@ body{
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   iframe.twitter-timeline{
-    height: 99.5% !important;
     width: 600px !important;
   }
 }
@@ -987,6 +986,11 @@ body{
   }
 }
 @media (min-width: 1025px){
+  .social-media{
+    iframe.twitter-timeline{
+      height: 99.5% !important;
+    }
+  }
   .plane{
     .box-img{
       padding-bottom: 0;
