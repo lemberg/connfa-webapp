@@ -786,6 +786,11 @@ body{
   display: inline-block;
   position: relative;
   @include nav-sub-box(13px, 51px, 13px, 47px);
+  .nav-sub{
+    position: fixed;
+    top: 80px;
+    right: 100px;
+  }
 }
 @media (max-width: $mediaMaxWidth) {
   body{

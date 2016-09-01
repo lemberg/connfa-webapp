@@ -703,6 +703,10 @@ body {
       fill-opacity: .54; }
   .nav-share.active .nav-sub {
     display: block; }
+  .nav-share .nav-sub {
+    position: fixed;
+    top: 80px;
+    right: 100px; }
 
 @media (max-width: 979px) {
   body.overflow .filter-nav,
