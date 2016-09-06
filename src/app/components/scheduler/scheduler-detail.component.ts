@@ -15,6 +15,8 @@ import {Event} from "../../models/event";
 export class SchedulerDetailComponent {
 
     public event:Event;
+    public parentRoute:string = '/scheduler/';
+    public title:string = 'My Schedule';
     public canView:boolean = false;
 
     constructor(private _schedulerService: SchedulerService, private _router: ActivatedRoute) {}
