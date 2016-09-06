@@ -357,6 +357,8 @@ body{
   .title-desc{
     padding-right: 75px;
     position: relative;
+    -ms-word-break: break-all;
+    word-break: break-all;
   }
   .photo-top{
     margin-bottom: 11px;
@@ -736,10 +738,8 @@ body{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  overflow: hidden;
-  .twitter-timeline{
-    height: 100% !important;
-    width: 100% !important;
+  iframe.twitter-timeline{
+    width: 600px !important;
   }
 }
 .location,.plane{
@@ -785,6 +785,14 @@ body{
   display: inline-block;
   position: relative;
   @include nav-sub-box(13px, 51px, 13px, 47px);
+  .nav-sub{
+    position: fixed;
+    top: 80px;
+    right: 100px;
+    @media (max-width: $mediaMaxWidth) {
+      right: 65px;
+    }
+  }
 }
 @media (max-width: $mediaMaxWidth) {
   body{
@@ -981,6 +989,11 @@ body{
   }
 }
 @media (min-width: 1025px){
+  .social-media{
+    iframe.twitter-timeline{
+      height: 99.5% !important;
+    }
+  }
   .plane{
     .box-img{
       padding-bottom: 0;
