@@ -752,21 +752,22 @@ body{
   }
 }
 .plane{
+  min-height:100vh;
+  background: #ffffff;
+  overflow: hidden;
+  padding-bottom: 64px;
+  margin-bottom: -64px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  @include display-flex;
+  @include flex-wrap-wrap;
+  @include justify-content(center);
+  @include align-items(center);
   .box-img{
-    position: relative;
-    padding-bottom: 49%;
-    img{
-      position: absolute;
-      left: 0;
-      top: 0;
-      margin: auto;
-      right: 0;
-      bottom: 0;
-      padding: $padding-items-mob;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
+    text-align: center;
+    padding: 24px 0;
+    img{}
   }
 }
 .response{
@@ -983,9 +984,8 @@ body{
     }
   }
   .plane{
-    .box-img{
-      padding-bottom: 75%;
-    }
+    padding-bottom: 112px;
+    margin-bottom: -112px;
   }
 }
 @media (min-width: 1025px){
@@ -995,10 +995,6 @@ body{
     }
   }
   .plane{
-    .box-img{
-      padding-bottom: 0;
-      @include calc;
-
-    }
+    .box-img{}
   }
 }

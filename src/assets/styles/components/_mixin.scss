@@ -122,3 +122,52 @@
   -moz-box-shadow:  0 0 12px rgba(0,0,0, 0.65);
   box-shadow:  0 0 12px rgba(0,0,0, 0.65);
 }
+
+
+//Flex Box mixins
+@mixin display-flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+@mixin flex-wrap-wrap {
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+@mixin flex-direction($value) {
+  @if $value == 'row' {
+    -moz-box-orient: horizontal;
+    -webkit-box-orient: horizontal;
+    box-orient: horizontal;
+  }
+  @if $value == 'column' {
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+  }
+  -webkit-flex-direction: $value;
+  -moz-flex-direction: $value;
+  flex-direction: $value;
+}
+@mixin flex-order($value) {
+  -webkit-box-ordinal-group: $value;
+  -moz-box-ordinal-group: $value;
+  -ms-flex-order: $value;
+  -webkit-order: $value;
+  order: $value;
+}
+@mixin justify-content($justify: space-between){
+  -webkit-justify-content: $justify;
+  -ms-justify-content: $justify;
+  justify-content: $justify;
+}
+@mixin align-items($align: center){
+  -webkit-align-items: $align;
+  -ms-align-items: $align;
+  align-items: $align;
+}
