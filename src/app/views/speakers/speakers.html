@@ -7,8 +7,8 @@
         <span class="info-text">Speakers</span>
     </div>
     <div class="search">
-        <span class="icon-search"></span>
-        <input type="search" placeholder="Search" #search [ngModel]="searchQuery" (ngModelChange)="searchSpeaker(search.value)">
+        <label for="search" class="icon-search"></label>
+        <input id="search" type="search" placeholder="Search" #search [ngModel]="searchQuery" (ngModelChange)="searchSpeaker(search.value)">
         <span class="close" (click)="clearSearch()">
             <svg version="1.1" id="clear-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
