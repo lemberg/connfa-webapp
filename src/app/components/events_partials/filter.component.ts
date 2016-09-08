@@ -47,6 +47,7 @@ export class FilterComponent implements OnInit {
         })
 
         this._filterService.getFilters().then((filters:any) => {
+            console.log(filters);
             if (filters && filters.levels) {
                 this.levelsSelected = filters.levels;
             }

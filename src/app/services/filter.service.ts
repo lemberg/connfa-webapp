@@ -24,7 +24,7 @@ export class FilterService {
             tracks: tracks,
         }
 
-        instance.setItem('filters', data);
+        instance.setItem('filters_set', data);
     }
 
     public getFilters() {
@@ -32,6 +32,24 @@ export class FilterService {
         var filterInstance = this._localforage.createInstance({
             name: 'filters'
         });
-        return filterInstance.getItem('filters');
+
+        return filterInstance.getItem('filters_set').then(filters => {
+            if (filters.levels) {
+                filters.levels.forEach((value, key) => {
+                    if (!value) {
+                        delete filters.levels[key]
+                    }
+                })
+            }
+
+            if (filters.tracks) {
+                filters.tracks.forEach((value, key) => {
+                    if (!value) {
+                        delete filters.tracks[key]
+                    }
+                })
+            }
+        });
+
     }
 }
