@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, OnDestroy} from "@angular/core";
 import {FavoritesComponent} from "../events_partials/favorites.component";
 import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
 import {BofsListComponent} from "./bofs-list.component";
@@ -14,7 +14,7 @@ declare var jQuery:any;
     directives: [FavoritesComponent, BofsListComponent, ROUTER_DIRECTIVES],
 })
 
-export class BofDetailComponent implements OnInit {
+export class BofDetailComponent implements OnInit, OnDestroy {
 
     public event:Event;
     public parentRoute:string = '/bofs';
@@ -44,6 +44,11 @@ export class BofDetailComponent implements OnInit {
             }
         })
     }
+
+    ngOnDestroy(): void {
+        jQuery('body').removeClass('overflowHidden');
+    }
+
 
     private _getEvent(id:number) {
         return this._eventService.getEvent(id, 'bof').then((event:Event) => {

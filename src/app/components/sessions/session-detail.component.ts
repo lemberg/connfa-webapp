@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, OnDestroy} from "@angular/core";
 import {FavoritesComponent} from "../events_partials/favorites.component";
 import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
 import {SessionsListComponent} from "./sessions-list.component";
@@ -14,7 +14,7 @@ declare var jQuery:any;
     directives: [FavoritesComponent, SessionsListComponent, ROUTER_DIRECTIVES],
 })
 
-export class SessionDetailComponent implements OnInit {
+export class SessionDetailComponent implements OnInit, OnDestroy {
 
     public event:Event;
     public parentRoute:string = '/sessions';
@@ -43,6 +43,10 @@ export class SessionDetailComponent implements OnInit {
                 jQuery('body').removeClass('overflowHidden');
             }
         })
+    }
+
+    ngOnDestroy(): void {
+        jQuery('body').removeClass('overflowHidden');
     }
 
     private _getEvent(id:number) {
