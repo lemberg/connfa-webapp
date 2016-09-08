@@ -1,7 +1,5 @@
 import {Injectable, Inject} from "@angular/core";
 import {EventService} from "./event.service";
-import {Level} from "../models/level";
-import {Track} from "../models/track";
 
 @Injectable()
 
@@ -13,7 +11,7 @@ export class FilterService {
         this._localforage = localforage;
     }
 
-    public filterEvents(levels:Level[], tracks:Track[], type:string) {
+    public filterEvents(levels:any, tracks:any, type:string) {
         this._eventService.filterEvents(levels, tracks, type);
         var instance = this._localforage.createInstance({
             name: 'filters'
@@ -24,7 +22,7 @@ export class FilterService {
             tracks: tracks,
         }
 
-        instance.setItem('filters_set', data);
+        instance.setItem('filters', data);
     }
 
     public getFilters() {
@@ -33,23 +31,6 @@ export class FilterService {
             name: 'filters'
         });
 
-        return filterInstance.getItem('filters_set').then(filters => {
-            if (filters.levels) {
-                filters.levels.forEach((value, key) => {
-                    if (!value) {
-                        delete filters.levels[key]
-                    }
-                })
-            }
-
-            if (filters.tracks) {
-                filters.tracks.forEach((value, key) => {
-                    if (!value) {
-                        delete filters.tracks[key]
-                    }
-                })
-            }
-        });
-
+        return filterInstance.getItem('filters');
     }
 }

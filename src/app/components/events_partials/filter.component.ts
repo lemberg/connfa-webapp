@@ -5,7 +5,7 @@ import {Level} from "../../models/level";
 import {LevelService} from "../../services/level.service";
 import {FilterService} from "../../services/filter.service";
 
-declare var jQuery:any;
+declare var jQuery: any;
 
 @Component({
     selector: 'events-filter',
@@ -15,45 +15,48 @@ declare var jQuery:any;
 
 export class FilterComponent implements OnInit {
 
-    public tracks:Track[];
-    public levels:Level[];
-    public tracksSelected:any = [];
-    public levelsSelected:any = [];
-    public isCheckedAll:boolean = false;
+    public tracks: Track[];
+    public levels: Level[];
+    public tracksSelected: any = [];
+    public levelsSelected: any = [];
+    public isCheckedAll: boolean = false;
 
-    @Input() eventsType:string;
+    @Input() eventsType: string;
 
-    public constructor(private _tracksService:TrackService,
-                       private _levelService:LevelService,
-                       private _filterService:FilterService) {
+    public constructor(private _tracksService: TrackService,
+                       private _levelService: LevelService,
+                       private _filterService: FilterService) {
     }
 
-    ngOnInit():any {
+    ngOnInit(): any {
 
-        this._tracksService.getTracks().then((tracks:Track[]) => {
+        this._tracksService.getTracks().then((tracks: Track[]) => {
             this.tracks = tracks;
         })
 
-        this._levelService.getLevels().then((levels:Level[]) => {
+        this._levelService.getLevels().then((levels: Level[]) => {
             this.levels = levels;
         })
 
-        this._levelService.levelsChanged$.subscribe((levels:Level[]) => {
+        this._levelService.levelsChanged$.subscribe((levels: Level[]) => {
             this.levels = levels;
         })
 
-        this._tracksService.tracksChanged$.subscribe((tracks:Track[]) => {
+        this._tracksService.tracksChanged$.subscribe((tracks: Track[]) => {
             this.tracks = tracks;
         })
 
-        this._filterService.getFilters().then((filters:any) => {
-            console.log(filters);
+        this._filterService.getFilters().then((filters: any) => {
             if (filters && filters.levels) {
-                this.levelsSelected = filters.levels;
+                filters.levels.forEach((index: number) => {
+                    this.levelsSelected[index] = true;
+                });
             }
 
             if (filters && filters.tracks) {
-                this.tracksSelected = filters.tracks;
+                filters.tracks.forEach((index: number) => {
+                    this.tracksSelected[index] = true;
+                });
             }
 
             if (this.tracksSelected.length || this.levelsSelected.length) {
@@ -81,17 +84,21 @@ export class FilterComponent implements OnInit {
     }
 
     public onSubmit() {
-        this.levelsSelected.forEach((level:boolean, index:number) => {
-            if (level == false) {
-                delete this.levelsSelected[index];
+
+        var levelsSelected:Array<string> = [];
+        var tracksSelected:Array<string> = [];
+        this.levelsSelected.forEach((value: boolean, index: string) => {
+            if (value == true) {
+                levelsSelected.push(index)
             }
-        })
-        this.tracksSelected.forEach((track:boolean, index:number) => {
-            if (track == false) {
-                delete this.tracksSelected[index];
+        });
+        this.tracksSelected.forEach((value: boolean, index: string) => {
+            if (value == true) {
+                tracksSelected.push(index)
             }
-        })
-        this._filterService.filterEvents(this.levelsSelected, this.tracksSelected, this.eventsType);
+        });
+
+        this._filterService.filterEvents(levelsSelected, tracksSelected, this.eventsType);
     }
 
 }

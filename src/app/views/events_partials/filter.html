@@ -43,7 +43,7 @@
             <li *ngFor="let level of levels">
                 <label class="checkbox-view">
                     {{level.levelName}}
-                    <input type="checkbox" name="levelsSelected[]" [(ngModel)]="levelsSelected[level.levelId]" [value]="level.levelId" (ngModelChange)="onSubmit()">
+                    <input type="checkbox" name="levelsSelected[]" [(ngModel)]="levelsSelected[level.levelId.toString()]" [value]="level.levelId.toString()" (ngModelChange)="onSubmit()">
                     <svg version="1.1" class="checkbox" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          width="20px" height="20px" viewBox="0.667 -0.333 20 20" enable-background="new 0.667 -0.333 20 20" xml:space="preserve">
                     <path class="check" d="M16.889,1.667H4.445c-0.986,0-1.778,0.8-1.778,1.778V15.89c0,0.977,0.792,1.777,1.778,1.777H16.89

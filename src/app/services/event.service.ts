@@ -16,52 +16,52 @@ import {Track} from "../models/track";
 
 export class EventService {
 
-    public events:{} = {};
+    public events: {} = {};
 
-    public formattedEvents:any = [];
-    public activeDate:string;
-    public dates:string[];
-    public activeEvents:any;
-    public eventsChanged$:EventEmitter<any>;
-    public type:string = null;
+    public formattedEvents: any = [];
+    public activeDate: string;
+    public dates: string[];
+    public activeEvents: any;
+    public eventsChanged$: EventEmitter<any>;
+    public type: string = null;
 
-    private _nonClickableTypes:number[] = [3, 4, 8, 9];
-    private _localforage:any;
-    private _favoriteEvents:any[] = [];
-    private _routes:any = {
+    private _nonClickableTypes: number[] = [3, 4, 8, 9];
+    private _localforage: any;
+    private _favoriteEvents: any[] = [];
+    private _routes: any = {
         session: '/sessions/',
         bof: '/bofs/',
         social: '/socialevents/',
     }
-    private _eventsPromise:any = {
+    private _eventsPromise: any = {
         session: null,
         bof: null,
         social: null,
     };
 
-    constructor(private _apiService:ApiService,
-                private _speakerService:SpeakerService,
-                private _levelService:LevelService,
-                private _trackService:TrackService,
-                private _windowService:WindowService,
-                private _router:Router,
-                @Inject('localforage') localforage:any) {
+    constructor(private _apiService: ApiService,
+                private _speakerService: SpeakerService,
+                private _levelService: LevelService,
+                private _trackService: TrackService,
+                private _windowService: WindowService,
+                private _router: Router,
+                @Inject('localforage') localforage: any) {
 
         this.eventsChanged$ = new EventEmitter();
         this._localforage = localforage;
 
-        this._apiService.dataChanged$.subscribe((data:any) => {
+        this._apiService.dataChanged$.subscribe((data: any) => {
             if (this.type != null) {
                 this._eventsPromise[this.type] = null;
                 this.events[this.type] = [];
-                this.getEventsByType(this.type).then((data:any) => {
+                this.getEventsByType(this.type).then((data: any) => {
                     this.eventsChanged$.emit(data);
                 });
             }
         });
     }
 
-    public getEventsByType(type:string) {
+    public getEventsByType(type: string) {
         this.type = type;
         if (this._eventsPromise[type] !== null) {
             return this._eventsPromise[type];
@@ -72,9 +72,9 @@ export class EventService {
                 name: 'filters'
             });
 
-            return this._eventsPromise[type] = filterInstance.getItem('filters').then((filters:any) => {
+            return this._eventsPromise[type] = filterInstance.getItem('filters').then((filters: any) => {
 
-                return this._apiService.getCollection('events').then((events:Event[])=> {
+                return this._apiService.getCollection('events').then((events: Event[])=> {
                     var eventsOfType = events
                         .filter(this.filterByType.bind(this, type))
                         .sort((a, b) => {
@@ -98,7 +98,7 @@ export class EventService {
                             }
                         });
 
-                    var filteredEvents:any = [];
+                    var filteredEvents: any = [];
 
                     if (!filters) {
                         filteredEvents = eventsOfType;
@@ -125,7 +125,7 @@ export class EventService {
 
     }
 
-    public setActiveDate(date:string, redirect:boolean = false) {
+    public setActiveDate(date: string, redirect: boolean = false) {
         this.activeDate = date;
         this.activeEvents = this.formattedEvents[this.activeDate];
         if (redirect && this._windowService.isDesktop()) {
@@ -135,9 +135,9 @@ export class EventService {
         this.eventsChanged$.emit(date);
     }
 
-    public getEvent(id:number, type:string) {
+    public getEvent(id: number, type: string) {
 
-        return this.getEventsByType(type).then((events:Event[]) => {
+        return this.getEventsByType(type).then((events: Event[]) => {
             var event = events.find(item => {
                 return item.eventId == id;
             });
@@ -145,12 +145,12 @@ export class EventService {
         })
     }
 
-    public toggleFavorite(event:Event, type:string) {
+    public toggleFavorite(event: Event, type: string) {
         var storage = this._localforage.createInstance({
             name: 'events'
         });
 
-        storage.getItem(event.eventId.toString()).then((item:Event)=> {
+        storage.getItem(event.eventId.toString()).then((item: Event)=> {
             item.isFavorite = event.isFavorite;
             storage.setItem(event.eventId.toString(), item);
         });
@@ -163,7 +163,7 @@ export class EventService {
         }
     }
 
-    public isFavorite(event:Event) {
+    public isFavorite(event: Event) {
         if (this._favoriteEvents.indexOf(event.eventId.toString()) !== -1) {
             return true;
         } else {
@@ -171,12 +171,12 @@ export class EventService {
         }
     }
 
-    public filterEvents(levels:Level[], tracks:Track[], type:string) {
-        this.getEventsByType(type).then((events:Event[]) => {
+    public filterEvents(levels: Level[], tracks: Track[], type: string) {
+        this.getEventsByType(type).then((events: Event[]) => {
 
             var promise = new Promise((resolve, reject) => {
-                var filteredEvents:any = [];
-                this.events[type].forEach((event:Event) => {
+                var filteredEvents: any = [];
+                this.events[type].forEach((event: Event) => {
                     if (this._inLevels(event, levels) && this._inTracks(event, tracks)) {
                         filteredEvents.push(event);
                     }
@@ -184,7 +184,7 @@ export class EventService {
                 resolve(filteredEvents);
             })
 
-            promise.then((events:Event[]) => {
+            promise.then((events: Event[]) => {
                 this.transformEvents(events).then(data => {
                     this._bindChanges(data, true);
                     this.eventsChanged$.emit('filtered');
@@ -193,18 +193,18 @@ export class EventService {
         });
     }
 
-    public isNonClickable(type:number) {
+    public isNonClickable(type: number) {
         return this._nonClickableTypes.indexOf(type) !== -1
     }
 
-    private _getFirstActiveEvent(activeEvents:any) {
+    private _getFirstActiveEvent(activeEvents: any) {
         var firstHour = Object.keys(activeEvents)[0];
         var event = this.activeEvents[firstHour][0];
 
         return event;
     }
 
-    private _bindChanges(data:any, changeActiveDate:boolean = false) {
+    private _bindChanges(data: any, changeActiveDate: boolean = false) {
         this.formattedEvents = data;
         this.dates = this.getDates(data);
         if (this.dates.length) {
@@ -220,25 +220,29 @@ export class EventService {
         }
     }
 
-    private _inLevels(event:Event, levels:any) {
+    private _inLevels(event: Event, levels: any) {
         var levelId = event.experienceLevel;
-        if (!Object.keys(levels).length) {
+        if (!levels.length) {
+
             return true;
         }
 
-        if (levels && levels[levelId] == true) {
+        if (levels && levels.indexOf(levelId) !== -1) {
+
             return true;
         } else {
+
             return false;
         }
     }
 
-    private _inTracks(event:Event, tracks:any) {
+    private _inTracks(event: Event, tracks: any) {
         var trackId = event.track;
-        if (!Object.keys(tracks).length) {
+        if (!tracks.length) {
             return true;
         }
-        if (tracks && tracks[trackId] == true) {
+        if (tracks && tracks.indexOf(trackId) !== -1) {
+
             return true;
         } else {
 
@@ -246,16 +250,16 @@ export class EventService {
         }
     }
 
-    private _transform(item:Event) {
+    private _transform(item: Event) {
 
         if (item.experienceLevel) {
-            this._levelService.getLevel(item.experienceLevel).then((level:Level) => {
+            this._levelService.getLevel(item.experienceLevel).then((level: Level) => {
                 item.levelObject = level;
             })
         }
 
         if (item.track) {
-            this._trackService.getTrack(item.track).then((track:Track) => {
+            this._trackService.getTrack(item.track).then((track: Track) => {
                 item.trackObject = track;
             })
         }
@@ -269,7 +273,7 @@ export class EventService {
             item.speakersCollection = [];
             item.speakersNames = [];
             item.speakers.forEach((speakerId) => {
-                this._speakerService.getSpeaker(speakerId).then((speaker:Speaker) => {
+                this._speakerService.getSpeaker(speakerId).then((speaker: Speaker) => {
                     item.speakersCollection.push(speaker);
                     item.speakersNames.push(speaker.firstName + ' ' + speaker.lastName)
                 })
@@ -285,10 +289,10 @@ export class EventService {
         return item;
     }
 
-    private transformEvents(events:Event[]) {
-        var transformed:any = [];
+    private transformEvents(events: Event[]) {
+        var transformed: any = [];
         return new Promise((resolve, reject) => {
-            events.forEach((event:Event) => {
+            events.forEach((event: Event) => {
                 var event_day = moment(event.from, moment.ISO_8601).format('ddd D');
                 var event_hours = moment(event.from, moment.ISO_8601).format('LT') + ' ' + moment(event.to, moment.ISO_8601).format('LT');
 
@@ -307,11 +311,11 @@ export class EventService {
         });
     }
 
-    private getDates(data:any) {
+    private getDates(data: any) {
         return Object.keys(data);
     }
 
-    private filterByType(type:string, event:Event) {
+    private filterByType(type: string, event: Event) {
         return event.event_type == type;
     }
 }
