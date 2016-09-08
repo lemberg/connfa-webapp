@@ -129,7 +129,7 @@
                         <p>{{speaker.firstName}} {{speaker.lastName}}</p>
                     </div>
                     <div class="desc-work-speaker">
-                        {{speaker.organizationName}} / {{speaker.jobTitle}}
+                        {{speaker.organizationName}} <span *ngIf="speaker.jobTitle">/ {{speaker.jobTitle}} </span>
                     </div>
                 </div>
             </a>
