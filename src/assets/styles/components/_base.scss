@@ -221,7 +221,9 @@ body{
       float: left;
       width: 48px;
       height: 48px;
-      background: url(../images/photo-icon.svg) 0 0 no-repeat;
+      background: url(../images/photo-icon.svg) 50% 50% no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover;
       img{
         -webkit-border-radius: 100%;
         -moz-border-radius: 100%;
