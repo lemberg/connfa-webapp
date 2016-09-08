@@ -105,8 +105,8 @@ export class ApiService {
                 })
             });
 
+            var promises:Array<any> = [];
             events.forEach((event:Event) => {
-                var promises:Array<any> = [];
                 if (event.deleted) {
                     promises.push(new Promise((resolve, reject) => {
                         instance.removeItem(event.eventId.toString()).then(() => {
@@ -131,11 +131,12 @@ export class ApiService {
                         });
                     }));
                 }
-
-                Promise.all(promises).then(() => {
-                    this.dataChanged$.emit(entityName);
-                })
             });
+
+            Promise.all(promises).then(() => {
+                this.dataChanged$.emit(entityName);
+            })
+
         });
     }
 
