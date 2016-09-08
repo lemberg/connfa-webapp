@@ -331,7 +331,7 @@ body{
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%;
-    background: url(../images/photo-icon.svg) 0 0 no-repeat;
+    background: url(../images/photo-icon.svg) 50% 50% no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
     img{
@@ -376,7 +376,9 @@ body{
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%;
-    background: url(../images/photo-icon.svg) 0 0 no-repeat;
+    background-image: url(../images/photo-icon.svg);
+    background-position: 50% 50%;
+    background-repeat:no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
     img{
@@ -818,7 +820,7 @@ body{
   display: block;
   -webkit-background-size: cover;
   background-size: cover;
-  background-position:center;
+  background-position:50% 50%;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
