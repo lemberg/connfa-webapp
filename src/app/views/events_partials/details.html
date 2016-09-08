@@ -122,7 +122,7 @@
         <div class="desc-speaker-wrap cf">
             <a *ngFor="let speaker of event.speakersCollection" [routerLink]="['/speakers/'+speaker.speakerId]">
                 <div class="desc-photo-speaker">
-                    <img src="{{speaker.avatarImageURL}}">
+                    <span class="avatar" *ngIf="speaker.avatarImageURL" [style.background-image]="'url(' + speaker.avatarImageURL + ')'"></span>
                 </div>
                 <div class="desc-info-speaker">
                     <div class="desc-name-speaker">

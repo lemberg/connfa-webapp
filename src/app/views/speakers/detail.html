@@ -12,7 +12,7 @@
             </div>
         </header>
         <div class="photo-top">
-            <img src="{{speaker.avatarImageURL ? speaker.avatarImageURL : '../public/images/photo-icon.svg'}}">
+            <span class="avatar" *ngIf="speaker.avatarImageURL" [style.background-image]="'url(' + speaker.avatarImageURL + ')'"></span>
         </div>
         <div class="info-speaker">
             <div class="name-speaker">

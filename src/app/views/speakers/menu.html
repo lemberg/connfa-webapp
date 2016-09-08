@@ -3,7 +3,9 @@
         <li *ngFor="let key of alphabet">
             <a *ngFor="let speaker of filteredSpeakers[key]" [routerLink]="['/speakers/'+speaker.speakerId]" [routerLinkActive]="['router-link-active']">
                 <span *ngIf="filteredSpeakers[key].indexOf(speaker) == 0" class="alphabet">{{key}}</span>
-                <span class="photo"><img *ngIf="speaker.avatarImageURL" src="{{speaker.avatarImageURL}}" alt=""></span>
+                <span class="photo">
+                    <span class="avatar" *ngIf="speaker.avatarImageURL" [style.background-image]="'url(' + speaker.avatarImageURL + ')'"></span>
+                </span>
                 <div class="text">
                     <strong class="name">{{speaker.firstName}} {{speaker.lastName}}</strong>
                     <span class="job">{{speaker.jobTitle}} <span *ngIf="speaker.organizationName">at {{speaker.organizationName}}</span></span>

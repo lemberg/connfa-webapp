@@ -325,6 +325,15 @@ body{
     top: 50%;
     margin-top: -24px;
     margin-left: -67px;
+    width: 48px;
+    height: 48px;
+    display: block;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    background: url(../images/photo-icon.svg) 0 0 no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
     img{
       width: 48px;
       height: 48px;
@@ -362,6 +371,14 @@ body{
   }
   .photo-top{
     margin-bottom: 11px;
+    width: 84px;
+    height: 84px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    background: url(../images/photo-icon.svg) 0 0 no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
     img{
       width: 84px;
       height: 84px;
@@ -755,8 +772,8 @@ body{
   min-height:100vh;
   background: #ffffff;
   overflow: hidden;
-  padding-bottom: 64px;
-  margin-bottom: -64px;
+  padding-top: 64px;
+  margin-top: -64px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -794,6 +811,17 @@ body{
       right: 65px;
     }
   }
+}
+.avatar{
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position:center;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
 }
 @media (max-width: $mediaMaxWidth) {
   body{
@@ -984,8 +1012,8 @@ body{
     }
   }
   .plane{
-    padding-bottom: 112px;
-    margin-bottom: -112px;
+    padding-top: 112px;
+    margin-top: -112px;
   }
 }
 @media (min-width: 1025px){
