@@ -24,6 +24,11 @@ export class SpeakersComponent implements OnInit{
     }
 
     public clearSearch() {
+        if (this.searchQuery === '') {
+            jQuery('header.active').removeClass('active');
+            jQuery('#search').blur();
+        }
+
         this.searchQuery = '';
         this._speakerService.search('');
     }

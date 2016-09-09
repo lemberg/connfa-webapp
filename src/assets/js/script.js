@@ -115,9 +115,8 @@ function desc(){
 }
 function search(){
     $(document).on('click', '.header .icon-search', function(){
-        $(this).parents('.header').toggleClass('active');
+        $(this).parents('.header').addClass('active');
     });
-
 }
 function share(){
     $(document).on('click','.share-icon',function(e){
