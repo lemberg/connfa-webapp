@@ -3,6 +3,8 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
 import {SpeakerService} from "../../services/speaker.service";
 import {FORM_DIRECTIVES} from "@angular/forms";
 
+declare var jQuery:any;
+
 @Component({
     directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     templateUrl: '../../views/speakers/speakers.html',
