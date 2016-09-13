@@ -35,12 +35,14 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
                 this._getSpeaker(id);
             }
 
-            this._speakerService.speakersChanged$.subscribe((data:Speaker[]) => {
-                this._getSpeaker(id);
-            });
-
             if (id) {
                 jQuery('body').addClass('overflowHidden');
+            }
+        });
+
+        this._speakerService.speakersChanged$.subscribe((data:Speaker[]) => {
+            if (this.speaker && this.speaker.speakerId) {
+                this._getSpeaker(this.speaker.speakerId);
             }
         });
     }
