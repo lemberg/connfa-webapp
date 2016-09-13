@@ -1,0 +1,5 @@
+<section class="info">
+    <ul class="nav-info" *ngIf="pages">
+        <li *ngFor="let page of pages"><a [routerLink]="['/pages', page.infoId]" [routerLinkActive]="['router-link-active']">{{page.infoTitle}}</a></li>
+    </ul>
+</section>

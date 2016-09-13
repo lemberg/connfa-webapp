@@ -1,0 +1,32 @@
+<header class="cf header">
+    <div class="top-menu">
+        <div class="hamburger-box">
+              <span class="hamburger">
+              </span>
+        </div>
+        <span class="info-text">Social Events</span>
+    </div>
+    <div class="description-top">
+        <nav class="date">
+            <ul class="cf" *ngIf="dates">
+                <li *ngFor="let date of dates" [class.active]="activeDate == date"><a href="javascript:void(0)" (click)="setActiveDate(date)">{{date | uppercase}}</a></li>
+            </ul>
+
+        </nav>
+    </div>
+    <div class="filter">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             width="24px" height="24.189px" viewBox="1.622 0.611 24 24.189" enable-background="new 1.622 0.611 24 24.189"
+             xml:space="preserve">
+            <path class="full-filter" d="M22.622,2.251L22.622,2.251L22.622,2.251v2h-0.08l-5.92,5.92v12.99l-6-6v-7l-5.91-5.91h-0.09v-2 M4.622,2.251"/>
+            <path d="M4.622,2.251h18l0,0l0,0v2h-0.08l-5.92,5.92v12.99l-6-6v-7l-5.91-5.91h-0.09V2.251 M12.622,16.331l2,2v-9.08h0.09l5-5H7.541
+            l5,5h0.08L12.622,16.331L12.622,16.331z"/>
+        </svg>
+
+    </div>
+</header>
+<div id="page">
+    <div class="inner cf">
+        <router-outlet></router-outlet>
+    </div>
+</div>

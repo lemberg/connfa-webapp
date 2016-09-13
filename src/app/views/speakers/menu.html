@@ -1,0 +1,41 @@
+<header class="cf header">
+    <div class="top-menu">
+        <div class="hamburger-box">
+              <span class="hamburger">
+              </span>
+        </div>
+        <span class="info-text">Speakers</span>
+    </div>
+    <div class="search">
+        <label for="search" class="icon-search"></label>
+        <input id="search" type="search" placeholder="Search" #search [ngModel]="searchQuery" (ngModelChange)="searchSpeaker(search.value)">
+        <span class="close" (click)="clearSearch()">
+            <svg version="1.1" id="clear-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+            <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41z"/>
+            </svg>
+        </span>
+    </div>
+</header>
+<div id="page">
+    <div class="inner cf">
+        <section class="info">
+            <ul class="speakers-info">
+                <li *ngFor="let key of alphabet">
+                    <a *ngFor="let speaker of filteredSpeakers[key]" [routerLink]="['/speakers/'+speaker.speakerId]" [routerLinkActive]="['router-link-active']">
+                        <span *ngIf="filteredSpeakers[key].indexOf(speaker) == 0" class="alphabet">{{key}}</span>
+                        <span class="photo">
+                    <span class="avatar" *ngIf="speaker.avatarImageURL" [style.background-image]="'url(' + speaker.avatarImageURL + ')'"></span>
+                </span>
+                        <div class="text">
+                            <strong class="name">{{speaker.firstName}} {{speaker.lastName}}</strong>
+                            <span class="job">{{speaker.jobTitle}} <span *ngIf="speaker.organizationName">at {{speaker.organizationName}}</span></span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

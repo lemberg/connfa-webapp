@@ -1,0 +1,75 @@
+/*color*/
+$white:#ffffff;
+$black:rgba(0,0,0,.87);
+$black-opacity:rgba(0,0,0,.54);
+$masala-approx-opacity:rgba(61,51,51,.87);
+$black-opacity2:rgba(0,0,0,.65);
+$black-opacity3:rgba(0,0,0,.45);
+$alto-approx:#E0E0E0;
+$wild-Sand-approx:#F5F5F5;
+$alto-approx1:#DCDCDC;
+$alabaster-solid:#FAFAFA;
+$royal-purple-approx:#6539A1;
+$eminence-approx:#57308c;
+$crete-approx:#757428;
+
+//dublin color theme
+$blue-whale-approx:#06335B;
+$gigas-approx:#4F3B9A;
+$san-marino-approx:#4077AA;
+/*end color*/
+
+/*font*/
+$font-first:'roboto-regular';
+$font-second:'roboto-medium';
+$font-third:'smythe-regular';
+/*end font*/
+$font-dublin-title:'Montserrat', sans-serif;
+
+/*element*/
+$height-window: 100vh;
+$height-header: 64px;
+$height-header-second:112px;
+$font-size-first:16px;
+$font-size-second:14px;
+$font-size-third:20px;
+$base-lineH:1.33;
+$menuWidth:264px;
+$infoWidth:552px;
+$infoMaxWidth:60%;
+$mediaMinWidth:980px;
+$mediaMaxWidth:979px;
+$mediaMaxWidth1:749px;
+$wrap-time:123px;
+$wrap-timeM:107px;
+$paddingHeader:27px;
+$padding-base:24px;
+$padding-items:16px;
+$padding-items-mob:14px;
+$speaker-space:148px;
+$speaker-space-mob:120px;
+$base-marginP:13px;
+$base-space-mob:16px;
+$full-width:100%;
+$space-header-all:86px;
+$space-search-right:22px;
+$color-first:$black;
+$color-second:$black-opacity;
+$color-events:$black-opacity;
+$border-color:$alto-approx;
+$border-color-item:$alto-approx1;
+$bg-color-block:$alabaster-solid;
+$bg-color-hover:$alto-approx;
+$bg-color-time:$wild-Sand-approx;
+$shadow:$black-opacity2;
+$shadow1:$black-opacity3;
+$bg-input:$royal-purple-approx;
+
+/*color for all items to will be changed*/
+$color-link:$gigas-approx;
+$color-first-site:$san-marino-approx;
+$color-second-site:$san-marino-approx;
+$color-all-element-header:$white;
+$header-bg:$blue-whale-approx;
+
+/*end element*/

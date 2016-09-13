@@ -1,65 +1,57 @@
 var gulp = require('gulp');
 
-var assetsDev = 'assets/';
-var assetsProd = 'src/';
+var assetsDev = 'public/**/*';
+var assetsProd = 'dist/public/';
 
-var appDev = 'dev/';
-var appProd = 'app/';
-
-/* Mixed */
 var ext_replace = require('gulp-ext-replace');
 
-/* CSS */
+var sass = require('gulp-sass');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
-var autoprefixer = require('autoprefixer');
 var precss = require('precss');
 var cssnano = require('cssnano');
 
-/* JS & TS */
-var jsuglify = require('gulp-uglify');
-var typescript = require('gulp-typescript');
-
-/* Images */
-var imagemin = require('gulp-imagemin');
-
-var tsProject = typescript.createProject('tsconfig.json');
-
-gulp.task('build-css', function () {
-    return gulp.src(assetsDev + 'scss/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(postcss([precss, autoprefixer, cssnano]))
-        .pipe(sourcemaps.write())
-        .pipe(ext_replace('.css'))
-        .pipe(gulp.dest(assetsProd + 'css/'));
+gulp.task('build-assets', function () {
+	return gulp.src(assetsDev)
+		.pipe(gulp.dest(assetsProd));
 });
 
-gulp.task('build-ts', function () {
-    return gulp.src(appDev + '**/*.ts')
-        .pipe(sourcemaps.init())
-        .pipe(typescript(tsProject))
-        .pipe(sourcemaps.write())
-        //.pipe(jsuglify())
-        .pipe(gulp.dest(appProd));
+gulp.task('build-scss', function () {
+	return gulp.src('src/assets/styles/**/*.scss')
+		.pipe(sourcemaps.init())
+		.pipe(sass({includePaths: ['src/assets/styles/components']}))
+		.pipe(postcss([precss, cssnano]))
+		.pipe(sourcemaps.write())
+		.pipe(ext_replace('.css'))
+		.pipe(gulp.dest('public/styles/'));
 });
 
-gulp.task('build-img', function () {
-    return gulp.src(assetsDev + 'img/**/*')
-        .pipe(imagemin({
-            progressive: true
-        }))
-        .pipe(gulp.dest(assetsProd + 'img/'));
-});
+gulp.task('build-js', function () {
+	return gulp.src('src/assets/js/**/*.js')
+		.pipe(gulp.dest('public/js/'));
+})
 
-gulp.task('build-html', function () {
-    return gulp.src(appDev + '**/*.html')
-        .pipe(gulp.dest(appProd));
-});
+gulp.task('build-images', function () {
+	return gulp.src('src/assets/images/**/*')
+		.pipe(gulp.dest('public/images/'));
+})
+
+gulp.task('manifest', function () {
+	gulp.src('src/assets/manifest.json')
+		.pipe(gulp.dest('public/'));
+})
+
+gulp.task('htaccess', function () {
+	gulp.src('public/.htaccess')
+		.pipe(gulp.dest('dist'));
+})
 
 gulp.task('watch', function () {
-    gulp.watch(appDev + '**/*.ts', ['build-ts']);
-    gulp.watch(assetsDev + 'scss/**/*.scss', ['build-css']);
-    gulp.watch(assetsDev + 'img/*', ['build-img']);
+	gulp.watch('src/assets/styles/**/*', ['build-scss', 'build-assets']);
+	gulp.watch('src/assets/js/**/*', ['build-js', 'build-assets']);
+	gulp.watch('src/assets/images/**/*', ['build-images', 'build-assets']);
+	gulp.watch('src/assets/manifest.json', ['manifest', 'build-assets']);
 });
 
-gulp.task('default', ['watch', 'build-ts', 'build-css']);
+gulp.task('build', ['build-scss', 'build-js', 'build-images','manifest','build-assets', 'htaccess']);
+
