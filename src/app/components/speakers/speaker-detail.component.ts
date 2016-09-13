@@ -30,15 +30,19 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     ngOnInit():any {
 
         this._router.params.subscribe(params => {
-            var id = params['id'];
-            this._getSpeaker(id);
+            var id:number = params['id'];
+            if (!this.speaker || this.speaker.speakerId != id) {
+                this._getSpeaker(id);
+            }
 
             this._speakerService.speakersChanged$.subscribe((data:Speaker[]) => {
                 this._getSpeaker(id);
             });
-        });
 
-        jQuery('body').addClass('overflowHidden');
+            if (id) {
+                jQuery('body').addClass('overflowHidden');
+            }
+        });
     }
 
     ngOnDestroy():void {

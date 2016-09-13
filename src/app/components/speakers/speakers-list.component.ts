@@ -2,11 +2,14 @@ import {SpeakerService} from "../../services/speaker.service";
 import {Speaker} from "../../models/speaker";
 import {Component, OnInit} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
+import {FORM_DIRECTIVES} from "@angular/forms";
+
+declare var jQuery:any;
 
 @Component({
     selector: 'speakers-list',
     templateUrl: '../../views/speakers/menu.html',
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     inputs: ['searchQuery']
 })
 export class SpeakersListComponent implements OnInit{
@@ -26,10 +29,25 @@ export class SpeakersListComponent implements OnInit{
         this.getSpeakers();
     }
 
-    getSpeakers() {
+    public getSpeakers() {
         this._speakerService.getSpeakers().then((speakers: Speaker[]) => {
             this._transformSpeakers(speakers);
         });
+    }
+
+    public searchSpeaker(value:string) {
+        this.searchQuery = value;
+        this._speakerService.search(value);
+    }
+
+    public clearSearch() {
+        if (this.searchQuery === '') {
+            jQuery('header.active').removeClass('active');
+            jQuery('#search').blur();
+        }
+
+        this.searchQuery = '';
+        this._speakerService.search('');
     }
 
     private _transformSpeakers(speakers: Speaker[]) {
