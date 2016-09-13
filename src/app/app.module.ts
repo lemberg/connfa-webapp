@@ -19,7 +19,6 @@ import {SocialeventsListComponent} from "./components/social_events/socialevents
 import {SocialeventDetailComponent} from "./components/social_events/socialevents-detail.component";
 import {SchedulerListComponent} from "./components/scheduler/scheduler-list.component";
 import {SchedulerDetailComponent} from "./components/scheduler/scheduler-detail.component";
-import {SpeakersComponent} from "./components/speakers/speakers.component";
 import {SpeakersListComponent} from "./components/speakers/speakers-list.component";
 import {SpeakerDetailsComponent} from "./components/speakers/speaker-detail.component";
 import {PagesComponent} from "./components/pages/pages.component";
@@ -52,7 +51,6 @@ import {CONFIG} from "./config/config";
 		SocialeventDetailComponent,
 		SchedulerListComponent,
 		SchedulerDetailComponent,
-		SpeakersComponent,
 		SpeakersListComponent,
 		SpeakerDetailsComponent,
 		PagesComponent,

@@ -1,8 +1,7 @@
-import {RouterConfig, provideRouter} from "@angular/router";
+import {provideRouter, Routes} from "@angular/router";
 import {SessionsListComponent} from "./components/sessions/sessions-list.component";
 import {SpeakersListComponent} from "./components/speakers/speakers-list.component";
 import {SpeakerDetailsComponent} from "./components/speakers/speaker-detail.component";
-import {SpeakersComponent} from "./components/speakers/speakers.component";
 import {SessionDetailComponent} from "./components/sessions/session-detail.component";
 import {FloorsComponent} from "./components/floors/floors.component";
 import {LocationsComponent} from "./components/locations/locations.component";
@@ -18,7 +17,7 @@ import {SchedulerListComponent} from "./components/scheduler/scheduler-list.comp
 import {SchedulerDetailComponent} from "./components/scheduler/scheduler-detail.component";
 
 
-export const routes:RouterConfig = [
+export const routes:Routes = [
     {
         path: '',
         redirectTo: '/sessions',
@@ -58,10 +57,10 @@ export const routes:RouterConfig = [
     },
     {
         path: 'speakers',
-        component: SpeakersComponent,
+        component: SpeakersListComponent,
         children: [
             {path: ':id', component: SpeakerDetailsComponent},
-            {path: '', component: SpeakersListComponent, terminal: true}
+            {path: '', component: SpeakerDetailsComponent, pathMatch: 'full'}
         ]
     },
     {
@@ -69,7 +68,7 @@ export const routes:RouterConfig = [
         component: PagesComponent,
         children: [
             {path: ':id', component: PagesDetailComponent},
-            {path: '', component: PagesListComponent, terminal: true}
+            {path: '', component: PagesListComponent, pathMatch: 'full'}
         ]
     },
     {
