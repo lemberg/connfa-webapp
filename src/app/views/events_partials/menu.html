@@ -28,9 +28,8 @@
 <div id="page">
     <div class="inner cf">
         <section class="info">
-            <ul class="events-info" *ngIf="noMatches">
+            <ul class="events-info" *ngIf="noMatches || !getKeys(activeEvents).length">
                 <li>
-
                     <div class="events-info_box">
                         <div class="box-item">
                             <div class="info-event">No Matching Events</div>
