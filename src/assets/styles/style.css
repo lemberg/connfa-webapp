@@ -387,6 +387,9 @@ body {
     list-style-type: disc; }
   .description ol {
     list-style-type: decimal; }
+  .description a {
+    word-wrap: break-word;
+    word-break: break-all; }
 
 .load {
   background: #ffffff;
@@ -634,7 +637,9 @@ body {
   -moz-border-radius: 2px;
   border-radius: 2px;
   display: inline-block;
-  position: relative; }
+  position: relative;
+  word-wrap: normal;
+  word-break: normal; }
   .link-site a svg {
     fill: #4F3B9A;
     width: 15px;

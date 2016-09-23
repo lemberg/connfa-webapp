@@ -423,6 +423,10 @@ body{
   ol{
     list-style-type:decimal;
   }
+  a{
+    word-wrap:break-word;
+    word-break:break-all;
+  }
 }
 .load{
   background: #ffffff;
@@ -745,7 +749,8 @@ body{
     -moz-border-radius: 2px;
     border-radius: 2px;
     display: inline-block;
-    position: relative;
+    position: relative;word-wrap:normal;
+    word-break:normal;
     svg{
       fill:$color-link;
       width: 15px;
