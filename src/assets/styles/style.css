@@ -229,7 +229,9 @@ body {
       float: left;
       width: 48px;
       height: 48px;
-      background: url(../images/photo-icon.svg) 0 0 no-repeat; }
+      background: url(../images/photo-icon.svg) 50% 50% no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover; }
       .info .speakers-info .photo img {
         -webkit-border-radius: 100%;
         -moz-border-radius: 100%;
@@ -378,6 +380,13 @@ body {
       margin: 0 0 13px 0; }
   .description .additionally p {
     margin: 0; }
+  .description ul, .description ol {
+    padding-left: 18px;
+    margin: 13px 0; }
+  .description ul {
+    list-style-type: disc; }
+  .description ol {
+    list-style-type: decimal; }
 
 .load {
   background: #ffffff;
@@ -955,6 +964,7 @@ h6 {
 
 strong {
   font-weight: normal;
+  font-family: "roboto-medium";
   font-size: 16px;
   line-height: 1.33; }
 

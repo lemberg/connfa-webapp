@@ -413,6 +413,16 @@ body{
       margin: 0;
     }
   }
+  ul,ol{
+    padding-left: $padding-left-list;
+    margin:$base-marginP 0;
+  }
+  ul{
+    list-style-type: disc;
+  }
+  ol{
+    list-style-type:decimal;
+  }
 }
 .load{
   background: #ffffff;
