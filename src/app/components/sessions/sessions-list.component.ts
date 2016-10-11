@@ -8,6 +8,8 @@ import {Event} from "../../models/event";
 
 declare var jQuery:any;
 
+import {EventComponent} from "../event-component";
+
 @Component({
     moduleId: 'app',
     selector: 'events-list',
@@ -17,19 +19,18 @@ declare var jQuery:any;
 })
 
 
-export class SessionsListComponent implements OnInit, OnDestroy {
+export class SessionsListComponent extends EventComponent implements OnInit, OnDestroy {
 
     public sessions:Event[] = [];
     public activeEvents:any = [];
     public hours:string[] = [];
     public noMatches:boolean = false;
-    public dates:string[] = [];
-    public activeDate:string;
     public title:string = 'Sessions';
     public router:string = '/sessions/';
     public event_type:string = 'session';
 
-    constructor(private _eventService:EventService) {
+    constructor(protected _eventService:EventService) {
+        super();
     }
 
     ngOnInit():void {
@@ -58,14 +59,5 @@ export class SessionsListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy():any {
         jQuery('body').removeClass('view');
-    }
-
-    public setActiveDate(date:string) {
-        this._eventService.setActiveDate(date, true);
-        this.activeDate = date;
-    }
-
-    public getKeys(obj: Object) {
-        return Object.keys(obj)
     }
 }

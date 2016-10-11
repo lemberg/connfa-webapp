@@ -1,5 +1,5 @@
 import {NgModule, provide} from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
+import {BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG}  from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {ApiService} from "./services/api.service";
 import {WindowService} from "./services/window.service";
@@ -34,6 +34,12 @@ import {FilterComponent} from "./components/events_partials/filter.component";
 import {ENV} from "./config/env";
 import {CONFIG} from "./config/config";
 
+
+export class MyHammerConfig extends HammerGestureConfig  {
+	overrides = <any>{
+		'swipe': {velocity: 0.4, threshold: 20} // override default settings
+	}
+}
 
 @NgModule({
 	imports: [
@@ -72,7 +78,10 @@ import {CONFIG} from "./config/config";
 		APP_ROUTER_PROVIDERS,
 		HTTP_PROVIDERS,
 		provide('localforage', {useValue: localforage}),
-		provide('config', {useValue: CONFIG[ENV]})
+		provide('config', {useValue: CONFIG[ENV]}),
+		provide(HAMMER_GESTURE_CONFIG, {
+			useClass: MyHammerConfig
+		}),
 	],
 	bootstrap: [AppComponent]
 })

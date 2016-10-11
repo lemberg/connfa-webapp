@@ -1,10 +1,11 @@
-import {OnInit, Component} from "@angular/core";
+import {OnInit, Component, OnDestroy} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {FavoritesComponent} from "../events_partials/favorites.component";
 import {FilterComponent} from "../events_partials/filter.component";
 import {EventService} from "../../services/event.service";
 import {ListDetailsComponent} from "../events_partials/list-details.component";
 import {Event} from "../../models/event";
+import {EventComponent} from "../event-component";
 
 declare var jQuery: any;
 
@@ -15,8 +16,7 @@ declare var jQuery: any;
     providers: [EventService],
 })
 
-
-export class SocialeventsListComponent implements OnInit {
+export class SocialeventsListComponent extends EventComponent implements OnInit, OnDestroy {
 
     public socialevents:Event[] = [];
     public activeEvents:any[] = [];
@@ -29,7 +29,8 @@ export class SocialeventsListComponent implements OnInit {
     public router = '/socialevents/';
     public event_type = 'social';
 
-    constructor(private _eventService:EventService) {
+    constructor(protected _eventService:EventService) {
+        super();
     }
 
     ngOnInit():any {
@@ -57,14 +58,5 @@ export class SocialeventsListComponent implements OnInit {
 
     ngOnDestroy():any {
         jQuery('body').removeClass('view');
-    }
-
-    public setActiveDate(date:string) {
-        this._eventService.setActiveDate(date, true);
-        this.activeDate = date;
-    }
-
-    public getKeys(obj:any) {
-        return Object.keys(obj)
     }
 }

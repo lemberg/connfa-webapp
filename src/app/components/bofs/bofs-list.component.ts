@@ -5,6 +5,7 @@ import {FilterComponent} from "../events_partials/filter.component";
 import {EventService} from "../../services/event.service";
 import {ListDetailsComponent} from "../events_partials/list-details.component";
 import {Event} from "../../models/event";
+import {EventComponent} from "../event-component";
 
 declare var jQuery:any;
 
@@ -16,7 +17,7 @@ declare var jQuery:any;
 })
 
 
-export class BofsListComponent implements OnInit, OnDestroy {
+export class BofsListComponent extends EventComponent implements OnInit, OnDestroy {
 
     public bofs:Event[] = [];
     public activeEvents:any = [];
@@ -29,7 +30,8 @@ export class BofsListComponent implements OnInit, OnDestroy {
     public router:string = '/bofs/';
     public event_type:string = 'bof';
 
-    constructor(private _eventService:EventService) {
+    constructor(protected _eventService:EventService) {
+        super();
     }
 
     ngOnInit():void {
@@ -57,14 +59,5 @@ export class BofsListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy():void {
         jQuery('body').removeClass('view');
-    }
-
-    public setActiveDate(date:string) {
-        this._eventService.setActiveDate(date, true);
-        this.activeDate = date;
-    }
-
-    public getKeys(obj:Object) {
-        return Object.keys(obj)
     }
 }

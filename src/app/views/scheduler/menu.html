@@ -27,7 +27,17 @@
 </header>
 <div id="page">
     <div class="inner cf">
-        <section class="info" *ngIf="activeEvents" >
+        <section class="info">
+            <ul class="events-info" *ngIf="!activeEvents || !getKeys(activeEvents).length">
+                <li>
+                    <div class="events-info_box">
+                        <div class="box-item">
+                            <div class="info-event">Your Schedule is empty... Please add some events!</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div *ngIf="activeEvents" (swipeleft)="swipe(activeDate, 'left')" (swiperight)="swipe(activeDate, 'right')">
             <ul class="events-info my-schedule" *ngFor="let type of getKeys(activeEvents)">
                 <li class="title"><span>{{type | ucfirst}}s</span></li>
                 <li *ngFor="let hour of getKeys(activeEvents[type])">
@@ -43,6 +53,7 @@
                     </div>
                 </li>
             </ul>
+            </div>
         </section>
         <router-outlet></router-outlet>
     </div>
