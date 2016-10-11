@@ -38,7 +38,7 @@
                     </div>
                 </li>
             </ul>
-            <ul class="events-info" *ngIf="activeEvents && hours">
+            <ul class="events-info" *ngIf="activeEvents && hours" (swipeleft)="swipe(activeDate, 'left')" (swiperight)="swipe(activeDate, 'right')">
                 <li *ngFor="let hour of hours">
                     <div class="events-info_box">
                         <div class="box-item" *ngFor="let event of activeEvents[hour]">
