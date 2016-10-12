@@ -1,8 +1,9 @@
 <div class="main">
     <router-outlet></router-outlet>
-    <div class="over"></div>
+    <div class="over" (swipeleft)="closeMenu()"></div>
 </div>
-<section class="left-navigation" (swipeleft)="closeMenu()">
+<div class="show-menu" (swiperight)="showMenu()"></div>
+<section class="left-navigation touchable" (swipeleft)="closeMenu()">
     <div class="bg-nav">
         <img src="../../../public/images/bg_nav_drawer_header.jpg">
     </div>

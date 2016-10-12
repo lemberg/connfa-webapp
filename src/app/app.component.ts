@@ -24,14 +24,25 @@ export class AppComponent {
     }
 
     public closeMenu() {
+        if(jQuery('body').hasClass("animate")==false){
+            jQuery('body').toggleClass('open');
+            this._animate()
+        }
+    }
+
+    public showMenu() {
         console.log('here');
         if(jQuery('body').hasClass("animate")==false){
             jQuery('body').toggleClass('open');
-            jQuery('body').addClass('animate');
-            setTimeout(function () {
-                jQuery('body').removeClass('animate');
-            }, 700);
+            this._animate();
         }
+    }
+
+    private _animate() {
+        jQuery('body').addClass('animate');
+        setTimeout(function () {
+            jQuery('body').removeClass('animate');
+        }, 700);
     }
 }
 

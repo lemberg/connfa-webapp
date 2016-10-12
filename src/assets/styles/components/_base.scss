@@ -1045,3 +1045,14 @@ body{
     .box-img{}
   }
 }
+.touchable{
+  touch-action: auto !important;
+}
+.show-menu{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  z-index: 2;
+}
