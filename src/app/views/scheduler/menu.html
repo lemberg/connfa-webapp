@@ -37,7 +37,7 @@
                     </div>
                 </li>
             </ul>
-            <div *ngIf="activeEvents" (swipeleft)="swipe(activeDate, 'left')" (swiperight)="swipe(activeDate, 'right')">
+            <div *ngIf="activeEvents" class="touchable" (swipeleft)="swipe(activeDate, 'left')" (swiperight)="swipe(activeDate, 'right')">
             <ul class="events-info my-schedule" *ngFor="let type of getKeys(activeEvents)">
                 <li class="title"><span>{{type | ucfirst}}s</span></li>
                 <li *ngFor="let hour of getKeys(activeEvents[type])">
