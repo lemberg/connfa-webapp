@@ -21,7 +21,7 @@ self.addEventListener('install', e => {
 				// images
 				'/public/images/favicon.png',
 				'/assets/default.gif',
-				'/assets/bg_nav_drawer_header.jpg?t=1',
+				'/assets/bg_nav_drawer_header.jpg',
 				'/assets/photo-icon.svg',
 				'/assets/place.svg',
 				'/assets/roboto-medium-webfont.eot',
@@ -53,6 +53,23 @@ self.addEventListener('fetch', event => {
 	event.respondWith(
 		caches.match(event.request).then(response => {
 			return response || fetch(event.request);
+		})
+	);
+});
+
+self.addEventListener('push', function(event) {
+	console.log('Received a push message', event);
+
+	var title = 'Yay a message.';
+	var body = 'We have received a push message.';
+	var icon = '/images/icon-192x192.png';
+	var tag = 'simple-push-demo-notification-tag';
+console.log('PUSH!!!!!', event.title);
+	event.waitUntil(
+		self.registration.showNotification(title, {
+			body: body,
+			icon: icon,
+			tag: tag
 		})
 	);
 });
