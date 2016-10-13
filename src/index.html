@@ -14,6 +14,13 @@
     <link rel="icon" href="../public/images/favicon.png" type="image/x-icon"/>
     <link rel="shortcut icon" href="../public/images/favicon.png" type="image/x-icon"/>
     <link rel="manifest" href="../public/manifest.json">
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => {console.log('service worker installed')})
+                .catch(err => console.log('Error', err));
+        }
+    </script>
 </head>
 <base href="/">
 <body>
