@@ -893,10 +893,13 @@ body{
     border-left: none;
     &.active{
       position: absolute;
-      top: 0;
+      padding-top: 89px;
+      top: -64px;
       z-index: 14;
       header{
         display: block;
+        position: absolute;
+        top: 0;
       }
     }
     .icons-view{

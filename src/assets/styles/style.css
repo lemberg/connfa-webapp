@@ -812,10 +812,13 @@ body {
     border-left: none; }
     .description.active {
       position: absolute;
-      top: 0;
+      padding-top: 89px;
+      top: -64;
       z-index: 14; }
       .description.active header {
-        display: block; }
+        display: block;
+        position: absolute;
+        top: 0; }
     .description .icons-view {
       right: 0; }
     .description .desc-info-wrap.view {
