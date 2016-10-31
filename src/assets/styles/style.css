@@ -30,8 +30,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-#page {
-  overflow-x: hidden; }
+@media (min-width: 980px) {
+  #page {
+    overflow-x: hidden; } }
 
 .left-navigation {
   background: #FAFAFA;
@@ -1273,6 +1274,12 @@ header {
       fill-opacity: .54; }
   header .nav.active .nav-sub {
     display: block; }
+  header .nav .select {
+    -webkit-tap-highlight-color: transparent; }
+  header .nav .nav-sub li, header .nav .nav-sub a {
+    -webkit-tap-highlight-color: transparent; }
+  header .nav .nav-sub li.active a {
+    color: #4077AA; }
   header.active .search {
     width: 345px; }
   header.active .close {

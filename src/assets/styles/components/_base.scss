@@ -11,7 +11,9 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 #page{
-  overflow-x: hidden;
+  @media (min-width: $mediaMinWidth){
+    overflow-x: hidden;
+  }
 }
 .left-navigation{
   background: $bg-color-block;

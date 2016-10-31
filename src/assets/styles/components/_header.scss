@@ -218,6 +218,21 @@ header{
       line-height: $base-lineH;
     }
     @include nav-sub-box(13px, 51px, 13px, 16px);
+    .select{
+        -webkit-tap-highlight-color: transparent;
+    }
+    .nav-sub{
+      li,a{
+        -webkit-tap-highlight-color: transparent;
+      }
+      li{
+        &.active{
+          a{
+            color: $color-first-site;
+          }
+        }
+      }
+    }
   }
   &.active{
     .search{
