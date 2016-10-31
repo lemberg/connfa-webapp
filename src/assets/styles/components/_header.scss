@@ -56,7 +56,7 @@ header{
     position: relative;
     text-align: center;
     padding-right: 58px;
-    top: 16px;
+    top: 14px;
     height: 36px;
     min-height: 1px;
     -webkit-box-sizing: border-box;
@@ -299,15 +299,20 @@ header{
         position: absolute;
         left: 0;
         top: auto;
-        bottom: -2px;
+        bottom: 0;
         width: 100%;
         margin-bottom: 0;
         padding: 0;
-        overflow-y: auto;
         text-align: left;
       }
       .date{
         padding-left: 55px;
+        overflow: auto;
+        &::-webkit-scrollbar{
+          width: 0;
+          height: 0;
+          background-color: $header-bg;
+        }
       }
       .search{
         left: 0;

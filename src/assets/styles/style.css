@@ -920,6 +920,17 @@ body {
 @media (min-width: 1025px) {
   .social-media iframe.twitter-timeline {
     height: 99.5% !important; } }
+.touchable {
+  touch-action: auto !important; }
+
+.show-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  z-index: 2; }
+
 @font-face {
   font-family: 'roboto-medium';
   src: url("../fonts/roboto-medium-webfont.eot");
@@ -1078,7 +1089,7 @@ header {
     position: relative;
     text-align: center;
     padding-right: 58px;
-    top: 16px;
+    top: 14px;
     height: 36px;
     min-height: 1px;
     -webkit-box-sizing: border-box;
@@ -1330,14 +1341,18 @@ header {
         position: absolute;
         left: 0;
         top: auto;
-        bottom: -2px;
+        bottom: 0;
         width: 100%;
         margin-bottom: 0;
         padding: 0;
-        overflow-y: auto;
         text-align: left; }
       body.view .header .date {
-        padding-left: 55px; }
+        padding-left: 55px;
+        overflow: auto; }
+        body.view .header .date::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+          background-color: #06335B; }
       body.view .header .search {
         left: 0;
         right: 0;
