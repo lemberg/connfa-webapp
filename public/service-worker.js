@@ -17,6 +17,7 @@ self.addEventListener('install', e => {
 				'/app.js',
 				'/vendor.js',
 				'/polyfills.js',
+				// css
 				'/app.css',
 				// images
 				'/public/images/favicon.png',
