@@ -885,7 +885,6 @@ body{
   }
   .description{
     position: fixed;
-    height: 100%;
     width: 100%;
     top: 120%;
     left: 0;
@@ -893,9 +892,8 @@ body{
     z-index: 5;
     border-left: none;
     &.active{
-      padding-top: 64px+25px;
+      position: absolute;
       top: 0;
-      overflow-y: auto;
       z-index: 14;
       header{
         display: block;
