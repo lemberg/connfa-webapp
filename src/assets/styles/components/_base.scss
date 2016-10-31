@@ -885,6 +885,7 @@ body{
   }
   .description{
     position: fixed;
+    height: 100%;
     width: 100%;
     top: 120%;
     left: 0;
@@ -892,14 +893,12 @@ body{
     z-index: 5;
     border-left: none;
     &.active{
-      position: absolute;
       padding-top: 89px;
-      top: -64px;
+      top: 0px;
       z-index: 14;
+      overflow-y: auto;
       header{
         display: block;
-        position: absolute;
-        top: 0;
       }
     }
     .icons-view{

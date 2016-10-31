@@ -804,6 +804,7 @@ body {
 
   .description {
     position: fixed;
+    height: 100%;
     width: 100%;
     top: 120%;
     left: 0;
@@ -811,14 +812,12 @@ body {
     z-index: 5;
     border-left: none; }
     .description.active {
-      position: absolute;
       padding-top: 89px;
-      top: -64;
-      z-index: 14; }
+      top: 0px;
+      z-index: 14;
+      overflow-y: auto; }
       .description.active header {
-        display: block;
-        position: absolute;
-        top: 0; }
+        display: block; }
     .description .icons-view {
       right: 0; }
     .description .desc-info-wrap.view {
