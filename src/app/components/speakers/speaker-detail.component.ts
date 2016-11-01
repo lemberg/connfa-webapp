@@ -1,9 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from "@angular/router";
 import {Speaker} from "../../models/speaker";
 import {SpeakerService} from "../../services/speaker.service";
-import {SpeakersListComponent} from "./speakers-list.component";
 import {SpeakersEventsService} from "../../services/speakers_events.service";
+import {ActivatedRoute} from "@angular/router";
 
 declare var jQuery:any;
 
@@ -11,7 +10,6 @@ declare var jQuery:any;
     selector: 'speaker-details',
     templateUrl: '../../views/speakers/detail.html',
     inputs: ["speaker"],
-    directives: [ROUTER_DIRECTIVES, SpeakersListComponent],
     providers: [SpeakersEventsService]
 })
 

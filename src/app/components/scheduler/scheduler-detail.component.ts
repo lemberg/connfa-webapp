@@ -1,15 +1,12 @@
 import {Component} from "@angular/core";
-import {SchedulerListComponent} from "./scheduler-list.component";
 import {SchedulerService} from "../../services/scheduler.service";
-import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
-import {FavoritesComponent} from "../events_partials/favorites.component";
+import {ActivatedRoute} from "@angular/router";
 import * as moment from 'moment';
 import {Event} from "../../models/event";
 
 @Component({
     selector: 'event-details',
     templateUrl: '../../views/events_partials/details.html',
-    directives: [SchedulerListComponent, FavoritesComponent, ROUTER_DIRECTIVES],
 })
 
 export class SchedulerDetailComponent {
