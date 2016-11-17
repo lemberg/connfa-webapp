@@ -11,7 +11,7 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 #page{
-  @media (min-width: $mediaMinWidth){
+  @include bp(md,$dir:"min"){
     overflow-x: hidden;
   }
 }
@@ -62,7 +62,7 @@ body{
       position: relative;
       padding: 16px 16px 16px 80px;
       font-family:$font-second;
-      @media (min-width: $mediaMinWidth) {
+      @include bp(md,$dir:"min"){
         &:hover{
           background: $bg-color-hover;
         }
@@ -86,7 +86,7 @@ body{
       }
     }
   }
-  @media (min-width: $mediaMinWidth) {
+  @include bp(md,$dir:"min"){
     padding-top: 64px;
   }
 }
@@ -104,7 +104,7 @@ body{
   }
   .filter-nav{
     @include transition(right ease 0.5s);
-    @media (max-width: $mediaMaxWidth) {
+    @include bp(md){
       @include transition(top ease 0.5s);
       z-index: 11;
     }
@@ -249,7 +249,7 @@ body{
       padding: 4px 0;
     }
   }
-  @media (min-width: $mediaMinWidth) {
+  @include bp(md,$dir:"min"){
     overflow-x: auto;
     padding-top: 64px;
     margin-top: -64px;
@@ -265,17 +265,17 @@ body{
   min-height: 240px;
   border-left: 2px solid $border-color;
   background: $bg-color-block;
-    @media (min-width: $mediaMinWidth) {
-      padding: $padding-base 0 0 48px;
-      .panel-scroll{
-        height: 100vh;
-        margin-top: -88px;
-        padding-top: 88px;
-        box-sizing: border-box;
-        padding-right: 48px;
-        overflow-x: auto;
-      }
+  @include bp(md,$dir:"min"){
+    padding: $padding-base 0 0 48px;
+    .panel-scroll{
+      height: 100vh;
+      margin-top: -88px;
+      padding-top: 88px;
+      box-sizing: border-box;
+      padding-right: 48px;
+      overflow-x: auto;
     }
+  }
 
   header{
     display: none;
@@ -462,12 +462,13 @@ body{
       &.router-link-active{
         background: $bg-color-hover;
       }
-      @media (min-width: $mediaMinWidth) {
+      @include bp(md,$dir:"min"){
         &:hover{
           color: $color-second-site;
         }
+
       }
-      @media (max-width: $mediaMaxWidth) {
+      @include bp(md){
         padding-left: $base-space-mob;
         padding-right: $base-space-mob;
       }
@@ -828,8 +829,9 @@ body{
     position: fixed;
     top: 80px;
     right: 100px;
-    @media (max-width: $mediaMaxWidth) {
+    @include bp(md){
       right: 65px;
+
     }
   }
 }
@@ -844,7 +846,19 @@ body{
   -moz-border-radius: 100%;
   border-radius: 100%;
 }
-@media (max-width: $mediaMaxWidth) {
+.touchable{
+  touch-action: auto !important;
+  -ms-touch-action: auto !important;
+}
+.show-menu{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  z-index: 2;
+}
+@include bp(md){
   body{
     &.overflow{
       .filter-nav,
@@ -1037,24 +1051,10 @@ body{
     margin-top: -112px;
   }
 }
-@media (min-width: 1025px){
+@include bp(md, $dir:"min"){
   .social-media{
     iframe.twitter-timeline{
       height: 99.5% !important;
     }
   }
-  .plane{
-    .box-img{}
-  }
-}
-.touchable{
-  touch-action: auto !important;
-}
-.show-menu{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 10px;
-  z-index: 2;
 }

@@ -243,7 +243,7 @@ header{
       @include transition(opacity 0.1s ease 0.3s);
     }
   }
-  @media (max-width: $mediaMaxWidth) {
+  @include bp(md){
     padding-left: 230px;
     .top-menu {
       left: $base-space-mob;
@@ -304,7 +304,7 @@ header{
     bottom: -5px;
   }
 }
-@media (max-width: $mediaMaxWidth1) {
+@include bp(sm){
   body.view{
     padding-top: 112px;
     .header{
@@ -379,5 +379,4 @@ header{
       }
     }
   }
-
 }

@@ -1,3 +1,28 @@
+@mixin bp($breakpoint,$dir:"max-width"){
+  @if $dir=="max-width"{
+    @if map-has-key($breakpoints, $breakpoint) {
+      @media (max-width: #{map-get($breakpoints, $breakpoint)}) {
+        @content;
+      }
+    }
+    @else {
+      @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+    }
+  }
+  @else{
+    @if map-has-key($breakpoints, $breakpoint) {
+      @media (min-width: #{map-get($breakpoints, $breakpoint)+1}) {
+        @content;
+      }
+    }
+    @else {
+      @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+    }
+  }
+}
+
 @mixin transform($val) {
   -webkit-transform: $val;
   -moz-transform: $val;
