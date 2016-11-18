@@ -13,6 +13,7 @@ function menu(){
 
     $(document).on('click', '.nav-sub a', function(event) {
         $(".box-menu .nav").removeClass("active");
+        $("body").scrollTop(0);
         event.stopPropagation();
     });
 
