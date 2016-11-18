@@ -147,7 +147,21 @@
   -moz-box-shadow:  0 0 12px rgba(0,0,0, 0.65);
   box-shadow:  0 0 12px rgba(0,0,0, 0.65);
 }
-
+%clear-btn{
+  cursor: pointer;
+  background: #fafafa;
+  padding: 15px 40px 15px 15px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-size: 16px;
+  font-family: $font-first;
+  color: $color-first;
+  @extend %shadow;
+  &:hover{
+    color: $color-second-site;
+  }
+}
 
 //Flex Box mixins
 @mixin display-flex {

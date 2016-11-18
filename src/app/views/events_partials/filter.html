@@ -22,18 +22,7 @@
     <nav class="filter-nav_wrap">
         <ul>
             <li>
-                <label class="checkbox-view check-all-filter">
-                    <strong class="check-all">Filter</strong>
-                    <input type="checkbox" value="1" (click)="toggleAll(isCheckedAll)">
-                    <svg version="1.1" class="checkbox" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         width="20px" height="20px" viewBox="0.667 -0.333 20 20" enable-background="new 0.667 -0.333 20 20" xml:space="preserve">
-                    <path class="check" d="M16.889,1.667H4.445c-0.986,0-1.778,0.8-1.778,1.778V15.89c0,0.977,0.792,1.777,1.778,1.777H16.89
-                        c0.985,0,1.777-0.8,1.777-1.777V3.445C18.666,2.467,17.875,1.667,16.889,1.667z M8.889,14.111L4.445,9.667l1.253-1.253l3.191,3.182
-                        l6.747-6.747l1.253,1.263L8.889,14.111z"/>
-                        <path class="contour" d="M16.889,3.445V15.89H4.445V3.445H16.889 M16.889,1.667H4.445c-0.978,0-1.778,0.8-1.778,1.778V15.89
-                        c0,0.978,0.8,1.777,1.778,1.777H16.89c0.977,0,1.777-0.8,1.777-1.777V3.445C18.666,2.467,17.866,1.667,16.889,1.667z"/>
-                    </svg>
-                </label>
+                <span class="clear-all" (click)="clearAll()">Clear All</span>
             </li>
         </ul>
         <ul class="one">

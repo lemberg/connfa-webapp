@@ -168,23 +168,11 @@ header{
     }
   }
   .clear-all{
-    cursor: pointer;
-    background: #fafafa;
-    padding: 15px 40px 15px 15px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
     top: 8px;
-    font-size: 16px;
-    font-family: $font-first;
-    color: $color-first;
     display: none;
-    @extend %shadow;
+    @extend %clear-btn;
     &.active{
       display: inline-block;
-    }
-    &:hover{
-      color: $color-second-site;
     }
   }
   .box-menu{

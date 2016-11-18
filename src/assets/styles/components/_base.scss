@@ -140,6 +140,10 @@ body{
   }
   .filter-nav_wrap{
     padding: 8px 0;
+    .clear-all{
+      @extend %clear-btn;
+      display: inline-block;
+    }
     ul{
       padding: 5px $padding-base 5px $padding-base;
       border-bottom: 1px solid $border-color;
