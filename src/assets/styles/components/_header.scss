@@ -168,23 +168,11 @@ header{
     }
   }
   .clear-all{
-    cursor: pointer;
-    background: #fafafa;
-    padding: 15px 40px 15px 15px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
     top: 8px;
-    font-size: 16px;
-    font-family: $font-first;
-    color: $color-first;
     display: none;
-    @extend %shadow;
+    @extend %clear-btn;
     &.active{
       display: inline-block;
-    }
-    &:hover{
-      color: $color-second-site;
     }
   }
   .box-menu{
@@ -243,7 +231,7 @@ header{
       @include transition(opacity 0.1s ease 0.3s);
     }
   }
-  @media (max-width: $mediaMaxWidth) {
+  @include bp(md){
     padding-left: 230px;
     .top-menu {
       left: $base-space-mob;
@@ -304,7 +292,7 @@ header{
     bottom: -5px;
   }
 }
-@media (max-width: $mediaMaxWidth1) {
+@include bp(sm){
   body.view{
     padding-top: 112px;
     .header{
@@ -379,5 +367,4 @@ header{
       }
     }
   }
-
 }

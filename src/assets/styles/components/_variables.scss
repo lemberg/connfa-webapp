@@ -1,3 +1,9 @@
+$breakpoints: (
+    xs: 479px,
+    sm: 749px,
+    md: 1024px
+    //lg:''
+);
 /*color*/
 $white:#ffffff;
 $black:rgba(0,0,0,.87);
@@ -37,8 +43,8 @@ $base-lineH:1.33;
 $menuWidth:264px;
 $infoWidth:552px;
 $infoMaxWidth:60%;
-$mediaMinWidth:980px;
-$mediaMaxWidth:979px;
+$mediaMinWidth:1025px;
+$mediaMaxWidth:1024px;
 $mediaMaxWidth1:749px;
 $wrap-time:123px;
 $wrap-timeM:107px;

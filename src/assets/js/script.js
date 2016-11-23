@@ -1,3 +1,4 @@
+var bpMedium=1024;
 function menu(){
     $(document).on('click', '.select', function(e){
         e.preventDefault();
@@ -12,6 +13,7 @@ function menu(){
 
     $(document).on('click', '.nav-sub a', function(event) {
         $(".box-menu .nav").removeClass("active");
+        $("body").scrollTop(0);
         event.stopPropagation();
     });
 
@@ -42,7 +44,7 @@ function scrollFixedOverflow(){
 }
 function cls(){
     var windowWidth=$(window).width();
-    if(windowWidth<=979){
+    if(windowWidth<=bpMedium){
         $('body').removeClass('open');
     }
     else{
@@ -148,7 +150,7 @@ function leftNavigation(){
     $(document).on('click', '.left-navigation a', function(e) {
         e.preventDefault();
         var windowWidth=$(window).width();
-        if(windowWidth<=979){
+        if(windowWidth<=bpMedium){
             $('body').removeClass('open');
             animate();
         }
