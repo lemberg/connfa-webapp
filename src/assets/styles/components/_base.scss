@@ -815,7 +815,13 @@ body{
 }
 .response{
   position: relative;
-  padding-bottom: 42%;
+  @include bp(xs,$dir:'min'){
+    padding-bottom: 42%;
+  }
+  @include bp(xs){
+    padding-bottom: 0;
+    height: 60vh;
+  }
   iframe{
     position: absolute;
     width: 100%;

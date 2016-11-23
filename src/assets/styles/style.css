@@ -714,8 +714,14 @@ body {
     padding: 24px 0; }
 
 .response {
-  position: relative;
-  padding-bottom: 42%; }
+  position: relative; }
+  @media (min-width: 480px) {
+    .response {
+      padding-bottom: 42%; } }
+  @media (max-width: 479px) {
+    .response {
+      padding-bottom: 0;
+      height: 60vh; } }
   .response iframe {
     position: absolute;
     width: 100%;
