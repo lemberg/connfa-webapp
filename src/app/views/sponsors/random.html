@@ -1,0 +1,5 @@
+<div class="sponsor">
+    <a *ngFor="let sponsor of sponsors" target="_blank" href="{{sponsor.url}}">
+        <img [src]="getImage(sponsor.image)">
+    </a>
+</div>

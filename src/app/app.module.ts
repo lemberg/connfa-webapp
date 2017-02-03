@@ -29,10 +29,14 @@ import {LocationsComponent} from "./components/locations/locations.component";
 import {ListDetailsComponent} from "./components/events_partials/list-details.component";
 import {FavoritesComponent} from "./components/events_partials/favorites.component";
 import {FilterComponent} from "./components/events_partials/filter.component";
+import {DiamondSponsorsComponent} from "./components/sponsors/diamond-sponsors";
 
 import {ENV} from "./config/env";
 import {CONFIG} from "./config/config";
+import {SponsorsService} from "./services/sponsors.service";
+import {RandomSponsorsComponent} from "./components/sponsors/random-sponsors";
 import {FormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
 import {Ucfirst} from "./pipes/ucfirst.pipe";
 
 const localforage = require('localforage');
@@ -71,6 +75,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
 		FloorsComponent,
 		LocationsComponent,
 		FavoritesComponent,
+		DiamondSponsorsComponent,
+		RandomSponsorsComponent,
 		Ucfirst
 	],
 	providers: [
@@ -81,6 +87,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
 		SpeakersEventsService,
 		LevelService,
 		TrackService,
+		SponsorsService,
 		{ provide: 'localforage', useValue: localforage },
 		{ provide: 'config', useValue: CONFIG[ENV] },
 		{ provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
