@@ -74,7 +74,7 @@ export class EventService {
 
             return this._eventsPromise[type] = filterInstance.getItem('filters').then((filters: any) => {
 
-                return this._apiService.getCollection('events').then((events: Event[])=> {
+                return this._apiService.getCollection('events').then((events: Event[]) => {
                     var eventsOfType = events
                         .filter(this.filterByType.bind(this, type))
                         .sort((a, b) => {
@@ -134,8 +134,10 @@ export class EventService {
         this.activeDate = date;
         this.activeEvents = this.formattedEvents[this.activeDate];
         if (redirect && this._windowService.isDesktop()) {
-            var event = this._getFirstActiveEvent(this.activeEvents);
-            this._router.navigate([this._routes[event.event_type] + event.eventId]);
+            var event = this._getFirstActiveEvent(this.activeEvents).then((event:Event) => {
+                this._router.navigate([this._routes[event.event_type] + event.eventId]);
+            });
+
         }
         this.eventsChanged$.emit(date);
     }
@@ -155,7 +157,7 @@ export class EventService {
             name: 'events'
         });
 
-        storage.getItem(event.eventId.toString()).then((item: Event)=> {
+        storage.getItem(event.eventId.toString()).then((item: Event) => {
             item.isFavorite = event.isFavorite;
             storage.setItem(event.eventId.toString(), item);
         });
@@ -203,10 +205,19 @@ export class EventService {
     }
 
     private _getFirstActiveEvent(activeEvents: any) {
-        var firstHour = Object.keys(activeEvents)[0];
-        var event = this.activeEvents[firstHour][0];
+        var hours = Object.keys(activeEvents);
+        var promise = new Promise((resolve, reject) => {
+            hours.forEach(hour => {
+                this.activeEvents[hour].forEach((event: Event) => {
+                    if (!this.isNonClickable(event.type)) {
 
-        return event;
+                        return resolve(event);
+                    }
+                });
+            });
+        });
+
+        return Promise.resolve(promise);
     }
 
     private _bindChanges(data: any, changeActiveDate: boolean = false) {

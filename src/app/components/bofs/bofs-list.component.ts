@@ -40,6 +40,7 @@ export class BofsListComponent extends EventComponent implements OnInit, OnDestr
             this.hours = this.getKeys(this._eventService.activeEvents);
             this.dates = this._eventService.dates;
             this.activeDate = this._eventService.activeDate || this.dates[0];
+            this._eventService.setActiveDate(this.activeDate, true);
         })
 
         this._eventService.eventsChanged$.subscribe((data:Event[]|string) => {

@@ -29,6 +29,7 @@ export class SchedulerListComponent extends EventComponent implements OnInit, On
     ngOnInit():void {
         this._schedulerService.getSchedulers().then((schedulers:any) => {
             this._mapData();
+            this._schedulerService.setActiveDate(this.activeDate, true)
         });
 
         this._schedulerService.eventsChanged$.subscribe((schedulers:any) => {

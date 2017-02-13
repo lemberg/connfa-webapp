@@ -40,6 +40,7 @@ export class SessionsListComponent extends EventComponent implements OnInit, OnD
             this.hours = Object.keys(this._eventService.activeEvents);
             this.dates = this._eventService.dates;
             this.activeDate = this._eventService.activeDate || this.dates[0];
+            this._eventService.setActiveDate(this.activeDate, true);
         })
 
         this._eventService.eventsChanged$.subscribe((data:Event[]|string) => {

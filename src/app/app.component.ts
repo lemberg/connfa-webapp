@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ROUTER_DIRECTIVES} from "@angular/router";
+import {ROUTER_DIRECTIVES, Router} from "@angular/router";
 import {ApiService} from "./services/api.service";
 
 declare var jQuery: any;
@@ -19,7 +19,7 @@ import '../../public/js/hammer.js';
 
 
 export class AppComponent {
-    constructor(private _apiService: ApiService) {
+    constructor(private _apiService: ApiService, private _router: Router) {
         this._apiService.grabUpdates();
     }
 
@@ -36,6 +36,10 @@ export class AppComponent {
             jQuery('body').toggleClass('open');
             this._animate();
         }
+    }
+
+    public isActive(instruction: any) {
+        return this._router.isActive(instruction, false);
     }
 
     private _animate() {

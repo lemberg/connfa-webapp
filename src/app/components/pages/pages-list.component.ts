@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ROUTER_DIRECTIVES} from "@angular/router";
+import {ROUTER_DIRECTIVES, Router} from "@angular/router";
 import {PageService} from "../../services/page.service";
 import {Page} from "../../models/page";
+import {WindowService} from "../../services/window.service";
 
 @Component({
     selector: 'pages-list',
@@ -9,15 +10,21 @@ import {Page} from "../../models/page";
     directives: [ROUTER_DIRECTIVES],
 })
 
-export class PagesListComponent implements OnInit{
+export class PagesListComponent implements OnInit {
 
     public pages: Page[];
 
-    constructor(private _pagesService: PageService) {
+    constructor(private _pagesService: PageService, private _windowService: WindowService, private _router: Router) {
     }
 
-    ngOnInit():any {
-        this._pagesService.getPages().then((pages: Page[]) => this.pages = pages);
+    ngOnInit(): any {
+        this._pagesService.getPages().then((pages: Page[]) => {
+            this.pages = pages
+            if (this._windowService.isDesktop()) {
+                return this._router.navigate(['pages', this.pages[0].infoId]);
+            }
+        });
+
         this._pagesService.pagesChanged$.subscribe((pages: Page[]) => this.pages = pages);
     }
 }
