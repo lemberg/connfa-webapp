@@ -20,7 +20,7 @@ export class PagesListComponent implements OnInit {
     ngOnInit(): any {
         this._pagesService.getPages().then((pages: Page[]) => {
             this.pages = pages
-            if (this._windowService.isDesktop()) {
+            if (this._router.isActive('pages', true) && this._windowService.isDesktop()) {
                 return this._router.navigate(['pages', this.pages[0].infoId]);
             }
         });

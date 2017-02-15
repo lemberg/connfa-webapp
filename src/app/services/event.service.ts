@@ -130,15 +130,9 @@ export class EventService {
 
     }
 
-    public setActiveDate(date: string, redirect: boolean = false) {
+    public setActiveDate(date: string) {
         this.activeDate = date;
         this.activeEvents = this.formattedEvents[this.activeDate];
-        if (redirect && this._windowService.isDesktop()) {
-            var event = this._getFirstActiveEvent(this.activeEvents).then((event:Event) => {
-                this._router.navigate([this._routes[event.event_type] + event.eventId]);
-            });
-
-        }
         this.eventsChanged$.emit(date);
     }
 
@@ -202,22 +196,6 @@ export class EventService {
 
     public isNonClickable(type: number) {
         return this._nonClickableTypes.indexOf(type) !== -1
-    }
-
-    private _getFirstActiveEvent(activeEvents: any) {
-        var hours = Object.keys(activeEvents);
-        var promise = new Promise((resolve, reject) => {
-            hours.forEach(hour => {
-                this.activeEvents[hour].forEach((event: Event) => {
-                    if (!this.isNonClickable(event.type)) {
-
-                        return resolve(event);
-                    }
-                });
-            });
-        });
-
-        return Promise.resolve(promise);
     }
 
     private _bindChanges(data: any, changeActiveDate: boolean = false) {

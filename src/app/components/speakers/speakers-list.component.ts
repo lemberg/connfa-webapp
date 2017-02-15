@@ -33,7 +33,7 @@ export class SpeakersListComponent implements OnInit{
     public getSpeakers() {
         this._speakerService.getSpeakers().then((speakers: Speaker[]) => {
             this._transformSpeakers(speakers);
-            if (this._windowService.isDesktop()) {
+            if (this._router.isActive('speakers', true) && this._windowService.isDesktop()) {
                 return this._router.navigate(['speakers', speakers[0].speakerId]);
             }
         });
