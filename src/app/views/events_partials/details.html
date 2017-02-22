@@ -134,7 +134,7 @@
                 </div>
             </a>
         </div>
-        <p [innerHTML]="event.text"></p>
+        <p *ngIf="event.text" [innerHTML]="event.text"></p>
     </div>
 
 
