@@ -127,6 +127,10 @@ header{
         color: rgba(255,255,255,.32);
       }
 
+      &::-ms-clear {
+        display: none;
+      }
+
     }
     .icon-search{
       background: url(../images/search-icon.svg) 0 90% no-repeat;
