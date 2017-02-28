@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A webpack starter for angular 2",
   "scripts": {
-    "start": "gulp build && webpack-dev-server --inline --progress --port 8080 & gulp watch",
+    "start": "gulp build && parallelshell \"webpack-dev-server --inline --progress --port 8080\" \"gulp watch\"",
     "test": "karma start",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail & gulp build",
     "postinstall": "typings install"
@@ -32,10 +32,10 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "gulp": "^3.9.1",
-    "gulp-sourcemaps": "1.6.0",
     "gulp-ext-replace": "^0.3.0",
     "gulp-postcss": "^6.1.1",
     "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "1.6.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.15.0",
     "jasmine-core": "^2.4.1",
@@ -45,6 +45,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "null-loader": "^0.1.1",
+    "parallelshell": "^2.0.0",
     "phantomjs-prebuilt": "^2.1.7",
     "precss": "^1.4.0",
     "raw-loader": "^0.5.1",
