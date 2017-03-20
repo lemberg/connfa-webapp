@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {ApiService} from "./api.service";
 import {Location} from "../models/locations";
 
@@ -6,7 +6,18 @@ import {Location} from "../models/locations";
 
 export class LocationService {
 
-    constructor(private _apiService: ApiService) {}
+    public locationsChanged$:EventEmitter<any>;
+
+    constructor(private _apiService: ApiService) {
+        this.locationsChanged$ =  new EventEmitter();
+
+        this._apiService.dataChanged$.subscribe((data:Location[]) => {
+            this.locations = [];
+            this.getLocations().then((locations:any) => {
+                this.locationsChanged$.emit(locations);
+            });
+        })
+    }
 
     locations:Location[];
 
