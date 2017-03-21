@@ -15,6 +15,7 @@ export class ApiService {
 
     private _config:any;
     private _localforage:any;
+    private _keyValuesPromises:any = {};
 
     constructor(private _http:Http,
                 @Inject('config') config:{},
@@ -181,7 +182,6 @@ export class ApiService {
             return this._collectionsPromises[name];
         }
 
-        console.log('I am here', name);
         var instance = this._localforage.createInstance({
             name: name
         });
@@ -196,6 +196,31 @@ export class ApiService {
 
                 Promise.all(promises).then((collection:any) => {
                     resolve(collection);
+                })
+            });
+        })
+    }
+
+    getKeyValues(name:string) {
+        if (typeof this._keyValuesPromises[name] !== 'undefined') {
+            return this._keyValuesPromises[name];
+        }
+
+        var instance = this._localforage.createInstance({
+            name: name
+        });
+
+        return this._keyValuesPromises[name] = new Promise((resolve, reject) => {
+
+            var dict = {};
+            instance.keys().then((keys:string[]) => {
+                var promises:any[] = [];
+                keys.forEach(key => {
+                    promises.push(instance.getItem(key).then((value:any) => {dict[key] = value}))
+                });
+
+                Promise.all(promises).then((values:any) => {
+                    resolve(dict);
                 })
             });
         })

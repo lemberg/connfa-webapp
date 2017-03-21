@@ -23,13 +23,21 @@ export class LocationsComponent implements OnInit{
 
     ngOnInit():any {
         this._locationService.getLocations().then((locations: Location[]) => {
-            this.location = locations[0];
-
-            if (this.location) {
-                this.showLocation = true;
-                this.locationUrl= this.sanitationService.bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed/v1/place?key='+this.config.googleApiKey+'&q='+this.location.address);
-            }
+            this.applyLocation(locations);
         });
+
+        this._locationService.locationsChanged$.subscribe((locations: Location[]) => {
+            this.applyLocation(locations);
+        });
+    }
+
+    private applyLocation(locations: Location[]):any {
+        this.location = locations[0];
+
+        if (this.location) {
+            this.showLocation = true;
+            this.locationUrl= this.sanitationService.bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed/v1/place?key='+this.config.googleApiKey+'&q='+this.location.address);
+        }
     }
 
 
