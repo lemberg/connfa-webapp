@@ -87,7 +87,12 @@ export class EventService {
                                 } else if (a.order < b.order) {
                                     return -1;
                                 } else {
-                                    return 0;
+                                    if (a.eventId > b.eventId){
+                                        return 1;
+                                    }
+                                    else{
+                                        return -1;
+                                    }
                                 }
                             }
 
