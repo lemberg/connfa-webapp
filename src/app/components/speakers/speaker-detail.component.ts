@@ -4,6 +4,7 @@ import {Speaker} from "../../models/speaker";
 import {SpeakerService} from "../../services/speaker.service";
 import {SpeakersListComponent} from "./speakers-list.component";
 import {SpeakersEventsService} from "../../services/speakers_events.service";
+import {WindowService} from "../../services/window.service";
 
 declare var jQuery:any;
 
@@ -24,7 +25,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
         'social': '/socialevents/'
     };
 
-    constructor(private _speakerService:SpeakerService, private _router:ActivatedRoute) {
+    constructor(private _speakerService:SpeakerService, private _router:ActivatedRoute, private windowService: WindowService) {
     }
 
     ngOnInit():any {
@@ -37,6 +38,10 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
 
             if (id) {
                 jQuery('body').addClass('overflowHidden');
+
+                if (!this.windowService.isDesktop()) {
+                    jQuery('#page section.info').addClass('hide-content1');
+                }
             }
         });
 
@@ -49,6 +54,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
 
     ngOnDestroy():void {
         jQuery('body').removeClass('overflowHidden');
+        jQuery('#page section.info').removeClass('hide-content');
     }
 
     private _getSpeaker(id:number):void {
