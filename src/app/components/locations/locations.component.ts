@@ -6,7 +6,6 @@ import {DomSanitizationService, SafeResourceUrl} from "@angular/platform-browser
 @Component({
     selector: 'locations',
     templateUrl: '../../views/locations/index.html',
-    directives: [],
     providers: [LocationService],
 })
 
@@ -40,5 +39,9 @@ export class LocationsComponent implements OnInit{
         }
     }
 
+    public getTitle(title: string): string {
+        var title = title.replace(/,/g,'\n');
 
+        return title;
+    }
 }

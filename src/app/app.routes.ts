@@ -1,4 +1,4 @@
-import {provideRouter, Routes} from "@angular/router";
+import {Routes, RouterModule} from "@angular/router";
 import {SessionsListComponent} from "./components/sessions/sessions-list.component";
 import {SpeakersListComponent} from "./components/speakers/speakers-list.component";
 import {SpeakerDetailsComponent} from "./components/speakers/speaker-detail.component";
@@ -21,7 +21,7 @@ export const routes:Routes = [
     {
         path: '',
         redirectTo: '/sessions',
-        terminal: true
+        pathMatch: 'full'
     },
     {
         path: 'sessions',
@@ -85,6 +85,4 @@ export const routes:Routes = [
     },
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-    provideRouter(routes)
-]
+export const APP_ROUTER_PROVIDERS = RouterModule.forRoot(routes);

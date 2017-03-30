@@ -14,6 +14,25 @@
     <link rel="icon" href="../public/images/favicon.png" type="image/x-icon"/>
     <link rel="shortcut icon" href="../public/images/favicon.png" type="image/x-icon"/>
     <link rel="manifest" href="../public/manifest.json">
+    <script>
+		if('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('service-worker.js')
+				.then(() => {console.log('service worker installed')})
+				.catch(err => console.log('Error', err));
+		}
+
+		Notification.requestPermission().then(function(result) {
+			if (result === 'denied') {
+				console.log('Permission wasn\'t granted. Allow a retry.');
+				return;
+			}
+			if (result === 'default') {
+				console.log('The permission request was dismissed.');
+				return;
+			}
+			// Do something with the granted permission.
+		});
+    </script>
 </head>
 <base href="/">
 <body>
