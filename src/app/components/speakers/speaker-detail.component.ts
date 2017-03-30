@@ -46,7 +46,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
         });
 
         this._speakerService.speakersChanged$.subscribe((data:string|Speaker[]) => {
-            if (data === 'changed' && this.speaker && this.speaker.speakerId) {
+            if (data.length && this.speaker && this.speaker.speakerId) {
                 this._getSpeaker(this.speaker.speakerId);
             }
         });
