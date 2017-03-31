@@ -1,11 +1,10 @@
-import {NgModule, provide} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG}  from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {ApiService} from "./services/api.service";
 import {WindowService} from "./services/window.service";
 import {APP_ROUTER_PROVIDERS} from "./app.routes";
-import {HTTP_PROVIDERS} from "@angular/http";
-import * as localforage from "localforage";
+import {HttpModule} from "@angular/http";
 import {EventService} from "./services/event.service";
 import {SpeakerService} from "./services/speaker.service";
 import {SpeakersEventsService} from "./services/speakers_events.service";
@@ -33,7 +32,10 @@ import {FilterComponent} from "./components/events_partials/filter.component";
 
 import {ENV} from "./config/env";
 import {CONFIG} from "./config/config";
+import {FormsModule} from "@angular/forms";
+import {Ucfirst} from "./pipes/ucfirst.pipe";
 
+const localforage = require('localforage');
 
 export class MyHammerConfig extends HammerGestureConfig  {
 	overrides = <any>{
@@ -43,7 +45,10 @@ export class MyHammerConfig extends HammerGestureConfig  {
 
 @NgModule({
 	imports: [
-		BrowserModule
+		BrowserModule,
+		HttpModule,
+		FormsModule,
+		APP_ROUTER_PROVIDERS,
 	],
 	declarations: [
 		AppComponent,
@@ -65,7 +70,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
 		SocialmediaComponent,
 		FloorsComponent,
 		LocationsComponent,
-		FavoritesComponent
+		FavoritesComponent,
+		Ucfirst
 	],
 	providers: [
 		ApiService,
@@ -75,13 +81,9 @@ export class MyHammerConfig extends HammerGestureConfig  {
 		SpeakersEventsService,
 		LevelService,
 		TrackService,
-		APP_ROUTER_PROVIDERS,
-		HTTP_PROVIDERS,
-		provide('localforage', {useValue: localforage}),
-		provide('config', {useValue: CONFIG[ENV]}),
-		provide(HAMMER_GESTURE_CONFIG, {
-			useClass: MyHammerConfig
-		}),
+		{ provide: 'localforage', useValue: localforage },
+		{ provide: 'config', useValue: CONFIG[ENV] },
+		{ provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
 	],
 	bootstrap: [AppComponent]
 })

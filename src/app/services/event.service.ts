@@ -74,7 +74,7 @@ export class EventService {
 
             return this._eventsPromise[type] = filterInstance.getItem('filters').then((filters: any) => {
 
-                return this._apiService.getCollection('events').then((events: Event[])=> {
+                return this._apiService.getCollection('events').then((events: Event[]) => {
                     var eventsOfType = events
                         .filter(this.filterByType.bind(this, type))
                         .sort((a, b) => {
@@ -87,7 +87,12 @@ export class EventService {
                                 } else if (a.order < b.order) {
                                     return -1;
                                 } else {
-                                    return 0;
+                                    if (a.eventId > b.eventId){
+                                        return 1;
+                                    }
+                                    else{
+                                        return -1;
+                                    }
                                 }
                             }
 
@@ -125,13 +130,9 @@ export class EventService {
 
     }
 
-    public setActiveDate(date: string, redirect: boolean = false) {
+    public setActiveDate(date: string) {
         this.activeDate = date;
         this.activeEvents = this.formattedEvents[this.activeDate];
-        if (redirect && this._windowService.isDesktop()) {
-            var event = this._getFirstActiveEvent(this.activeEvents);
-            this._router.navigate([this._routes[event.event_type] + event.eventId]);
-        }
         this.eventsChanged$.emit(date);
     }
 
@@ -150,7 +151,7 @@ export class EventService {
             name: 'events'
         });
 
-        storage.getItem(event.eventId.toString()).then((item: Event)=> {
+        storage.getItem(event.eventId.toString()).then((item: Event) => {
             item.isFavorite = event.isFavorite;
             storage.setItem(event.eventId.toString(), item);
         });
@@ -195,13 +196,6 @@ export class EventService {
 
     public isNonClickable(type: number) {
         return this._nonClickableTypes.indexOf(type) !== -1
-    }
-
-    private _getFirstActiveEvent(activeEvents: any) {
-        var firstHour = Object.keys(activeEvents)[0];
-        var event = this.activeEvents[firstHour][0];
-
-        return event;
     }
 
     private _bindChanges(data: any, changeActiveDate: boolean = false) {

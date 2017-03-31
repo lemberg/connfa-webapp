@@ -1,7 +1,5 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {FavoritesComponent} from "../events_partials/favorites.component";
-import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
-import {SocialeventsListComponent} from "./socialevents-list.component";
+import {ActivatedRoute} from "@angular/router";
 import {EventService} from "../../services/event.service";
 import {Event} from "../../models/event";
 import * as moment from 'moment';
@@ -11,7 +9,6 @@ declare var jQuery:any;
 @Component({
     selector: 'event-details',
     templateUrl: '../../views/events_partials/details.html',
-    directives: [FavoritesComponent, SocialeventsListComponent, ROUTER_DIRECTIVES],
 })
 
 export class SocialeventDetailComponent implements OnInit, OnDestroy {

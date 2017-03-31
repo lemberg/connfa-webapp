@@ -1,18 +1,15 @@
 import {OnInit, Component, OnDestroy} from "@angular/core";
-import {ROUTER_DIRECTIVES} from "@angular/router";
-import {FavoritesComponent} from "../events_partials/favorites.component";
-import {FilterComponent} from "../events_partials/filter.component";
+import {Router} from "@angular/router";
 import {EventService} from "../../services/event.service";
-import {ListDetailsComponent} from "../events_partials/list-details.component";
 import {Event} from "../../models/event";
 import {EventComponent} from "../event-component";
+import {WindowService} from "../../services/window.service";
 
 declare var jQuery: any;
 
 @Component({
     selector: 'events-list',
     templateUrl: '../../views/events_partials/menu.html',
-    directives: [ROUTER_DIRECTIVES, FavoritesComponent, FilterComponent, ListDetailsComponent],
     providers: [EventService],
 })
 
@@ -26,10 +23,10 @@ export class SocialeventsListComponent extends EventComponent implements OnInit,
     public activeDate:any;
 
     public title = 'Social Events';
-    public router = '/socialevents/';
+    public router = 'socialevents';
     public event_type = 'social';
 
-    constructor(protected _eventService:EventService) {
+    constructor(protected _eventService:EventService, protected _windowService: WindowService, protected _router: Router) {
         super();
     }
 
@@ -39,6 +36,7 @@ export class SocialeventsListComponent extends EventComponent implements OnInit,
             this.hours = this.getKeys(this._eventService.activeEvents);
             this.dates = this._eventService.dates;
             this.activeDate = this._eventService.activeDate || this.dates[0];
+            this.redirectToFirst(this.activeEvents);
         })
 
         this._eventService.eventsChanged$.subscribe((data:Event[]|string) => {
@@ -50,7 +48,7 @@ export class SocialeventsListComponent extends EventComponent implements OnInit,
             this.activeEvents = this._eventService.activeEvents;
             this.hours = this.getKeys(this._eventService.activeEvents);
             this.dates = this._eventService.dates;
-            this.activeDate = this._eventService.activeDate || this.dates[0];
+            this.redirectToFirst(this.activeEvents);
         })
 
         jQuery('body').addClass('view');

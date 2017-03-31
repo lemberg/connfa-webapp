@@ -43,6 +43,11 @@ gulp.task('manifest', function () {
 		.pipe(gulp.dest('public/'));
 });
 
+gulp.task('sw', function () {
+	gulp.src('public/service-worker.js')
+		.pipe(gulp.dest('dist/'));
+})
+
 gulp.task('htaccess', function () {
 	gulp.src('public/.htaccess')
 		.pipe(gulp.dest('dist'));
@@ -53,7 +58,8 @@ gulp.task('watch', function () {
 	gulp.watch('src/assets/js/**/*', ['build-js', 'build-assets']);
 	gulp.watch('src/assets/images/**/*', ['build-images', 'build-assets']);
 	gulp.watch('src/assets/manifest.json', ['manifest', 'build-assets']);
+	gulp.watch('src/service-worker.js', ['sw', 'build-assets']);
 });
 
-gulp.task('build', ['build-scss', 'build-js', 'build-images','manifest','build-assets', 'htaccess']);
+gulp.task('build', ['build-scss', 'build-js', 'build-images', 'manifest', 'sw', 'build-assets', 'htaccess']);
 

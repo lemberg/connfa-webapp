@@ -1,17 +1,11 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {SchedulerService} from "../../services/scheduler.service";
-import {Ucfirst} from "../../pipes/ucfirst.pipe";
-import {ROUTER_DIRECTIVES} from "@angular/router";
-import {FavoritesComponent} from "../events_partials/favorites.component";
-import {ListDetailsComponent} from "../events_partials/list-details.component";
 import {EventComponent} from "../event-component";
 
 declare var jQuery: any;
 
 @Component({
     selector: 'events-list',
-    pipes: [Ucfirst],
-    directives: [ROUTER_DIRECTIVES, FavoritesComponent, ListDetailsComponent],
     providers: [SchedulerService],
     templateUrl: '../../views/scheduler/menu.html'
 })
@@ -29,6 +23,7 @@ export class SchedulerListComponent extends EventComponent implements OnInit, On
     ngOnInit():void {
         this._schedulerService.getSchedulers().then((schedulers:any) => {
             this._mapData();
+            this._schedulerService.setActiveDate(this.activeDate, true)
         });
 
         this._schedulerService.eventsChanged$.subscribe((schedulers:any) => {

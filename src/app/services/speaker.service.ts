@@ -25,7 +25,7 @@ export class SpeakerService {
             this.speakers = [];
             this._speakersPromise = null;
             this.getSpeakers().then((speakers:Speaker[]) => {
-                this.speakersChanged$.emit('changed');
+                this.speakersChanged$.emit(speakers);
             });
         });
     }
