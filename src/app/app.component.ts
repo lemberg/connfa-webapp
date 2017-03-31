@@ -4,7 +4,6 @@ import {ApiService} from "./services/api.service";
 
 declare var jQuery: any;
 
-import '../../public/styles/normalize.css';
 import '../../public/styles/style.css';
 import '../../public/js/jquery-1.9.1.min.js'
 import '../../public/js/script.js';
