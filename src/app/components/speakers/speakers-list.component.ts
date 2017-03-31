@@ -1,8 +1,7 @@
 import {SpeakerService} from "../../services/speaker.service";
 import {Speaker} from "../../models/speaker";
 import {Component, OnInit} from "@angular/core";
-import {ROUTER_DIRECTIVES, Router} from "@angular/router";
-import {FORM_DIRECTIVES} from "@angular/forms";
+import {Router} from "@angular/router";
 import {WindowService} from "../../services/window.service";
 
 declare var jQuery:any;
@@ -10,7 +9,6 @@ declare var jQuery:any;
 @Component({
     selector: 'speakers-list',
     templateUrl: '../../views/speakers/menu.html',
-    directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     inputs: ['searchQuery']
 })
 export class SpeakersListComponent implements OnInit{

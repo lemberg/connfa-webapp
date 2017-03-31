@@ -1,7 +1,7 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {Location} from "../../models/locations";
 import {LocationService} from "../../services/location.service";
-import {DomSanitizationService, SafeResourceUrl} from "@angular/platform-browser";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
     selector: 'locations',
@@ -16,7 +16,7 @@ export class LocationsComponent implements OnInit{
     public showLocation:boolean;
     public locationUrl:SafeResourceUrl;
 
-    constructor(private _locationService: LocationService, @Inject('config') config:any, private sanitationService:DomSanitizationService) {
+    constructor(private _locationService: LocationService, @Inject('config') config:any, private sanitationService: DomSanitizer) {
         this.config = config;
     }
 

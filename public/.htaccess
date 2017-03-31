@@ -1,6 +1,13 @@
 <IfModule mod_rewrite.c>
   Options Indexes FollowSymLinks
   RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP_USER_AGENT} !MSIE\ [5-8] [NC]
+  RewriteCond %{HTTP_USER_AGENT} !Android.*(Mobile)?\ [0-3] [NC]
+  RewriteCond %{HTTP_USER_AGENT} !^(.*.symbian.*) [NC]
+  RewriteCond %{HTTP_USER_AGENT} !^(.*.blackberry.*) [NC]
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

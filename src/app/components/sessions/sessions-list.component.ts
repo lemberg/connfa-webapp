@@ -1,9 +1,6 @@
-import {FavoritesComponent} from "../events_partials/favorites.component";
 import {OnInit, Component, OnDestroy} from "@angular/core";
-import {ROUTER_DIRECTIVES, Router} from "@angular/router";
-import {FilterComponent} from "../events_partials/filter.component";
+import {Router} from "@angular/router";
 import {EventService} from "../../services/event.service";
-import {ListDetailsComponent} from "../events_partials/list-details.component";
 import {Event} from "../../models/event";
 
 declare var jQuery: any;
@@ -15,7 +12,6 @@ import {WindowService} from "../../services/window.service";
     moduleId: 'app',
     selector: 'events-list',
     templateUrl: '../../views/events_partials/menu.html',
-    directives: [ROUTER_DIRECTIVES, FavoritesComponent, FilterComponent, ListDetailsComponent],
     providers: [EventService],
 })
 
