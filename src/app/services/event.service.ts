@@ -38,6 +38,7 @@ export class EventService {
         bof: null,
         social: null,
     };
+    private _parseDateFormat = 'YYYY-MM-DD hh:mm:ss';
 
     constructor(private _apiService: ApiService,
                 private _speakerService: SpeakerService,
@@ -78,8 +79,8 @@ export class EventService {
                     var eventsOfType = events
                         .filter(this.filterByType.bind(this, type))
                         .sort((a, b) => {
-                            var first = moment(a.from, moment.ISO_8601).format('x');
-                            var second = moment(b.from, moment.ISO_8601).format('x');
+                            var first = moment(a.from, this._parseDateFormat).format('x');
+                            var second = moment(b.from, this._parseDateFormat).format('x');
 
                             if (first == second) {
                                 if (a.order > b.order) {
@@ -273,9 +274,9 @@ export class EventService {
                 })
             })
         }
-        item.timeLabel = moment(item.from, moment.ISO_8601).format('ddd, LT') + ' - ' + moment(item.to, moment.ISO_8601).format('ddd, LT');
-        item.fromLabel = moment(item.from, moment.ISO_8601).format('LT');
-        item.toLabel = moment(item.to, moment.ISO_8601).format('LT');
+        item.timeLabel = moment(item.from, this._parseDateFormat).format('ddd, LT') + ' - ' + moment(item.to, this._parseDateFormat).format('ddd, LT');
+        item.fromLabel = moment(item.from, this._parseDateFormat).format('LT');
+        item.toLabel = moment(item.to, this._parseDateFormat).format('LT');
         if (item.isFavorite) {
             this._favoriteEvents.push(item.eventId);
         }
@@ -287,8 +288,8 @@ export class EventService {
         var transformed: any = [];
         return new Promise((resolve, reject) => {
             events.forEach((event: Event) => {
-                var event_day = moment(event.from, moment.ISO_8601).format('ddd D');
-                var event_hours = moment(event.from, moment.ISO_8601).format('LT') + ' ' + moment(event.to, moment.ISO_8601).format('LT');
+                var event_day = moment(event.from, this._parseDateFormat).format('ddd D');
+                var event_hours = moment(event.from, this._parseDateFormat).format('LT') + ' ' + moment(event.to, this._parseDateFormat).format('LT');
 
                 if (!transformed[event_day]) {
                     transformed[event_day] = [];
