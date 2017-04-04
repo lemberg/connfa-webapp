@@ -9,3 +9,4 @@
 npm-debug.log
 /src/app/config/config.ts
 /src/app/config/env.ts
+dist.tar
