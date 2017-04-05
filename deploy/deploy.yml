@@ -1,0 +1,14 @@
+---
+- name: Deploy app to server
+  hosts: all
+  vars:
+    ansistrano_deploy_from: "{{ playbook_dir }}/../dist.tar"
+    ansistrano_deploy_to: "~/httpdocs/"
+    ansistrano_keep_releases: 3
+    # There seems to be an issue with rsync in vagrant
+    ansistrano_deploy_via: copy
+    # hooks
+    ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/tasks/before-setup-task.yml"
+    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/after-update-task.yml"
+  roles:
+    - { role: carlosbuenosvinos.ansistrano-deploy }

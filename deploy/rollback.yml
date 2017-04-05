@@ -1,0 +1,7 @@
+---
+- name: Rollback app
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "~/httpdocs/"
+  roles:
+    - { role: carlosbuenosvinos.ansistrano-rollback }
