@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp build && parallelshell \"webpack-dev-server --inline --progress --port 8080\" \"gulp watch\"",
     "test": "karma start",
-    "build": "rimraf dist && gulp build && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "build": "rimraf dist && gulp build && webpack --config config/webpack.prod.js --progress --profile --bail && gulp deploy-tar",
     "postinstall": "typings install"
   },
   "license": "MIT",
@@ -37,6 +37,7 @@
     "gulp-postcss": "^6.1.1",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "1.6.0",
+    "gulp-tar": "^1.9.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.15.0",
     "jasmine-core": "^2.4.1",

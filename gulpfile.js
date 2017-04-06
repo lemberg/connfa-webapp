@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var config = require('./gulpfile-config.json');
+var tar = require('gulp-tar');
 
 var sassThemePath = (config.theme == null) ? 'assets/themes/default' : 'assets/themes/' + config.theme;
 var assetsDev = 'public/**/*';
@@ -53,6 +54,12 @@ gulp.task('htaccess', function () {
 		.pipe(gulp.dest('dist'));
 });
 
+gulp.task('tar', function () {
+	gulp.src('dist/*')
+		.pipe(tar('dist.tar'))
+		.pipe(gulp.dest('./'))
+})
+
 gulp.task('watch', function () {
 	gulp.watch('src/' + sassThemePath + '/**/*', ['build-scss', 'build-assets']);
 	gulp.watch('src/assets/js/**/*', ['build-js', 'build-assets']);
@@ -62,4 +69,5 @@ gulp.task('watch', function () {
 });
 
 gulp.task('build', ['build-scss', 'build-js', 'build-images', 'manifest', 'sw', 'build-assets', 'htaccess']);
+gulp.task('deploy-tar', ['tar']);
 
