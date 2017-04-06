@@ -55,9 +55,9 @@ gulp.task('htaccess', function () {
 });
 
 gulp.task('tar', function () {
-	gulp.src('dist/*')
-		.pipe(tar('dist.tar'))
-		.pipe(gulp.dest('./'))
+	gulp.src('dist/**', {
+		dot: true
+	}).pipe(tar('dist.tar')).pipe(gulp.dest('./'))
 })
 
 gulp.task('watch', function () {
@@ -70,4 +70,3 @@ gulp.task('watch', function () {
 
 gulp.task('build', ['build-scss', 'build-js', 'build-images', 'manifest', 'sw', 'build-assets', 'htaccess']);
 gulp.task('deploy-tar', ['tar']);
-
