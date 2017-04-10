@@ -943,7 +943,6 @@ body{
   @include bp(sp-sm){
     @include justify-content($justify: center);
     a{
-      width: 85%;
       &:nth-child(1)~a{
         display: none;
       }
