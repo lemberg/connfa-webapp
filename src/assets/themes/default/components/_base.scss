@@ -883,7 +883,7 @@ body{
   padding: 0 48px;
   height: 99px;
   overflow: auto;
-  background: url(../images/bg-sponsor.png) center 0 repeat-x;
+  background-color: #f4f4f4;
   img{
     max-height: 64px;
   }
@@ -955,7 +955,7 @@ body{
   @include justify-content();
   @include align-items();
   margin-top: 15px;
-  height: 105px;
+  height: 126px;
   padding: 0 35px;
   overflow: auto;
   background: url(../images/bg-sponsor-menu.png) center 0 repeat-x;
