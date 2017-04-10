@@ -271,14 +271,15 @@ body{
   border-left: 2px solid $border-color;
   background: $bg-color-block;
   @include bp(md,$dir:"min"){
-    padding: $padding-base 0 0 48px;
+    padding: $padding-base 0 0 0;
     .panel-scroll{
       height: 100vh;
       margin-top: -88px;
       padding-top: 88px;
-      box-sizing: border-box;
       padding-right: 48px;
+      padding-left: 48px;
       overflow-x: auto;
+      box-sizing: border-box;
     }
   }
 
@@ -499,6 +500,10 @@ body{
     display: block;
     &.dissabled{
       color: $color-events;
+      pointer-events: none;
+      .icon-favorite{
+        display: none;
+      }
     }
   }
   .wrap-time{
@@ -870,6 +875,97 @@ body{
   width: 10px;
   z-index: 2;
 }
+.sponsor{
+  @include display-flex();
+  @include justify-content();
+  @include align-items();
+  margin: -24px -48px 20px -48px;
+  padding: 0 48px;
+  height: 99px;
+  overflow: auto;
+  background: url(../images/bg-sponsor.png) center 0 repeat-x;
+  img{
+    max-height: 64px;
+  }
+  a{
+    text-decoration: none;
+    padding-left: 18px;
+    &:nth-child(5)~a{
+      display: none;
+    }
+    &:first-child{
+      padding-left: 0;
+    }
+  }
+  @include bp(sp-xxlarge){
+    height: 130px;
+    -webkit-background-size: cover;
+    background-size:cover;
+    a{
+      width: 45%;
+      img{
+        width: 100%;
+        max-height: 85px;
+      }
+      &:nth-child(2)~a{
+        display: none;
+      }
+    }
+  }
+  @include bp(sp-xlarge){
+    @include justify-content($justify: center);
+    a{
+      width: 85%;
+      &:nth-child(1)~a{
+        display: none;
+      }
+    }
+  }
+  @include bp(sp-large){
+    @include justify-content($justify: space-between);
+    a{
+      width: auto;
+      &:nth-child(1)~a{
+        display: block;
+      }
+      &:nth-child(5)~a{
+        display: none;
+      }
+    }
+  }
+  @include bp(sp-md){
+    a{
+      &:nth-child(3)~a{
+        display: none;
+      }
+    }
+  }
+  @include bp(sp-sm){
+    @include justify-content($justify: center);
+    a{
+      width: 85%;
+      &:nth-child(1)~a{
+        display: none;
+      }
+    }
+  }
+}
+.sponsor-menu{
+  @include display-flex();
+  @include justify-content();
+  @include align-items();
+  margin-top: 15px;
+  height: 105px;
+  padding: 0 35px;
+  overflow: auto;
+  background: url(../images/bg-sponsor-menu.png) center 0 repeat-x;
+  a{
+    text-decoration: none;
+  }
+  img{
+    max-height: 54px;
+  }
+}
 @include bp(md){
   body{
     &.overflow{
@@ -915,7 +1011,7 @@ body{
     width: 100%;
     top: 120%;
     left: 0;
-    padding: 25px 16px;
+    padding: 25px 0;
     z-index: 5;
     border-left: none;
     &.active{
@@ -934,6 +1030,10 @@ body{
       &.view{
         margin-right: -15px;
       }
+    }
+    .panel-scroll{
+      padding-left: 16px;
+      padding-right: 16px;
     }
   }
   .over{
