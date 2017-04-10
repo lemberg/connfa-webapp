@@ -1,8 +1,12 @@
 $breakpoints: (
     xs: 479px,
     sm: 749px,
-    md: 1024px
-    //lg:''
+    md: 1024px,
+    sp-sm: 480px,
+    sp-md: 560px,
+    sp-large: 1024px,
+    sp-xlarge: 1230px,
+    sp-xxlarge: 1360px
 );
 /*color*/
 $white:#ffffff;
@@ -24,6 +28,12 @@ $blue-whale-approx:#06335B;
 $gigas-approx:#4F3B9A;
 $san-marino-approx:#4077AA;
 /*end color*/
+
+//light color theme
+$fiord-approx:#3d4760;
+$smalt-blue-approx:#5b7d8d;
+$tradewind-approx:#65b6aa;
+//end
 
 /*font*/
 $font-first:'roboto-regular';
@@ -73,10 +83,10 @@ $bg-input:$royal-purple-approx;
 $padding-left-list:18px;
 
 /*color for all items to will be changed*/
-$color-link:$gigas-approx;
-$color-first-site:$san-marino-approx;
-$color-second-site:$san-marino-approx;
+$color-link:$smalt-blue-approx;
+$color-first-site:$tradewind-approx;
+$color-second-site:$tradewind-approx;
 $color-all-element-header:$white;
-$header-bg:$blue-whale-approx;
+$header-bg:$fiord-approx;
 
 /*end element*/
