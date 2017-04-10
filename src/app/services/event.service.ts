@@ -38,7 +38,7 @@ export class EventService {
         bof: null,
         social: null,
     };
-    private _parseDateFormat = 'YYYY-MM-DD hh:mm:ss';
+    public parseDateFormat = 'YYYY-MM-DD hh:mm:ss';
 
     constructor(private _apiService: ApiService,
                 private _speakerService: SpeakerService,
@@ -79,8 +79,8 @@ export class EventService {
                     var eventsOfType = events
                         .filter(this.filterByType.bind(this, type))
                         .sort((a, b) => {
-                            var first = moment(a.from, this._parseDateFormat).format('x');
-                            var second = moment(b.from, this._parseDateFormat).format('x');
+                            var first = moment(a.from, this.parseDateFormat).format('x');
+                            var second = moment(b.from, this.parseDateFormat).format('x');
 
                             if (first == second) {
                                 if (a.order > b.order) {
@@ -196,7 +196,8 @@ export class EventService {
     }
 
     public isNonClickable(type: number) {
-        return this._nonClickableTypes.indexOf(type) !== -1
+
+        return this._nonClickableTypes.indexOf(type) !== -1;
     }
 
     private _bindChanges(data: any, changeActiveDate: boolean = false) {
@@ -274,9 +275,9 @@ export class EventService {
                 })
             })
         }
-        item.timeLabel = moment(item.from, this._parseDateFormat).format('ddd, LT') + ' - ' + moment(item.to, this._parseDateFormat).format('ddd, LT');
-        item.fromLabel = moment(item.from, this._parseDateFormat).format('LT');
-        item.toLabel = moment(item.to, this._parseDateFormat).format('LT');
+        item.timeLabel = moment(item.from, this.parseDateFormat).format('ddd, LT') + ' - ' + moment(item.to, this.parseDateFormat).format('ddd, LT');
+        item.fromLabel = moment(item.from, this.parseDateFormat).format('LT');
+        item.toLabel = moment(item.to, this.parseDateFormat).format('LT');
         if (item.isFavorite) {
             this._favoriteEvents.push(item.eventId);
         }
@@ -288,8 +289,8 @@ export class EventService {
         var transformed: any = [];
         return new Promise((resolve, reject) => {
             events.forEach((event: Event) => {
-                var event_day = moment(event.from, this._parseDateFormat).format('ddd D');
-                var event_hours = moment(event.from, this._parseDateFormat).format('LT') + ' ' + moment(event.to, this._parseDateFormat).format('LT');
+                var event_day = moment(event.from, this.parseDateFormat).format('ddd D');
+                var event_hours = moment(event.from, this.parseDateFormat).format('LT') + ' ' + moment(event.to, this.parseDateFormat).format('LT');
 
                 if (!transformed[event_day]) {
                     transformed[event_day] = [];

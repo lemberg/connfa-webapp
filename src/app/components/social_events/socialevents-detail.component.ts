@@ -27,7 +27,7 @@ export class SocialeventDetailComponent implements OnInit, OnDestroy {
                 var id = params['id'];
                 if (id) {
                     this._getEvent(id).then((event:Event) => {
-                        var activeDate = moment(event.from, moment.ISO_8601).format('ddd D');
+                        var activeDate = moment(event.from, this._eventService.parseDateFormat).format('ddd D');
                         this._eventService.setActiveDate(activeDate);
                     });
 
