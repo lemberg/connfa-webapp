@@ -273,7 +273,7 @@ body{
   @include bp(md,$dir:"min"){
     padding: 0;
     .panel-scroll{
-      height: calc(100vh - 88px);
+      height: calc(100vh - 64px);
       padding-right: 48px;
       padding-left: 48px;
       overflow-x: auto;
