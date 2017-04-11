@@ -792,6 +792,7 @@ body{
   box-sizing: border-box;
   iframe.twitter-timeline{
     width: 600px !important;
+    display: block !important;
   }
 }
 .location,.plane{
