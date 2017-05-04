@@ -9,7 +9,7 @@ export class WindowService {
     }
 
     public isDesktop() {
-        if (window.innerWidth >= this._desktopSize) {
+        if (window.innerWidth > this._desktopSize) {
             return true;
         }
 
