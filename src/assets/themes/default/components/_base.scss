@@ -1010,7 +1010,7 @@ body{
   }
   .description{
     position: fixed;
-    height: calc(100% - 64px);
+    height: 100%;
     width: 100%;
     top: 120%;
     left: 0;
@@ -1018,8 +1018,8 @@ body{
     z-index: 5;
     border-left: none;
     &.active{
-      padding-top: 0;
-      top: 64px;
+      top: 0;
+      padding-top: 64px;
       z-index: 14;
       overflow-y: auto;
       header{
