@@ -13,6 +13,7 @@ var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var precss = require('precss');
 var cssnano = require('cssnano');
+var runSequence = require('run-sequence');
 
 gulp.task('build-assets', function () {
 	return gulp.src(assetsDev)
@@ -68,5 +69,5 @@ gulp.task('watch', function () {
 	gulp.watch('src/service-worker.js', ['sw', 'build-assets']);
 });
 
-gulp.task('build', ['build-scss', 'build-js', 'build-images', 'manifest', 'sw', 'build-assets', 'htaccess']);
+gulp.task('build',runSequence('manifest', 'build-scss', 'build-js', 'build-images', 'sw', 'build-assets', 'htaccess'));
 gulp.task('deploy-tar', ['tar']);
