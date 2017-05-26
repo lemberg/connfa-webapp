@@ -43,7 +43,9 @@ const localforage = require('localforage');
 
 export class MyHammerConfig extends HammerGestureConfig  {
 	overrides = <any>{
-		'swipe': {velocity: 0.4, threshold: 20} // override default settings
+		'swipe': {velocity: 0.4, threshold: 20, direction: 6}, // override default settings
+		'pinch': { enable: false },
+		'rotate': { enable: false }
 	}
 }
 
