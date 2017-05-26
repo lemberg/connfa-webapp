@@ -5,6 +5,8 @@
 /public/styles/
 /public/js/
 /public/images/
+/public/manifest.json
 npm-debug.log
 /src/app/config/config.ts
 /src/app/config/env.ts
+dist.tar

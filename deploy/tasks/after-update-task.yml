@@ -1,0 +1,3 @@
+---
+- name: untar
+  shell: "cd {{ ansistrano_release_path.stdout }} && tar -C {{ ansistrano_release_path.stdout }} -xvf dist.tar"

@@ -1,3 +1,13 @@
+$breakpoints: (
+    xs: 479px,
+    sm: 749px,
+    md: 1024px,
+    sp-sm: 480px,
+    sp-md: 560px,
+    sp-large: 1024px,
+    sp-xlarge: 1230px,
+    sp-xxlarge: 1360px
+);
 /*color*/
 $white:#ffffff;
 $black:rgba(0,0,0,.87);
@@ -19,6 +29,12 @@ $gigas-approx:#4F3B9A;
 $san-marino-approx:#4077AA;
 /*end color*/
 
+//light color theme
+$fiord-approx:#3d4760;
+$smalt-blue-approx:#5b7d8d;
+$tradewind-approx:#65b6aa;
+//end
+
 /*font*/
 $font-first:'roboto-regular';
 $font-second:'roboto-medium';
@@ -37,8 +53,8 @@ $base-lineH:1.33;
 $menuWidth:264px;
 $infoWidth:552px;
 $infoMaxWidth:60%;
-$mediaMinWidth:980px;
-$mediaMaxWidth:979px;
+$mediaMinWidth:1025px;
+$mediaMaxWidth:1024px;
 $mediaMaxWidth1:749px;
 $wrap-time:123px;
 $wrap-timeM:107px;
@@ -64,12 +80,14 @@ $bg-color-time:$wild-Sand-approx;
 $shadow:$black-opacity2;
 $shadow1:$black-opacity3;
 $bg-input:$royal-purple-approx;
+$padding-left-list:18px;
+$space-base:18px;
 
 /*color for all items to will be changed*/
-$color-link:$gigas-approx;
-$color-first-site:$san-marino-approx;
-$color-second-site:$san-marino-approx;
+$color-link:$smalt-blue-approx;
+$color-first-site:$tradewind-approx;
+$color-second-site:$tradewind-approx;
 $color-all-element-header:$white;
-$header-bg:$blue-whale-approx;
+$header-bg:$fiord-approx;
 
 /*end element*/

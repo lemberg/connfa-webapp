@@ -1,4 +1,4 @@
-import {Component, OnInit, Inject, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Floor} from "../../models/floors";
 import {FloorService} from "../../services/floor.service";
 

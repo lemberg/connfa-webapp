@@ -1,7 +1,5 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {FavoritesComponent} from "../events_partials/favorites.component";
-import {ActivatedRoute, ROUTER_DIRECTIVES} from "@angular/router";
-import {SessionsListComponent} from "./sessions-list.component";
+import {ActivatedRoute} from "@angular/router";
 import {EventService} from "../../services/event.service";
 import * as moment from 'moment';
 import {Event} from "../../models/event";
@@ -11,7 +9,6 @@ declare var jQuery:any;
 @Component({
     selector: 'event-details',
     templateUrl: '../../views/events_partials/details.html',
-    directives: [FavoritesComponent, SessionsListComponent, ROUTER_DIRECTIVES],
 })
 
 export class SessionDetailComponent implements OnInit, OnDestroy {
@@ -30,7 +27,7 @@ export class SessionDetailComponent implements OnInit, OnDestroy {
             var id = params['id'];
             if (id) {
                 this._getEvent(id).then((event:Event) => {
-                    var activeDate = moment(event.from, moment.ISO_8601).format('ddd D');
+                    var activeDate = moment(event.from, this._eventService.parseDateFormat).format('ddd D');
                     this._eventService.setActiveDate(activeDate);
                 });
 

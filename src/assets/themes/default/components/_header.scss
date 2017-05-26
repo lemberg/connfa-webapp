@@ -56,7 +56,7 @@ header{
     position: relative;
     text-align: center;
     padding-right: 58px;
-    top: 16px;
+    top: 14px;
     height: 36px;
     min-height: 1px;
     -webkit-box-sizing: border-box;
@@ -127,6 +127,10 @@ header{
         color: rgba(255,255,255,.32);
       }
 
+      &::-ms-clear {
+        display: none;
+      }
+
     }
     .icon-search{
       background: url(../images/search-icon.svg) 0 90% no-repeat;
@@ -168,23 +172,11 @@ header{
     }
   }
   .clear-all{
-    cursor: pointer;
-    background: #fafafa;
-    padding: 15px 40px 15px 15px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
     top: 8px;
-    font-size: 16px;
-    font-family: $font-first;
-    color: $color-first;
     display: none;
-    @extend %shadow;
+    @extend %clear-btn;
     &.active{
       display: inline-block;
-    }
-    &:hover{
-      color: $color-second-site;
     }
   }
   .box-menu{
@@ -218,6 +210,21 @@ header{
       line-height: $base-lineH;
     }
     @include nav-sub-box(13px, 51px, 13px, 16px);
+    .select{
+        -webkit-tap-highlight-color: transparent;
+    }
+    .nav-sub{
+      li,a{
+        -webkit-tap-highlight-color: transparent;
+      }
+      li{
+        &.active{
+          a{
+            color: $color-first-site;
+          }
+        }
+      }
+    }
   }
   &.active{
     .search{
@@ -228,7 +235,7 @@ header{
       @include transition(opacity 0.1s ease 0.3s);
     }
   }
-  @media (max-width: $mediaMaxWidth) {
+  @include bp(md){
     padding-left: 230px;
     .top-menu {
       left: $base-space-mob;
@@ -289,7 +296,7 @@ header{
     bottom: -5px;
   }
 }
-@media (max-width: $mediaMaxWidth1) {
+@include bp(sm){
   body.view{
     padding-top: 112px;
     .header{
@@ -299,15 +306,20 @@ header{
         position: absolute;
         left: 0;
         top: auto;
-        bottom: -2px;
+        bottom: 0;
         width: 100%;
         margin-bottom: 0;
         padding: 0;
-        overflow-y: auto;
         text-align: left;
       }
       .date{
         padding-left: 55px;
+        overflow: auto;
+        &::-webkit-scrollbar{
+          width: 0;
+          height: 0;
+          background-color: $header-bg;
+        }
       }
       .search{
         left: 0;
@@ -359,5 +371,4 @@ header{
       }
     }
   }
-
 }

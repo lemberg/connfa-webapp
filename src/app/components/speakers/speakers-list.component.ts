@@ -1,15 +1,14 @@
 import {SpeakerService} from "../../services/speaker.service";
 import {Speaker} from "../../models/speaker";
 import {Component, OnInit} from "@angular/core";
-import {ROUTER_DIRECTIVES} from "@angular/router";
-import {FORM_DIRECTIVES} from "@angular/forms";
+import {Router} from "@angular/router";
+import {WindowService} from "../../services/window.service";
 
 declare var jQuery:any;
 
 @Component({
     selector: 'speakers-list',
     templateUrl: '../../views/speakers/menu.html',
-    directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     inputs: ['searchQuery']
 })
 export class SpeakersListComponent implements OnInit{
@@ -19,7 +18,7 @@ export class SpeakersListComponent implements OnInit{
     public alphabet:string[];
     public searchQuery: string;
 
-    constructor(private _speakerService: SpeakerService) {
+    constructor(private _speakerService: SpeakerService, private _windowService: WindowService, private _router:Router) {
         _speakerService.speakersChanged$.subscribe((speakers: Speaker[]) => {
             this._transformSpeakers(speakers)
         });
@@ -32,6 +31,9 @@ export class SpeakersListComponent implements OnInit{
     public getSpeakers() {
         this._speakerService.getSpeakers().then((speakers: Speaker[]) => {
             this._transformSpeakers(speakers);
+            if (this._router.isActive('speakers', true) && this._windowService.isDesktop()) {
+                return this._router.navigate(['speakers', speakers[0].speakerId]);
+            }
         });
     }
 

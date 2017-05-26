@@ -1,0 +1,3 @@
+deploy:
+  host: "NAME OF HOST FROM hosts FILE"
+  path: "HOST PATH"

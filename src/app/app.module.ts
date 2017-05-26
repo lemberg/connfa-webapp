@@ -1,11 +1,10 @@
-import {NgModule, provide} from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG}  from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {ApiService} from "./services/api.service";
 import {WindowService} from "./services/window.service";
 import {APP_ROUTER_PROVIDERS} from "./app.routes";
-import {HTTP_PROVIDERS} from "@angular/http";
-import * as localforage from "localforage";
+import {HttpModule} from "@angular/http";
 import {EventService} from "./services/event.service";
 import {SpeakerService} from "./services/speaker.service";
 import {SpeakersEventsService} from "./services/speakers_events.service";
@@ -30,14 +29,32 @@ import {LocationsComponent} from "./components/locations/locations.component";
 import {ListDetailsComponent} from "./components/events_partials/list-details.component";
 import {FavoritesComponent} from "./components/events_partials/favorites.component";
 import {FilterComponent} from "./components/events_partials/filter.component";
+import {DiamondSponsorsComponent} from "./components/sponsors/diamond-sponsors";
 
 import {ENV} from "./config/env";
 import {CONFIG} from "./config/config";
+import {SponsorsService} from "./services/sponsors.service";
+import {RandomSponsorsComponent} from "./components/sponsors/random-sponsors";
+import {FormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
+import {Ucfirst} from "./pipes/ucfirst.pipe";
 
+const localforage = require('localforage');
+
+export class MyHammerConfig extends HammerGestureConfig  {
+	overrides = <any>{
+		'swipe': {velocity: 0.4, threshold: 20, direction: 6}, // override default settings
+		'pinch': { enable: false },
+		'rotate': { enable: false }
+	}
+}
 
 @NgModule({
 	imports: [
-		BrowserModule
+		BrowserModule,
+		HttpModule,
+		FormsModule,
+		APP_ROUTER_PROVIDERS,
 	],
 	declarations: [
 		AppComponent,
@@ -59,7 +76,10 @@ import {CONFIG} from "./config/config";
 		SocialmediaComponent,
 		FloorsComponent,
 		LocationsComponent,
-		FavoritesComponent
+		FavoritesComponent,
+		DiamondSponsorsComponent,
+		RandomSponsorsComponent,
+		Ucfirst
 	],
 	providers: [
 		ApiService,
@@ -69,10 +89,10 @@ import {CONFIG} from "./config/config";
 		SpeakersEventsService,
 		LevelService,
 		TrackService,
-		APP_ROUTER_PROVIDERS,
-		HTTP_PROVIDERS,
-		provide('localforage', {useValue: localforage}),
-		provide('config', {useValue: CONFIG[ENV]})
+		SponsorsService,
+		{ provide: 'localforage', useValue: localforage },
+		{ provide: 'config', useValue: CONFIG[ENV] },
+		{ provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
 	],
 	bootstrap: [AppComponent]
 })

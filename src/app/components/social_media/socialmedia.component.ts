@@ -22,18 +22,28 @@ export class SocialmediaComponent implements OnInit {
 
     ngOnInit():any {
         this._settings.getSetting('twitterWidgetId').then((twitterWidgetId:string) => {
-            if (twitterWidgetId) {
-                this.twitterWidgetId = twitterWidgetId;
-                this.widget = twttr.widgets.createTimeline(
-                    twitterWidgetId,
-                    document.getElementById("container")
-                ).then((data:HTMLIFrameElement) => {
-                    if (data) {
-                        this.showWidget = true;
-                    }
-                });
-            }
+            this.applySettings(twitterWidgetId);
         });
+
+        this._settings.settingsChanged$.subscribe((settings:any) => {
+            this.applySettings(settings.twitterWidgetId);
+        });
+    }
+
+    public applySettings(twitterWidgetId:string){
+        if (twitterWidgetId) {
+            document.getElementById("container").innerHTML = "";
+            this.twitterWidgetId = twitterWidgetId;
+            this.widget = twttr.widgets.createTimeline(
+                twitterWidgetId,
+                document.getElementById("container")
+            ).then((data:HTMLIFrameElement) => {
+                console.log(data);
+                if (data) {
+                    this.showWidget = true;
+                }
+            });
+        }
     }
 }
 

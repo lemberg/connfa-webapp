@@ -1,3 +1,28 @@
+@mixin bp($value,$dir:"max-width"){
+  @if $dir=="max-width"{
+    @if map-has-key($breakpoints, $value) {
+      @media (max-width: #{map-get($breakpoints, $value)}) {
+        @content;
+      }
+    }
+    @else {
+      @warn "Unfortunately, no value could be retrieved from `#{$value}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+    }
+  }
+  @else{
+    @if map-has-key($breakpoints, $value) {
+      @media (min-width: #{map-get($breakpoints, $value)+1}) {
+        @content;
+      }
+    }
+    @else {
+      @warn "Unfortunately, no value could be retrieved from `#{$value}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+    }
+  }
+}
+
 @mixin transform($val) {
   -webkit-transform: $val;
   -moz-transform: $val;
@@ -122,7 +147,21 @@
   -moz-box-shadow:  0 0 12px rgba(0,0,0, 0.65);
   box-shadow:  0 0 12px rgba(0,0,0, 0.65);
 }
-
+%clear-btn{
+  cursor: pointer;
+  background: #fafafa;
+  padding: 15px 40px 15px 15px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-size: 16px;
+  font-family: $font-first;
+  color: $color-first;
+  @extend %shadow;
+  &:hover{
+    color: $color-second-site;
+  }
+}
 
 //Flex Box mixins
 @mixin display-flex {

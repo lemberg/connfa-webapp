@@ -1,5 +1,5 @@
 {
-  "short_name": "DrupalCon",
+  "short_name": "Connfa",
   "name": "Connfa Web App",
   "icons": [
     {
@@ -20,5 +20,7 @@
   ],
   "start_url": "/",
   "display": "standalone",
+  "theme_color": "#3d4760",
+  "background_color": "black",
   "orientation": "portrait"
 }

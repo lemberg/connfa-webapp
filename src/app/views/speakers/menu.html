@@ -29,7 +29,9 @@
                 </span>
                         <div class="text">
                             <strong class="name">{{speaker.firstName}} {{speaker.lastName}}</strong>
-                            <span class="job">{{speaker.jobTitle}} <span *ngIf="speaker.organizationName">at {{speaker.organizationName}}</span></span>
+                            <span class="job" *ngIf="speaker.jobTitle || speaker.organizationName">
+                                {{speaker.jobTitle}} <span *ngIf="speaker.jobTitle && speaker.organizationName">at</span> {{speaker.organizationName}}
+                            </span>
                         </div>
                     </a>
                 </li>

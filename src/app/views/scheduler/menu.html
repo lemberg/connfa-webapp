@@ -37,10 +37,10 @@
                     </div>
                 </li>
             </ul>
-            <div *ngIf="activeEvents" >
-            <ul class="events-info my-schedule" *ngFor="let type of getKeys(activeEvents)">
+            <div *ngIf="activeEvents">
+            <ul class="events-info my-schedule touchable" *ngFor="let type of getKeys(activeEvents)">
                 <li class="title"><span>{{type | ucfirst}}s</span></li>
-                <li *ngFor="let hour of getKeys(activeEvents[type])">
+                <li *ngFor="let hour of getKeys(activeEvents[type])" (swipeleft)="swipe(activeDate, 'left')" (swiperight)="swipe(activeDate, 'right')">
                     <div class="events-info_box">
                         <div class="box-item" *ngFor="let event of activeEvents[type][hour]">
                             <a class="cf" *ngIf="event.href" [class.favorite-yes]="event.isFavorite" [routerLink]="['/scheduler/'+event.eventId]" [routerLinkActive]="['router-link-active']">
@@ -54,7 +54,6 @@
                 </li>
             </ul>
             </div>
-
         </section>
         <router-outlet></router-outlet>
     </div>

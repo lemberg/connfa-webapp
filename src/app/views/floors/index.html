@@ -11,7 +11,7 @@
             <li>
                 <a class="select" href="#" *ngIf="activeFloor">{{activeFloor.floorPlanName}}</a>
                 <ul class="nav-sub">
-                    <li *ngFor="let floor of floors"><a href="javascript:void(0)" (click)="onActivateFloor(floor)">{{floor.floorPlanName}}</a></li>
+                    <li *ngFor="let floor of floors" [class.active]="activeFloor.floorPlanId == floor.floorPlanId"><a href="javascript:void(0)" (click)="onActivateFloor(floor)">{{floor.floorPlanName}}</a></li>
                 </ul>
             </li>
         </ul>
@@ -21,7 +21,7 @@
     <div class="inner cf">
         <div class="plane">
             <div class="box-img">
-                <img src="{{activeFloor.floorPlanImageURL}}">
+                <img src="{{activeFloor.floorPlanImageURL}}" alt="{{activeFloor.floorPlanName}}">
             </div>
         </div>
     </div>

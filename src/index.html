@@ -2,18 +2,37 @@
 <html>
 <head>
     <base href="/">
-    <title>DrupalCon</title>
+    <title>Connfa</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="apple-touch-icon" href="../public/images/icon.png"/>
     <meta name="viewport" content="width=device-width">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta id="theme-color" name="theme-color" content="#06335b">
-    <meta name="apple-mobile-web-app-title" content="DrupalCon">
-    <meta name="msapplication-TileColor" content="#06335b">
+    <meta id="theme-color" name="theme-color" content="#3d4760">
+    <meta name="apple-mobile-web-app-title" content="Connfa">
+    <meta name="msapplication-TileColor" content="#3d4760">
     <link rel="icon" href="../public/images/favicon.png" type="image/x-icon"/>
     <link rel="shortcut icon" href="../public/images/favicon.png" type="image/x-icon"/>
     <link rel="manifest" href="../public/manifest.json">
+    <script>
+		if('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('service-worker.js')
+				.then(() => {console.log('service worker installed')})
+				.catch(err => console.log('Error', err));
+		}
+
+//		Notification.requestPermission().then(function(result) {
+//			if (result === 'denied') {
+//				console.log('Permission wasn\'t granted. Allow a retry.');
+//				return;
+//			}
+//			if (result === 'default') {
+//				console.log('The permission request was dismissed.');
+//				return;
+//			}
+//			// Do something with the granted permission.
+//		});
+    </script>
 </head>
 <base href="/">
 <body>
