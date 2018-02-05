@@ -9,7 +9,7 @@
     "build": "rimraf dist && gulp build && webpack --config config/webpack.prod.js --progress --profile --bail && gulp deploy-tar",
     "postinstall": "typings install"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "@angular/common": "~2.1.2",
     "@angular/compiler": "~2.1.2",
