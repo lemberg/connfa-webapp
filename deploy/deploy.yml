@@ -13,4 +13,4 @@
     ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/tasks/before-setup-task.yml"
     ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/after-update-task.yml"
   roles:
-    - { role: carlosbuenosvinos.ansistrano-deploy }
+    - { role: ansistrano.deploy }
